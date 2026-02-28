@@ -12,7 +12,7 @@ Single `index.html` — no build step, no dependencies. Just deploy.
 
 1. Create account at [formspree.io](https://formspree.io)
 2. Create a new form
-3. Replace `YOUR_FORM_ID` in `index.html` with your form endpoint ID
+3. Replace `xzdawwzo` in `index.html` with your form endpoint ID
 4. The form action URL should look like: `https://formspree.io/f/xyzabcde`
 
 ### 2. Deploy
@@ -44,7 +44,7 @@ Point `hello.liv4all.com` to wherever you deploy (CNAME or A record).
 
 ## Customization
 
-- Replace `YOUR_FORM_ID` in the form action URL
+- Replace `xzdawwzo` in the form action URL
 - Optionally add an avatar/og-image for social sharing
 - All styles are inline — edit the `<style>` block directly
 
@@ -54,7 +54,7 @@ If you prefer Google Forms over Formspree, replace the `<form>` block with:
 
 ```html
 <iframe
-  src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true"
+  src="https://docs.google.com/forms/d/e/xzdawwzo/viewform?embedded=true"
   width="100%"
   height="400"
   frameborder="0"
