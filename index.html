@@ -83,14 +83,14 @@
     }
 
     .nav-logo {
-      display: flex;
-      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
     }
 
-    .nav-logo img {
-      height: 28px;
-      width: auto;
-    }
+    .nav-logo span { color: var(--accent); }
 
     .nav-links {
       display: flex;
@@ -186,6 +186,30 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+
+    .hero-header {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .hero-logo {
+      flex-shrink: 0;
+      width: 140px;
+      height: auto;
+      filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.2));
+    }
+
+    @media (max-width: 600px) {
+      .hero-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      .hero-logo {
+        width: 100px;
+      }
     }
 
     .hero-sub {
@@ -785,7 +809,7 @@
 
   <!-- Nav -->
   <nav>
-    <a href="#" class="nav-logo"><img src="logo.png" alt="Liv"></a>
+    <a href="#" class="nav-logo">liv<span>4all</span></a>
     <div class="nav-links">
       <a href="#why">why liv</a>
       <a href="#features">features</a>
@@ -803,7 +827,10 @@
         <span class="badge-dot"></span>
         building the MVP — alpha coming soon
       </div>
-      <h1>your AI<br><span class="gradient">chief of staff</span></h1>
+      <div class="hero-header">
+        <h1>your AI<br><span class="gradient">chief of staff</span></h1>
+        <img src="logo.png" alt="Liv logo" class="hero-logo">
+      </div>
       <p class="hero-sub">
         liv is a <strong>persistent AI agent</strong> that acts on your behalf —
         managing calendars, triaging email, making bookings.
