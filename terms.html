@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpha Terms — Liv</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: #1e1e2e;
+      --text: #e0e0e8;
+      --text-dim: #7a7a8e;
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.15);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: -1;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-bottom: 48px;
+      transition: color 0.2s;
+    }
+
+    .back:hover { color: var(--accent); text-decoration: none; }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .updated {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    p, li {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+
+    p strong, li strong { color: var(--text); font-weight: 500; }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    li { margin-bottom: 8px; }
+
+    .callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 32px 0;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .callout strong { color: var(--text); }
+
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="/" class="back">← back to liv4all</a>
+
+    <h1>alpha terms of use</h1>
+    <p class="updated">last updated: 2 march 2026</p>
+
+    <div class="callout">
+      these terms are written in plain language on purpose. if something is unclear, reach out — we'd rather explain than hide behind legalese.
+    </div>
+
+    <h2>what this is</h2>
+    <p>
+      liv is an <strong>AI assistant in active development</strong>. you're accessing an early alpha — meaning things will break, responses won't always be perfect, and features will change without notice. by using liv, you acknowledge this and agree to the terms below.
+    </p>
+
+    <h2>the basics</h2>
+    <ul>
+      <li><strong>alpha access is invite-only</strong> and can be revoked at any time, for any reason.</li>
+      <li><strong>the service is provided as-is</strong>, with no guarantees of uptime, accuracy, or availability.</li>
+      <li><strong>we may change, pause, or shut down the alpha</strong> at any point during development.</li>
+      <li><strong>your feedback is welcome</strong> — it's how we make this better.</li>
+    </ul>
+
+    <h2>fair use</h2>
+    <p>
+      liv is designed to be a personal productivity assistant. we ask that you use it reasonably:
+    </p>
+    <ul>
+      <li>don't abuse the service with excessive automated requests or load testing.</li>
+      <li>don't attempt to reverse-engineer, extract, or resell the underlying models or infrastructure.</li>
+      <li>don't use liv to spam, harass, or impersonate others.</li>
+      <li>one account per person. don't share your access or bot credentials.</li>
+    </ul>
+
+    <h2>ethical & legal use</h2>
+    <p>
+      this is the important one. you agree to use liv <strong>only for lawful and ethical purposes</strong>. specifically, you must not use liv to:
+    </p>
+    <ul>
+      <li><strong>break the law</strong> — don't use liv to facilitate, plan, or carry out any illegal activity in your jurisdiction.</li>
+      <li><strong>harm others</strong> — no harassment, threats, hate speech, stalking, doxxing, or any form of abuse directed at others.</li>
+      <li><strong>generate harmful content</strong> — don't attempt to produce content that is violent, exploitative, deceptive, or designed to mislead.</li>
+      <li><strong>compromise security</strong> — don't use liv to attack systems, phish, distribute malware, or gain unauthorised access to anything.</li>
+      <li><strong>violate privacy</strong> — don't use liv to collect, store, or process other people's personal data without their consent.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>in short:</strong> use liv the way you'd want others to use powerful tools — responsibly, ethically, and without causing harm. if you're unsure whether something is okay, it probably isn't.
+    </div>
+
+    <h2>your data</h2>
+    <ul>
+      <li>liv stores conversation history and preferences to provide a persistent assistant experience.</li>
+      <li>your data is <strong>not sold, shared, or used to train models</strong>.</li>
+      <li>you can request deletion of your data at any time by contacting us.</li>
+      <li>during alpha, data handling processes are still maturing — we'll keep you informed of any significant changes.</li>
+    </ul>
+
+    <h2>third-party services</h2>
+    <p>
+      liv connects to services on your behalf (e.g. Google Calendar, Gmail). when you grant access, you're authorising liv to act within the permissions you approve. you can revoke these at any time through your Google account settings.
+    </p>
+
+    <h2>liability</h2>
+    <p>
+      liv is an AI. it can make mistakes — miss a detail, misunderstand a request, or get something wrong. <strong>you are responsible for reviewing actions</strong> liv takes on your behalf (especially emails, calendar changes, and bookings). we are not liable for any errors, losses, or damages arising from use of the service.
+    </p>
+
+    <h2>changes to these terms</h2>
+    <p>
+      we may update these terms as the product evolves. we'll notify alpha users of any material changes. continued use after changes constitutes acceptance.
+    </p>
+
+    <h2>contact</h2>
+    <p>
+      questions? reach out at <a href="mailto:leo@leo.wtf">leo@leo.wtf</a>.
+    </p>
+  </div>
+
+  <footer>
+    <p>built with 🖤 by liv & leo</p>
+  </footer>
+
+</body>
+</html>
