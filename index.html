@@ -10,7 +10,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hello.liv4all.com">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖤</text></svg>">
+  <link rel="icon" href="logo.png" type="image/png">
+  <meta property="og:image" content="https://hello.liv4all.com/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -82,13 +83,14 @@
     }
 
     .nav-logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--text);
+      display: flex;
+      align-items: center;
     }
 
-    .nav-logo span { color: var(--accent); }
+    .nav-logo img {
+      height: 28px;
+      width: auto;
+    }
 
     .nav-links {
       display: flex;
@@ -783,7 +785,7 @@
 
   <!-- Nav -->
   <nav>
-    <div class="nav-logo">liv<span>4all</span></div>
+    <a href="#" class="nav-logo"><img src="logo.png" alt="Liv"></a>
     <div class="nav-links">
       <a href="#why">why liv</a>
       <a href="#features">features</a>
