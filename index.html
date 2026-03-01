@@ -10,7 +10,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hello.liv4all.com">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="icon" href="logo-transparent.png" type="image/png">
   <meta property="og:image" content="https://hello.liv4all.com/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -188,28 +188,11 @@
       background-clip: text;
     }
 
-    .hero-header {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-
     .hero-logo {
-      flex-shrink: 0;
-      width: 140px;
+      width: 120px;
       height: auto;
-      filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.2));
-    }
-
-    @media (max-width: 600px) {
-      .hero-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-      }
-      .hero-logo {
-        width: 100px;
-      }
+      margin-bottom: 24px;
+      filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.25));
     }
 
     .hero-sub {
@@ -827,10 +810,8 @@
         <span class="badge-dot"></span>
         building the MVP — alpha coming soon
       </div>
-      <div class="hero-header">
-        <h1>your AI<br><span class="gradient">chief of staff</span></h1>
-        <img src="logo.png" alt="Liv logo" class="hero-logo">
-      </div>
+      <img src="logo-transparent.png" alt="Liv" class="hero-logo">
+      <h1>your AI<br><span class="gradient">chief of staff</span></h1>
       <p class="hero-sub">
         liv is a <strong>persistent AI agent</strong> that acts on your behalf —
         managing calendars, triaging email, making bookings.
