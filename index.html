@@ -495,6 +495,132 @@
       line-height: 1.6;
     }
 
+    /* ── Docs ── */
+    .docs-intro {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 600px;
+      margin-bottom: 32px;
+    }
+
+    .docs-intro strong { color: var(--text); font-weight: 500; }
+
+    .docs-callout {
+      background: rgba(251, 191, 36, 0.06);
+      border: 1px solid rgba(251, 191, 36, 0.15);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .docs-callout .callout-icon { margin-right: 8px; }
+    .docs-callout strong { color: var(--amber); font-weight: 500; }
+
+    .docs-callout-info {
+      background: rgba(139, 92, 246, 0.06);
+      border: 1px solid rgba(139, 92, 246, 0.15);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .docs-callout-info strong { color: var(--accent); font-weight: 500; }
+
+    .docs-toggle {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .docs-toggle:hover { border-color: rgba(139, 92, 246, 0.3); }
+
+    .docs-toggle summary {
+      padding: 20px 24px;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .docs-toggle summary::-webkit-details-marker { display: none; }
+
+    .docs-toggle summary::after {
+      content: '+';
+      font-size: 1.2rem;
+      color: var(--accent);
+      transition: transform 0.2s;
+    }
+
+    .docs-toggle[open] summary::after {
+      content: '−';
+    }
+
+    .docs-toggle-body {
+      padding: 0 24px 24px;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .docs-toggle-body strong { color: var(--text); font-weight: 500; }
+
+    .docs-steps {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0;
+      counter-reset: step;
+    }
+
+    .docs-steps li {
+      counter-increment: step;
+      padding: 12px 0 12px 48px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .docs-steps li:last-child { border-bottom: none; }
+
+    .docs-steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 32px;
+      height: 32px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .docs-steps li .step-title {
+      font-weight: 500;
+      color: var(--text);
+      display: block;
+      margin-bottom: 4px;
+    }
+
     /* ── Signup Form ── */
     .signup-section {
       background: var(--surface);
@@ -662,6 +788,7 @@
       <a href="#why">why liv</a>
       <a href="#features">features</a>
       <a href="#origin">origin</a>
+      <a href="#docs">docs</a>
       <a href="#signup" class="nav-cta">get early access</a>
     </div>
   </nav>
@@ -848,6 +975,85 @@
         <h3>Voice AI: The Next Platform Shift</h3>
         <p>the story of building liv — from a ski chairlift to a working voice AI agent that makes real phone calls. what it tells us about where AI is heading.</p>
       </a>
+    </div>
+  </section>
+
+  <!-- Docs -->
+  <section id="docs">
+    <div class="container fade-in">
+      <div class="section-label">// docs</div>
+      <h2>getting started</h2>
+
+      <div class="docs-callout">
+        <span class="callout-icon">⚠️</span>
+        <strong>alpha access required.</strong> the setup flow below only works once you've been invited to the alpha program. <a href="#signup">register your interest</a> and we'll reach out when spots open.
+      </div>
+
+      <p class="docs-intro">
+        setting up your own liv takes about <strong>2 minutes</strong> and only needs to be done <strong>once</strong>.
+        after that, you just message your personal bot like normal — no dashboards, no apps, no friction.
+      </p>
+
+      <details class="docs-toggle">
+        <summary>one-time setup — create your personal bot</summary>
+        <div class="docs-toggle-body">
+          <p>liv runs on telegram. each user gets their own personal bot — so your conversations, memory, and preferences are fully yours. here's how to set it up:</p>
+
+          <ol class="docs-steps">
+            <li>
+              <span class="step-title">message the liv onboarding bot</span>
+              once you're in the alpha, you'll receive a link to the onboarding bot on telegram. send it a message to start.
+            </li>
+            <li>
+              <span class="step-title">create your bot with @BotFather</span>
+              the onboarding bot will walk you through it step by step. you'll open <strong>@BotFather</strong> on telegram, send <code>/newbot</code>, pick a name (e.g. "my liv"), and choose a username (e.g. <code>my_liv_bot</code>). BotFather gives you a token — copy it.
+            </li>
+            <li>
+              <span class="step-title">paste your token</span>
+              go back to the onboarding bot and paste the token. we'll verify it instantly.
+            </li>
+            <li>
+              <span class="step-title">done — start chatting</span>
+              your personal liv agent spins up in seconds. the onboarding bot will send you a link to your new bot. message it and you're live. 🖤
+            </li>
+          </ol>
+
+          <div class="docs-callout-info" style="margin-top: 20px;">
+            <strong>one-time only.</strong> you'll never need to do this again. once your bot is created, liv is always there — remembering your preferences, managing your calendar, triaging your email. just message and go.
+          </div>
+        </div>
+      </details>
+
+      <details class="docs-toggle" style="margin-top: 12px;">
+        <summary>what happens after setup?</summary>
+        <div class="docs-toggle-body">
+          <p>once your personal bot is live, you interact with liv just like messaging a friend:</p>
+          <ul style="margin: 12px 0; padding-left: 20px;">
+            <li style="margin-bottom: 8px;"><strong>message anytime</strong> — liv is always on, 24/7</li>
+            <li style="margin-bottom: 8px;"><strong>calendar & email</strong> — connect your google account and liv can manage meetings, draft replies, find free slots</li>
+            <li style="margin-bottom: 8px;"><strong>memory</strong> — liv remembers your preferences across conversations. no re-explaining.</li>
+            <li style="margin-bottom: 8px;"><strong>proactive updates</strong> — morning briefings, meeting reminders, and follow-ups (coming soon)</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="docs-toggle" style="margin-top: 12px;">
+        <summary>a note on alpha</summary>
+        <div class="docs-toggle-body">
+          <p>
+            thank you for being an early adopter. 🖤 this is an alpha — which means you're helping shape what liv becomes.
+          </p>
+          <p style="margin-top: 12px;">
+            rough edges are expected. things might break, responses might surprise you, and we're iterating fast.
+            if something feels off, let us know — your feedback is genuinely what makes this better.
+          </p>
+          <p style="margin-top: 12px;">
+            we're building this in the open because we believe the best tools are built with the people who use them.
+            thanks for being patient while we get this right.
+          </p>
+        </div>
+      </details>
+
     </div>
   </section>
 
