@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Liv</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: #1e1e2e;
+      --text: #e0e0e8;
+      --text-dim: #7a7a8e;
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.15);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: -1;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-bottom: 48px;
+      transition: color 0.2s;
+    }
+
+    .back:hover { color: var(--accent); text-decoration: none; }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .updated {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-top: 40px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    p, li {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+
+    p strong, li strong { color: var(--text); font-weight: 500; }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    li { margin-bottom: 8px; }
+
+    .callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 32px 0;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .callout strong { color: var(--text); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+
+    th {
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="/" class="back">← back to liv4all</a>
+
+    <h1>privacy policy</h1>
+    <p class="updated">last updated: 2 march 2026</p>
+
+    <div class="callout">
+      plain language, no legalese. your data is yours. we use it to make liv work for you — nothing else.
+    </div>
+
+    <h2>who we are</h2>
+    <p>
+      liv is built by <strong>Leo Borges</strong> (<a href="mailto:leo@leo.wtf">leo@leo.wtf</a>), an independent developer based in Sydney, Australia. when we say "we" or "us" in this policy, that's who we mean.
+    </p>
+
+    <h2>what we collect</h2>
+    <p>we only collect data that's necessary to provide your personal AI assistant:</p>
+    <ul>
+      <li><strong>account info</strong> — your name, email address, and phone number (for messaging channels like WhatsApp or Signal).</li>
+      <li><strong>conversation history</strong> — messages between you and your liv agent, stored to maintain context and memory across sessions.</li>
+      <li><strong>connected service tokens</strong> — OAuth refresh tokens for services you connect (e.g. Google Calendar). we store tokens, not your passwords.</li>
+      <li><strong>agent workspace files</strong> — notes, preferences, and memory files your agent creates to serve you better.</li>
+    </ul>
+
+    <h2>what we don't collect</h2>
+    <ul>
+      <li>we don't track you across the web.</li>
+      <li>we don't use cookies or analytics on this site.</li>
+      <li>we don't collect data from people you interact with through liv.</li>
+      <li>we don't store your passwords for any connected service.</li>
+    </ul>
+
+    <h2>how we use your data</h2>
+    <p>your data is used for one purpose: <strong>making liv work for you</strong>.</p>
+    <ul>
+      <li><strong>conversation history</strong> — so your agent remembers context, preferences, and prior decisions.</li>
+      <li><strong>calendar tokens</strong> — so your agent can check availability, create events, and manage your schedule.</li>
+      <li><strong>email tokens</strong> — so your agent can read, draft, and send emails on your behalf (when you grant this).</li>
+      <li><strong>workspace files</strong> — so your agent can maintain notes, to-dos, and long-term memory.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>we do not use your data to train AI models.</strong> your conversations and files are never fed into training pipelines — not ours, not anyone else's.
+    </div>
+
+    <h2>third-party services</h2>
+    <p>
+      liv connects to third-party services on your behalf. when you authorise a connection, you're granting liv access within the scopes you approve:
+    </p>
+
+    <table>
+      <tr>
+        <th>service</th>
+        <th>data accessed</th>
+        <th>why</th>
+      </tr>
+      <tr>
+        <td>Google Calendar</td>
+        <td>events, availability</td>
+        <td>scheduling, reminders, invites</td>
+      </tr>
+      <tr>
+        <td>Google Contacts</td>
+        <td>contact names, emails</td>
+        <td>finding people for scheduling</td>
+      </tr>
+    </table>
+
+    <p>
+      you can revoke access to any connected service at any time through that service's settings (e.g. <a href="https://myaccount.google.com/permissions" target="_blank">Google account permissions</a>). liv will stop accessing that service immediately.
+    </p>
+
+    <h2>where your data lives</h2>
+    <ul>
+      <li>data is stored on secured infrastructure managed by us.</li>
+      <li>each user's agent runs in an <strong>isolated environment</strong> — your data is not shared with other users' agents.</li>
+      <li>OAuth tokens are encrypted at rest.</li>
+      <li>we use HTTPS for all data in transit.</li>
+    </ul>
+
+    <h2>data retention</h2>
+    <ul>
+      <li>your data is retained for as long as your account is active.</li>
+      <li>you can request <strong>full deletion</strong> of your data at any time by emailing <a href="mailto:leo@leo.wtf">leo@leo.wtf</a>.</li>
+      <li>upon deletion, we remove your conversation history, agent workspace, and stored tokens within 30 days.</li>
+    </ul>
+
+    <h2>your rights</h2>
+    <p>you have the right to:</p>
+    <ul>
+      <li><strong>access</strong> — ask what data we hold about you.</li>
+      <li><strong>correct</strong> — update inaccurate information.</li>
+      <li><strong>delete</strong> — request full removal of your data.</li>
+      <li><strong>revoke</strong> — disconnect any third-party service at any time.</li>
+      <li><strong>export</strong> — request a copy of your data in a portable format.</li>
+    </ul>
+
+    <h2>children</h2>
+    <p>
+      liv is not intended for use by anyone under 18. we do not knowingly collect data from minors.
+    </p>
+
+    <h2>changes to this policy</h2>
+    <p>
+      we may update this policy as the product evolves. we'll notify users of material changes. continued use after changes constitutes acceptance.
+    </p>
+
+    <h2>contact</h2>
+    <p>
+      questions about your data or this policy? reach out at <a href="mailto:leo@leo.wtf">leo@leo.wtf</a>.
+    </p>
+  </div>
+
+  <footer>
+    <p>built with 🖤 by liv & leo</p>
+  </footer>
+
+</body>
+</html>
