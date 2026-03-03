@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — Liv4All</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖤</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: #1e1e2e;
+      --text: #e0e0e8;
+      --text-dim: #7a7a8e;
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.15);
+      --green: #34d399;
+      --amber: #fbbf24;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: -1;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-bottom: 48px;
+      transition: color 0.2s;
+    }
+
+    .back:hover { color: var(--accent); text-decoration: none; }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      margin-bottom: 48px;
+      line-height: 1.6;
+    }
+
+    .faq-group {
+      margin-bottom: 48px;
+    }
+
+    .faq-group-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-toggle {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+      margin-bottom: 10px;
+    }
+
+    .faq-toggle:hover { border-color: rgba(139, 92, 246, 0.3); }
+
+    .faq-toggle summary {
+      padding: 20px 24px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      gap: 16px;
+    }
+
+    .faq-toggle summary::-webkit-details-marker { display: none; }
+
+    .faq-toggle summary::after {
+      content: '+';
+      font-size: 1.2rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .faq-toggle[open] summary::after { content: '−'; }
+
+    .faq-toggle-body {
+      padding: 0 24px 24px;
+      font-size: 0.92rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .faq-toggle-body strong { color: var(--text); font-weight: 500; }
+
+    .faq-toggle-body p + p { margin-top: 12px; }
+
+    .faq-toggle-body ul {
+      padding-left: 20px;
+      margin: 12px 0;
+    }
+
+    .faq-toggle-body li {
+      margin-bottom: 8px;
+    }
+
+    .badge-live {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 8px;
+      border-radius: 100px;
+      color: var(--green);
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.2);
+      margin-right: 4px;
+    }
+
+    .badge-coming {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 8px;
+      border-radius: 100px;
+      color: var(--amber);
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.2);
+      margin-right: 4px;
+    }
+
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="/" class="back">← back to liv4all</a>
+
+    <h1>frequently asked questions</h1>
+    <p class="subtitle">everything you want to know before handing an AI your calendar and inbox.</p>
+
+    <!-- The basics -->
+    <div class="faq-group">
+      <div class="faq-group-label">// the basics</div>
+
+      <details class="faq-toggle">
+        <summary>what problem does liv4all solve — and why now?</summary>
+        <div class="faq-toggle-body">
+          <p>most people spend hours each week on low-value admin: scheduling meetings, chasing emails, managing their calendar. AI is finally good enough to handle all of that autonomously — not just answer questions, but actually <strong>do things</strong>. liv4all puts that capability in your hands.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>who is liv4all built for?</summary>
+        <div class="faq-toggle-body">
+          <p>anyone who wants their time back. if you've ever wished you had an assistant handling the small stuff so you could focus on what actually matters — that's who this is for.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>how is this different from chatgpt or siri?</summary>
+        <div class="faq-toggle-body">
+          <p>chatgpt answers questions. siri sets timers. liv4all takes action — it connects to your actual accounts, operates on your behalf, and gets things done without you needing to babysit it. the difference is <strong>agency</strong>.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Capabilities -->
+    <div class="faq-group">
+      <div class="faq-group-label">// capabilities</div>
+
+      <details class="faq-toggle">
+        <summary>what can liv4all do?</summary>
+        <div class="faq-toggle-body">
+          <p>during alpha, liv connects to your google account and handles:</p>
+          <ul>
+            <li><span class="badge-live">alpha</span> <strong>email</strong> — reads, drafts, and sends on your behalf</li>
+            <li><span class="badge-live">alpha</span> <strong>calendar</strong> — schedules meetings, creates invites, manages your time</li>
+            <li><span class="badge-live">alpha</span> <strong>contacts</strong> — finds people, surfaces context when you need it</li>
+          </ul>
+          <p>liv also gets her own identity: a dedicated email address and telegram profile, so she can reach you — and others — directly. no new apps to learn. she meets you where you already are.</p>
+          <p>post-alpha, liv goes further:</p>
+          <ul>
+            <li><span class="badge-coming">coming soon</span> <strong>phone calls</strong> — books restaurants, appointments, and more via real PSTN calls</li>
+            <li><span class="badge-coming">coming soon</span> <strong>WhatsApp</strong> — same liv, on the platform you already use most</li>
+            <li><span class="badge-coming">coming soon</span> <strong>Slack</strong> — manage your day without leaving your workspace</li>
+            <li><span class="badge-coming">coming soon</span> <strong>web browsing</strong> — fill forms, make bookings, automate web tasks</li>
+            <li><span class="badge-coming">coming soon</span> <strong>proactive briefings</strong> — daily summaries, meeting reminders, follow-up nudges</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>does liv have her own identity?</summary>
+        <div class="faq-toggle-body">
+          <p>yes. each liv agent gets a dedicated email address and telegram profile. this means she can reach out to people on your behalf — scheduling with contacts, following up on threads — without needing to borrow your accounts.</p>
+          <p>she meets people where they already are. no new apps required.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Privacy & data -->
+    <div class="faq-group">
+      <div class="faq-group-label">// privacy & data</div>
+
+      <details class="faq-toggle">
+        <summary>what does liv4all have access to? is my data safe?</summary>
+        <div class="faq-toggle-body">
+          <p>liv4all connects to your google account via official OAuth — the same standard your other apps use. you control what you grant access to, and you can revoke it any time from your <a href="https://myaccount.google.com/permissions" target="_blank">google account settings</a>.</p>
+          <p>your data is used to complete your requests. nothing else. see our <a href="privacy.html">privacy policy</a> for the full picture.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>is my data used to train AI models?</summary>
+        <div class="faq-toggle-body">
+          <p><strong>no.</strong> your emails, calendar, and contacts are never used for training — not ours, not anyone else's.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Alpha -->
+    <div class="faq-group">
+      <div class="faq-group-label">// alpha program</div>
+
+      <details class="faq-toggle">
+        <summary>what does "alpha" mean for me?</summary>
+        <div class="faq-toggle-body">
+          <p>alpha means you're in early. the core features work, but expect rough edges. in return:</p>
+          <ul>
+            <li>it's completely <strong>free</strong></li>
+            <li>your feedback shapes what gets built next</li>
+            <li>you get priority access as new capabilities ship</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>how much does it cost?</summary>
+        <div class="faq-toggle-body">
+          <p>free during alpha. we'll be transparent about pricing well before anything changes.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>how do i get access?</summary>
+        <div class="faq-toggle-body">
+          <p><a href="/#signup">register your interest</a> on the main page. we'll reach out when alpha spots open — it's a limited rollout and we're onboarding in batches.</p>
+        </div>
+      </details>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>built with 🖤 by liv & leo · <a href="/">home</a> · <a href="terms.html">terms</a> · <a href="privacy.html">privacy</a></p>
+  </footer>
+
+</body>
+</html>
