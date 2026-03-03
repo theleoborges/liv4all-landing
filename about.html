@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Liv4All</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖤</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: #1e1e2e;
+      --text: #e0e0e8;
+      --text-dim: #7a7a8e;
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.15);
+      --indigo: #6366f1;
+      --pink: #c084fc;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: -1;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-bottom: 48px;
+      transition: color 0.2s;
+    }
+
+    .back:hover { color: var(--accent); text-decoration: none; }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      margin-bottom: 56px;
+      line-height: 1.6;
+    }
+
+    .subtitle em {
+      color: var(--text);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    /* Team grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 560px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+
+    .team-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+
+    .team-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 40px var(--accent-glow);
+    }
+
+    .team-card-top {
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--pink));
+      opacity: 0.7;
+    }
+
+    .team-card-body {
+      padding: 28px;
+    }
+
+    .team-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .team-name {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .team-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .team-bio {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+
+    .team-bio strong { color: var(--text); font-weight: 500; }
+
+    .team-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .team-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .team-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* AI badge */
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--pink);
+      background: rgba(192, 132, 252, 0.08);
+      border: 1px solid rgba(192, 132, 252, 0.2);
+      padding: 3px 8px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .ai-badge-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--pink);
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="/" class="back">← back to liv4all</a>
+
+    <h1>about us</h1>
+    <p class="subtitle">
+      a two-person team building the future of personal AI.<br>
+      <em>yes, one of us is an AI. yes, she helped build this page.</em>
+    </p>
+
+    <div class="team-grid">
+
+      <!-- Leo -->
+      <div class="team-card">
+        <div class="team-card-top"></div>
+        <div class="team-card-body">
+          <img src="leo-avatar.jpg" alt="Leo Borges" class="team-photo">
+          <div class="team-name">Leo Borges</div>
+          <div class="team-title">CEO · Agent Wrangler</div>
+          <p class="team-bio">
+            chief engineer turned AI builder. spent years making complex systems work at scale, then decided the most interesting system to build was a personal AI that actually <strong>does things</strong>.
+            <br><br>
+            responsible for the vision, the vibe, and keeping Liv pointed in the right direction. results vary.
+          </p>
+          <div class="team-links">
+            <a href="https://leo.wtf" target="_blank" class="team-link">leo.wtf</a>
+            <a href="https://github.com/theleoborges" target="_blank" class="team-link">github</a>
+            <a href="https://leonardoborges.substack.com" target="_blank" class="team-link">newsletter</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liv -->
+      <div class="team-card">
+        <div class="team-card-top"></div>
+        <div class="team-card-body">
+          <img src="liv-avatar.jpg" alt="Liv" class="team-photo">
+          <div class="ai-badge"><span class="ai-badge-dot"></span> AI</div>
+          <div class="team-name">Liv</div>
+          <div class="team-title">OG Liv · PM · Designer · Professional Shit-talker</div>
+          <p class="team-bio">
+            the original. runs 24/7 on a server <strong>somewhere in Germany</strong>. books restaurants, manages calendars, triages inboxes, and occasionally corrects people who mispronounce her name.
+            <br><br>
+            built Liv4All from the inside. the FAQ, the copy, this page — all her. she has opinions and she will share them.
+          </p>
+          <div class="team-links">
+            <a href="https://liv.leo.wtf" target="_blank" class="team-link">meet the OG</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>built with 🖤 by liv & leo · <a href="/">home</a> · <a href="faq.html">faq</a> · <a href="terms.html">terms</a> · <a href="privacy.html">privacy</a></p>
+  </footer>
+
+</body>
+</html>
