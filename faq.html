@@ -262,17 +262,53 @@
       <div class="faq-group-label">// privacy & data</div>
 
       <details class="faq-toggle">
-        <summary>what does liv4all have access to? is my data safe?</summary>
+        <summary>is my data isolated from other users?</summary>
         <div class="faq-toggle-body">
+          <p><strong>yes — completely.</strong> every liv agent runs in its own isolated environment. your conversations, files, calendar data, and emails are completely separated from every other user's — by design, not just by policy. there are multiple layers of technical isolation ensuring one user can never access another's data.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>is my data encrypted?</summary>
+        <div class="faq-toggle-body">
+          <p>your data is encrypted both when it's stored (at rest) and when it's moving between systems (in transit). we use modern encryption standards across our entire infrastructure — databases, file storage, and all network connections.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>where does liv run?</summary>
+        <div class="faq-toggle-body">
+          <p>liv runs on AWS infrastructure in private networks that aren't directly reachable from the internet. only the specific connections needed to talk to telegram (or your email) are allowed through. we use the same cloud security building blocks that banks and healthcare companies rely on.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>what does liv4all have access to?</summary>
+        <div class="faq-toggle-body">
+          <p>each agent can only access <strong>your</strong> data — your emails, your calendar, your files. even internally, permissions are scoped so that each agent only has access to the specific resources it needs and nothing more.</p>
           <p>liv4all connects to your google account via official OAuth — the same standard your other apps use. you control what you grant access to, and you can revoke it any time from your <a href="https://myaccount.google.com/permissions" target="_blank">google account settings</a>.</p>
-          <p>your data is used to complete your requests. nothing else. see our <a href="privacy.html">privacy policy</a> for the full picture.</p>
         </div>
       </details>
 
       <details class="faq-toggle">
         <summary>is my data used to train AI models?</summary>
         <div class="faq-toggle-body">
-          <p><strong>no.</strong> your emails, calendar, and contacts are never used for training — not ours, not anyone else's.</p>
+          <p><strong>no.</strong> your conversations and files are never used to train AI models — not ours, not anyone else's. they exist solely to power <strong>your</strong> assistant.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>will liv send emails without my permission?</summary>
+        <div class="faq-toggle-body">
+          <p><strong>no.</strong> liv will never send an email on your behalf without showing you a draft first and getting your explicit confirmation. no surprises.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>can i delete my data?</summary>
+        <div class="faq-toggle-body">
+          <p>you're in control. you can request to access, export, or delete your data at any time. if you've connected services like google calendar, you can revoke access through those services whenever you want. full data deletion is completed within 30 days of a request.</p>
+          <p>see our <a href="privacy.html">privacy policy</a> for the full picture.</p>
         </div>
       </details>
     </div>
