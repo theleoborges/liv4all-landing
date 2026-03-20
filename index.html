@@ -939,10 +939,151 @@
     }
 
     /* ── Responsive ── */
+    /* ── Real Demos ── */
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .demo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .demo-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px var(--accent-glow);
+    }
+
+    .demo-video-wrap {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .demo-video-wrap video {
+      width: 100%;
+      display: block;
+      background: #000;
+    }
+
+    .demo-play-btn {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.3);
+      transition: opacity 0.2s;
+    }
+
+    .demo-play-btn::after {
+      content: '';
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(139, 92, 246, 0.9);
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 24px;
+    }
+
+    .demo-play-btn.hidden { opacity: 0; pointer-events: none; }
+
+    .demo-expand-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 2;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .demo-expand-btn:hover { background-color: rgba(0, 0, 0, 0.8); }
+    .demo-video-wrap:hover .demo-expand-btn { opacity: 1; }
+
+    /* Fullscreen overlay */
+    .demo-fullscreen {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.92);
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .demo-fullscreen.active { display: flex; }
+
+    .demo-fullscreen video {
+      max-height: 90vh;
+      max-width: 90vw;
+      border-radius: 12px;
+    }
+
+    .demo-fullscreen-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .demo-fullscreen-close:hover { background: rgba(255, 255, 255, 0.2); }
+
+    .demo-caption {
+      padding: 16px 20px;
+    }
+
+    .demo-caption h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .demo-caption p {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
     @media (max-width: 600px) {
       .features-grid, .why-grid { grid-template-columns: 1fr; }
       .form-row { flex-direction: column; }
       .nav-links a:not(.nav-cta) { display: none; }
+      .demos-grid { grid-template-columns: 1fr; max-width: 320px; margin-left: auto; margin-right: auto; }
     }
 
     /* ── Fade in ── */
@@ -1269,6 +1410,59 @@
     </div>
   </section>
 
+  <!-- Fullscreen video overlay -->
+  <div class="demo-fullscreen" id="demoFullscreen">
+    <video playsinline id="demoFullscreenVideo"></video>
+    <button class="demo-fullscreen-close" id="demoFullscreenClose">&times;</button>
+  </div>
+
+  <!-- Real Demos -->
+  <section id="demos">
+    <div class="container-wide fade-in">
+      <div class="section-label" style="max-width: 720px;">// real usage</div>
+      <h2 style="max-width: 720px;">see it for real</h2>
+      <p class="prose">no mockups. these are real screen recordings from alpha users.</p>
+
+      <div class="demos-grid">
+        <div class="demo-card">
+          <div class="demo-video-wrap">
+            <video src="assets/videos/24york-reservation.mp4" playsinline muted preload="metadata"></video>
+            <div class="demo-play-btn"></div>
+            <button class="demo-expand-btn" aria-label="Expand video"></button>
+          </div>
+          <div class="demo-caption">
+            <h3>book a restaurant</h3>
+            <p>liv finds availability, books via web automation, and adds it to your calendar — all through telegram.</p>
+          </div>
+        </div>
+
+        <div class="demo-card">
+          <div class="demo-video-wrap">
+            <video src="assets/videos/whatsapp-forwarded-invite.mp4" playsinline muted preload="metadata"></video>
+            <div class="demo-play-btn"></div>
+            <button class="demo-expand-btn" aria-label="Expand video"></button>
+          </div>
+          <div class="demo-caption">
+            <h3>forward and forget</h3>
+            <p>a friend's graduation QR code forwarded on whatsapp. liv extracts the details and offers to add it to your calendar.</p>
+          </div>
+        </div>
+
+        <div class="demo-card">
+          <div class="demo-video-wrap">
+            <video src="assets/videos/daily-report.mp4" playsinline muted preload="metadata"></video>
+            <div class="demo-play-btn"></div>
+            <button class="demo-expand-btn" aria-label="Expand video"></button>
+          </div>
+          <div class="demo-caption">
+            <h3>daily AI briefing</h3>
+            <p>ask for a curated daily report on any topic — delivered straight to your inbox.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Features -->
   <section id="features">
     <div class="container-wide fade-in">
@@ -1551,6 +1745,63 @@
       carousel.addEventListener('mouseenter', () => clearInterval(autoplay));
       carousel.addEventListener('mouseleave', () => { autoplay = setInterval(() => goTo(current + 1), 6000); });
     })();
+
+    // Demo videos: tap to play/pause
+    document.querySelectorAll('.demo-video-wrap').forEach(wrap => {
+      const video = wrap.querySelector('video');
+      const btn = wrap.querySelector('.demo-play-btn');
+
+      wrap.addEventListener('click', () => {
+        if (video.paused) {
+          // Pause all others
+          document.querySelectorAll('.demo-video-wrap').forEach(other => {
+            const v = other.querySelector('video');
+            const b = other.querySelector('.demo-play-btn');
+            if (v !== video) { v.pause(); b.classList.remove('hidden'); }
+          });
+          video.play();
+          btn.classList.add('hidden');
+        } else {
+          video.pause();
+          btn.classList.remove('hidden');
+        }
+      });
+
+      video.addEventListener('ended', () => btn.classList.remove('hidden'));
+    });
+
+    // Fullscreen demo viewer
+    const fsOverlay = document.getElementById('demoFullscreen');
+    const fsVideo = document.getElementById('demoFullscreenVideo');
+    const fsClose = document.getElementById('demoFullscreenClose');
+
+    document.querySelectorAll('.demo-expand-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const card = btn.closest('.demo-video-wrap');
+        const src = card.querySelector('video');
+        // Pause the inline video
+        src.pause();
+        card.querySelector('.demo-play-btn').classList.remove('hidden');
+        // Open fullscreen
+        fsVideo.src = src.src;
+        fsVideo.currentTime = src.currentTime;
+        fsOverlay.classList.add('active');
+        fsVideo.play();
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeFsVideo() {
+      fsVideo.pause();
+      fsOverlay.classList.remove('active');
+      fsVideo.removeAttribute('src');
+      document.body.style.overflow = '';
+    }
+
+    fsClose.addEventListener('click', closeFsVideo);
+    fsOverlay.addEventListener('click', (e) => { if (e.target === fsOverlay) closeFsVideo(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && fsOverlay.classList.contains('active')) closeFsVideo(); });
 
     // Form submission via Formspree (AJAX)
     const form = document.getElementById('interest-form');
