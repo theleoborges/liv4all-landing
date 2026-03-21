@@ -222,6 +222,19 @@
 
     <form id="surveyForm">
       <div class="question">
+        <div class="question-number">About you</div>
+        <label>Name</label>
+        <textarea name="name" placeholder="Your name" style="min-height: 44px;" required></textarea>
+      </div>
+
+      <div class="question" style="margin-top: 1.5rem;">
+        <label>Email</label>
+        <textarea name="email" placeholder="your@email.com" style="min-height: 44px;" required></textarea>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="question">
         <div class="question-number">Question 1 of 8</div>
         <label>How often do you interact with your agent?</label>
         <div class="options">
@@ -339,7 +352,7 @@
 
       <div class="submit-section">
         <button type="submit" class="submit-btn" id="submitBtn">Submit Feedback</button>
-        <p class="privacy-note">responses are anonymous unless you choose to include your name above. we never share individual responses externally.</p>
+        <p class="privacy-note">your responses are confidential. we may use anonymised quotes for product improvement — we'll always ask before attributing anything to you.</p>
       </div>
     </form>
 
