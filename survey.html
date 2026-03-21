@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liv4All — Alpha Feedback</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0f;
+      color: #e0e0e8;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .survey-container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .survey-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .survey-header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .survey-header p {
+      color: #7a7a8e;
+      font-size: 0.95rem;
+    }
+
+    .survey-header .time-badge {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: #c084fc;
+    }
+
+    .question {
+      margin-bottom: 2.5rem;
+    }
+
+    .question-number {
+      font-size: 0.75rem;
+      color: #8b5cf6;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .question label {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .question .hint {
+      font-size: 0.8rem;
+      color: #7a7a8e;
+      margin-bottom: 0.75rem;
+      font-style: italic;
+    }
+
+    /* Radio options */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: #12121a;
+      border: 1px solid #2a2a3a;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option:hover {
+      border-color: #8b5cf6;
+      background: rgba(139, 92, 246, 0.05);
+    }
+
+    .option input[type="radio"] {
+      accent-color: #8b5cf6;
+      width: 16px;
+      height: 16px;
+    }
+
+    .option span {
+      font-size: 0.95rem;
+    }
+
+    /* Text areas */
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 0.75rem 1rem;
+      background: #12121a;
+      border: 1px solid #2a2a3a;
+      border-radius: 8px;
+      color: #e0e0e8;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #8b5cf6;
+    }
+
+    textarea::placeholder {
+      color: #4a4a5a;
+    }
+
+    /* Submit */
+    .submit-section {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #1e1e2e;
+    }
+
+    .submit-btn {
+      display: inline-block;
+      padding: 0.9rem 3rem;
+      background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .privacy-note {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: #4a4a5a;
+    }
+
+    /* Thank you state */
+    .thank-you {
+      display: none;
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+
+    .thank-you h2 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .thank-you p {
+      color: #7a7a8e;
+      font-size: 1rem;
+    }
+
+    .thank-you .heart {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Divider */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #2a2a3a, transparent);
+      margin: 2rem 0;
+    }
+
+    @media (max-width: 480px) {
+      .survey-container { padding: 2rem 1rem; }
+      .survey-header h1 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="survey-container">
+    <div class="survey-header">
+      <h1>Liv4All Alpha Feedback</h1>
+      <p>your honest input shapes what we build next</p>
+      <div class="time-badge">⏱ takes ~3 minutes</div>
+    </div>
+
+    <form id="surveyForm">
+      <div class="question">
+        <div class="question-number">Question 1 of 8</div>
+        <label>How often do you interact with your agent?</label>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q1_frequency" value="multiple_daily" required>
+            <span>Multiple times a day</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q1_frequency" value="once_daily">
+            <span>Once a day</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q1_frequency" value="few_weekly">
+            <span>A few times a week</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q1_frequency" value="rarely">
+            <span>Rarely / tried it and stopped</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="question">
+        <div class="question-number">Question 2 of 8</div>
+        <label>What's the one thing your agent does that saves you the most time?</label>
+        <textarea name="q2_time_saver" placeholder="e.g. triaging my emails, booking meetings, morning briefings..." required></textarea>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="question">
+        <div class="question-number">Question 3 of 8</div>
+        <label>Has your agent done something that genuinely surprised you?</label>
+        <div class="hint">The "wait, it did that?" moments</div>
+        <textarea name="q3_surprise" placeholder="Tell us about a moment your agent impressed you..."></textarea>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="question">
+        <div class="question-number">Question 4 of 8</div>
+        <label>What's still frustrating or missing?</label>
+        <div class="hint">Be brutal — it helps us build better</div>
+        <textarea name="q4_frustrations" placeholder="What doesn't work well? What do you wish it could do?"></textarea>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="question">
+        <div class="question-number">Question 5 of 8</div>
+        <label>How would you describe Liv4All to a friend in one sentence?</label>
+        <textarea name="q5_describe" placeholder="It's like..." required></textarea>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="question">
+        <div class="question-number">Question 6 of 8</div>
+        <label>If Liv4All disappeared tomorrow, how would you feel?</label>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q6_pmf" value="very_disappointed" required>
+            <span>Very disappointed</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q6_pmf" value="somewhat_disappointed">
+            <span>Somewhat disappointed</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q6_pmf" value="not_disappointed">
+            <span>Not disappointed</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="question">
+        <div class="question-number">Question 7 of 8</div>
+        <label>Would you pay for this? If so, how much per month feels fair?</label>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="q7_pricing" value="wouldnt_pay" required>
+            <span>Wouldn't pay</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q7_pricing" value="5_10">
+            <span>$5–10/mo</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q7_pricing" value="10_20">
+            <span>$10–20/mo</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q7_pricing" value="20_50">
+            <span>$20–50/mo</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="q7_pricing" value="50_plus">
+            <span>$50+/mo</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="question">
+        <div class="question-number">Question 8 of 8</div>
+        <label>Anything else you want us to know?</label>
+        <div class="hint">Optional — but we read every response</div>
+        <textarea name="q8_anything" placeholder="Feedback, ideas, love letters, complaints..."></textarea>
+      </div>
+
+      <div class="submit-section">
+        <button type="submit" class="submit-btn" id="submitBtn">Submit Feedback</button>
+        <p class="privacy-note">responses are anonymous unless you choose to include your name above. we never share individual responses externally.</p>
+      </div>
+    </form>
+
+    <div class="thank-you" id="thankYou">
+      <div class="heart">🖤</div>
+      <h2>Thank you!</h2>
+      <p>Your feedback is genuinely shaping what we build next.<br>Your agent appreciates you too.</p>
+    </div>
+  </div>
+
+  <script>
+    const GOOGLE_FORM_URL = 'FORM_ACTION_URL_HERE';
+
+    document.getElementById('surveyForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        // Send to backend (Google Sheets, API, etc.)
+        // For now, log and show thank you
+        console.log('Survey response:', data);
+
+        // If using Google Forms as backend, uncomment:
+        // await fetch(GOOGLE_FORM_URL, { method: 'POST', mode: 'no-cors', body: formData });
+
+        document.getElementById('surveyForm').style.display = 'none';
+        document.getElementById('thankYou').style.display = 'block';
+      } catch (err) {
+        console.error('Submit error:', err);
+        btn.disabled = false;
+        btn.textContent = 'Submit Feedback';
+        alert('Something went wrong. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>
