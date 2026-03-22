@@ -279,6 +279,19 @@
 
     </div>
 
+    <!-- Demo video -->
+    <div class="section-label">// see it in action</div>
+    <div style="margin-bottom: 48px; max-width: 380px; margin-left: auto; margin-right: auto;">
+      <div style="position: relative; cursor: pointer;" onclick="this.querySelector('video').requestFullscreen ? this.querySelector('video').requestFullscreen() : this.querySelector('video').webkitRequestFullscreen()">
+        <video controls playsinline preload="metadata" style="width: 100%; border-radius: 12px; border: 1px solid var(--border); display: block;">
+          <source src="../assets/videos/whatsapp-linking-demo.mp4" type="video/mp4">
+          your browser doesn't support embedded video.
+        </video>
+        <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); border-radius: 6px; padding: 4px 8px; font-size: 0.7rem; color: var(--text-dim); pointer-events: none; font-family: 'JetBrains Mono', monospace;">click to expand</div>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 10px;">demo: linking WhatsApp to your agent via Telegram</p>
+    </div>
+
     <!-- Start chatting -->
     <div class="section-label">// start chatting</div>
     <div class="steps">
