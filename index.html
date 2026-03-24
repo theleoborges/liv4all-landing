@@ -53,7 +53,7 @@
     }
 
     .container {
-      max-width: 720px;
+      width: min(720px, 100%);
       margin: 0 auto;
       padding: 0 24px;
     }
@@ -133,6 +133,7 @@
       justify-content: center;
       position: relative;
       padding-top: 60px;
+      overflow-x: clip;
     }
 
     .hero-glow {
@@ -182,11 +183,32 @@
       margin-bottom: 24px;
     }
 
+    .typing-line {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
     h1 .gradient {
       background: linear-gradient(135deg, var(--accent), var(--pink));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+
+    h1 .cursor {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: blink 0.7s step-end infinite;
+      margin-left: 2px;
+      font-weight: 300;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
     .hero-logo {
@@ -1129,7 +1151,7 @@
         alpha — few invites left
       </div>
       <img src="logo.png" alt="Liv" class="hero-logo">
-      <h1>your AI<br><span class="gradient">chief of staff</span></h1>
+      <h1>your AI<br><span class="typing-line"><span class="gradient typing" id="typed-role"></span><span class="cursor">|</span></span></h1>
       <p class="hero-sub">
         liv is a <strong>persistent AI agent</strong> that acts on your behalf —
         managing calendars, triaging email, making bookings.
@@ -1689,6 +1711,40 @@
   </footer>
 
   <script>
+    // Typing effect for hero headline
+    (function() {
+      const roles = ['chief of staff', 'personal assistant', 'event manager', 'travel planner'];
+      const el = document.getElementById('typed-role');
+      let roleIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function tick() {
+        const current = roles[roleIndex];
+
+        if (!isDeleting) {
+          el.textContent = current.substring(0, charIndex + 1);
+          charIndex++;
+          if (charIndex === current.length) {
+            isDeleting = true;
+            return setTimeout(tick, 2000);
+          }
+          return setTimeout(tick, 80);
+        } else {
+          el.textContent = current.substring(0, charIndex - 1);
+          charIndex--;
+          if (charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            return setTimeout(tick, 400);
+          }
+          return setTimeout(tick, 40);
+        }
+      }
+
+      tick();
+    })();
+
     // Fade-in on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
