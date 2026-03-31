@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liv Demo — Book a Restaurant</title>
+  <meta name="description" content="Watch Liv find availability, book via web automation, and add it to your calendar — all through messaging.">
+  <meta property="og:title" content="Liv Demo — Book a Restaurant">
+  <meta property="og:description" content="Liv finds availability, books via web automation, and adds it to your calendar — all through messaging.">
+  <meta property="og:type" content="video.other">
+  <meta property="og:url" content="https://hello.liv4all.com/demo/restaurant-booking">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖤</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: #1e1e2e;
+      --text: #e0e0e8;
+      --text-dim: #7a7a8e;
+      --accent: #8b5cf6;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: -1;
+    }
+    .player-container {
+      width: min(640px, 100%);
+      text-align: center;
+    }
+    .player-container video {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .player-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+    .player-desc {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      max-width: 480px;
+      margin: 0 auto 24px;
+    }
+    .back-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="player-container">
+    <video src="../assets/videos/24york-reservation.mp4" controls playsinline preload="metadata"></video>
+    <h1 class="player-title">book a restaurant</h1>
+    <p class="player-desc">liv finds availability, books via web automation, and adds it to your calendar — all through telegram.</p>
+    <a href="/" class="back-link">← hello.liv4all.com</a>
+  </div>
+</body>
+</html>
