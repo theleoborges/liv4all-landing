@@ -19,10 +19,15 @@
     :root {
       --bg: #0a0a0f;
       --surface: #12121a;
+      --surface-glass: rgba(18, 18, 26, 0.6);
       --border: #1e1e2e;
+      --border-light: rgba(255, 255, 255, 0.06);
       --text: #e0e0e8;
       --text-dim: #7a7a8e;
       --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.15);
+      --radius: 16px;
+      --radius-lg: 24px;
     }
     body {
       font-family: 'Inter', -apple-system, sans-serif;
@@ -36,24 +41,20 @@
       justify-content: center;
       padding: 24px;
     }
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      z-index: -1;
-    }
     .player-container {
       width: min(640px, 100%);
       text-align: center;
+      background: var(--surface-glass);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 20px;
     }
     .player-container video {
       width: 100%;
-      border-radius: 12px;
-      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-light);
       background: var(--surface);
     }
     .player-title {
@@ -77,16 +78,34 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      transition: color 0.2s;
     }
     .back-link:hover { text-decoration: underline; }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
-  <div class="player-container">
+  <div class="player-container fade-in">
     <video src="../assets/videos/24york-reservation.mp4" controls playsinline preload="metadata"></video>
     <h1 class="player-title">book a restaurant</h1>
     <p class="player-desc">liv finds availability, books via web automation, and adds it to your calendar — all through telegram.</p>
     <a href="/" class="back-link">← hello.liv4all.com</a>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        new IntersectionObserver(([e]) => { if (e.isIntersecting) { e.target.classList.add('visible'); } }, { threshold: 0.1 }).observe(el);
+      });
+    });
+  </script>
 </body>
 </html>

@@ -15,13 +15,17 @@
     :root {
       --bg: #0a0a0f;
       --surface: #12121a;
+      --surface-glass: rgba(18, 18, 26, 0.6);
       --border: #1e1e2e;
+      --border-light: rgba(255, 255, 255, 0.06);
       --text: #e0e0e8;
       --text-dim: #7a7a8e;
       --accent: #8b5cf6;
       --accent-glow: rgba(139, 92, 246, 0.15);
       --green: #34d399;
       --amber: #fbbf24;
+      --radius: 16px;
+      --radius-lg: 24px;
     }
 
     body {
@@ -31,22 +35,11 @@
       line-height: 1.7;
     }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      z-index: -1;
-    }
-
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
     .container {
-      max-width: 680px;
+      width: min(800px, 100%);
       margin: 0 auto;
       padding: 120px 24px 80px;
     }
@@ -65,9 +58,9 @@
     .back:hover { color: var(--accent); text-decoration: none; }
 
     h1 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
       margin-bottom: 8px;
     }
 
@@ -100,14 +93,19 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(139, 92, 246, 0.15);
+      border-radius: 100px;
     }
 
     .prereqs {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      background: var(--surface-glass);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
       padding: 24px;
       margin-bottom: 48px;
     }
@@ -174,7 +172,7 @@
     .tip {
       background: rgba(139, 92, 246, 0.06);
       border: 1px solid rgba(139, 92, 246, 0.15);
-      border-radius: 10px;
+      border-radius: var(--radius);
       padding: 16px 20px;
       margin-top: 10px;
       font-size: 0.88rem;
@@ -185,9 +183,11 @@
     .tip strong { color: var(--accent); font-weight: 500; }
 
     .note {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      background: var(--surface-glass);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
       padding: 24px;
       margin-bottom: 48px;
       font-size: 0.92rem;
@@ -199,10 +199,24 @@
 
     footer {
       padding: 40px 0;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-light);
       text-align: center;
       font-size: 0.85rem;
       color: var(--text-dim);
+    }
+
+    footer a {
+      transition: color 0.2s;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -216,7 +230,7 @@
     <p class="subtitle">link your liv agent to WhatsApp Business so you can talk to them on both Telegram and WhatsApp.</p>
 
     <!-- Prerequisites -->
-    <div class="prereqs">
+    <div class="prereqs fade-in">
       <div class="prereqs-title">before you start</div>
       <ul>
         <li>your liv agent is already set up and working on <strong>Telegram</strong></li>
@@ -283,7 +297,7 @@
     <div class="section-label">// see it in action</div>
     <div style="margin-bottom: 48px; max-width: 380px; margin-left: auto; margin-right: auto;">
       <div style="position: relative; cursor: pointer;" onclick="this.querySelector('video').requestFullscreen ? this.querySelector('video').requestFullscreen() : this.querySelector('video').webkitRequestFullscreen()">
-        <video controls playsinline preload="metadata" style="width: 100%; border-radius: 12px; border: 1px solid var(--border); display: block;">
+        <video controls playsinline preload="metadata" style="width: 100%; border-radius: var(--radius); border: 1px solid var(--border-light); display: block;">
           <source src="../assets/videos/whatsapp-linking-demo.mp4" type="video/mp4">
           your browser doesn't support embedded video.
         </video>
@@ -315,7 +329,7 @@
     </div>
 
     <!-- Note -->
-    <div class="note">
+    <div class="note fade-in">
       <strong>heads up —</strong> this is an alpha feature. since we're still in early stages, the admin setup (step 1) requires us to configure things on our side. once you've sent us your numbers, we'll let you know when you're good to go.
     </div>
 
@@ -324,6 +338,14 @@
   <footer>
     <p>built with 🖤 by liv & leo · <a href="/">home</a> · <a href="../about.html">about</a> · <a href="../faq.html">faq</a> · <a href="../guides.html">guides</a> · <a href="../terms.html">terms</a> · <a href="../privacy.html">privacy</a></p>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        new IntersectionObserver(([e]) => { if (e.isIntersecting) { e.target.classList.add('visible'); } }, { threshold: 0.1 }).observe(el);
+      });
+    });
+  </script>
 
 </body>
 </html>
