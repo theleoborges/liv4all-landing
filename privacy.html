@@ -10,16 +10,20 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { overflow-x: hidden; max-width: 100%; }
+    html { overflow-x: hidden; scroll-behavior: smooth; }
 
     :root {
       --bg: #0a0a0f;
       --surface: #12121a;
+      --surface-glass: rgba(18, 18, 26, 0.6);
       --border: #1e1e2e;
+      --border-light: rgba(255, 255, 255, 0.06);
       --text: #e0e0e8;
       --text-dim: #7a7a8e;
       --accent: #8b5cf6;
       --accent-glow: rgba(139, 92, 246, 0.15);
+      --radius: 16px;
+      --radius-lg: 24px;
     }
 
     body {
@@ -27,24 +31,85 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      z-index: -1;
+      overflow-x: hidden;
+      width: 100%;
     }
 
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: min(1100px, 100%);
+      margin-top: 16px;
+      padding: 12px 24px;
+      background: rgba(18, 18, 26, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-light);
+      border-radius: 100px;
+    }
+
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      padding: 8px 20px;
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: 100px;
+      transition: all 0.3s;
+    }
+
+    .nav-cta:hover {
+      background: #7c3aed;
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+      text-decoration: none !important;
+    }
+
+    /* ── Content ── */
     .container {
-      max-width: 680px;
+      width: min(800px, 100%);
       margin: 0 auto;
       padding: 120px 24px 80px;
     }
@@ -63,9 +128,9 @@
     .back:hover { color: var(--accent); text-decoration: none; }
 
     h1 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
       margin-bottom: 8px;
     }
 
@@ -100,9 +165,10 @@
     li { margin-bottom: 8px; }
 
     .callout {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      background: var(--surface-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
       padding: 20px 24px;
       margin: 32px 0;
       font-size: 0.9rem;
@@ -122,7 +188,7 @@
     th, td {
       text-align: left;
       padding: 10px 14px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--border-light);
       color: var(--text-dim);
     }
 
@@ -134,16 +200,70 @@
       letter-spacing: 0.05em;
     }
 
+    /* ── Footer ── */
     footer {
-      padding: 40px 0;
-      border-top: 1px solid var(--border);
+      padding: 60px 0;
+      border-top: 1px solid var(--border-light);
       text-align: center;
+    }
+
+    footer p {
       font-size: 0.85rem;
       color: var(--text-dim);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── Fade in ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .nav-inner { margin-top: 8px; padding: 10px 16px; }
+      .nav-links a:not(.nav-cta) { display: none; }
     }
   </style>
 </head>
 <body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">liv<span>4all</span></a>
+      <div class="nav-links">
+        <a href="about.html">about</a>
+        <a href="faq.html">faq</a>
+        <a href="guides.html">guides</a>
+        <a href="/" class="nav-cta">get early access</a>
+      </div>
+    </div>
+  </nav>
 
   <div class="container">
     <a href="/" class="back">← back to liv4all</a>
@@ -259,7 +379,15 @@
   </div>
 
   <footer>
-    <p>built with 🖤 by liv & leo · <a href="/">home</a> · <a href="about.html">about</a> · <a href="faq.html">faq</a> · <a href="guides.html">guides</a></p>
+    <div class="footer-links">
+      <a href="/">home</a>
+      <a href="about.html">about</a>
+      <a href="faq.html">faq</a>
+      <a href="guides.html">guides</a>
+      <a href="terms.html">terms</a>
+      <a href="privacy.html">privacy</a>
+    </div>
+    <p>built with 🖤 by liv & leo</p>
   </footer>
 
 </body>
