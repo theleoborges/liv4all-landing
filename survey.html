@@ -4,23 +4,117 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Liv4All — Alpha Feedback</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖤</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { overflow-x: hidden; scroll-behavior: smooth; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0a0a0f;
-      color: #e0e0e8;
-      min-height: 100vh;
-      line-height: 1.6;
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-glass: rgba(18, 18, 26, 0.6);
+      --border: #1e1e2e;
+      --border-light: rgba(255, 255, 255, 0.06);
+      --text: #e0e0e8;
+      --text-dim: #7a7a8e;
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.15);
+      --pink: #c084fc;
+      --radius: 16px;
+      --radius-lg: 24px;
     }
 
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: min(1100px, 100%);
+      margin-top: 16px;
+      padding: 12px 24px;
+      background: rgba(18, 18, 26, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-light);
+      border-radius: 100px;
+    }
+
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      padding: 8px 20px;
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: 100px;
+      transition: all 0.3s;
+    }
+
+    .nav-cta:hover {
+      background: #7c3aed;
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+      text-decoration: none !important;
+    }
+
+    /* ── Survey Container ── */
     .survey-container {
-      max-width: 640px;
+      width: min(800px, 100%);
       margin: 0 auto;
-      padding: 3rem 1.5rem;
+      padding: 3rem 24px;
+      padding-top: 100px;
     }
 
     .survey-header {
@@ -29,26 +123,27 @@
     }
 
     .survey-header h1 {
-      font-size: 1.8rem;
+      font-size: clamp(2rem, 4vw, 2.8rem);
       font-weight: 700;
+      letter-spacing: -0.03em;
       color: #fff;
       margin-bottom: 0.5rem;
     }
 
     .survey-header p {
-      color: #7a7a8e;
+      color: var(--text-dim);
       font-size: 0.95rem;
     }
 
     .survey-header .time-badge {
       display: inline-block;
       margin-top: 0.75rem;
-      padding: 0.25rem 0.75rem;
-      background: rgba(139, 92, 246, 0.15);
-      border: 1px solid rgba(139, 92, 246, 0.3);
-      border-radius: 20px;
+      padding: 6px 14px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(139, 92, 246, 0.15);
+      border-radius: 100px;
       font-size: 0.8rem;
-      color: #c084fc;
+      color: var(--pink);
     }
 
     .question {
@@ -56,11 +151,16 @@
     }
 
     .question-number {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(139, 92, 246, 0.15);
+      border-radius: 100px;
       font-size: 0.75rem;
-      color: #8b5cf6;
+      color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
     }
 
     .question label {
@@ -73,7 +173,7 @@
 
     .question .hint {
       font-size: 0.8rem;
-      color: #7a7a8e;
+      color: var(--text-dim);
       margin-bottom: 0.75rem;
       font-style: italic;
     }
@@ -90,20 +190,21 @@
       align-items: center;
       gap: 0.75rem;
       padding: 0.75rem 1rem;
-      background: #12121a;
-      border: 1px solid #2a2a3a;
-      border-radius: 8px;
+      background: var(--surface-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
       cursor: pointer;
       transition: all 0.2s;
     }
 
     .option:hover {
-      border-color: #8b5cf6;
-      background: rgba(139, 92, 246, 0.05);
+      border-color: rgba(139, 92, 246, 0.4);
+      box-shadow: 0 0 20px var(--accent-glow);
     }
 
     .option input[type="radio"] {
-      accent-color: #8b5cf6;
+      accent-color: var(--accent);
       width: 16px;
       height: 16px;
     }
@@ -117,19 +218,21 @@
       width: 100%;
       min-height: 100px;
       padding: 0.75rem 1rem;
-      background: #12121a;
-      border: 1px solid #2a2a3a;
-      border-radius: 8px;
-      color: #e0e0e8;
-      font-family: 'Inter', sans-serif;
+      background: var(--surface-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
       font-size: 0.95rem;
       resize: vertical;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     textarea:focus {
       outline: none;
-      border-color: #8b5cf6;
+      border-color: rgba(139, 92, 246, 0.4);
+      box-shadow: 0 0 20px var(--accent-glow);
     }
 
     textarea::placeholder {
@@ -141,7 +244,7 @@
       text-align: center;
       margin-top: 2rem;
       padding-top: 2rem;
-      border-top: 1px solid #1e1e2e;
+      border-top: 1px solid var(--border-light);
     }
 
     .submit-btn {
@@ -150,8 +253,8 @@
       background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
       color: #fff;
       border: none;
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
+      border-radius: 100px;
+      font-family: 'Inter', -apple-system, sans-serif;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
@@ -184,13 +287,15 @@
     }
 
     .thank-you h2 {
-      font-size: 1.5rem;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
       color: #fff;
       margin-bottom: 0.75rem;
     }
 
     .thank-you p {
-      color: #7a7a8e;
+      color: var(--text-dim);
       font-size: 1rem;
     }
 
@@ -202,18 +307,81 @@
     /* Divider */
     .section-divider {
       height: 1px;
-      background: linear-gradient(90deg, transparent, #2a2a3a, transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
       margin: 2rem 0;
     }
 
-    @media (max-width: 480px) {
-      .survey-container { padding: 2rem 1rem; }
+    /* ── Footer ── */
+    footer {
+      padding: 60px 0;
+      border-top: 1px solid var(--border-light);
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .container-wide {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Fade in ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-inner { margin-top: 8px; padding: 10px 16px; }
+      .survey-container { padding: 2rem 1rem; padding-top: 80px; }
       .survey-header h1 { font-size: 1.4rem; }
     }
   </style>
 </head>
 <body>
-  <div class="survey-container">
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">liv<span>4all</span></a>
+      <div class="nav-links">
+        <a href="about.html">about</a>
+        <a href="faq.html">faq</a>
+        <a href="index.html#signup" class="nav-cta">get early access</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="survey-container fade-in">
     <div class="survey-header">
       <h1>Liv4All Alpha Feedback</h1>
       <p>your honest input shapes what we build next</p>
@@ -363,7 +531,26 @@
     </div>
   </div>
 
+  <footer>
+    <div class="container-wide">
+      <div class="footer-links">
+        <a href="index.html">home</a>
+        <a href="about.html">about</a>
+        <a href="faq.html">faq</a>
+        <a href="terms.html">terms</a>
+        <a href="privacy.html">privacy</a>
+      </div>
+      <p>built with 🖤 by liv & leo</p>
+    </div>
+  </footer>
+
   <script>
+    // Fade-in observer
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
     document.getElementById('surveyForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const btn = document.getElementById('submitBtn');
