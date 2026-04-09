@@ -76,7 +76,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: min(1100px, 100%);
+      width: min(800px, 100%);
       margin-top: 16px;
       padding: 12px 24px;
       background: rgba(18, 18, 26, 0.7);
@@ -124,7 +124,7 @@
     }
 
     .nav-cta:hover {
-      background: #7c3aed;
+      background: #a78bfa;
       box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
       text-decoration: none !important;
     }
@@ -300,7 +300,7 @@
     }
 
     .btn-primary:hover {
-      background: #7c3aed;
+      background: #a78bfa;
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
       text-decoration: none;
@@ -328,34 +328,34 @@
       text-decoration: none;
     }
 
-    /* ── Stats strip ── */
-    .stats-strip {
+    /* ── Trust indicators ── */
+    .trust-strip {
       display: flex;
       justify-content: center;
-      gap: 48px;
-      margin-top: 64px;
-      padding-top: 40px;
-      border-top: 1px solid var(--border-light);
-    }
-
-    .stat-item {
-      text-align: center;
-    }
-
-    .stat-number {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--accent), var(--pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
+      align-items: center;
+      gap: 0;
+      margin-top: 48px;
+      font-size: 0.82rem;
       color: var(--text-dim);
-      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 20px;
+    }
+
+    .trust-item .trust-icon {
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    .trust-divider {
+      width: 1px;
+      height: 16px;
+      background: var(--border);
     }
 
     .scroll-hint {
@@ -403,6 +403,38 @@
       margin-bottom: 16px;
       letter-spacing: -0.03em;
       line-height: 1.15;
+      color: var(--text-dim);
+    }
+
+    h2 em {
+      color: var(--text);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    h2 .accent {
+      color: var(--accent);
+    }
+
+    /* ── Section Alternation ── */
+    .section-lifted {
+      background: var(--surface);
+    }
+
+    .section-glow {
+      position: relative;
+    }
+
+    .section-glow::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .prose {
@@ -577,6 +609,39 @@
       color: var(--amber);
       background: rgba(251, 191, 36, 0.1);
       border: 1px solid rgba(251, 191, 36, 0.2);
+    }
+
+    /* ── Integration Chips ── */
+    .integrations-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 48px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--surface-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-light);
+      border-radius: 100px;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      transition: all 0.3s;
+    }
+
+    .chip:hover {
+      border-color: rgba(139, 92, 246, 0.3);
+      color: var(--text);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .chip-icon {
+      font-size: 1.1rem;
     }
 
     /* ── Chat Carousel ── */
@@ -1055,7 +1120,7 @@
     }
 
     .signup-form button:hover {
-      background: #7c3aed;
+      background: #a78bfa;
       transform: translateY(-2px);
       box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
     }
@@ -1281,7 +1346,9 @@
       .form-row { flex-direction: column; }
       .nav-links a:not(.nav-cta) { display: none; }
       .demos-grid { grid-template-columns: 1fr; max-width: 320px; margin-left: auto; margin-right: auto; }
-      .stats-strip { gap: 24px; flex-wrap: wrap; }
+      .trust-strip { gap: 8px; }
+      .trust-divider { display: none; }
+      .trust-item { padding: 4px 12px; }
       .nav-inner { margin-top: 8px; padding: 10px 16px; }
       section { padding: 80px 0; }
     }
@@ -1338,26 +1405,17 @@
         not a chatbot. an agent that <strong>does things</strong>.
       </p>
       <div class="hero-cta">
-        <a href="#signup" class="btn-primary">get early access</a>
+        <a href="#signup" class="btn-primary">get early access →</a>
         <a href="https://www.youtube.com/watch?v=TXaWeFTb9Ns" target="_blank" rel="noopener" class="btn-secondary">watch the explainer ▶</a>
       </div>
-      <div class="stats-strip">
-        <div class="stat-item">
-          <div class="stat-number">24/7</div>
-          <div class="stat-label">always on</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">10+</div>
-          <div class="stat-label">integrations</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">&lt;2min</div>
-          <div class="stat-label">setup time</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">100%</div>
-          <div class="stat-label">your approval</div>
-        </div>
+      <div class="trust-strip">
+        <div class="trust-item"><span class="trust-icon">🔒</span> your data stays yours</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><span class="trust-icon">⚡</span> always-on AI</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><span class="trust-icon">🕐</span> setup in under 2 min</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><span class="trust-icon">✓</span> nothing sends without your OK</div>
       </div>
     </div>
     <div class="scroll-hint">
@@ -1370,7 +1428,7 @@
   <section id="why">
     <div class="container-wide fade-in">
       <div class="section-label">// why liv</div>
-      <h2>agents should do things,<br>not just talk about doing things</h2>
+      <h2>agents should <em>do things</em>,<br>not just talk about doing things</h2>
       <p class="prose">
         most AI assistants are glorified search bars. you ask a question, you get an answer,
         then <strong>you</strong> still have to do the work. liv is different.
@@ -1407,10 +1465,10 @@
   </section>
 
   <!-- How It Looks — Chat Carousel -->
-  <section id="in-action">
+  <section id="in-action" class="section-lifted">
     <div class="container-wide fade-in">
       <div class="section-label">// in action</div>
-      <h2>what talking to liv looks like</h2>
+      <h2>what <em>talking to liv</em> looks like</h2>
 
       <div class="chat-carousel">
         <div class="chat-carousel-track" id="carouselTrack">
@@ -1638,7 +1696,7 @@
   <section id="demos">
     <div class="container-wide fade-in">
       <div class="section-label">// real usage</div>
-      <h2>see it for real</h2>
+      <h2>see it <em>for real</em></h2>
       <p class="prose">no mockups. these are real screen recordings from alpha users.</p>
 
       <div class="demos-grid">
@@ -1682,10 +1740,10 @@
   </section>
 
   <!-- Features -->
-  <section id="features">
+  <section id="features" class="section-glow">
     <div class="container-wide fade-in">
       <div class="section-label">// features</div>
-      <h2>what liv can do</h2>
+      <h2>what <em>liv can do</em></h2>
       <p class="prose">launching with the essentials. building toward everything.</p>
 
       <div class="features-grid">
@@ -1755,11 +1813,29 @@
     </div>
   </section>
 
+  <!-- Integrations -->
+  <section id="integrations" class="section-lifted">
+    <div class="container-wide fade-in" style="text-align: center;">
+      <div class="section-label">// connects to</div>
+      <h2>works with the tools <em>you already use</em></h2>
+      <div class="integrations-strip">
+        <div class="chip"><span class="chip-icon">💬</span> Telegram</div>
+        <div class="chip"><span class="chip-icon">📱</span> WhatsApp</div>
+        <div class="chip"><span class="chip-icon">📧</span> Gmail</div>
+        <div class="chip"><span class="chip-icon">📅</span> Google Calendar</div>
+        <div class="chip"><span class="chip-icon">🌐</span> Web Browsing</div>
+        <div class="chip"><span class="chip-icon">🔍</span> Web Search</div>
+        <div class="chip"><span class="chip-icon">📞</span> Voice Calls</div>
+        <div class="chip"><span class="chip-icon">💼</span> Slack <span style="font-size: 0.7rem; color: var(--amber);">soon</span></div>
+      </div>
+    </div>
+  </section>
+
   <!-- Origin -->
   <section id="origin">
     <div class="container-wide fade-in">
       <div class="section-label">// origin story</div>
-      <h2>built by an engineer who got tired of tab switching</h2>
+      <h2>built by an engineer who got tired of <em>tab switching</em></h2>
       <p class="prose">
         liv started as a personal project by <strong>leo borges</strong> — a chief engineer
         who wanted an AI co-pilot that actually <em>does things</em>, not just talks about them.
@@ -1783,10 +1859,10 @@
   </section>
 
   <!-- Docs -->
-  <section id="docs">
+  <section id="docs" class="section-lifted">
     <div class="container-wide fade-in">
       <div class="section-label">// docs</div>
-      <h2>getting started</h2>
+      <h2><em>getting started</em></h2>
 
       <div class="docs-callout">
         <span class="callout-icon">⚠️</span>
@@ -1866,7 +1942,7 @@
     <div class="container-wide">
       <div class="signup-wrapper">
         <div class="section-label">// early access</div>
-        <h2>want your own liv?</h2>
+        <h2>want <em>your own liv</em>?</h2>
         <p class="prose">
           we're building the MVP now. drop your details and we'll reach out when alpha spots open up.
         </p>
