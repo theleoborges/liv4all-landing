@@ -339,5 +339,13 @@
     <p>built with 🖤 by liv & leo · <a href="/">home</a> · <a href="../about.html">about</a> · <a href="../faq.html">faq</a> · <a href="../guides.html">guides</a> · <a href="../terms.html">terms</a> · <a href="../privacy.html">privacy</a></p>
   </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        new IntersectionObserver(([e]) => { if (e.isIntersecting) { e.target.classList.add('visible'); } }, { threshold: 0.1 }).observe(el);
+      });
+    });
+  </script>
+
 </body>
 </html>
