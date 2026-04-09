@@ -94,11 +94,18 @@
   </style>
 </head>
 <body>
-  <div class="player-container">
+  <div class="player-container fade-in">
     <video src="../assets/videos/whatsapp-forwarded-invite.mp4" controls playsinline preload="metadata"></video>
     <h1 class="player-title">forward and forget</h1>
     <p class="player-desc">a friend's graduation QR code forwarded on whatsapp. liv extracts the details and offers to add it to your calendar.</p>
     <a href="/" class="back-link">← hello.liv4all.com</a>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        new IntersectionObserver(([e]) => { if (e.isIntersecting) { e.target.classList.add('visible'); } }, { threshold: 0.1 }).observe(el);
+      });
+    });
+  </script>
 </body>
 </html>

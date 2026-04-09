@@ -94,11 +94,18 @@
   </style>
 </head>
 <body>
-  <div class="player-container">
+  <div class="player-container fade-in">
     <video src="../assets/videos/daily-report.mp4" controls playsinline preload="metadata"></video>
     <h1 class="player-title">daily AI briefing</h1>
     <p class="player-desc">ask for a curated daily report on any topic — delivered straight to your inbox.</p>
     <a href="/" class="back-link">← hello.liv4all.com</a>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        new IntersectionObserver(([e]) => { if (e.isIntersecting) { e.target.classList.add('visible'); } }, { threshold: 0.1 }).observe(el);
+      });
+    });
+  </script>
 </body>
 </html>
