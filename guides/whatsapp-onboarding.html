@@ -93,14 +93,19 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(139, 92, 246, 0.15);
+      border-radius: 100px;
     }
 
     .prereqs {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      background: var(--surface-glass);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
       padding: 24px;
       margin-bottom: 48px;
     }
@@ -167,7 +172,7 @@
     .tip {
       background: rgba(139, 92, 246, 0.06);
       border: 1px solid rgba(139, 92, 246, 0.15);
-      border-radius: 10px;
+      border-radius: var(--radius);
       padding: 16px 20px;
       margin-top: 10px;
       font-size: 0.88rem;
@@ -178,9 +183,11 @@
     .tip strong { color: var(--accent); font-weight: 500; }
 
     .note {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      background: var(--surface-glass);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
       padding: 24px;
       margin-bottom: 48px;
       font-size: 0.92rem;
@@ -192,10 +199,24 @@
 
     footer {
       padding: 40px 0;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-light);
       text-align: center;
       font-size: 0.85rem;
       color: var(--text-dim);
+    }
+
+    footer a {
+      transition: color 0.2s;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
