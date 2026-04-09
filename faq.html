@@ -148,25 +148,34 @@
 
     .faq-group-label {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       color: var(--accent);
       letter-spacing: 0.15em;
       text-transform: uppercase;
       margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(139, 92, 246, 0.15);
+      border-radius: 100px;
     }
 
     .faq-toggle {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      background: var(--surface-glass);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      transition: border-color 0.3s;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
       margin-bottom: 10px;
     }
 
-    .faq-toggle:hover { border-color: rgba(139, 92, 246, 0.3); }
+    .faq-toggle:hover {
+      border-color: rgba(139, 92, 246, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-glow);
+    }
 
     .faq-toggle summary {
       padding: 20px 24px;
@@ -245,24 +254,76 @@
     }
 
     footer {
-      padding: 40px 0;
-      border-top: 1px solid var(--border);
+      padding: 60px 0;
+      border-top: 1px solid var(--border-light);
       text-align: center;
+    }
+
+    footer p {
       font-size: 0.85rem;
       color: var(--text-dim);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── Fade in ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .nav-inner { margin-top: 8px; padding: 10px 16px; }
+      .nav-links a:not(.nav-cta) { display: none; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">liv<span>4all</span></a>
+      <div class="nav-links">
+        <a href="about.html">about</a>
+        <a href="faq.html">faq</a>
+        <a href="guides.html">guides</a>
+        <a href="/#signup" class="nav-cta">get early access</a>
+      </div>
+    </div>
+  </nav>
+
   <div class="container">
-    <a href="/" class="back">← back to liv4all</a>
 
     <h1>frequently asked questions</h1>
     <p class="subtitle">everything you want to know before handing an AI your calendar and inbox.</p>
 
     <!-- The basics -->
-    <div class="faq-group">
+    <div class="faq-group fade-in">
       <div class="faq-group-label">// the basics</div>
 
       <details class="faq-toggle">
