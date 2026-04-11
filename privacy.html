@@ -200,6 +200,16 @@
       letter-spacing: 0.05em;
     }
 
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82em;
+      color: var(--text);
+      background: rgba(139, 92, 246, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border-light);
+    }
+
     /* ── Footer ── */
     footer {
       padding: 60px 0;
@@ -269,23 +279,32 @@
     <a href="/" class="back">← back to liv4all</a>
 
     <h1>privacy policy</h1>
-    <p class="updated">last updated: 2 march 2026</p>
+    <p class="updated">last updated: 11 april 2026</p>
 
     <div class="callout">
-      plain language, no legalese. your data is yours. we use it to make liv work for you — nothing else.
+      plain language, no legalese. your data is yours. we use it to make liv work for you — nothing else. this policy covers how liv handles data from connected services (Google Calendar and Google Contacts), email forwarded to your agent's inbox, and your conversations with liv through the web dashboard and messaging channels.
     </div>
 
     <h2>who we are</h2>
     <p>
-      liv is built by <strong>Leo Borges</strong> (<a href="mailto:support@agent.liv4all.com">support@agent.liv4all.com</a>), an independent developer based in Sydney, Australia. when we say "we" or "us" in this policy, that's who we mean.
+      liv is built by <strong>Leonardo Borges Barbosa</strong>, an Australian sole trader (<strong>ABN 52 893 209 032</strong>) based in Zetland, NSW 2017, Australia, reachable at <a href="mailto:support@agent.liv4all.com">support@agent.liv4all.com</a>. when we say "we", "us", or "liv4all" in this policy, that's who we mean. we are the data controller for the personal data described below and operate under the <strong>Australian Privacy Principles</strong> set out in the Privacy Act 1988 (Cth).
     </p>
+    <p>
+      this policy applies to the liv4all service operated at the following URLs:
+    </p>
+    <ul>
+      <li><strong>product dashboard</strong> — <a href="https://app.liv4all.com/" target="_blank">https://app.liv4all.com/</a> (where you sign in, connect Google Calendar and Contacts, and manage your agent)</li>
+      <li><strong>marketing site</strong> — <a href="https://hello.liv4all.com/" target="_blank">https://hello.liv4all.com/</a> (this site)</li>
+      <li><strong>support</strong> — <a href="mailto:support@agent.liv4all.com">support@agent.liv4all.com</a></li>
+    </ul>
 
     <h2>what we collect</h2>
-    <p>we only collect data that's necessary to provide your personal AI assistant:</p>
+    <p>we only collect data that's necessary to provide your personal AI chief of staff:</p>
     <ul>
-      <li><strong>account info</strong> — your name, email address, and phone number (for messaging channels like WhatsApp or Signal).</li>
-      <li><strong>conversation history</strong> — messages between you and your liv agent, stored to maintain context and memory across sessions.</li>
-      <li><strong>connected service tokens</strong> — OAuth refresh tokens for services you connect (e.g. Google Calendar). we store tokens, not your passwords.</li>
+      <li><strong>account info</strong> — your name, email address, and the identifier for the messaging channel you use to talk to your agent (e.g. your Telegram username / user ID, or a phone number for WhatsApp or Signal).</li>
+      <li><strong>conversation history</strong> — anything you send to your liv agent, whether through the web dashboard, a messaging channel like Telegram, or by forwarding a message to your agent's dedicated inbox address. stored to maintain context and memory across sessions.</li>
+      <li><strong>connected-service OAuth tokens</strong> — refresh and access tokens for services you connect (Google Calendar, Google Contacts). we store tokens, never your passwords. tokens are encrypted at rest and handled exclusively by our secrets-aware proxy (see "security architecture" below).</li>
+      <li><strong>Google Calendar and Contacts data</strong> — when you authorise access, liv fetches the specific events, availability, and contact details needed to complete scheduling tasks you've asked for. see "Google Calendar and Contacts access" below for the full breakdown.</li>
       <li><strong>agent workspace files</strong> — notes, preferences, and memory files your agent creates to serve you better.</li>
     </ul>
 
@@ -293,88 +312,180 @@
     <ul>
       <li>we don't track you across the web.</li>
       <li>we don't use cookies or analytics on this site.</li>
-      <li>we don't collect data from people you interact with through liv.</li>
+      <li>we don't collect data from people you interact with through liv beyond what they've sent to you (e.g. the content of an email you chose to forward to your agent's inbox so liv could help with it).</li>
       <li>we don't store your passwords for any connected service.</li>
+      <li>we don't sell or rent your data to anyone, ever.</li>
     </ul>
 
-    <h2>how we use your data</h2>
-    <p>your data is used for one purpose: <strong>making liv work for you</strong>.</p>
-    <ul>
-      <li><strong>conversation history</strong> — so your agent remembers context, preferences, and prior decisions.</li>
-      <li><strong>calendar tokens</strong> — so your agent can check availability, create events, and manage your schedule.</li>
-      <li><strong>email tokens</strong> — so your agent can read, draft, and send emails on your behalf (when you grant this).</li>
-      <li><strong>workspace files</strong> — so your agent can maintain notes, to-dos, and long-term memory.</li>
-    </ul>
-
-    <div class="callout">
-      <strong>we do not use your data to train AI models.</strong> your conversations and files are never fed into training pipelines — not ours, not anyone else's.
-    </div>
-
-    <h2>third-party services</h2>
+    <h2>Google Calendar and Contacts access</h2>
     <p>
-      liv connects to third-party services on your behalf. when you authorise a connection, you're granting liv access within the scopes you approve:
+      liv requests access to Google Calendar and Google Contacts via OAuth. you see and approve every scope on Google's consent screen before any access is granted, and you can revoke access at any time. the table below lists every Google scope liv requests, what data it exposes to liv, and the user-facing feature it enables.
     </p>
 
     <table>
       <tr>
-        <th>service</th>
+        <th>scope</th>
         <th>data accessed</th>
-        <th>why</th>
+        <th>user-facing feature</th>
       </tr>
       <tr>
-        <td>Google Calendar</td>
-        <td>events, availability</td>
-        <td>scheduling, reminders, invites</td>
+        <td><code>calendar</code></td>
+        <td>events, availability, attendees</td>
+        <td>scheduling, reminders, creating and updating invites on your behalf</td>
       </tr>
       <tr>
-        <td>Google Contacts</td>
-        <td>contact names, emails</td>
-        <td>finding people for scheduling</td>
+        <td><code>contacts.readonly</code></td>
+        <td>contact names, emails, phone numbers</td>
+        <td>finding the right person when you ask liv to schedule or reach out to someone</td>
       </tr>
     </table>
 
     <p>
-      you can revoke access to any connected service at any time through that service's settings (e.g. <a href="https://myaccount.google.com/permissions" target="_blank">Google account permissions</a>). liv will stop accessing that service immediately.
+      <strong>liv4all does not currently request any Gmail scopes</strong> — including read, compose, send, labels, modify, or delete. if you want liv to help with email today, you can forward messages to your agent's dedicated inbox address (see "email forwarding to your agent" below); native Gmail integration may be added in a future release, and any such change will be reflected in this policy before the additional scopes are requested.
     </p>
 
-    <h2>where your data lives</h2>
+    <p>
+      <strong>scopes are optional and granular.</strong> Google's consent screen lets you <strong>uncheck any scope you're not comfortable granting</strong> before approving the connection — for example, you can connect Calendar without granting Contacts. liv4all is designed to degrade gracefully: features that depend on a scope you declined are disabled, and liv will tell you which scope would be required if you later ask for something that needs one. you can re-run the connection flow at any time, and revoke everything at once from your <a href="https://myaccount.google.com/permissions" target="_blank">Google account permissions page</a>.
+    </p>
+
+    <h2>Google API Services User Data Policy</h2>
+    <div class="callout">
+      liv4all's use and transfer of information received from Google APIs to any other app will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Google API Services User Data Policy</a>.
+    </div>
+    <p>specifically, liv commits that:</p>
     <ul>
-      <li>data is stored on secured infrastructure managed by us.</li>
-      <li>each user's agent runs in an <strong>isolated environment</strong> — your data is not shared with other users' agents.</li>
-      <li>OAuth tokens are encrypted at rest.</li>
-      <li>we use HTTPS for all data in transit.</li>
+      <li><strong>user-facing features only.</strong> we only access your Google user data to provide or improve the user-facing features of liv that you have asked for (scheduling meetings, resolving contacts, etc.). we do not use Google user data for any unrelated purpose.</li>
+      <li><strong>no transfer to others</strong> except in the narrow circumstances allowed by the policy: (i) as necessary to provide or improve those user-facing features, (ii) to comply with applicable law, (iii) as part of a merger, acquisition, or sale of assets with notice to users, or (iv) with your explicit consent.</li>
+      <li><strong>no advertising.</strong> we do not use Google user data for serving advertisements, including retargeted, personalised, or interest-based ads.</li>
+      <li><strong>no humans reading data</strong> except in the narrow conditions described in the "human access to your data" section below.</li>
+      <li><strong>no training of generalised AI/ML models.</strong> we do not use your Google Calendar events or Contacts to develop, improve, or train generalised or non-personalised AI/ML models. the large-language-model providers liv uses for agent reasoning are contractually bound not to train on data sent via their APIs (see "subprocessors" below).</li>
     </ul>
+
+    <h2>email forwarding to your agent</h2>
+    <p>
+      your agent is assigned a dedicated email address (shown in your dashboard). forwarding messages to it is <strong>entirely optional and user-initiated</strong> — it is not required to use liv. anything you forward is treated as part of your conversation with the agent, and is subject to the same storage, security, retention, and deletion rules as the rest of your conversation history.
+    </p>
+    <p>
+      <strong>a note on third-party content:</strong> when you forward a message containing information about other people, you are sharing their data with liv in the same way you would share it with any personal assistant. you are responsible for ensuring you have the right to share anything you forward.
+    </p>
+
+    <h2>security architecture — the secrets-aware proxy</h2>
+    <p>
+      a core security control in liv is a <strong>TLS-terminating egress proxy</strong> that sits between the agent runtime and every outbound network call. the proxy performs man-in-the-middle TLS termination for traffic originating inside the agent sandbox, then:
+    </p>
+    <ul>
+      <li><strong>injects secrets on the way out.</strong> when the agent makes a request that needs an OAuth token or API key, the proxy rewrites the request headers to attach the correct secret. the agent itself — and any LLM reasoning over its context — never sees the raw token.</li>
+      <li><strong>scrubs secrets on the way in.</strong> responses are scanned and any matching secret material is redacted before being returned to the agent's context window.</li>
+      <li><strong>enforces an egress allowlist.</strong> agents can only reach the specific APIs they need (Google, messaging providers, the configured LLM endpoints). arbitrary outbound traffic is blocked.</li>
+    </ul>
+    <p>
+      the practical effect: your Google OAuth tokens are <strong>never transmitted to any LLM provider</strong> and are never present in any data that leaves our infrastructure. tokens live only in the proxy's secrets store and are injected at the moment of each Google API call.
+    </p>
+
+    <h2>subprocessors</h2>
+    <p>
+      liv uses a small, named set of subprocessors to deliver the service. each one is bound by contract to process data only on our instructions and not to train models on it.
+    </p>
+    <table>
+      <tr>
+        <th>subprocessor</th>
+        <th>purpose</th>
+        <th>data shared</th>
+      </tr>
+      <tr>
+        <td>Amazon Web Services (AWS), ap-southeast-2 (Sydney)</td>
+        <td>hosting, compute, storage, encryption-at-rest</td>
+        <td>all user data at rest</td>
+      </tr>
+      <tr>
+        <td>Anthropic (Claude API)</td>
+        <td>LLM reasoning for the agent</td>
+        <td>conversation content and relevant excerpts of Calendar / Contacts data needed for the current task. OAuth tokens are never sent. zero-retention API terms.</td>
+      </tr>
+      <tr>
+        <td>OpenAI</td>
+        <td>LLM reasoning for the agent</td>
+        <td>same as above. zero-retention API terms; no training on API data.</td>
+      </tr>
+      <tr>
+        <td>Google (Gemini / Vertex AI)</td>
+        <td>LLM reasoning for the agent</td>
+        <td>same as above. processed under Google Cloud's Vertex AI terms, which prohibit training on customer data.</td>
+      </tr>
+      <tr>
+        <td>Telegram (Telegram FZ-LLC)</td>
+        <td>messaging channel for user &harr; agent interactions, when you choose to connect Telegram</td>
+        <td>messages you send to the Liv4All Telegram bot and the agent's replies. replies may include summaries or quoted excerpts of your Calendar or Contacts data when you've asked liv to act on them — because that content is the answer to your question. OAuth tokens are <strong>never</strong> sent to Telegram. your use of Telegram is also governed by Telegram's own <a href="https://telegram.org/privacy" target="_blank">privacy policy</a>.</td>
+      </tr>
+      <tr>
+        <td>Formspree</td>
+        <td>handling early-access interest form submissions on this website only</td>
+        <td>name and email address submitted via the landing page form. no Google Workspace data.</td>
+      </tr>
+    </table>
+
+    <p>
+      <strong>a note on messaging channels.</strong> liv4all supports multiple messaging channels (Telegram today; WhatsApp and Signal on the roadmap). whichever channel you choose becomes a subprocessor for your conversation content with the agent, because your messages and liv's replies necessarily transit that channel's infrastructure. if you'd rather your conversations not go through Telegram, you can use the web dashboard at <a href="https://app.liv4all.com/" target="_blank">https://app.liv4all.com/</a> directly, or wait for an alternative channel.
+    </p>
+    <p>
+      we will update this list before adding any new subprocessor that processes user data, and notify active users of material changes.
+    </p>
+
+    <h2>where your data lives &amp; how it's protected</h2>
+    <ul>
+      <li>all durable user data is stored on <strong>AWS in the ap-southeast-2 (Sydney) region</strong>.</li>
+      <li>each user's agent runs in an <strong>isolated sandbox</strong>; one user's agent cannot read another user's data.</li>
+      <li>data is <strong>encrypted at rest</strong> (AES-256) and <strong>encrypted in transit</strong> (TLS 1.2+).</li>
+      <li>OAuth tokens are held in a dedicated secrets store, encrypted with keys separate from the application database, and only accessible to the secrets-aware proxy.</li>
+      <li>access to production infrastructure is limited to the developer (Leonardo Borges Barbosa) and requires multi-factor authentication. all administrative access is logged.</li>
+      <li>we follow the principle of least privilege: only the Google scopes listed above are requested, and each scope is tied to a specific user-facing feature.</li>
+    </ul>
+
+    <h2>human access to your data</h2>
+    <p>
+      in normal operation, <strong>no human at liv4all reads your calendar entries, contacts, or conversation history</strong>. the only circumstances in which a human may view your data are:
+    </p>
+    <ul>
+      <li><strong>with your explicit consent</strong> — for example, when you share a debug bundle while reporting an issue, or ask us to investigate why liv handled a specific request a particular way.</li>
+      <li><strong>security &amp; abuse</strong> — narrow, time-bound access to investigate a credible security incident or abuse of the service.</li>
+      <li><strong>legal compliance</strong> — when required by a valid legal process under Australian law.</li>
+    </ul>
+    <p>
+      any such access is logged. we do not have a support team casually browsing user data, and we do not permit our subprocessors to do so either.
+    </p>
 
     <h2>data retention</h2>
     <ul>
-      <li>your data is retained for as long as your account is active.</li>
-      <li>you can request <strong>full deletion</strong> of your data at any time by emailing <a href="mailto:support@agent.liv4all.com">support@agent.liv4all.com</a>.</li>
-      <li>upon deletion, we remove your conversation history, agent workspace, and stored tokens within 30 days.</li>
+      <li><strong>conversation history &amp; workspace files</strong> — retained for as long as your account is active.</li>
+      <li><strong>OAuth tokens</strong> — retained while the connection is active; deleted immediately when you disconnect a service or delete your account.</li>
+      <li><strong>server logs</strong> — operational and security logs are retained for up to 30 days and then automatically deleted.</li>
+      <li>you can request <strong>full deletion</strong> of all your data at any time by emailing <a href="mailto:support@agent.liv4all.com">support@agent.liv4all.com</a> with the subject line "delete my account". we will acknowledge within 3 business days and complete deletion within 30 days, including from backups on their normal rotation.</li>
     </ul>
 
     <h2>your rights</h2>
-    <p>you have the right to:</p>
+    <p>under the Australian Privacy Principles (and, where applicable, GDPR) you have the right to:</p>
     <ul>
       <li><strong>access</strong> — ask what data we hold about you.</li>
       <li><strong>correct</strong> — update inaccurate information.</li>
-      <li><strong>delete</strong> — request full removal of your data.</li>
-      <li><strong>revoke</strong> — disconnect any third-party service at any time.</li>
-      <li><strong>export</strong> — request a copy of your data in a portable format.</li>
+      <li><strong>delete</strong> — request full removal of your data (see retention above).</li>
+      <li><strong>revoke</strong> — disconnect Google Calendar / Contacts at any time via <a href="https://myaccount.google.com/permissions" target="_blank">Google account permissions</a>. liv will stop accessing those services immediately. you can also stop email forwarding at any time by removing the forwarding rule in your own mail client.</li>
+      <li><strong>export</strong> — request a machine-readable copy of your conversation history and workspace files.</li>
+      <li><strong>complain</strong> — if you believe we have mishandled your data, you can contact us directly or lodge a complaint with the <a href="https://www.oaic.gov.au/" target="_blank">Office of the Australian Information Commissioner (OAIC)</a>.</li>
     </ul>
 
     <h2>children</h2>
     <p>
-      liv is not intended for use by anyone under 18. we do not knowingly collect data from minors.
+      liv is not intended for use by anyone under 18. we do not knowingly collect data from minors. if you believe a minor has created an account, contact us and we will delete the account.
     </p>
 
     <h2>changes to this policy</h2>
     <p>
-      we may update this policy as the product evolves. we'll notify users of material changes. continued use after changes constitutes acceptance.
+      we may update this policy as the product evolves. we'll notify active users of material changes — especially any change to the set of scopes we request or the subprocessors we use — before those changes take effect. continued use after changes constitutes acceptance.
     </p>
 
     <h2>contact</h2>
     <p>
-      questions about your data or this policy? reach out at <a href="mailto:support@agent.liv4all.com">support@agent.liv4all.com</a>.
+      questions about your data or this policy? reach out at <a href="mailto:support@agent.liv4all.com">support@agent.liv4all.com</a>. for data-subject requests (access, correction, deletion, export), use the same address with the relevant subject line.
     </p>
   </div>
 

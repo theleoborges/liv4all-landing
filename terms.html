@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alpha Terms — Liv</title>
+  <title>Terms of Use — Liv</title>
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -175,6 +175,16 @@
 
     .callout strong { color: var(--text); }
 
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82em;
+      color: var(--text);
+      background: rgba(139, 92, 246, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border-light);
+    }
+
     footer {
       padding: 60px 0;
       border-top: 1px solid var(--border-light);
@@ -217,8 +227,8 @@
   <div class="container">
     <a href="/" class="back">← back to liv4all</a>
 
-    <h1>alpha terms of use</h1>
-    <p class="updated">last updated: 17 march 2026</p>
+    <h1>terms of use</h1>
+    <p class="updated">last updated: 11 april 2026</p>
 
     <div class="callout">
       these terms are written in plain language on purpose. if something is unclear, reach out — we'd rather explain than hide behind legalese.
@@ -226,15 +236,19 @@
 
     <h2>what this is</h2>
     <p>
-      liv is an <strong>AI assistant in active development</strong>. you're accessing an early alpha — meaning things will break, responses won't always be perfect, and features will change without notice. by using liv, you acknowledge this and agree to the terms below.
+      liv is an <strong>AI chief of staff in active development</strong>, operated by <strong>Leonardo Borges Barbosa</strong>, an Australian sole trader (<strong>ABN 52 893 209 032</strong>) based in Zetland, NSW 2017, Australia, reachable at <a href="mailto:support@agent.liv4all.com">support@agent.liv4all.com</a>. "we", "us", and "liv4all" in these terms refer to that entity. by creating an account or otherwise using liv, you acknowledge and agree to the terms below.
+    </p>
+    <p>
+      these terms govern your use of the liv4all product dashboard at <a href="https://app.liv4all.com/" target="_blank">https://app.liv4all.com/</a> and this marketing site at <a href="https://hello.liv4all.com/" target="_blank">https://hello.liv4all.com/</a>.
     </p>
 
     <h2>the basics</h2>
     <ul>
-      <li><strong>alpha access is invite-only</strong> and can be revoked at any time, for any reason.</li>
+      <li><strong>access is invite-only</strong> and can be revoked at any time, for any reason, with or without notice.</li>
       <li><strong>the service is provided as-is</strong>, with no guarantees of uptime, accuracy, or availability.</li>
-      <li><strong>we may change, pause, or shut down the alpha</strong> at any point during development.</li>
+      <li><strong>we may change, pause, or shut down the service</strong> at any point. we'll give active users reasonable notice wherever practical.</li>
       <li><strong>your feedback is welcome</strong> — it's how we make this better.</li>
+      <li><strong>minimum age: 18.</strong> liv is not for minors.</li>
     </ul>
 
     <h2>fair use</h2>
@@ -267,14 +281,30 @@
     <h2>your data</h2>
     <ul>
       <li>liv stores conversation history and preferences to provide a persistent assistant experience.</li>
-      <li>your data is <strong>not sold, shared, or used to train models</strong>.</li>
-      <li>you can request deletion of your data at any time by contacting us.</li>
-      <li>during alpha, data handling processes are still maturing — we'll keep you informed of any significant changes.</li>
+      <li>your data is <strong>not sold, not shared beyond the subprocessors listed in our privacy policy, and never used to train generalised AI/ML models</strong> — including data received from Google APIs and messages forwarded to your agent's inbox.</li>
+      <li>you can request deletion of your data at any time by emailing <a href="mailto:support@agent.liv4all.com">support@agent.liv4all.com</a>. full deletion is completed within 30 days.</li>
+      <li>for the complete picture — what we collect, how it's processed, where it lives, subprocessors, security controls, and your rights — see our <a href="privacy.html">privacy policy</a>.</li>
     </ul>
 
-    <h2>third-party services</h2>
+    <h2>connecting Google Calendar and Contacts</h2>
     <p>
-      liv connects to services on your behalf (e.g. Google Calendar, Gmail). when you grant access, you're authorising liv to act within the permissions you approve. you can revoke these at any time through your Google account settings.
+      liv connects to Google Calendar and Google Contacts on your behalf. every scope is shown to you on Google's consent screen before access is granted. the scopes liv requests are:
+    </p>
+    <ul>
+      <li><strong>Google Calendar</strong> — to check availability, create and update events, and manage invites.</li>
+      <li><strong>Google Contacts (read-only)</strong> — to find the right person when you ask liv to schedule or reach out to someone.</li>
+    </ul>
+    <p>
+      <strong>liv4all does not currently request any Gmail scopes.</strong> native Gmail integration may be added in a future release; these terms and our <a href="privacy.html">privacy policy</a> will be updated before any additional scopes are requested. in the meantime, if you want liv to help with email, you can forward messages to the dedicated inbox address your agent is assigned on the <code>agent.liv4all.com</code> domain (shown in your dashboard).
+    </p>
+    <p>
+      <strong>every scope above is optional.</strong> Google's consent screen lets you uncheck any scope you don't want to grant before approving the connection. liv is designed to work with whatever subset you grant — features that depend on a scope you declined will simply be unavailable. you can add or remove scopes later by re-running the connection, and revoke everything at once from your Google account permissions page.
+    </p>
+    <p>
+      your use of Google services through liv is also governed by <a href="https://policies.google.com/terms" target="_blank">Google's Terms of Service</a>. you can revoke liv's access at any time via <a href="https://myaccount.google.com/permissions" target="_blank">Google account permissions</a>; liv will stop accessing Calendar and Contacts immediately.
+    </p>
+    <p>
+      liv4all's use and transfer of information received from Google APIs to any other app will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Google API Services User Data Policy</a>.
     </p>
 
     <h2>AI agent responsibility</h2>
@@ -288,7 +318,7 @@
     </ul>
 
     <div class="callout">
-      <strong>the draft-first principle:</strong> by default, liv shows you a draft before sending emails or messages to third parties and waits for your explicit confirmation. we recommend keeping this safeguard enabled.
+      <strong>the draft-first principle.</strong> liv <strong>always drafts before it sends</strong>. any outbound communication that leaves your account — calendar invites sent to third-party attendees, and any other messages liv sends on your behalf through connected channels — is first shown to you as a draft and sent only after you explicitly confirm it. this safeguard is enforced at the backend, not just in prompting, and cannot be disabled by the agent on its own.
     </div>
 
     <h2>liability</h2>
@@ -301,7 +331,7 @@
 
     <h2>changes to these terms</h2>
     <p>
-      we may update these terms as the product evolves. we'll notify alpha users of any material changes. continued use after changes constitutes acceptance.
+      we may update these terms as the product evolves. we'll notify active users of any material changes. continued use after changes constitutes acceptance.
     </p>
 
     <h2>contact</h2>
