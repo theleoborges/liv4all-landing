@@ -362,7 +362,7 @@
 
     /* ── Responsive ── */
     @media (max-width: 600px) {
-      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-links a:not(.nav-cta):not(.nav-login) { display: none; }
       .nav-inner { margin-top: 8px; padding: 10px 16px; }
       .survey-container { padding: 2rem 1rem; padding-top: 80px; }
       .survey-header h1 { font-size: 1.4rem; }
@@ -376,6 +376,7 @@
       <div class="nav-links">
         <a href="about.html">about</a>
         <a href="faq.html">faq</a>
+        <a href="https://app.liv4all.com" class="nav-login">login</a>
         <a href="index.html#signup" class="nav-cta">get early access</a>
       </div>
     </div>
