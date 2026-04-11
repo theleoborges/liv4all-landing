@@ -228,7 +228,7 @@
     <a href="/" class="back">← back to liv4all</a>
 
     <h1>terms of use</h1>
-    <p class="updated">last updated: 10 april 2026</p>
+    <p class="updated">last updated: 11 april 2026</p>
 
     <div class="callout">
       these terms are written in plain language on purpose. if something is unclear, reach out — we'd rather explain than hide behind legalese.
@@ -281,35 +281,30 @@
     <h2>your data</h2>
     <ul>
       <li>liv stores conversation history and preferences to provide a persistent assistant experience.</li>
-      <li>your data is <strong>not sold, not shared beyond the subprocessors listed in our privacy policy, and never used to train generalised AI/ML models</strong> — including data received from Google Workspace APIs.</li>
+      <li>your data is <strong>not sold, not shared beyond the subprocessors listed in our privacy policy, and never used to train generalised AI/ML models</strong> — including data received from Google APIs and messages forwarded to your agent's inbox.</li>
       <li>you can request deletion of your data at any time by emailing <a href="mailto:support@agent.liv4all.com">support@agent.liv4all.com</a>. full deletion is completed within 30 days.</li>
       <li>for the complete picture — what we collect, how it's processed, where it lives, subprocessors, security controls, and your rights — see our <a href="privacy.html">privacy policy</a>.</li>
     </ul>
 
-    <h2>connecting Google Workspace</h2>
+    <h2>connecting Google Calendar and Contacts</h2>
     <p>
-      liv connects to Google Workspace services on your behalf. every scope is shown to you on Google's consent screen before access is granted. the scopes liv requests are:
+      liv connects to Google Calendar and Google Contacts on your behalf. every scope is shown to you on Google's consent screen before access is granted. the scopes liv requests are:
     </p>
     <ul>
       <li><strong>Google Calendar</strong> — to check availability, create and update events, and manage invites.</li>
-      <li><strong>Google Contacts (read-only)</strong> — to find the right person when you ask liv to email or schedule with them.</li>
-      <li><strong>Gmail — read</strong> (<code>gmail.readonly</code>) — to read, search, and summarise your inbox so your agent can keep context on ongoing threads.</li>
-      <li><strong>Gmail — compose</strong> (<code>gmail.compose</code>) — to create drafts in your drafts folder for your review.</li>
-      <li><strong>Gmail — send</strong> (<code>gmail.send</code>) — to send drafted messages <em>only after you explicitly confirm</em>.</li>
-      <li><strong>Gmail — labels</strong> (<code>gmail.labels</code>) — to create and manage labels.</li>
-      <li><strong>Gmail — modify</strong> (<code>gmail.modify</code>) — to archive handled threads, mark messages as read, and move messages out of the inbox.</li>
+      <li><strong>Google Contacts (read-only)</strong> — to find the right person when you ask liv to schedule or reach out to someone.</li>
     </ul>
     <p>
-      <strong>liv will never delete email from your account.</strong> we do not request any Gmail deletion scope, and archive/label operations are fully reversible by you.
+      <strong>liv4all does not currently request any Gmail scopes.</strong> native Gmail integration may be added in a future release; these terms and our <a href="privacy.html">privacy policy</a> will be updated before any additional scopes are requested. in the meantime, if you want liv to help with email, you can forward messages to the dedicated inbox address your agent is assigned on the <code>agent.liv4all.com</code> domain (shown in your dashboard).
     </p>
     <p>
       <strong>every scope above is optional.</strong> Google's consent screen lets you uncheck any scope you don't want to grant before approving the connection. liv is designed to work with whatever subset you grant — features that depend on a scope you declined will simply be unavailable. you can add or remove scopes later by re-running the connection, and revoke everything at once from your Google account permissions page.
     </p>
     <p>
-      your use of Google Workspace through liv is also governed by <a href="https://policies.google.com/terms" target="_blank">Google's Terms of Service</a>. you can revoke liv's access to any connected service at any time via <a href="https://myaccount.google.com/permissions" target="_blank">Google account permissions</a>; liv will stop accessing that service immediately and purge any cached content within 24 hours.
+      your use of Google services through liv is also governed by <a href="https://policies.google.com/terms" target="_blank">Google's Terms of Service</a>. you can revoke liv's access at any time via <a href="https://myaccount.google.com/permissions" target="_blank">Google account permissions</a>; liv will stop accessing Calendar and Contacts immediately.
     </p>
     <p>
-      liv4all's use and transfer of information received from Google APIs to any other app will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Google API Services User Data Policy</a>, including the Limited Use requirements.
+      liv4all's use and transfer of information received from Google APIs to any other app will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Google API Services User Data Policy</a>.
     </p>
 
     <h2>AI agent responsibility</h2>
@@ -323,7 +318,7 @@
     </ul>
 
     <div class="callout">
-      <strong>the draft-first principle.</strong> liv <strong>always drafts before it sends</strong>. any outbound email — whether composed with <code>gmail.compose</code> or sent via <code>gmail.send</code> — is first created as a draft in your Gmail drafts folder and surfaced to you for review. liv will only call the send API after you explicitly confirm the specific draft. the same principle applies to calendar invites that go to third parties, and to any message liv sends through other channels. this safeguard is on by default and cannot be disabled by the agent on its own.
+      <strong>the draft-first principle.</strong> liv <strong>always drafts before it sends</strong>. any outbound communication that leaves your account — calendar invites sent to third-party attendees, and any other messages liv sends on your behalf through connected channels — is first shown to you as a draft and sent only after you explicitly confirm it. this safeguard is enforced at the backend, not just in prompting, and cannot be disabled by the agent on its own.
     </div>
 
     <h2>liability</h2>
