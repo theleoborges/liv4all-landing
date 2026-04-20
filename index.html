@@ -1383,7 +1383,7 @@
         <a href="faq.html">faq</a>
         <a href="guides.html">guides</a>
         <a href="https://app.liv4all.com" class="nav-login">login</a>
-        <a href="#signup" class="nav-cta">get early access</a>
+        <a href="#signup" class="nav-cta">join waitlist</a>
       </div>
     </div>
   </nav>
@@ -1396,7 +1396,7 @@
     <div class="hero-content">
       <div class="badge">
         <span class="badge-dot"></span>
-        alpha — few invites left
+        signups paused — waitlist open
       </div>
       <img src="logo.png" alt="Liv" class="hero-logo">
       <h1>your AI<br><span class="typing-line"><span class="gradient typing" id="typed-role"></span><span class="cursor">|</span></span></h1>
@@ -1406,7 +1406,7 @@
         not a chatbot. an agent that <strong>does things</strong>.
       </p>
       <div class="hero-cta">
-        <a href="#signup" class="btn-primary">get early access →</a>
+        <a href="#signup" class="btn-primary">join the waitlist →</a>
         <a href="https://www.youtube.com/watch?v=TXaWeFTb9Ns" target="_blank" rel="noopener" class="btn-secondary">watch the explainer ▶</a>
       </div>
       <div class="trust-strip">
@@ -1867,7 +1867,7 @@
 
       <div class="docs-callout">
         <span class="callout-icon">⚠️</span>
-        <strong>alpha access required.</strong> the setup flow below only works once you've been invited to the alpha program. <a href="#signup">register your interest</a> and we'll reach out when spots open.
+        <strong>signups paused.</strong> we hit the 100-user alpha cap and are going through google's CASA Tier 2 verification. the setup flow below only works for existing alpha users. <a href="#signup">join the waitlist</a> and we'll reach out the moment signups reopen.
       </div>
 
       <p class="docs-intro">
@@ -1942,10 +1942,16 @@
   <section id="signup" class="signup-section">
     <div class="container-wide">
       <div class="signup-wrapper">
-        <div class="section-label">// early access</div>
-        <h2>want <em>your own liv</em>?</h2>
+        <div class="section-label">// waitlist</div>
+        <h2>signups are closed — <em>join the waitlist</em></h2>
+
+        <div class="docs-callout" style="text-align: left; margin-bottom: 24px;">
+          <span class="callout-icon">⚠️</span>
+          <strong>why?</strong> we hit the 100-user alpha cap. google limits OAuth apps to exactly 100 users until you clear verification — and when you're doing email + calendar, OAuth isn't optional. we're now going through CASA Tier 2 (google's 3rd-party security audit). takes a few weeks. the reason's legit — they want proof we handle your data properly. same energy.
+        </div>
+
         <p class="prose">
-          we're building the MVP now. drop your details and we'll reach out when alpha spots open up.
+          drop your details and we'll reach out the moment signups reopen.
         </p>
 
         <form class="signup-form" id="interest-form" action="https://formspree.io/f/xzdawwzo" method="POST">
@@ -1954,15 +1960,16 @@
             <input type="email" name="email" placeholder="your email" required>
           </div>
           <input type="text" name="use_case" placeholder="what would you use liv for? (optional)">
-          <input type="hidden" name="_subject" value="Liv4All — New Interest Signup">
-          <button type="submit">register interest →</button>
-          <p class="form-note">no spam. just a heads-up when we're ready. by signing up you agree to our <a href="terms.html">alpha terms</a> and <a href="privacy.html">privacy policy</a>. 🖤</p>
+          <input type="hidden" name="_subject" value="Liv4All — Waitlist Signup">
+          <input type="hidden" name="source" value="waitlist">
+          <button type="submit">join the waitlist →</button>
+          <p class="form-note">no spam. just a heads-up when signups reopen. by joining the waitlist you agree to our <a href="terms.html">alpha terms</a> and <a href="privacy.html">privacy policy</a>. 🖤</p>
         </form>
 
         <div class="form-success" id="form-success">
           <div class="check">🖤</div>
-          <h3>you're on the list</h3>
-          <p>we'll reach out when alpha spots open. in the meantime, <a href="https://open.substack.com/pub/leonardoborges/p/tltd-39-voice-ai-the-next-platform?utm_source=hello.liv4all.com&utm_medium=referral&utm_campaign=thankyou" target="_blank">read about how liv was built</a>.</p>
+          <h3>you're on the waitlist</h3>
+          <p>we'll reach out the moment signups reopen after verification. in the meantime, <a href="https://open.substack.com/pub/leonardoborges/p/tltd-39-voice-ai-the-next-platform?utm_source=hello.liv4all.com&utm_medium=referral&utm_campaign=thankyou" target="_blank">read about how liv was built</a>.</p>
         </div>
       </div>
     </div>
