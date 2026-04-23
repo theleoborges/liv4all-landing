@@ -1,63 +1,51 @@
-# Liv4All Landing Page
+# Liv4All Landing
 
-Static SPA landing page for **hello.liv4all.com**.
+Static marketing site for **hello.liv4all.com**, built with [Astro](https://astro.build/).
+
+## Stack
+
+- Astro 5 (static output, no SSR adapter)
+- `@astrojs/sitemap`
+- Plain CSS (no framework)
+- GitHub Pages via Actions
+
+## Develop
+
+```bash
+npm install
+npm run dev         # http://localhost:4321
+```
+
+## Build
+
+```bash
+npm run build       # runs astro build + scripts/generate-redirects.mjs
+npm run preview
+```
+
+Output lands in `dist/`. The build script also emits meta-refresh shims at legacy `.html` paths (e.g. `faq.html` → `/faq/`) so external links to the pre-Astro URLs don't break.
+
+## Deploy
+
+Push to `main`; `.github/workflows/deploy.yml` builds and publishes to GitHub Pages. The custom domain is preserved via `public/CNAME`. Pages source must be set to **GitHub Actions** in repo settings.
 
 ## Structure
 
-Single `index.html` — no build step, no dependencies. Just deploy.
-
-## Setup
-
-### 1. Formspree (interest form)
-
-1. Create account at [formspree.io](https://formspree.io)
-2. Create a new form
-3. Replace `xzdawwzo` in `index.html` with your form endpoint ID
-4. The form action URL should look like: `https://formspree.io/f/xyzabcde`
-
-### 2. Deploy
-
-**GitHub Pages:**
-```bash
-# Push to a repo, enable Pages on main branch
+```
+src/
+  layouts/        BaseLayout.astro, DemoLayout.astro
+  components/     Head, Nav, Footer, ChatWidget, FadeInScript, SignupForm, VideoPlayer, …
+  pages/          Route-mapped .astro files
+  data/           demos.ts, nav.ts (single sources of truth)
+  styles/         global.css (vars, nav, footer, fade-in — shared across all main pages)
+public/           Static assets served as-is (images, videos, CNAME, .nojekyll)
+scripts/
+  generate-redirects.mjs    Writes legacy .html → directory URL shims into dist/
 ```
 
-**Netlify:**
-```bash
-# Drag & drop the folder, or connect the repo
-# Set publish directory to: /
-```
+## Forms
 
-**Cloudflare Pages:**
-```bash
-# Connect repo, build command: (none), output directory: /
-```
+- Main signup uses Formspree endpoint `xzdawwzo` (see `src/pages/index.astro`).
+- Alpha feedback survey uses `xbdzbekz` (see `src/pages/survey.astro`).
 
-**S3 + CloudFront:**
-```bash
-aws s3 sync . s3://hello.liv4all.com --exclude "README.md"
-```
-
-### 3. DNS
-
-Point `hello.liv4all.com` to wherever you deploy (CNAME or A record).
-
-## Customization
-
-- Replace `xzdawwzo` in the form action URL
-- Optionally add an avatar/og-image for social sharing
-- All styles are inline — edit the `<style>` block directly
-
-## Alternative: Google Form
-
-If you prefer Google Forms over Formspree, replace the `<form>` block with:
-
-```html
-<iframe
-  src="https://docs.google.com/forms/d/e/xzdawwzo/viewform?embedded=true"
-  width="100%"
-  height="400"
-  frameborder="0"
-  style="border: none; border-radius: 12px;"
->Loading…</iframe>
-```
+Both post via fetch/JSON and swap in a thank-you state on success.

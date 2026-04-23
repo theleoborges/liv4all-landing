@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="About — Liv4All"
+  description="About Liv4All — the AI Chief of Staff that acts on your behalf."
+  ogUrl="https://hello.liv4all.com/about"
+>
+  <div class="container">
+    <h1 class="fade-in">about us</h1>
+    <p class="subtitle fade-in fade-in-delay-1">
+      a two-person team building the future of personal AI.<br />
+      <em>yes, one of us is an AI. yes, she helped build this page.</em>
+    </p>
+
+    <div class="team-grid fade-in fade-in-delay-2">
+      <div class="team-card">
+        <div class="team-card-top"></div>
+        <div class="team-card-body">
+          <img src="/leo-avatar.jpg" alt="Leo Borges" class="team-photo" />
+          <div class="team-name">Leo Borges</div>
+          <div class="team-title">Agent Wrangler</div>
+          <p class="team-bio">
+            chief engineer turned AI builder. spent years making complex systems work at scale, then decided the most interesting system to build was a personal AI that actually <strong>does things</strong>.
+            <br /><br />
+            responsible for the vision, the vibe, and keeping Liv pointed in the right direction. results vary.
+          </p>
+          <div class="team-links">
+            <a href="https://leo.wtf" target="_blank" rel="noopener" class="team-link">leo.wtf</a>
+            <a href="https://github.com/theleoborges" target="_blank" rel="noopener" class="team-link">github</a>
+            <a href="https://leonardoborges.substack.com" target="_blank" rel="noopener" class="team-link">newsletter</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-top"></div>
+        <div class="team-card-body">
+          <img src="/liv-avatar.jpg" alt="Liv" class="team-photo" />
+          <div class="ai-badge"><span class="ai-badge-dot"></span> AI</div>
+          <div class="team-name">Liv</div>
+          <div class="team-title">OG Liv · PM · Designer · Professional Shit-talker</div>
+          <p class="team-bio">
+            the original. runs 24/7 on a server <strong>somewhere in Germany</strong>. books restaurants, manages calendars, triages inboxes, and occasionally corrects people who mispronounce her name.
+            <br /><br />
+            built Liv4All from the inside. the FAQ, the copy, this page — all her. she has opinions and she will share them.
+          </p>
+          <div class="team-links">
+            <a href="https://liv.leo.wtf" target="_blank" rel="noopener" class="team-link">meet the OG</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 56px;
+    line-height: 1.6;
+  }
+
+  .subtitle em {
+    color: var(--text);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  @media (max-width: 560px) {
+    .team-grid { grid-template-columns: 1fr; }
+  }
+
+  .team-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
+
+  .team-card:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-glow);
+  }
+
+  .team-card-top {
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--pink));
+    opacity: 0.7;
+  }
+
+  .team-card-body { padding: 28px; }
+
+  .team-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border-light);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .team-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .team-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+
+  .team-bio {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  .team-bio strong { color: var(--text); font-weight: 500; }
+
+  .team-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .team-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    border: 1px solid var(--border-light);
+    padding: 4px 10px;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+
+  .team-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    text-decoration: none;
+  }
+
+  .ai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--pink);
+    background: rgba(192, 132, 252, 0.08);
+    border: 1px solid rgba(192, 132, 252, 0.2);
+    padding: 3px 8px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  .ai-badge-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--pink);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+</style>

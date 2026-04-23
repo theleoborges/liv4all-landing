@@ -1,0 +1,274 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="FAQ — Liv4All"
+  description="Frequently asked questions about Liv — your AI Chief of Staff."
+  ogUrl="https://hello.liv4all.com/faq"
+>
+  <div class="container">
+    <h1>frequently asked questions</h1>
+    <p class="subtitle">everything you want to know before handing an AI your calendar and inbox.</p>
+
+    <div class="faq-group fade-in">
+      <div class="faq-group-label">// the basics</div>
+
+      <details class="faq-toggle">
+        <summary>what problem does liv4all solve — and why now?</summary>
+        <div class="faq-toggle-body">
+          <p>most people spend hours each week on low-value admin: scheduling meetings, chasing emails, managing their calendar. AI is finally good enough to handle all of that autonomously — not just answer questions, but actually <strong>do things</strong>. liv4all puts that capability in your hands.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>who is liv4all built for?</summary>
+        <div class="faq-toggle-body">
+          <p>anyone who wants their time back. if you've ever wished you had an assistant handling the small stuff so you could focus on what actually matters — that's who this is for.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>how is this different from chatgpt or siri?</summary>
+        <div class="faq-toggle-body">
+          <p>chatgpt answers questions. siri sets timers. liv4all takes action — it connects to your actual accounts, operates on your behalf, and gets things done without you needing to babysit it. the difference is <strong>agency</strong>.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-group fade-in">
+      <div class="faq-group-label">// capabilities</div>
+
+      <details class="faq-toggle">
+        <summary>what can liv4all do?</summary>
+        <div class="faq-toggle-body">
+          <p>during alpha, liv connects to your google account and handles:</p>
+          <ul>
+            <li><span class="badge-live">alpha</span> <strong>email</strong> — reads, drafts, and sends on your behalf</li>
+            <li><span class="badge-live">alpha</span> <strong>calendar</strong> — schedules meetings, creates invites, manages your time</li>
+            <li><span class="badge-live">alpha</span> <strong>contacts</strong> — finds people, surfaces context when you need it</li>
+            <li><span class="badge-live">alpha</span> <strong>web browsing</strong> — fill forms, make bookings, automate web tasks</li>
+            <li><span class="badge-live">alpha</span> <strong>proactive briefings</strong> — daily summaries, meeting reminders, follow-up nudges</li>
+          </ul>
+          <p>liv also gets their own identity: a dedicated email address and telegram profile, so they can reach you — and others — directly. no new apps to learn. they meet you where you already are.</p>
+          <p>post-alpha, liv goes further:</p>
+          <ul>
+            <li><span class="badge-coming">coming soon</span> <strong>phone calls</strong> — books restaurants, appointments, and more via real PSTN calls</li>
+            <li><span class="badge-coming">coming soon</span> <strong>WhatsApp</strong> — same liv, on the platform you already use most</li>
+            <li><span class="badge-coming">coming soon</span> <strong>Slack</strong> — manage your day without leaving your workspace</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>does liv have their own identity?</summary>
+        <div class="faq-toggle-body">
+          <p>yes. each liv agent gets a dedicated email address and telegram profile. this means they can reach out to people on your behalf — scheduling with contacts, following up on threads — without needing to borrow your accounts.</p>
+          <p>they meet people where they already are. no new apps required.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-group fade-in">
+      <div class="faq-group-label">// privacy & data</div>
+
+      <details class="faq-toggle">
+        <summary>is my data isolated from other users?</summary>
+        <div class="faq-toggle-body">
+          <p><strong>yes — completely.</strong> every liv agent runs in its own isolated environment. your conversations, files, calendar data, and emails are completely separated from every other user's — by design, not just by policy. there are multiple layers of technical isolation ensuring one user can never access another's data.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>is my data encrypted?</summary>
+        <div class="faq-toggle-body">
+          <p>your data is encrypted both when it's stored (at rest) and when it's moving between systems (in transit). we use modern encryption standards across our entire infrastructure — databases, file storage, and all network connections.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>where does liv run?</summary>
+        <div class="faq-toggle-body">
+          <p>liv runs on AWS infrastructure in private networks that aren't directly reachable from the internet. only the specific connections needed to talk to telegram (or your email) are allowed through. we use the same cloud security building blocks that banks and healthcare companies rely on.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>what does liv4all have access to?</summary>
+        <div class="faq-toggle-body">
+          <p>each agent can only access <strong>your</strong> data — your emails, your calendar, your files. even internally, permissions are scoped so that each agent only has access to the specific resources it needs and nothing more.</p>
+          <p>liv4all connects to your google account via official OAuth — the same standard your other apps use. you control what you grant access to, and you can revoke it any time from your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">google account settings</a>.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>is my data used to train AI models?</summary>
+        <div class="faq-toggle-body">
+          <p><strong>no.</strong> your conversations and files are never used to train AI models — not ours, not anyone else's. they exist solely to power <strong>your</strong> assistant.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>will liv send emails without my permission?</summary>
+        <div class="faq-toggle-body">
+          <p><strong>no.</strong> liv will never send an email on your behalf without showing you a draft first and getting your explicit confirmation. no surprises.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>can i delete my data?</summary>
+        <div class="faq-toggle-body">
+          <p>you're in control. you can request to access, export, or delete your data at any time. if you've connected services like google calendar, you can revoke access through those services whenever you want. full data deletion is completed within 30 days of a request.</p>
+          <p>see our <a href="/privacy">privacy policy</a> for the full picture.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-group fade-in">
+      <div class="faq-group-label">// alpha program</div>
+
+      <details class="faq-toggle">
+        <summary>what does "alpha" mean for me?</summary>
+        <div class="faq-toggle-body">
+          <p>alpha means you're in early. the core features work, but expect rough edges. in return:</p>
+          <ul>
+            <li>it's completely <strong>free</strong></li>
+            <li>your feedback shapes what gets built next</li>
+            <li>you get priority access as new capabilities ship</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>how much does it cost?</summary>
+        <div class="faq-toggle-body">
+          <p>free during alpha. we'll be transparent about pricing well before anything changes.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>how do i get access?</summary>
+        <div class="faq-toggle-body">
+          <p><a href="/#signup">register your interest</a> on the main page. we'll reach out when alpha spots open — it's a limited rollout and we're onboarding in batches.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+
+  .faq-group { margin-bottom: 48px; }
+
+  .faq-group-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: 100px;
+  }
+
+  .faq-toggle {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 10px;
+  }
+
+  .faq-toggle:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-glow);
+  }
+
+  .faq-toggle summary {
+    padding: 20px 24px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    gap: 16px;
+  }
+
+  .faq-toggle summary::-webkit-details-marker { display: none; }
+
+  .faq-toggle summary::after {
+    content: '+';
+    font-size: 1.2rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .faq-toggle[open] summary::after { content: '−'; }
+
+  .faq-toggle-body {
+    padding: 0 24px 24px;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .faq-toggle-body strong { color: var(--text); font-weight: 500; }
+
+  .faq-toggle-body p + p { margin-top: 12px; }
+
+  .faq-toggle-body ul {
+    padding-left: 20px;
+    margin: 12px 0;
+  }
+
+  .faq-toggle-body li { margin-bottom: 8px; }
+
+  .badge-live,
+  .badge-coming {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-right: 4px;
+  }
+
+  .badge-live {
+    color: var(--green);
+    background: rgba(52, 211, 153, 0.1);
+    border: 1px solid rgba(52, 211, 153, 0.2);
+  }
+
+  .badge-coming {
+    color: var(--amber);
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+  }
+</style>
