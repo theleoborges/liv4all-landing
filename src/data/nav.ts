@@ -3,6 +3,7 @@ export type NavLink = { href: string; label: string; external?: boolean };
 export const mainNavLinks: NavLink[] = [
   { href: '/about', label: 'about' },
   { href: '/faq', label: 'faq' },
+  { href: '/articles', label: 'articles' },
   { href: '/guides', label: 'guides' },
 ];
 
@@ -15,6 +16,7 @@ export const footerLinks: NavLink[] = [
   { href: '/', label: 'home' },
   { href: '/about', label: 'about' },
   { href: '/faq', label: 'faq' },
+  { href: '/articles', label: 'articles' },
   { href: '/guides', label: 'guides' },
   { href: '/terms', label: 'terms' },
   { href: '/privacy', label: 'privacy' },

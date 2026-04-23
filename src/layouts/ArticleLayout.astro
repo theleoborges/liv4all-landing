@@ -1,0 +1,243 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  author: string;
+  tags: string[];
+  ogImage?: string;
+}
+
+const { title, description, slug, pubDate, updatedDate, author, tags, ogImage } = Astro.props;
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<BaseLayout
+  title={`${title} — Liv4All`}
+  description={description}
+  ogUrl={`https://hello.liv4all.com/articles/${slug}`}
+  ogType="article"
+  ogTitle={title}
+>
+  <article class="container">
+    <a href="/articles" class="back">← back to articles</a>
+
+    {tags.length > 0 && (
+      <div class="tag-row">
+        {tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+    )}
+
+    <h1>{title}</h1>
+    <p class="article-meta">
+      <span>{formatDate(pubDate)}</span>
+      <span class="dot">·</span>
+      <span>by {author}</span>
+      {updatedDate && (
+        <>
+          <span class="dot">·</span>
+          <span class="updated">updated {formatDate(updatedDate)}</span>
+        </>
+      )}
+    </p>
+
+    <div class="article-prose">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .container { padding-top: 120px; }
+
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+    transition: color 0.2s;
+  }
+
+  .back:hover { color: var(--accent); text-decoration: none; }
+
+  .tag-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .article-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .article-meta .dot { opacity: 0.5; }
+
+  .article-prose {
+    color: var(--text-dim);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .article-prose :global(h2) {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin: 48px 0 16px;
+  }
+
+  .article-prose :global(h3) {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 32px 0 12px;
+  }
+
+  .article-prose :global(h4) {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 24px 0 8px;
+  }
+
+  .article-prose :global(p) {
+    margin-bottom: 20px;
+  }
+
+  .article-prose :global(strong) { color: var(--text); font-weight: 500; }
+  .article-prose :global(em) { color: var(--text); font-style: italic; }
+
+  .article-prose :global(a) {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: rgba(139, 92, 246, 0.3);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .article-prose :global(a:hover) {
+    text-decoration-color: var(--accent);
+  }
+
+  .article-prose :global(ul),
+  .article-prose :global(ol) {
+    padding-left: 24px;
+    margin-bottom: 20px;
+  }
+
+  .article-prose :global(li) { margin-bottom: 8px; }
+
+  .article-prose :global(blockquote) {
+    border-left: 3px solid var(--accent);
+    padding: 4px 20px;
+    margin: 24px 0;
+    font-style: italic;
+    color: var(--text);
+    background: var(--accent-glow);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+
+  .article-prose :global(blockquote p:last-child) { margin-bottom: 0; }
+
+  .article-prose :global(hr) {
+    border: none;
+    border-top: 1px solid var(--border-light);
+    margin: 48px 0;
+  }
+
+  .article-prose :global(code) {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88em;
+    color: var(--text);
+    background: rgba(139, 92, 246, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border-light);
+  }
+
+  .article-prose :global(pre) {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 24px 0;
+    overflow-x: auto;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .article-prose :global(pre code) {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .article-prose :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-light);
+    margin: 24px 0;
+    display: block;
+  }
+
+  .article-prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.9rem;
+  }
+
+  .article-prose :global(th),
+  .article-prose :global(td) {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .article-prose :global(th) {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>
