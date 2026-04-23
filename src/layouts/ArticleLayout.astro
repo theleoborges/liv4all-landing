@@ -210,13 +210,36 @@ const formatDate = (d: Date) =>
     font-size: inherit;
   }
 
-  .article-prose :global(img) {
+  .article-prose :global(img),
+  .article-prose :global(video) {
     max-width: 100%;
     height: auto;
     border-radius: var(--radius);
     border: 1px solid var(--border-light);
     margin: 24px 0;
     display: block;
+  }
+
+  .article-prose :global(video) {
+    width: 100%;
+    background: var(--surface);
+  }
+
+  .article-prose :global(figure) {
+    margin: 24px 0;
+  }
+
+  .article-prose :global(figure img),
+  .article-prose :global(figure video) {
+    margin: 0;
+  }
+
+  .article-prose :global(figcaption) {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-align: center;
+    margin-top: 10px;
   }
 
   .article-prose :global(table) {
