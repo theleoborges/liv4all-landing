@@ -1,0 +1,63 @@
+---
+import Head from '../components/Head.astro';
+import FadeInScript from '../components/FadeInScript.astro';
+import ChatWidget from '../components/ChatWidget.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  ogUrl: string;
+  ogTitle?: string;
+  ogDescription?: string;
+}
+
+const headProps = { ...Astro.props, ogType: 'video.other' };
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head {...headProps} />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      :root {
+        --bg: #0a0a0f;
+        --surface: #12121a;
+        --surface-glass: rgba(18, 18, 26, 0.6);
+        --border: #1e1e2e;
+        --border-light: rgba(255, 255, 255, 0.06);
+        --text: #e0e0e8;
+        --text-dim: #7a7a8e;
+        --accent: #8b5cf6;
+        --accent-glow: rgba(139, 92, 246, 0.15);
+        --radius: 16px;
+        --radius-lg: 24px;
+      }
+      body {
+        font-family: 'Inter', -apple-system, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <slot />
+    <FadeInScript />
+    <ChatWidget />
+  </body>
+</html>

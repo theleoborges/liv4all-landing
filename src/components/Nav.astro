@@ -1,0 +1,26 @@
+---
+import { mainNavLinks, homeNavExtras } from '../data/nav';
+
+interface Props {
+  variant?: 'default' | 'home';
+}
+
+const { variant = 'default' } = Astro.props;
+const isHome = variant === 'home';
+const logoHref = isHome ? '#' : '/';
+const ctaHref = isHome ? '#signup' : '/#signup';
+const ctaLabel = isHome ? 'join waitlist' : 'get early access';
+const links = isHome ? [...homeNavExtras, ...mainNavLinks] : mainNavLinks;
+---
+<nav>
+  <div class="nav-inner">
+    <a href={logoHref} class="nav-logo">liv<span>4all</span></a>
+    <div class="nav-links">
+      {links.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+      <a href="https://app.liv4all.com" class="nav-login">login</a>
+      <a href={ctaHref} class="nav-cta">{ctaLabel}</a>
+    </div>
+  </div>
+</nav>

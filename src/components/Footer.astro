@@ -1,0 +1,24 @@
+---
+import { footerLinks, homeFooterExtras } from '../data/nav';
+
+interface Props {
+  variant?: 'default' | 'home';
+}
+
+const { variant = 'default' } = Astro.props;
+const links = variant === 'home'
+  ? [...homeFooterExtras, ...footerLinks.filter((l) => l.href !== '/')]
+  : footerLinks;
+---
+<footer>
+  <div class="container-wide">
+    <div class="footer-links">
+      {links.map((link) => (
+        link.external
+          ? <a href={link.href} target="_blank" rel="noopener">{link.label}</a>
+          : <a href={link.href}>{link.label}</a>
+      ))}
+    </div>
+    <p>built with 🖤 by liv & leo</p>
+  </div>
+</footer>

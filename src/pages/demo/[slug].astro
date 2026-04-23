@@ -1,0 +1,21 @@
+---
+import DemoLayout from '../../layouts/DemoLayout.astro';
+import VideoPlayer from '../../components/VideoPlayer.astro';
+import { demos } from '../../data/demos';
+
+export function getStaticPaths() {
+  return demos.map((demo) => ({
+    params: { slug: demo.slug },
+    props: { demo },
+  }));
+}
+
+const { demo } = Astro.props;
+---
+<DemoLayout
+  title={demo.metaTitle}
+  description={demo.metaDescription}
+  ogUrl={`https://liv4all.com/demo/${demo.slug}`}
+>
+  <VideoPlayer title={demo.title} desc={demo.desc} videoSrc={demo.videoSrc} />
+</DemoLayout>

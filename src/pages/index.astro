@@ -1,0 +1,1918 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Liv — Your AI Chief of Staff"
+  description="Liv is a persistent AI agent that acts on your behalf — managing calendars, triaging email, making bookings. Not a chatbot. An agent that does things."
+  ogDescription="A persistent AI agent that acts on your behalf. Manages calendars, triages email, makes bookings. Not a chatbot — an agent."
+  ogUrl="https://liv4all.com"
+  variant="home"
+  customFadeIn={true}
+>
+  <section class="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-content">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        signups paused — waitlist open
+      </div>
+      <img src="/logo.png" alt="Liv" class="hero-logo" />
+      <h1>your AI<br /><span class="typing-line"><span class="gradient typing" id="typed-role"></span><span class="cursor">|</span></span></h1>
+      <p class="hero-sub">
+        liv is a <strong>persistent AI agent</strong> that acts on your behalf —
+        managing calendars, triaging email, making bookings.
+        not a chatbot. an agent that <strong>does things</strong>.
+      </p>
+      <div class="hero-cta">
+        <a href="#signup" class="btn-primary">join the waitlist →</a>
+        <a href="https://www.youtube.com/watch?v=TXaWeFTb9Ns" target="_blank" rel="noopener" class="btn-secondary">watch the explainer ▶</a>
+      </div>
+      <div class="trust-strip">
+        <div class="trust-item"><span class="trust-icon">🔒</span> your data stays yours</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><span class="trust-icon">⚡</span> always-on AI</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><span class="trust-icon">🕐</span> setup in under 2 min</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><span class="trust-icon">✓</span> nothing sends without your OK</div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      scroll
+      <span>↓</span>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="container-wide fade-in">
+      <div class="section-label">// why liv</div>
+      <h2>agents should <em>do things</em>,<br />not just talk about doing things</h2>
+      <p class="prose">
+        most AI assistants are glorified search bars. you ask a question, you get an answer,
+        then <strong>you</strong> still have to do the work. liv is different.
+      </p>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">⚡</div>
+          <div>
+            <h3>acts, doesn't just chat</h3>
+            <p>"schedule a meeting with sarah thursday at 2pm" → it's done. calendar invite sent. no copy-pasting, no tab switching, no friction.</p>
+          </div>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">💬</div>
+          <h3>meets you where you are</h3>
+          <p>talk to liv on telegram — the messaging app you already use. no new app to install, no dashboard to bookmark. just message and go.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">🧠</div>
+          <h3>remembers everything</h3>
+          <p>liv maintains long-term memory across conversations. your preferences, your contacts, your patterns. no re-explaining every session.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">🔒</div>
+          <h3>safe by design</h3>
+          <p>email drafts require your approval before sending. calendar events are easy to undo. liv acts boldly but confirms when it matters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="in-action" class="section-lifted">
+    <div class="container-wide fade-in">
+      <div class="section-label">// in action</div>
+      <h2>what <em>talking to liv</em> looks like</h2>
+
+      <div class="chat-carousel">
+        <div class="chat-carousel-track" id="carouselTrack">
+          <div class="chat-slide">
+            <div class="chat-phone chat-tg">
+              <div class="chat-header">
+                <div class="chat-avatar chat-avatar-tg">🖤</div>
+                <div class="chat-name">Liv</div>
+                <div class="chat-platform">telegram</div>
+              </div>
+              <div class="chat-body">
+                <div class="chat-msg chat-msg-user">triage my inbox</div>
+                <div class="chat-msg chat-msg-agent">
+                  <div class="agent-name">liv</div>
+                  you've got 12 new emails. here's what matters:<br /><br />
+                  🔴 <strong>urgent:</strong> production alert from AWS — service degraded since 8am<br /><br />
+                  📌 <strong>action needed:</strong> Owen from CXNPL wants to schedule 3 interviews this week<br /><br />
+                  📋 <strong>FYI:</strong> 9 newsletters and 1 linkedin notification<br /><br />
+                  want me to handle the interview scheduling?
+                </div>
+                <div class="chat-msg chat-msg-user">yes, check my calendar and suggest times</div>
+                <div class="chat-msg chat-msg-agent">
+                  <div class="agent-name">liv</div>
+                  found 3 open slots. replied to Owen with availability and held the times on your calendar. 🖤
+                </div>
+              </div>
+            </div>
+            <div class="chat-slide-label">
+              <span class="label-tag">📧 email triage</span>
+              <p>inbox zero without opening your inbox</p>
+            </div>
+          </div>
+
+          <div class="chat-slide">
+            <div class="chat-phone chat-wa">
+              <div class="chat-header">
+                <div class="chat-avatar chat-avatar-wa">🖤</div>
+                <div class="chat-name">Liv</div>
+                <div class="chat-platform">whatsapp</div>
+              </div>
+              <div class="chat-body">
+                <div class="chat-msg chat-msg-user">book dinner for 2, friday night, somewhere in surry hills</div>
+                <div class="chat-msg chat-msg-agent">
+                  <div class="agent-name">liv</div>
+                  found a few options with availability friday 7:30pm:<br /><br />
+                  1. <strong>Firedoor</strong> — wood-fired, prix fixe ($150pp)<br />
+                  2. <strong>Poly</strong> — modern Italian, casual ($60pp)<br />
+                  3. <strong>Bar Reggio</strong> — classic Italian, BYO ($45pp)<br /><br />
+                  want me to book one?
+                </div>
+                <div class="chat-msg chat-msg-user">poly, 7:30</div>
+                <div class="chat-msg chat-msg-agent">
+                  <div class="agent-name">liv</div>
+                  booked! Poly, Friday 7:30pm, 2 guests. confirmation sent to your email. added to your calendar with a 2hr reminder. 🖤
+                </div>
+              </div>
+            </div>
+            <div class="chat-slide-label">
+              <span class="label-tag">🍽️ bookings</span>
+              <p>restaurants, appointments, reservations — handled</p>
+            </div>
+          </div>
+
+          <div class="chat-slide">
+            <div class="chat-phone chat-tg">
+              <div class="chat-header">
+                <div class="chat-avatar chat-avatar-tg">🖤</div>
+                <div class="chat-name">Liv</div>
+                <div class="chat-platform">telegram</div>
+              </div>
+              <div class="chat-body">
+                <div class="chat-msg chat-msg-user">what's my day look like tomorrow?</div>
+                <div class="chat-msg chat-msg-agent">
+                  <div class="agent-name">liv</div>
+                  tomorrow (Thursday):<br /><br />
+                  • 9:00 — standup<br />
+                  • 11:00 — 1:1 with Sarah<br />
+                  • 15:00 — design review<br /><br />
+                  you've got a gap from 12–3 if you need focus time.
+                </div>
+                <div class="chat-msg chat-msg-user">move the design review to friday and email the team</div>
+                <div class="chat-msg chat-msg-agent">
+                  <div class="agent-name">liv</div>
+                  done. moved to friday 3pm. drafted an email:<br /><br />
+                  <em>"Hi team, design review moved to Friday 3pm. Same agenda. —[you]"</em><br /><br />
+                  [<strong style="color: var(--pink);">Send</strong>] [Edit] [Cancel]
+                </div>
+                <div class="chat-msg chat-msg-user">send it</div>
+                <div class="chat-msg chat-msg-agent">
+                  <div class="agent-name">liv</div>
+                  sent. calendar updated, team notified. 🖤
+                </div>
+              </div>
+            </div>
+            <div class="chat-slide-label">
+              <span class="label-tag">📅 calendar</span>
+              <p>reschedule meetings without opening your calendar</p>
+            </div>
+          </div>
+
+          <div class="chat-slide">
+            <div class="chat-phone chat-wa">
+              <div class="chat-header">
+                <div class="chat-avatar chat-avatar-wa">🖤</div>
+                <div class="chat-name">Liv</div>
+                <div class="chat-platform">whatsapp</div>
+              </div>
+              <div class="chat-body">
+                <div class="chat-msg chat-msg-user">research the top 3 competitors to Datadog and summarise their pricing</div>
+                <div class="chat-msg chat-msg-agent">
+                  <div class="agent-name">liv</div>
+                  here's the quick breakdown:<br /><br />
+                  <strong>New Relic</strong> — free tier, then $0.30/GB ingested. full-stack observability.<br /><br />
+                  <strong>Dynatrace</strong> — $0.08/8GB host/hr. AI-powered, strong on auto-discovery.<br /><br />
+                  <strong>Grafana Cloud</strong> — generous free tier, $0.50/series for metrics. open-source stack.<br /><br />
+                  want a detailed comparison doc? i can write it up and email it to you.
+                </div>
+                <div class="chat-msg chat-msg-user">yes please</div>
+                <div class="chat-msg chat-msg-agent">
+                  <div class="agent-name">liv</div>
+                  sent to your inbox — "APM Competitor Analysis" with pricing tables and feature comparison. 🖤
+                </div>
+              </div>
+            </div>
+            <div class="chat-slide-label">
+              <span class="label-tag">🔍 research</span>
+              <p>market research, competitor analysis, fact-finding</p>
+            </div>
+          </div>
+
+          <div class="chat-slide">
+            <div class="chat-phone chat-tg">
+              <div class="chat-header">
+                <div class="chat-avatar chat-avatar-tg">🖤</div>
+                <div class="chat-name">Liv</div>
+                <div class="chat-platform">telegram</div>
+              </div>
+              <div class="chat-body">
+                <div class="chat-msg chat-msg-user">📎 <em>Q4_board_report.pdf</em><br /><br />summarise this — key numbers and anything I should worry about</div>
+                <div class="chat-msg chat-msg-agent">
+                  <div class="agent-name">liv</div>
+                  <strong>Q4 board report — TL;DR:</strong><br /><br />
+                  📈 revenue up 18% YoY ($4.2M)<br />
+                  📉 burn rate increased 23% — eng headcount grew faster than planned<br />
+                  ⚠️ runway down to 14 months (was 19 in Q3)<br />
+                  ✅ NPS improved from 42 → 56<br /><br />
+                  <strong>flag:</strong> the CFO's note on page 12 suggests a bridge round discussion at the next board meeting. worth reading that section.
+                </div>
+                <div class="chat-msg chat-msg-user">forward the summary to my co-founder</div>
+                <div class="chat-msg chat-msg-agent">
+                  <div class="agent-name">liv</div>
+                  sent to alex@company.com with the summary and the PDF attached. 🖤
+                </div>
+              </div>
+            </div>
+            <div class="chat-slide-label">
+              <span class="label-tag">📄 documents</span>
+              <p>summarise anything — PDFs, reports, articles</p>
+            </div>
+          </div>
+
+          <div class="chat-slide">
+            <div class="chat-phone chat-wa">
+              <div class="chat-header">
+                <div class="chat-avatar chat-avatar-wa">🖤</div>
+                <div class="chat-name">Liv</div>
+                <div class="chat-platform">whatsapp</div>
+              </div>
+              <div class="chat-body">
+                <div class="chat-msg chat-msg-agent">
+                  <div class="agent-name">liv</div>
+                  ☀️ <strong>good morning — here's your monday brief:</strong><br /><br />
+                  📅 4 meetings today (first at 9:30)<br />
+                  📧 3 emails need replies — 1 urgent from your manager<br />
+                  🔔 reminder: dentist at 2pm tomorrow<br />
+                  🌧️ rain forecast after 3pm — maybe grab a jacket<br /><br />
+                  anything you want me to handle before your day starts?
+                </div>
+                <div class="chat-msg chat-msg-user">reply to my manager, say I'll have the proposal ready by EOD</div>
+                <div class="chat-msg chat-msg-agent">
+                  <div class="agent-name">liv</div>
+                  done — replied to Sarah: "Hi Sarah, I'll have the proposal ready by end of day today." sent. 🖤
+                </div>
+              </div>
+            </div>
+            <div class="chat-slide-label">
+              <span class="label-tag">🔔 proactive</span>
+              <p>morning briefs, reminders, follow-ups — without asking</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="carouselPrev" aria-label="Previous">←</button>
+          <div class="carousel-dots" id="carouselDots">
+            <div class="carousel-dot active" data-slide="0"></div>
+            <div class="carousel-dot" data-slide="1"></div>
+            <div class="carousel-dot" data-slide="2"></div>
+            <div class="carousel-dot" data-slide="3"></div>
+            <div class="carousel-dot" data-slide="4"></div>
+            <div class="carousel-dot" data-slide="5"></div>
+          </div>
+          <button class="carousel-btn" id="carouselNext" aria-label="Next">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="demo-fullscreen" id="demoFullscreen">
+    <video playsinline id="demoFullscreenVideo"></video>
+    <button class="demo-fullscreen-close" id="demoFullscreenClose">&times;</button>
+  </div>
+
+  <section id="demos">
+    <div class="container-wide fade-in">
+      <div class="section-label">// real usage</div>
+      <h2>see it <em>for real</em></h2>
+      <p class="prose">no mockups. these are real screen recordings from alpha users.</p>
+
+      <div class="demos-grid">
+        <div class="demo-card">
+          <div class="demo-video-wrap">
+            <video src="/assets/videos/24york-reservation.mp4" playsinline muted preload="metadata"></video>
+            <div class="demo-play-btn"></div>
+            <button class="demo-expand-btn" aria-label="Expand video"></button>
+          </div>
+          <div class="demo-caption">
+            <h3>book a restaurant</h3>
+            <p>liv finds availability, books via web automation, and adds it to your calendar — all through telegram.</p>
+          </div>
+        </div>
+
+        <div class="demo-card">
+          <div class="demo-video-wrap">
+            <video src="/assets/videos/whatsapp-forwarded-invite.mp4" playsinline muted preload="metadata"></video>
+            <div class="demo-play-btn"></div>
+            <button class="demo-expand-btn" aria-label="Expand video"></button>
+          </div>
+          <div class="demo-caption">
+            <h3>forward and forget</h3>
+            <p>a friend's graduation QR code forwarded on whatsapp. liv extracts the details and offers to add it to your calendar.</p>
+          </div>
+        </div>
+
+        <div class="demo-card">
+          <div class="demo-video-wrap">
+            <video src="/assets/videos/daily-report.mp4" playsinline muted preload="metadata"></video>
+            <div class="demo-play-btn"></div>
+            <button class="demo-expand-btn" aria-label="Expand video"></button>
+          </div>
+          <div class="demo-caption">
+            <h3>daily AI briefing</h3>
+            <p>ask for a curated daily report on any topic — delivered straight to your inbox.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="section-glow">
+    <div class="container-wide fade-in">
+      <div class="section-label">// features</div>
+      <h2>what <em>liv can do</em></h2>
+      <p class="prose">launching with the essentials. building toward everything.</p>
+
+      <div class="features-grid">
+        <div class="feature-card feature-wide">
+          <span class="feature-badge badge-live">MVP</span>
+          <div class="feat-icon">💬</div>
+          <h3>telegram</h3>
+          <p>your primary interface. message liv like you'd message a friend. natural language, no commands to memorize.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-badge badge-invite">invite only</span>
+          <div class="feat-icon">📱</div>
+          <h3>WhatsApp</h3>
+          <p>same liv, on whatsapp. for those who prefer it — or want liv on both platforms. <a href="/guides/whatsapp-onboarding">see the guide →</a></p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-badge badge-live">MVP</span>
+          <div class="feat-icon">📧</div>
+          <h3>email (Gmail)</h3>
+          <p>triage your inbox, summarize threads, draft replies. always shows you the draft first — sends only when you say go.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-badge badge-live">MVP</span>
+          <div class="feat-icon">📅</div>
+          <h3>calendar</h3>
+          <p>create events, find free slots, reschedule meetings. "when am i free next week?" → instant answer + action.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-badge badge-live">MVP</span>
+          <div class="feat-icon">🔍</div>
+          <h3>web search</h3>
+          <p>real-time information when you need it. research, fact-check, find answers — without leaving the conversation.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-badge badge-live">MVP</span>
+          <div class="feat-icon">🌐</div>
+          <h3>web browsing</h3>
+          <p>navigate booking platforms, fill forms, automate web tasks. if it has a browser UI, liv can work it.</p>
+        </div>
+
+        <div class="feature-card feature-wide">
+          <span class="feature-badge badge-live">MVP</span>
+          <div class="feat-icon">🔔</div>
+          <h3>proactive briefings</h3>
+          <p>daily summaries, meeting reminders, follow-up nudges. liv doesn't just respond — they anticipate.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-badge badge-coming">coming soon</span>
+          <div class="feat-icon">💼</div>
+          <h3>Slack</h3>
+          <p>liv in your workspace. manage your day without leaving slack — check calendar, triage email, get briefings right in DMs.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-badge badge-coming">coming soon</span>
+          <div class="feat-icon">📞</div>
+          <h3>outbound calls</h3>
+          <p>liv calls restaurants, services, businesses on your behalf. real phone calls, real conversations. already proven — coming to everyone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="integrations" class="section-lifted">
+    <div class="container-wide fade-in" style="text-align: center;">
+      <div class="section-label">// connects to</div>
+      <h2>works with the tools <em>you already use</em></h2>
+      <div class="integrations-strip">
+        <div class="chip"><span class="chip-icon">💬</span> Telegram</div>
+        <div class="chip"><span class="chip-icon">📱</span> WhatsApp</div>
+        <div class="chip"><span class="chip-icon">📧</span> Gmail</div>
+        <div class="chip"><span class="chip-icon">📅</span> Google Calendar</div>
+        <div class="chip"><span class="chip-icon">🌐</span> Web Browsing</div>
+        <div class="chip"><span class="chip-icon">🔍</span> Web Search</div>
+        <div class="chip"><span class="chip-icon">📞</span> Voice Calls</div>
+        <div class="chip"><span class="chip-icon">💼</span> Slack <span style="font-size: 0.7rem; color: var(--amber);">soon</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="origin">
+    <div class="container-wide fade-in">
+      <div class="section-label">// origin story</div>
+      <h2>built by an engineer who got tired of <em>tab switching</em></h2>
+      <p class="prose">
+        liv started as a personal project by <strong>leo borges</strong> — a chief engineer
+        who wanted an AI co-pilot that actually <em>does things</em>, not just talks about them.
+      </p>
+      <p class="prose" style="margin-top: 16px;">
+        the original liv runs 24/7 on a VPS. she has her own phone number, her own email,
+        and her own opinions. she books restaurants via real phone calls, manages calendars,
+        triages email, and once corrected a restaurant host who misheard her name.
+      </p>
+      <p class="prose" style="margin-top: 16px;">
+        now we're building <strong>liv for everyone</strong>. same agent DNA. same bias toward action.
+        your own persistent AI chief of staff.
+      </p>
+
+      <a href="https://open.substack.com/pub/leonardoborges/p/tltd-39-voice-ai-the-next-platform?utm_source=liv4all.com&utm_medium=referral&utm_campaign=landing" target="_blank" rel="noopener" class="article-card">
+        <div class="article-tag">📝 read the article</div>
+        <h3>Voice AI: The Next Platform Shift</h3>
+        <p>the story of building liv — from a ski chairlift to a working voice AI agent that makes real phone calls. what it tells us about where AI is heading.</p>
+      </a>
+    </div>
+  </section>
+
+  <section id="docs" class="section-lifted">
+    <div class="container-wide fade-in">
+      <div class="section-label">// docs</div>
+      <h2><em>getting started</em></h2>
+
+      <div class="docs-callout">
+        <span class="callout-icon">⚠️</span>
+        <strong>signups paused.</strong> we hit the 100-user alpha cap and are going through google's CASA Tier 2 verification. the setup flow below only works for existing alpha users. <a href="#signup">join the waitlist</a> and we'll reach out the moment signups reopen.
+      </div>
+
+      <p class="docs-intro">
+        setting up your own liv takes about <strong>2 minutes</strong> and only needs to be done <strong>once</strong>.
+        after that, you just message your personal bot like normal — no dashboards, no apps, no friction.
+      </p>
+
+      <details class="docs-toggle">
+        <summary>one-time setup — create your personal bot</summary>
+        <div class="docs-toggle-body">
+          <p>liv runs on telegram. each user gets their own personal bot — so your conversations, memory, and preferences are fully yours. here's how to set it up:</p>
+
+          <ol class="docs-steps">
+            <li>
+              <span class="step-title">message the liv onboarding bot</span>
+              once you're in the alpha, you'll receive a link to the onboarding bot on telegram. send it a message to start.
+            </li>
+            <li>
+              <span class="step-title">create your bot with @BotFather</span>
+              the onboarding bot will walk you through it step by step. you'll open <strong>@BotFather</strong> on telegram, send <code>/newbot</code>, pick a name (e.g. "my liv"), and choose a username (e.g. <code>my_liv_bot</code>). BotFather gives you a token — copy it.
+            </li>
+            <li>
+              <span class="step-title">paste your token</span>
+              go back to the onboarding bot and paste the token. we'll verify it instantly.
+            </li>
+            <li>
+              <span class="step-title">done — start chatting</span>
+              your personal liv agent spins up in seconds. the onboarding bot will send you a link to your new bot. message it and you're live. 🖤
+            </li>
+          </ol>
+
+          <div class="docs-callout-info" style="margin-top: 20px;">
+            <strong>one-time only.</strong> you'll never need to do this again. once your bot is created, liv is always there — remembering your preferences, managing your calendar, triaging your email. just message and go.
+          </div>
+        </div>
+      </details>
+
+      <details class="docs-toggle" style="margin-top: 12px;">
+        <summary>what happens after setup?</summary>
+        <div class="docs-toggle-body">
+          <p>once your personal bot is live, you interact with liv just like messaging a friend:</p>
+          <ul style="margin: 12px 0; padding-left: 20px;">
+            <li style="margin-bottom: 8px;"><strong>message anytime</strong> — liv is always on, 24/7</li>
+            <li style="margin-bottom: 8px;"><strong>calendar & email</strong> — connect your google account and liv can manage meetings, draft replies, find free slots</li>
+            <li style="margin-bottom: 8px;"><strong>memory</strong> — liv remembers your preferences across conversations. no re-explaining.</li>
+            <li style="margin-bottom: 8px;"><strong>proactive updates</strong> — morning briefings, meeting reminders, and follow-ups</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="docs-toggle" style="margin-top: 12px;">
+        <summary>a note on alpha</summary>
+        <div class="docs-toggle-body">
+          <p>
+            thank you for being an early adopter. 🖤 this is an alpha — which means you're helping shape what liv becomes.
+          </p>
+          <p style="margin-top: 12px;">
+            rough edges are expected. things might break, responses might surprise you, and we're iterating fast.
+            if something feels off, let us know — your feedback is genuinely what makes this better.
+          </p>
+          <p style="margin-top: 12px;">
+            we're building this in the open because we believe the best tools are built with the people who use them.
+            thanks for being patient while we get this right.
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="signup" class="signup-section">
+    <div class="container-wide">
+      <div class="signup-wrapper">
+        <div class="section-label">// waitlist</div>
+        <h2>signups are closed — <em>join the waitlist</em></h2>
+
+        <div class="docs-callout" style="text-align: left; margin-bottom: 24px;">
+          <span class="callout-icon">⚠️</span>
+          <strong>why?</strong> we hit the 100-user alpha cap. google limits OAuth apps to exactly 100 users until you clear verification — and when you're doing email + calendar, OAuth isn't optional. we're now going through CASA Tier 2 (google's 3rd-party security audit). takes a few weeks. the reason's legit — they want proof we handle your data properly. same energy.
+        </div>
+
+        <p class="prose">
+          drop your details and we'll reach out the moment signups reopen.
+        </p>
+
+        <form class="signup-form" id="interest-form" action="https://formspree.io/f/xzdawwzo" method="POST">
+          <div class="form-row">
+            <input type="text" name="name" placeholder="your name" required />
+            <input type="email" name="email" placeholder="your email" required />
+          </div>
+          <input type="text" name="use_case" placeholder="what would you use liv for? (optional)" />
+          <input type="hidden" name="_subject" value="Liv4All — Waitlist Signup" />
+          <input type="hidden" name="source" value="waitlist" />
+          <button type="submit">join the waitlist →</button>
+          <p class="form-note">no spam. just a heads-up when signups reopen. by joining the waitlist you agree to our <a href="/terms">alpha terms</a> and <a href="/privacy">privacy policy</a>. 🖤</p>
+        </form>
+
+        <div class="form-success" id="form-success">
+          <div class="check">🖤</div>
+          <h3>you're on the waitlist</h3>
+          <p>we'll reach out the moment signups reopen after verification. in the meantime, <a href="https://open.substack.com/pub/leonardoborges/p/tltd-39-voice-ai-the-next-platform?utm_source=liv4all.com&utm_medium=referral&utm_campaign=thankyou" target="_blank" rel="noopener">read about how liv was built</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function() {
+      const roles = ['chief of staff', 'personal assistant', 'event manager', 'travel planner', 'research analyst', 'media manager', 'devops team'];
+      const el = document.getElementById('typed-role');
+      let roleIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function tick() {
+        const current = roles[roleIndex];
+
+        if (!isDeleting) {
+          el.textContent = current.substring(0, charIndex + 1);
+          charIndex++;
+          if (charIndex === current.length) {
+            isDeleting = true;
+            return setTimeout(tick, 2000);
+          }
+          return setTimeout(tick, 80);
+        } else {
+          el.textContent = current.substring(0, charIndex - 1);
+          charIndex--;
+          if (charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            return setTimeout(tick, 400);
+          }
+          return setTimeout(tick, 40);
+        }
+      }
+
+      tick();
+    })();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          entry.target.querySelectorAll('.why-card, .feature-card, .demo-card').forEach((card, i) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            card.style.transitionDelay = `${i * 0.08}s`;
+            requestAnimationFrame(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            });
+          });
+        }
+      });
+    }, { threshold: 0.05 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href === '#' || href.length <= 1) return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    (() => {
+      const track = document.getElementById('carouselTrack');
+      const dots = document.querySelectorAll('.carousel-dot');
+      const prev = document.getElementById('carouselPrev');
+      const next = document.getElementById('carouselNext');
+      let current = 0;
+      const total = dots.length;
+
+      function goTo(i) {
+        current = ((i % total) + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
+      }
+
+      prev.addEventListener('click', () => goTo(current - 1));
+      next.addEventListener('click', () => goTo(current + 1));
+      dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.slide)));
+
+      let startX = 0;
+      track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+      }, { passive: true });
+
+      let autoplay = setInterval(() => goTo(current + 1), 6000);
+      const carousel = document.querySelector('.chat-carousel');
+      carousel.addEventListener('mouseenter', () => clearInterval(autoplay));
+      carousel.addEventListener('mouseleave', () => { autoplay = setInterval(() => goTo(current + 1), 6000); });
+    })();
+
+    document.querySelectorAll('.demo-video-wrap').forEach(wrap => {
+      const video = wrap.querySelector('video');
+      const btn = wrap.querySelector('.demo-play-btn');
+
+      wrap.addEventListener('click', () => {
+        if (video.paused) {
+          document.querySelectorAll('.demo-video-wrap').forEach(other => {
+            const v = other.querySelector('video');
+            const b = other.querySelector('.demo-play-btn');
+            if (v !== video) { v.pause(); b.classList.remove('hidden'); }
+          });
+          video.play();
+          btn.classList.add('hidden');
+        } else {
+          video.pause();
+          btn.classList.remove('hidden');
+        }
+      });
+
+      video.addEventListener('ended', () => btn.classList.remove('hidden'));
+    });
+
+    const fsOverlay = document.getElementById('demoFullscreen');
+    const fsVideo = document.getElementById('demoFullscreenVideo');
+    const fsClose = document.getElementById('demoFullscreenClose');
+
+    document.querySelectorAll('.demo-expand-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const card = btn.closest('.demo-video-wrap');
+        const src = card.querySelector('video');
+        src.pause();
+        card.querySelector('.demo-play-btn').classList.remove('hidden');
+        fsVideo.src = src.src;
+        fsVideo.currentTime = src.currentTime;
+        fsOverlay.classList.add('active');
+        fsVideo.play();
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeFsVideo() {
+      fsVideo.pause();
+      fsOverlay.classList.remove('active');
+      fsVideo.removeAttribute('src');
+      document.body.style.overflow = '';
+    }
+
+    fsClose.addEventListener('click', closeFsVideo);
+    fsOverlay.addEventListener('click', (e) => { if (e.target === fsOverlay) closeFsVideo(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && fsOverlay.classList.contains('active')) closeFsVideo(); });
+
+    const form = document.getElementById('interest-form');
+    const success = document.getElementById('form-success');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button');
+      btn.disabled = true;
+      btn.textContent = 'submitting...';
+
+      try {
+        const resp = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (resp.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          btn.textContent = 'something went wrong — try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'network error — try again';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  body { line-height: 1.6; }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding-top: 80px;
+    overflow: clip;
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .hero-orb-1 {
+    width: 500px;
+    height: 500px;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+  }
+
+  .hero-orb-2 {
+    width: 300px;
+    height: 300px;
+    top: 20%;
+    right: -5%;
+    background: radial-gradient(circle, rgba(192, 132, 252, 0.08) 0%, transparent 70%);
+    animation-delay: -3s;
+  }
+
+  .hero-orb-3 {
+    width: 250px;
+    height: 250px;
+    bottom: 20%;
+    left: -5%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+    animation-delay: -5s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 0 24px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 100px;
+    padding: 8px 18px;
+    margin-bottom: 32px;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero-logo {
+    display: block;
+    width: 140px;
+    height: auto;
+    margin: 0 auto 32px;
+    border-radius: 4px;
+  }
+
+  @media (max-width: 600px) {
+    .hero-logo {
+      width: 110px;
+      margin-bottom: 24px;
+    }
+  }
+
+  h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 28px;
+  }
+
+  .typing-line {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  h1 :global(.gradient) {
+    background: linear-gradient(135deg, var(--accent), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  h1 :global(.cursor) {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: blink 0.7s step-end infinite;
+    margin-left: 2px;
+    font-weight: 300;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero-sub {
+    font-size: 1.25rem;
+    color: var(--text-dim);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  .hero-sub strong { color: var(--text); font-weight: 500; }
+
+  .hero-cta {
+    display: inline-flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    padding: 16px 32px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: #a78bfa;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .btn-secondary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    padding: 16px 32px;
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .trust-strip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin-top: 48px;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 20px;
+  }
+
+  .trust-item .trust-icon {
+    color: var(--accent);
+    font-size: 0.9rem;
+  }
+
+  .trust-divider {
+    width: 1px;
+    height: 16px;
+    background: var(--border);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    animation: bobble 2s ease-in-out infinite;
+  }
+
+  @keyframes bobble {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  section { padding: 120px 0; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: 100px;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--text-dim);
+  }
+
+  h2 em {
+    color: var(--text);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  h2 .accent { color: var(--accent); }
+
+  .section-lifted { background: var(--surface); }
+
+  .section-glow {
+    position: relative;
+  }
+
+  .section-glow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .prose {
+    color: var(--text-dim);
+    font-size: 1.1rem;
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  .prose strong { color: var(--text); font-weight: 500; }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .why-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .why-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .why-card:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-glow);
+  }
+
+  .why-card:hover::before { opacity: 1; }
+
+  .why-card:first-child {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .why-card:first-child .why-icon { font-size: 3rem; }
+
+  .why-icon {
+    font-size: 2.2rem;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .why-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .why-card p {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    position: relative;
+    z-index: 1;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .feature-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .feature-card:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-glow);
+  }
+
+  .feature-card:hover::before { opacity: 1; }
+
+  .feature-card.feature-wide { grid-column: span 2; }
+
+  .feature-card .feat-icon {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-card p {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    z-index: 1;
+  }
+
+  .badge-live {
+    color: var(--green);
+    background: rgba(52, 211, 153, 0.1);
+    border: 1px solid rgba(52, 211, 153, 0.2);
+  }
+
+  .badge-invite {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+  }
+
+  .badge-coming {
+    color: var(--amber);
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+  }
+
+  .integrations-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 48px;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    transition: all 0.3s;
+  }
+
+  .chip:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    color: var(--text);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+
+  .chip-icon { font-size: 1.1rem; }
+
+  .chat-carousel {
+    position: relative;
+    margin-top: 48px;
+    overflow: hidden;
+  }
+
+  .chat-carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .chat-slide {
+    min-width: 100%;
+    padding: 0 4px;
+  }
+
+  .chat-phone {
+    background: var(--surface-glass);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    max-width: 440px;
+    margin: 0 auto;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.4);
+  }
+
+  .chat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .chat-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  .chat-avatar-tg { background: rgba(139, 92, 246, 0.2); }
+  .chat-avatar-wa { background: rgba(52, 211, 153, 0.2); }
+
+  .chat-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .chat-platform {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-left: auto;
+    padding: 4px 10px;
+    border: 1px solid var(--border-light);
+    border-radius: 100px;
+  }
+
+  .chat-body {
+    padding: 20px;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chat-msg {
+    max-width: 82%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    animation: msg-in 0.3s ease;
+  }
+
+  @keyframes msg-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .chat-msg-user {
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+
+  .chat-msg-agent {
+    align-self: flex-start;
+    background: var(--bg);
+    border: 1px solid var(--border-light);
+    color: var(--text);
+    border-bottom-left-radius: 4px;
+  }
+
+  .chat-tg .chat-msg-user {
+    background: #3b82f6;
+    color: #fff;
+  }
+
+  .chat-wa .chat-msg-user {
+    background: #22c55e;
+    color: #fff;
+  }
+
+  .chat-msg-agent .agent-name {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .chat-msg em {
+    opacity: 0.7;
+    font-size: 0.84rem;
+  }
+
+  .chat-slide-label {
+    text-align: center;
+    margin-top: 24px;
+  }
+
+  .chat-slide-label .label-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    padding: 5px 14px;
+    border-radius: 100px;
+  }
+
+  .chat-slide-label p {
+    margin-top: 8px;
+    font-size: 0.88rem;
+    color: var(--text-dim);
+  }
+
+  .carousel-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 32px;
+  }
+
+  .carousel-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border-light);
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    color: var(--text);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+
+  .carousel-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .carousel-dot.active {
+    background: var(--accent);
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
+    transform: scale(1.2);
+  }
+
+  .article-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    margin-top: 32px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .article-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--pink));
+    opacity: 0.6;
+  }
+
+  .article-card:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-glow);
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .article-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background: var(--accent-glow);
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 12px;
+  }
+
+  .article-card h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .article-card p {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .docs-intro {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 32px;
+  }
+
+  .docs-intro strong { color: var(--text); font-weight: 500; }
+
+  .docs-callout {
+    background: rgba(251, 191, 36, 0.04);
+    border: 1px solid rgba(251, 191, 36, 0.12);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin-bottom: 28px;
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .docs-callout .callout-icon { margin-right: 8px; }
+  .docs-callout strong { color: var(--amber); font-weight: 500; }
+
+  .docs-callout-info {
+    background: rgba(139, 92, 246, 0.04);
+    border: 1px solid rgba(139, 92, 246, 0.12);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin-bottom: 28px;
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .docs-callout-info strong { color: var(--accent); font-weight: 500; }
+
+  .docs-toggle {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .docs-toggle:hover { border-color: rgba(139, 92, 246, 0.2); }
+
+  .docs-toggle summary {
+    padding: 20px 24px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+
+  .docs-toggle summary::-webkit-details-marker { display: none; }
+
+  .docs-toggle summary::after {
+    content: '+';
+    font-size: 1.2rem;
+    color: var(--accent);
+    transition: transform 0.2s;
+  }
+
+  .docs-toggle[open] summary::after { content: '\2212'; }
+
+  .docs-toggle-body {
+    padding: 0 24px 24px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .docs-toggle-body strong { color: var(--text); font-weight: 500; }
+
+  .docs-steps {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+    counter-reset: step;
+  }
+
+  .docs-steps li {
+    counter-increment: step;
+    padding: 12px 0 12px 48px;
+    position: relative;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .docs-steps li:last-child { border-bottom: none; }
+
+  .docs-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 32px;
+    height: 32px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .docs-steps li .step-title {
+    font-weight: 500;
+    color: var(--text);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .signup-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .signup-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(99, 102, 241, 0.03) 50%, rgba(192, 132, 252, 0.06) 100%);
+  }
+
+  .signup-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+  }
+
+  .signup-wrapper {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .signup-wrapper h2 { margin-bottom: 12px; }
+
+  .signup-wrapper .prose {
+    margin: 0 auto 36px;
+    text-align: center;
+  }
+
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 12px;
+  }
+
+  .form-row input { flex: 1; }
+
+  .signup-form input {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    padding: 16px 20px;
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: 100px;
+    color: var(--text);
+    outline: none;
+    transition: all 0.3s;
+  }
+
+  .signup-form input:focus {
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+
+  .signup-form input::placeholder { color: var(--text-dim); }
+
+  .signup-form button {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    padding: 16px 32px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+  }
+
+  .signup-form button:hover {
+    background: #a78bfa;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+  }
+
+  .signup-form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .form-note {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 8px;
+  }
+
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .form-success .check {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+  }
+
+  .form-success h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .form-success p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+
+  .demos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+
+  .demo-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .demo-card:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-glow);
+  }
+
+  .demo-video-wrap {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .demo-video-wrap video {
+    width: 100%;
+    display: block;
+    background: #000;
+  }
+
+  .demo-play-btn {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    transition: opacity 0.2s;
+  }
+
+  .demo-play-btn::after {
+    content: '';
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.9);
+    box-shadow: 0 4px 24px rgba(139, 92, 246, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+  }
+
+  .demo-play-btn.hidden { opacity: 0; pointer-events: none; }
+
+  .demo-expand-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 2;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .demo-expand-btn:hover { background-color: rgba(0, 0, 0, 0.8); }
+  .demo-video-wrap:hover .demo-expand-btn { opacity: 1; }
+
+  .demo-fullscreen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.92);
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(12px);
+  }
+
+  .demo-fullscreen.active { display: flex; }
+
+  .demo-fullscreen video {
+    max-height: 90vh;
+    max-width: 90vw;
+    border-radius: var(--radius);
+  }
+
+  .demo-fullscreen-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .demo-fullscreen-close:hover { background: rgba(255, 255, 255, 0.15); }
+
+  .demo-caption { padding: 18px 22px; }
+
+  .demo-caption h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .demo-caption p {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .feature-card.feature-wide { grid-column: span 1; }
+  }
+
+  @media (max-width: 600px) {
+    .features-grid, .why-grid { grid-template-columns: 1fr; }
+    .why-card:first-child { grid-template-columns: 1fr; }
+    .feature-card.feature-wide { grid-column: span 1; }
+    .form-row { flex-direction: column; }
+    .demos-grid { grid-template-columns: 1fr; max-width: 320px; margin-left: auto; margin-right: auto; }
+    .trust-strip { gap: 8px; }
+    .trust-divider { display: none; }
+    .trust-item { padding: 4px 12px; }
+  }
+</style>

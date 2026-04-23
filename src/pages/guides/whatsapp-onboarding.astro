@@ -1,0 +1,369 @@
+---
+import Head from '../../components/Head.astro';
+import FadeInScript from '../../components/FadeInScript.astro';
+import ChatWidget from '../../components/ChatWidget.astro';
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <Head
+      title="Connect Your Agent to WhatsApp — Liv4All Guides"
+      description="Link Liv to your WhatsApp — step-by-step guide."
+      ogUrl="https://liv4all.com/guides/whatsapp-onboarding"
+      ogType="article"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <a href="/guides" class="back">&larr; back to guides</a>
+
+      <span class="badge-alpha">alpha</span>
+      <h1>connect your agent to WhatsApp</h1>
+      <p class="subtitle">link your liv agent to WhatsApp Business so you can talk to them on both Telegram and WhatsApp.</p>
+
+      <div class="prereqs fade-in">
+        <div class="prereqs-title">before you start</div>
+        <ul>
+          <li>your liv agent is already set up and working on <strong>Telegram</strong></li>
+          <li>you have your <strong>agent's phone number</strong> (the additional eSIM)</li>
+          <li><strong>Telegram Web / Desktop</strong> — use the <a href="https://web.telegram.org" target="_blank" rel="noopener">web version</a> or the desktop app</li>
+        </ul>
+      </div>
+
+      <div class="section-label">// admin setup</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>send us your numbers</h3>
+            <p>message us with <strong>your phone number</strong> and <strong>your agent's phone number</strong> (the eSIM). we need both to configure the WhatsApp link on our side.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>install WhatsApp Business on your agent's number</h3>
+            <p>download <strong>WhatsApp Business</strong> (it's free) and sign up using your <strong>agent's phone number</strong> if you haven't already. this is the number tied to your eSIM — not your personal number.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label">// link WhatsApp</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>ask your agent to link WhatsApp</h3>
+            <p>once steps 1 and 2 are done, open <strong>Telegram Web / Desktop</strong> and message your agent:</p>
+            <div class="tip"><strong>say:</strong> "I want to link WhatsApp"</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>scan the QR code</h3>
+            <p>your agent will generate a <strong>QR code</strong> and show it to you right inside the Telegram chat.</p>
+            <div class="tip"><strong>tip:</strong> use <a href="https://web.telegram.org" target="_blank" rel="noopener">Telegram Web</a> or the desktop app — it makes scanning the QR code from your phone much easier. the QR code is only valid for <strong>60 seconds</strong>, so have WhatsApp Business ready to scan before you request it!</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h3>link the device in WhatsApp Business</h3>
+            <p>open the <strong>WhatsApp Business</strong> app (the one signed in with your agent's number) and go to <strong>Linked Devices</strong>. scan the QR code your agent showed you in Telegram.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label">// see it in action</div>
+      <div class="demo-video">
+        <div class="demo-video-wrap" onclick="this.querySelector('video').requestFullscreen ? this.querySelector('video').requestFullscreen() : this.querySelector('video').webkitRequestFullscreen()">
+          <video controls playsinline preload="metadata">
+            <source src="/assets/videos/whatsapp-linking-demo.mp4" type="video/mp4" />
+            your browser doesn't support embedded video.
+          </video>
+          <div class="demo-video-hint">click to expand</div>
+        </div>
+        <p class="demo-video-caption">demo: linking WhatsApp to your agent via Telegram</p>
+      </div>
+
+      <div class="section-label">// start chatting</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">6</div>
+          <div class="step-content">
+            <h3>add your agent on WhatsApp</h3>
+            <p>give it a minute or so for everything to sync. then, open your <strong>normal WhatsApp</strong> (your personal one), add your agent's number as a contact, and start a conversation.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">7</div>
+          <div class="step-content">
+            <h3>you're connected!</h3>
+            <p>you can now talk to your agent across <strong>both Telegram and WhatsApp</strong>. if WhatsApp is your preferred channel, use it as your main way to chat — and keep Telegram as a backup.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="note fade-in">
+        <strong>heads up —</strong> this is an alpha feature. since we're still in early stages, the admin setup (step 1) requires us to configure things on our side. once you've sent us your numbers, we'll let you know when you're good to go.
+      </div>
+    </div>
+
+    <footer>
+      <p>built with 🖤 by liv & leo · <a href="/">home</a> · <a href="/about">about</a> · <a href="/faq">faq</a> · <a href="/guides">guides</a> · <a href="/terms">terms</a> · <a href="/privacy">privacy</a></p>
+    </footer>
+
+    <FadeInScript />
+    <ChatWidget />
+
+    <style is:global>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { overflow-x: hidden; max-width: 100%; }
+
+      :root {
+        --bg: #0a0a0f;
+        --surface: #12121a;
+        --surface-glass: rgba(18, 18, 26, 0.6);
+        --border: #1e1e2e;
+        --border-light: rgba(255, 255, 255, 0.06);
+        --text: #e0e0e8;
+        --text-dim: #7a7a8e;
+        --accent: #8b5cf6;
+        --accent-glow: rgba(139, 92, 246, 0.15);
+        --green: #34d399;
+        --amber: #fbbf24;
+        --radius: 16px;
+        --radius-lg: 24px;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+      }
+
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+
+      .container {
+        width: min(800px, 100%);
+        margin: 0 auto;
+        padding: 120px 24px 80px;
+      }
+
+      .back {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.8rem;
+        color: var(--text-dim);
+        margin-bottom: 48px;
+        transition: color 0.2s;
+      }
+
+      .back:hover { color: var(--accent); text-decoration: none; }
+
+      h1 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        margin-bottom: 8px;
+      }
+
+      .subtitle {
+        font-size: 0.95rem;
+        color: var(--text-dim);
+        margin-bottom: 48px;
+        line-height: 1.6;
+      }
+
+      .badge-alpha {
+        display: inline-block;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 2px 8px;
+        border-radius: 100px;
+        color: var(--green);
+        background: rgba(52, 211, 153, 0.1);
+        border: 1px solid rgba(52, 211, 153, 0.2);
+        margin-bottom: 16px;
+      }
+
+      .section-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        color: var(--accent);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        display: inline-block;
+        padding: 6px 14px;
+        background: var(--accent-glow);
+        border: 1px solid rgba(139, 92, 246, 0.15);
+        border-radius: 100px;
+      }
+
+      .prereqs {
+        background: var(--surface-glass);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        margin-bottom: 48px;
+      }
+
+      .prereqs-title {
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-bottom: 12px;
+      }
+
+      .prereqs ul {
+        padding-left: 20px;
+        color: var(--text-dim);
+        font-size: 0.92rem;
+      }
+
+      .prereqs li { margin-bottom: 8px; }
+
+      .prereqs li strong { color: var(--text); font-weight: 500; }
+
+      .steps { margin-bottom: 48px; }
+
+      .step {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 32px;
+      }
+
+      .step-number {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        background: var(--accent-glow);
+        border: 1px solid rgba(139, 92, 246, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin-top: 2px;
+      }
+
+      .step-content h3 {
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 6px;
+      }
+
+      .step-content p {
+        font-size: 0.92rem;
+        color: var(--text-dim);
+        line-height: 1.7;
+      }
+
+      .step-content p strong { color: var(--text); font-weight: 500; }
+
+      .tip {
+        background: rgba(139, 92, 246, 0.06);
+        border: 1px solid rgba(139, 92, 246, 0.15);
+        border-radius: var(--radius);
+        padding: 16px 20px;
+        margin-top: 10px;
+        font-size: 0.88rem;
+        color: var(--text-dim);
+        line-height: 1.6;
+      }
+
+      .tip strong { color: var(--accent); font-weight: 500; }
+
+      .note {
+        background: var(--surface-glass);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        margin-bottom: 48px;
+        font-size: 0.92rem;
+        color: var(--text-dim);
+        line-height: 1.7;
+      }
+
+      .note strong { color: var(--text); font-weight: 500; }
+
+      .demo-video {
+        margin-bottom: 48px;
+        max-width: 380px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .demo-video-wrap {
+        position: relative;
+        cursor: pointer;
+      }
+
+      .demo-video video {
+        width: 100%;
+        border-radius: var(--radius);
+        border: 1px solid var(--border-light);
+        display: block;
+      }
+
+      .demo-video-hint {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 6px;
+        padding: 4px 8px;
+        font-size: 0.7rem;
+        color: var(--text-dim);
+        pointer-events: none;
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      .demo-video-caption {
+        font-size: 0.85rem;
+        color: var(--text-dim);
+        margin-top: 10px;
+      }
+
+      footer {
+        padding: 40px 0;
+        border-top: 1px solid var(--border-light);
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--text-dim);
+      }
+
+      footer a { transition: color 0.2s; }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </body>
+</html>
