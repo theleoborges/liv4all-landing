@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Static marketing site for **Liv4All** (liv4all.com) — an AI Chief of Staff product. Hosted on GitHub Pages at hello.liv4all.com.
+Static marketing site for **Liv4All** — an AI Chief of Staff product. Canonical URL is `https://liv4all.com`. Hosted on GitHub Pages; the legacy `hello.liv4all.com` hostname redirects to the apex.
 
 ## Architecture
 

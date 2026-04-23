@@ -1,6 +1,6 @@
 # Liv4All Landing
 
-Static marketing site for **hello.liv4all.com**, built with [Astro](https://astro.build/).
+Static marketing site for **liv4all.com**, built with [Astro](https://astro.build/). Legacy `hello.liv4all.com` redirects to the canonical apex.
 
 ## Stack
 
