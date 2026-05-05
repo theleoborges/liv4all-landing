@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://liv4all.com/sitemap-index.xml

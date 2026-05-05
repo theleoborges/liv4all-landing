@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -40,3 +40,8 @@ for (const { from, to } of redirects) {
 }
 
 console.log(`Generated ${redirects.length} legacy redirects.`);
+
+// Alias /sitemap.xml → /sitemap-index.xml so naive crawlers that hit the
+// conventional path (rather than reading robots.txt) still find the sitemap.
+await copyFile(join(DIST, 'sitemap-index.xml'), join(DIST, 'sitemap.xml'));
+console.log('Aliased sitemap-index.xml → sitemap.xml');
