@@ -1,0 +1,8 @@
+# Liv4All security contact — RFC 9116
+# https://liv4all.com/trust
+
+Contact: mailto:security@liv4all.com
+Expires: 2027-05-04T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://liv4all.com/.well-known/security.txt
+Policy: https://liv4all.com/trust#disclosure
