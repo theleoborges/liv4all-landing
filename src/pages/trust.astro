@@ -64,6 +64,12 @@ const subprocessors = [
     data: 'Conversation content',
   },
   {
+    name: 'AWS Bedrock',
+    purpose: 'LLM inference (Claude, fallback)',
+    region: 'Australia or US',
+    data: 'Conversation content',
+  },
+  {
     name: 'Browserbase',
     purpose: "Headless web browsing on the operator's behalf",
     region: 'US',
@@ -408,6 +414,17 @@ const subprocessors = [
               ))}
             </tbody>
           </table>
+        </div>
+
+        <div class="commitment fade-in">
+          <div class="commitment-label">// notification commitment</div>
+          <p>
+            We commit to <strong>30 days advance notice</strong> before adding any new sub-processor
+            that processes operator data, with one carve-out: where a change is required for
+            <strong>service continuity</strong> — for example, a primary provider becoming
+            unavailable — we will notify affected operators within <strong>7 days of the change</strong>.
+            Notifications are sent by email to the address on file for each active operator account.
+          </p>
         </div>
 
         <p class="section-aside fade-in">
@@ -1130,6 +1147,35 @@ const subprocessors = [
     .trust-table { font-size: 0.84rem; }
     .trust-table th, .trust-table td { padding: 12px 14px; }
   }
+
+  .commitment {
+    margin-top: 24px;
+    padding: 22px 26px;
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-left: 2px solid var(--accent);
+    border-radius: var(--radius);
+  }
+
+  .commitment-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .commitment p {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .commitment strong { color: var(--text); font-weight: 500; }
 
   /* ── Disclosure ── */
   .disclosure-grid {
