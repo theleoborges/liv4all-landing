@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lastUpdated = '2026-05-05';
+---
+<BaseLayout
+  title="Security Policy — Liv4All"
+  description="Vulnerability disclosure policy and safe-harbour terms for Liv4All."
+  ogUrl="https://liv4all.com/security"
+>
+  <div class="container">
+    <a href="/trust" class="back">← back to trust</a>
+
+    <h1>security policy</h1>
+    <p class="updated">last updated: {lastUpdated}</p>
+
+    <div class="callout">
+      report a vulnerability to <a href="mailto:security@liv4all.com">security@liv4all.com</a>.
+      acting in good faith under this policy means we will not pursue you. see <a href="#safe-harbour">safe harbour</a>.
+    </div>
+
+    <h2>scope</h2>
+    <p>this policy applies to systems Liv4All operates:</p>
+    <ul>
+      <li><code>liv4all.com</code> and its subdomains, including <code>app.liv4all.com</code> and <code>hello.liv4all.com</code>.</li>
+      <li>the Liv4All Telegram bot and the dedicated agent email addresses we issue to operators.</li>
+      <li>the public knowledge-base widget served from our infrastructure.</li>
+    </ul>
+
+    <h2>out of scope</h2>
+    <ul>
+      <li>denial-of-service or volumetric attacks against any Liv4All endpoint.</li>
+      <li>social engineering of Liv4All staff, operators, or our sub-processors' staff.</li>
+      <li>physical attacks against infrastructure, offices, or personal devices.</li>
+      <li>findings on third-party services (AWS, Google, Telegram, Anthropic, Browserbase, Brave, Formspree) where Liv has no remediation path. report those upstream.</li>
+      <li>missing best-practice headers without a demonstrable impact, theoretical attacks without proof-of-concept, automated scanner output without manual validation.</li>
+    </ul>
+
+    <h2>how to report</h2>
+    <p>email <a href="mailto:security@liv4all.com">security@liv4all.com</a> with:</p>
+    <ul>
+      <li>a clear description of the issue and its impact.</li>
+      <li>reproduction steps, ideally with a minimal proof-of-concept.</li>
+      <li>any artefacts (screenshots, logs, request traces) that help us validate quickly.</li>
+      <li>the affected URL or endpoint, and the date and time of testing.</li>
+    </ul>
+    <p>PGP-encrypted reports are welcome — request our key in your initial mail and we'll respond with it.</p>
+
+    <h2>response window</h2>
+    <ul>
+      <li><strong>3 business days</strong> to acknowledge your report.</li>
+      <li><strong>10 business days</strong> for an initial assessment, including triage and severity.</li>
+      <li>remediation timelines follow from severity. we'll keep you in the loop and credit you in any public write-up if you want.</li>
+    </ul>
+
+    <h2 id="safe-harbour">safe harbour</h2>
+    <p>we will not pursue legal action against researchers who, in good faith:</p>
+    <ul>
+      <li>follow this policy and avoid privacy violations, destruction of data, and degradation of service.</li>
+      <li>only interact with accounts they own or have explicit permission to test.</li>
+      <li>give us reasonable time to remediate before public disclosure (we suggest 90 days, extendable by mutual agreement).</li>
+      <li>don't exploit any vulnerability beyond what's necessary to demonstrate it.</li>
+      <li>don't exfiltrate data beyond the minimum needed to prove impact, and delete anything they did access on request.</li>
+    </ul>
+    <p>
+      if your activity is consistent with this policy, we consider it authorised research and will not
+      bring or support legal action against you. if a third party initiates legal action, we will make
+      it clear that your actions were authorised.
+    </p>
+
+    <h2>contact</h2>
+    <p>
+      vulnerability reports: <a href="mailto:security@liv4all.com">security@liv4all.com</a>.<br />
+      everything else (data requests, account help, press): <a href="mailto:support@liv4all.com">support@liv4all.com</a>.
+    </p>
+    <p>
+      machine-readable contact: <a href="/.well-known/security.txt"><code>/.well-known/security.txt</code></a>.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+    transition: color 0.2s;
+  }
+  .back:hover { color: var(--accent); text-decoration: none; }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  .updated {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+  }
+
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  p, li {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  p strong, li strong { color: var(--text); font-weight: 500; }
+
+  ul {
+    padding-left: 20px;
+    margin-bottom: 16px;
+  }
+
+  li { margin-bottom: 8px; }
+
+  .callout {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 24px 0 32px;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .callout strong { color: var(--text); }
+  .callout a { color: var(--accent); }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    color: var(--text);
+    background: rgba(139, 92, 246, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border-light);
+  }
+</style>
