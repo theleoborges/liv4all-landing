@@ -30,6 +30,7 @@ export const footerLinks: NavLink[] = [
   { href: '/faq', label: 'faq' },
   { href: '/articles', label: 'articles' },
   { href: '/guides', label: 'guides' },
+  { href: '/trust', label: 'trust & safety' },
   { href: '/terms', label: 'terms' },
   { href: '/privacy', label: 'privacy' },
 ];
