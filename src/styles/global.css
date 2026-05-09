@@ -105,6 +105,19 @@ nav {
   position: relative;
 }
 
+/* Invisible bridge between trigger and menu so the hover region is
+   continuous — without this, the cursor leaves :hover when crossing
+   the 12px gap and the menu disappears mid-click. */
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 16px;
+  pointer-events: auto;
+}
+
 .nav-dropdown-trigger {
   display: inline-flex;
   align-items: center;
