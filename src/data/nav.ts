@@ -1,20 +1,31 @@
 export type NavLink = { href: string; label: string; external?: boolean };
+export type NavGroup = { label: string; links: NavLink[] };
+export type NavItem = NavLink | NavGroup;
 
-export const mainNavLinks: NavLink[] = [
-  { href: '/about', label: 'about' },
-  { href: '/faq', label: 'faq' },
-  { href: '/articles', label: 'articles' },
-  { href: '/guides', label: 'guides' },
-];
+export const isNavGroup = (item: NavItem): item is NavGroup =>
+  (item as NavGroup).links !== undefined;
 
-export const homeNavExtras: NavLink[] = [
+export const resourcesGroup: NavGroup = {
+  label: 'resources',
+  links: [
+    { href: '/articles', label: 'articles' },
+    { href: '/#demos', label: 'demo' },
+    { href: '/faq', label: 'faq' },
+    { href: '/guides', label: 'guides' },
+  ],
+};
+
+export const mainNavItems: NavItem[] = [
   { href: '/#why', label: 'why liv' },
-  { href: '/#demos', label: 'demo' },
+  { href: '/pricing', label: 'pricing' },
+  resourcesGroup,
+  { href: '/about', label: 'about' },
 ];
 
 export const footerLinks: NavLink[] = [
   { href: '/', label: 'home' },
   { href: '/about', label: 'about' },
+  { href: '/pricing', label: 'pricing' },
   { href: '/faq', label: 'faq' },
   { href: '/articles', label: 'articles' },
   { href: '/guides', label: 'guides' },
