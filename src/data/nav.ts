@@ -12,6 +12,7 @@ export const resourcesGroup: NavGroup = {
     { href: '/#demos', label: 'demo' },
     { href: '/faq', label: 'faq' },
     { href: '/guides', label: 'guides' },
+    { href: '/trust', label: 'trust & safety' },
   ],
 };
 
