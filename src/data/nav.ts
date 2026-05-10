@@ -5,38 +5,47 @@ export type NavItem = NavLink | NavGroup;
 export const isNavGroup = (item: NavItem): item is NavGroup =>
   (item as NavGroup).links !== undefined;
 
-export const resourcesGroup: NavGroup = {
-  label: 'resources',
+export const solutionsGroup: NavGroup = {
+  label: 'Solutions',
   links: [
-    { href: '/articles', label: 'articles' },
-    { href: '/#demos', label: 'demo' },
-    { href: '/faq', label: 'faq' },
-    { href: '/guides', label: 'guides' },
-    { href: '/trust', label: 'trust & safety' },
+    { href: '/', label: 'Liv' },
+    { href: '/ivy', label: 'Ivy' },
+  ],
+};
+
+export const resourcesGroup: NavGroup = {
+  label: 'Resources',
+  links: [
+    { href: '/articles', label: 'Articles' },
+    { href: '/#demos', label: 'Demo' },
+    { href: '/faq', label: 'FAQ' },
+    { href: '/guides', label: 'Guides' },
+    { href: '/trust', label: 'Trust & Safety' },
   ],
 };
 
 export const mainNavItems: NavItem[] = [
-  { href: '/#why', label: 'why liv' },
-  { href: '/pricing', label: 'pricing' },
+  solutionsGroup,
+  { href: '/pricing', label: 'Pricing' },
   resourcesGroup,
-  { href: '/about', label: 'about' },
+  { href: '/about', label: 'About' },
 ];
 
 export const footerLinks: NavLink[] = [
-  { href: '/', label: 'home' },
-  { href: '/about', label: 'about' },
-  { href: '/pricing', label: 'pricing' },
-  { href: '/faq', label: 'faq' },
-  { href: '/articles', label: 'articles' },
-  { href: '/guides', label: 'guides' },
-  { href: '/trust', label: 'trust & safety' },
-  { href: '/terms', label: 'terms' },
-  { href: '/privacy', label: 'privacy' },
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/ivy', label: 'Ivy' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/articles', label: 'Articles' },
+  { href: '/guides', label: 'Guides' },
+  { href: '/trust', label: 'Trust & Safety' },
+  { href: '/terms', label: 'Terms' },
+  { href: '/privacy', label: 'Privacy' },
 ];
 
 export const homeFooterExtras: NavLink[] = [
-  { href: '/#origin', label: 'origin story' },
-  { href: 'https://liv.leo.wtf', label: 'meet the original liv', external: true },
-  { href: 'https://leo.wtf', label: 'leo borges', external: true },
+  { href: '/#origin', label: 'Origin Story' },
+  { href: 'https://liv.leo.wtf', label: 'Meet the Original Liv', external: true },
+  { href: 'https://leo.wtf', label: 'Leo Borges', external: true },
 ];

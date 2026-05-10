@@ -1,0 +1,237 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Ivy — Q&A agent for your website | Liv4All"
+  description="Ivy is Liv's sidekick — a Q&A agent that answers your prospective customers' questions as they browse your site."
+  ogUrl="https://liv4all.com/ivy"
+>
+  <div class="container">
+    <div class="ivy-badge fade-in">
+      <span class="ivy-badge-dot"></span> Q&amp;A AGENT
+    </div>
+    <h1 class="fade-in fade-in-delay-1">Ivy</h1>
+    <p class="subtitle fade-in fade-in-delay-2">
+      Liv's sidekick. A Q&amp;A agent to help your prospective customers understand your product as they visit your website.
+    </p>
+
+    <h2 class="section-title fade-in fade-in-delay-2">3 simple steps</h2>
+    <div class="steps-grid fade-in fade-in-delay-3">
+      <div class="step-card">
+        <div class="step-card-top"></div>
+        <div class="step-card-body">
+          <div class="step-num">01</div>
+          <div class="step-name">Define your tone of voice</div>
+          <p class="step-body">
+            Provide your brand's voice — or we'll help you design one. This is how Ivy will be perceived by visitors.
+          </p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-top"></div>
+        <div class="step-card-body">
+          <div class="step-num">02</div>
+          <div class="step-name">Curate the knowledge</div>
+          <p class="step-body">
+            Specify what Ivy should reference: your public website, internal documents, anything else you want the agent to draw from.
+          </p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-card-top"></div>
+        <div class="step-card-body">
+          <div class="step-num">03</div>
+          <div class="step-name">Embed the widget</div>
+          <p class="step-body">
+            Drop the embed snippet on your site. Ivy is live and answering questions — just like she's doing on this site right now.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title fade-in">See it in action</h2>
+    <div class="demo-frame fade-in fade-in-delay-1">
+      <video
+        src="/assets/videos/ivy-widget.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-label="Ivy widget answering a visitor's questions on a sample website"
+      ></video>
+    </div>
+
+    <div class="cta-block fade-in fade-in-delay-2">
+      <h2 class="cta-title">Ready to get started?</h2>
+      <p class="cta-sub">Tell us about your business and we'll set Ivy up for you.</p>
+      <a class="btn-primary" href="mailto:sales@liv4all.com">Get in touch</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: var(--text-dim);
+    margin-bottom: 56px;
+    line-height: 1.65;
+    max-width: 640px;
+  }
+
+  .ivy-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .ivy-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .section-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 64px 0 24px;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 720px) {
+    .steps-grid { grid-template-columns: 1fr; }
+  }
+
+  .step-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+
+  .step-card:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-glow);
+  }
+
+  .step-card-top {
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--pink));
+    opacity: 0.7;
+  }
+
+  .step-card-body { padding: 24px; }
+
+  .step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+
+  .step-name {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .step-body {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  .demo-frame {
+    width: min(400px, 100%);
+    margin: 0 auto;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  }
+
+  .demo-frame video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .cta-block {
+    margin: 80px 0 40px;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+
+  .cta-sub {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+  }
+
+  .btn-primary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    padding: 16px 32px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: #a78bfa;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+    text-decoration: none;
+    color: #fff;
+  }
+</style>
