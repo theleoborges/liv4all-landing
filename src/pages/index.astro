@@ -16,7 +16,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="hero-content">
       <div class="badge">
         <span class="badge-dot"></span>
-        signups paused — waitlist open
+        now in early access
       </div>
       <img src="/logo.png" alt="Liv" class="hero-logo" />
       <h1>your AI<br /><span class="typing-line"><span class="gradient typing" id="typed-role"></span><span class="cursor">|</span></span></h1>
@@ -26,9 +26,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         not a chatbot. an agent that <strong>does things</strong>.
       </p>
       <div class="hero-cta">
-        <a href="#signup" class="btn-primary">join the waitlist →</a>
+        <a href="https://app.liv4all.com" class="btn-primary">start your trial →</a>
         <a href="https://www.youtube.com/watch?v=TXaWeFTb9Ns" target="_blank" rel="noopener" class="btn-secondary">watch the explainer ▶</a>
       </div>
+      <p class="hero-cta-note">14-day free trial · no credit card required</p>
       <div class="trust-strip">
         <div class="trust-item"><span class="trust-icon">🔒</span> your data stays yours</div>
         <div class="trust-divider"></div>
@@ -468,11 +469,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="section-label">// docs</div>
       <h2><em>getting started</em></h2>
 
-      <div class="docs-callout">
-        <span class="callout-icon">⚠️</span>
-        <strong>signups paused.</strong> we hit the 100-user alpha cap and are going through google's CASA Tier 2 verification. the setup flow below only works for existing alpha users. <a href="#signup">join the waitlist</a> and we'll reach out the moment signups reopen.
-      </div>
-
       <p class="docs-intro">
         setting up your own liv takes about <strong>2 minutes</strong> and only needs to be done <strong>once</strong>.
         after that, you just message your personal bot like normal — no dashboards, no apps, no friction.
@@ -540,37 +536,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section id="signup" class="signup-section">
+  <section id="waitlist" class="signup-section">
     <div class="container-wide">
       <div class="signup-wrapper">
-        <div class="section-label">// waitlist</div>
-        <h2>signups are closed — <em>join the waitlist</em></h2>
-
-        <div class="docs-callout" style="text-align: left; margin-bottom: 24px;">
-          <span class="callout-icon">⚠️</span>
-          <strong>why?</strong> we hit the 100-user alpha cap. google limits OAuth apps to exactly 100 users until you clear verification — and when you're doing email + calendar, OAuth isn't optional. we're now going through CASA Tier 2 (google's 3rd-party security audit). takes a few weeks. the reason's legit — they want proof we handle your data properly. same energy.
+        <!-- State A: cap has room (default) -->
+        <div class="signup-state" id="state-open">
+          <div class="section-label">// early access</div>
+          <h2>now in <em>early access</em></h2>
+          <p class="prose">
+            we're opening liv4all in batches to keep service quality high.
+            <strong id="spots-line">limited spots in the current batch.</strong>
+          </p>
+          <div class="signup-cta-wrap">
+            <a href="https://app.liv4all.com" class="btn-primary">start your trial →</a>
+            <p class="form-note">14-day free trial · no credit card required</p>
+          </div>
         </div>
 
-        <p class="prose">
-          drop your details and we'll reach out the moment signups reopen.
-        </p>
+        <!-- State B: cap full (hidden by default; revealed by JS when remaining === 0) -->
+        <div class="signup-state" id="state-full" hidden>
+          <div class="section-label">// waitlist</div>
+          <h2>current batch is <em>full</em> — join the waitlist</h2>
+          <p class="prose">
+            liv4all is opening in batches to keep service quality high. the current batch is at capacity.
+            drop your details and we'll let you know the moment the next batch opens — usually within a few weeks.
+          </p>
 
-        <form class="signup-form" id="interest-form" action="https://formspree.io/f/xzdawwzo" method="POST">
-          <div class="form-row">
-            <input type="text" name="name" placeholder="your name" required />
-            <input type="email" name="email" placeholder="your email" required />
+          <form class="signup-form" id="interest-form" action="https://formspree.io/f/xzdawwzo" method="POST">
+            <div class="form-row">
+              <input type="text" name="name" placeholder="your name" required />
+              <input type="email" name="email" placeholder="your email" required />
+            </div>
+            <input type="text" name="use_case" placeholder="what would you use liv for? (optional)" />
+            <input type="hidden" name="_subject" value="Liv4All — Waitlist Signup" />
+            <input type="hidden" name="source" value="waitlist" />
+            <button type="submit">join the waitlist →</button>
+            <p class="form-note">no spam. just a heads-up when the next batch opens. by joining the waitlist you agree to our <a href="/terms">alpha terms</a> and <a href="/privacy">privacy policy</a>. 🖤</p>
+          </form>
+
+          <div class="form-success" id="form-success">
+            <div class="check">🖤</div>
+            <h3>you're on the waitlist</h3>
+            <p>we'll reach out the moment the next batch opens. in the meantime, <a href="https://open.substack.com/pub/leonardoborges/p/tltd-39-voice-ai-the-next-platform?utm_source=liv4all.com&utm_medium=referral&utm_campaign=thankyou" target="_blank" rel="noopener">read about how liv was built</a>.</p>
           </div>
-          <input type="text" name="use_case" placeholder="what would you use liv for? (optional)" />
-          <input type="hidden" name="_subject" value="Liv4All — Waitlist Signup" />
-          <input type="hidden" name="source" value="waitlist" />
-          <button type="submit">join the waitlist →</button>
-          <p class="form-note">no spam. just a heads-up when signups reopen. by joining the waitlist you agree to our <a href="/terms">alpha terms</a> and <a href="/privacy">privacy policy</a>. 🖤</p>
-        </form>
-
-        <div class="form-success" id="form-success">
-          <div class="check">🖤</div>
-          <h3>you're on the waitlist</h3>
-          <p>we'll reach out the moment signups reopen after verification. in the meantime, <a href="https://open.substack.com/pub/leonardoborges/p/tltd-39-voice-ai-the-next-platform?utm_source=liv4all.com&utm_medium=referral&utm_campaign=thankyou" target="_blank" rel="noopener">read about how liv was built</a>.</p>
         </div>
       </div>
     </div>
@@ -728,31 +736,56 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const form = document.getElementById('interest-form');
     const success = document.getElementById('form-success');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = form.querySelector('button');
-      btn.disabled = true;
-      btn.textContent = 'submitting...';
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button');
+        btn.disabled = true;
+        btn.textContent = 'submitting...';
 
-      try {
-        const resp = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
-        });
+        try {
+          const resp = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
 
-        if (resp.ok) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        } else {
-          btn.textContent = 'something went wrong — try again';
+          if (resp.ok) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+          } else {
+            btn.textContent = 'something went wrong — try again';
+            btn.disabled = false;
+          }
+        } catch {
+          btn.textContent = 'network error — try again';
           btn.disabled = false;
         }
+      });
+    }
+
+    (async () => {
+      const stateOpen = document.getElementById('state-open');
+      const stateFull = document.getElementById('state-full');
+      const spotsLine = document.getElementById('spots-line');
+      if (!stateOpen || !stateFull) return;
+
+      try {
+        const resp = await fetch('https://app.liv4all.com/api/spots', { cache: 'no-store' });
+        if (!resp.ok) return;
+        const { remaining, cap } = await resp.json();
+        if (typeof remaining !== 'number' || typeof cap !== 'number') return;
+
+        if (remaining <= 0) {
+          stateOpen.hidden = true;
+          stateFull.hidden = false;
+        } else if (spotsLine) {
+          spotsLine.textContent = `${remaining} of ${cap} spots left in the current batch.`;
+        }
       } catch {
-        btn.textContent = 'network error — try again';
-        btn.disabled = false;
+        // network/CORS failure: leave the static "limited spots" fallback in place
       }
-    });
+    })();
   </script>
 </BaseLayout>
 
@@ -912,6 +945,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     gap: 16px;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .hero-cta-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-top: 16px;
   }
 
   .btn-primary {
@@ -1673,6 +1713,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin: 0 auto 36px;
     text-align: center;
   }
+
+  .signup-cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  #spots-line { color: var(--text); font-weight: 500; }
 
   .signup-form {
     display: flex;
