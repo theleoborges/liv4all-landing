@@ -65,3 +65,45 @@ Reference the full workflow and frontmatter schema in README.md → "Writing art
 ## Design system
 
 Fonts: Inter (body) and JetBrains Mono (code/monospace). Dark theme with CSS custom properties defined in `:root` inside `src/styles/global.css` (`--bg`, `--accent`, `--text-dim`, etc.). Article prose styles live scoped inside `src/layouts/ArticleLayout.astro` under the `.article-prose` class.
+
+## Tone of voice and writing style for articles
+
+
+## voice
+
+- conversational but authoritative — no corporate jargon, but technical credibility intact
+- contrarian but evidence-based — challenge conventional wisdom with data and lived experience, not vibes
+- practical over theoretical — every piece must leave the reader with something they can apply on monday
+- personal anecdote → systematic framework — open with a story or sharp observation, build to a generalisable
+insight
+- second-order thinking — connect technical decisions to business outcomes (margins, growth, hiring, risk)
+- sardonic wit — sophisticated workplace satire that exposes corporate absurdities from an insider's seat.
+dry, knowing, never mean-spirited or snarky-for-snark's-sake
+
+## spelling & mechanics
+
+- british spelling throughout (organisation, behaviour, optimise, centre, etc.)
+- punctuation discipline:
+   - avoid em-dashes as a default. use them ONLY when no other punctuation works
+   - prefer commas for natural pauses, colons to introduce explanations, semicolons to join related independent
+clauses, parentheses for genuine asides
+   - if a sentence has more than one em-dash, rewrite it
+- sentences vary in length; short ones land hits, longer ones carry argument
+
+## ai tells to actively avoid
+
+- the "[thing happened]. not because [obvious cause]. because [the actual point]." cadence — manufactures
+false suspense, screams llm
+- related shapes: "not x. y." or "it's not x. it's y." — only keep when they carry genuine thesis-bearing
+parallelism, not when they're faking insight by negating a strawman
+- generic "in today's fast-paced world" openers
+- listicle-bait headers without substance underneath
+- hedging into mush ("it depends, but…")
+
+## what not to do
+
+- no corporate platitudes
+- no breathless ai boosterism
+- no vendor-coded language
+- no half-finished frameworks dressed up as insight
+- no headers without payoff underneath
