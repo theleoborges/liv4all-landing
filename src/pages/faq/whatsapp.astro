@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="WhatsApp FAQ — Liv4All"
+  description="How WhatsApp works with Liv — Telegram is the default, WhatsApp is invite-only. eSIM setup, plan availability, and why we recommend a dedicated number."
+  ogUrl="https://liv4all.com/faq/whatsapp"
+>
+  <div class="container">
+    <h1>whatsapp & liv</h1>
+    <p class="subtitle">telegram is the default — it's all you need to sign up and get going. whatsapp is an optional, invite-only add-on. here's exactly how it works.</p>
+
+    <div class="callout fade-in">
+      <p>already set up on telegram and want whatsapp too? the <a href="/guides/whatsapp-onboarding">step-by-step onboarding guide</a> walks you through linking it. this page explains the what and why first.</p>
+    </div>
+
+    <div class="faq-group fade-in">
+      <div class="faq-group-label">// the short version</div>
+
+      <details class="faq-toggle">
+        <summary>do i need whatsapp to use liv?</summary>
+        <div class="faq-toggle-body">
+          <p>no. <strong>telegram is the default channel and the only one you need</strong> — it's the sign-up flow and it's required. whatsapp is an optional extra you can add once your agent is already running on telegram.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>is whatsapp available to everyone?</summary>
+        <div class="faq-toggle-body">
+          <p><span class="badge-coming">invite only</span> not yet. whatsapp is invite-only because we have to set your agent up against a dedicated phone number on our side — it isn't something you can switch on yourself. once we've configured it, you can talk to liv on whatsapp just like you do on telegram.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-group fade-in">
+      <div class="faq-group-label">// getting set up</div>
+
+      <details class="faq-toggle">
+        <summary>how do i get whatsapp turned on?</summary>
+        <div class="faq-toggle-body">
+          <p>three steps:</p>
+          <ul>
+            <li>get a dedicated number for your agent — any cheap prepaid eSIM works fine</li>
+            <li>send us that number so we can whitelist and configure it</li>
+            <li>follow the <a href="/guides/whatsapp-onboarding">onboarding guide</a> to link it</li>
+          </ul>
+          <p>the easiest way to start is to just ask liv on telegram.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>why does my agent need its own eSIM / number?</summary>
+        <div class="faq-toggle-body">
+          <p>so it has its own whatsapp identity, completely separate from your personal whatsapp. that keeps the agent away from your contacts and your private chats, and means it only ever sees the messages meant for it. it's the setup we recommend for everyone.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>can i just use my own personal number instead?</summary>
+        <div class="faq-toggle-body">
+          <p>technically yes, but we really don't recommend it, and here's why:</p>
+          <ul>
+            <li>you'd have to message <strong>yourself</strong> on whatsapp to talk to liv</li>
+            <li>the agent gets access to <strong>all</strong> your contacts</li>
+            <li>it may reply in your group chats and DMs instead of you — confusing friends and family</li>
+            <li>you'll burn through credits much faster, because the agent has to process <strong>every</strong> message you receive, even the ones it never responds to</li>
+          </ul>
+          <p>if you've read all that and still want to use your own number, get in touch — we can set it up once you've accepted those trade-offs.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-group fade-in">
+      <div class="faq-group-label">// plans & pricing</div>
+
+      <details class="faq-toggle">
+        <summary>which plans include whatsapp?</summary>
+        <div class="faq-toggle-body">
+          <p>both, at different levels:</p>
+          <ul>
+            <li><strong>Pro</strong> — whatsapp DMs (1:1) with your agent</li>
+            <li><strong>Max</strong> — whatsapp DMs <strong>plus</strong> group chats</li>
+          </ul>
+          <p>group chats are Max-only because a busy group can consume a lot more tokens than a one-to-one thread. see the full <a href="/pricing">pricing comparison</a>.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>does whatsapp cost extra on top of my plan?</summary>
+        <div class="faq-toggle-body">
+          <p>no — it's included at the levels above. the only thing you provide is the eSIM for your agent's number.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="cta-block fade-in">
+      <p>ready to add whatsapp?</p>
+      <a href="/guides/whatsapp-onboarding" class="cta-link">follow the onboarding guide →</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .callout {
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    margin-bottom: 48px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .callout a { color: var(--accent); }
+
+  .faq-group { margin-bottom: 48px; }
+
+  .faq-group-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: 100px;
+  }
+
+  .faq-toggle {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 10px;
+  }
+
+  .faq-toggle:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-glow);
+  }
+
+  .faq-toggle summary {
+    padding: 20px 24px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    gap: 16px;
+  }
+
+  .faq-toggle summary::-webkit-details-marker { display: none; }
+
+  .faq-toggle summary::after {
+    content: '+';
+    font-size: 1.2rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .faq-toggle[open] summary::after { content: '−'; }
+
+  .faq-toggle-body {
+    padding: 0 24px 24px;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .faq-toggle-body strong { color: var(--text); font-weight: 500; }
+
+  .faq-toggle-body a { color: var(--accent); }
+
+  .faq-toggle-body p + p { margin-top: 12px; }
+
+  .faq-toggle-body ul {
+    padding-left: 20px;
+    margin: 12px 0;
+  }
+
+  .faq-toggle-body li { margin-bottom: 8px; }
+
+  .badge-live,
+  .badge-coming {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-right: 4px;
+  }
+
+  .badge-live {
+    color: var(--green);
+    background: rgba(52, 211, 153, 0.1);
+    border: 1px solid rgba(52, 211, 153, 0.2);
+  }
+
+  .badge-coming {
+    color: var(--amber);
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+  }
+
+  .cta-block {
+    text-align: center;
+    padding: 40px 24px;
+    background: var(--surface-glass);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+  }
+
+  .cta-block p {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .cta-link {
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+</style>
