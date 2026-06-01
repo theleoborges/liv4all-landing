@@ -11,6 +11,12 @@ const { entry } = Astro.props;
 const { title, question, answer, description, datePublished, updated } = entry.data;
 const url = `https://liv4all.com/answers/${entry.id}`;
 
+// UTM-tag the CTA so a trial started from this page is attributable downstream
+// (in app.liv4all.com's own analytics) to the exact answer that drove it.
+// Cloudflare Web Analytics is pageview-only, so conversion is measured at the
+// destination, not as an on-site click event.
+const ctaUrl = `https://app.liv4all.com/?utm_source=answers&utm_medium=content&utm_campaign=seo-geo&utm_content=${entry.id}`;
+
 const formatDate = (d: Date) =>
   d.toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' });
 
@@ -90,7 +96,7 @@ const graph: Record<string, unknown>[] = [
         Liv is OpenClaw as a service — the agent loop and security, fully managed, no ops.
         Start a 14-day free trial; no credit card.
       </p>
-      <a href="https://app.liv4all.com" class="cta-btn">start your trial →</a>
+      <a href={ctaUrl} class="cta-btn">start your trial →</a>
     </aside>
 
     <footer class="disclaimer">
@@ -102,6 +108,32 @@ const graph: Record<string, unknown>[] = [
       </p>
     </footer>
   </article>
+
+  <!--
+    Attribute every trial link on this page (the CTA plus any in-body links the
+    article adds) to this exact answer, so app.liv4all.com's analytics can tell
+    which page drove the trial. Scoped to the article so nav/footer links are
+    untouched. The CTA is already UTM-tagged server-side; this only fills in
+    links missing utm_content, and degrades gracefully without JS.
+  -->
+  <script is:inline define:vars={{ slug: entry.id }}>
+    document
+      .querySelectorAll('article a[href^="https://app.liv4all.com"]')
+      .forEach((a) => {
+        try {
+          const u = new URL(a.href);
+          if (!u.searchParams.has('utm_content')) {
+            u.searchParams.set('utm_source', 'answers');
+            u.searchParams.set('utm_medium', 'content');
+            u.searchParams.set('utm_campaign', 'seo-geo');
+            u.searchParams.set('utm_content', slug);
+            a.href = u.toString();
+          }
+        } catch {
+          /* leave malformed hrefs alone */
+        }
+      });
+  </script>
 </BaseLayout>
 
 <style>

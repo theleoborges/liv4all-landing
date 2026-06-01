@@ -5,6 +5,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import FadeInScript from '../components/FadeInScript.astro';
 import ChatWidget from '../components/ChatWidget.astro';
+import Analytics from '../components/Analytics.astro';
 
 interface Props {
   title: string;
@@ -32,5 +33,6 @@ const { variant = 'default', customFadeIn = false, ...headProps } = Astro.props;
     <Footer variant={variant} />
     {!customFadeIn && <FadeInScript />}
     <ChatWidget />
+    <Analytics />
   </body>
 </html>

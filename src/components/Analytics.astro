@@ -1,0 +1,15 @@
+---
+// Cloudflare Web Analytics — cookieless, no consent banner needed.
+// The beacon token is public (it ships in the page HTML), so it lives here.
+// Gated on production builds so `npm run dev` never sends localhost traffic
+// to Cloudflare. To rotate: replace the token from Cloudflare dashboard →
+// Analytics & Logs → Web Analytics → liv4all.com.
+const CF_BEACON_TOKEN = '15388ccea8df4680b240ac01c1cd32fd';
+---
+{import.meta.env.PROD && (
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon={`{"token": "${CF_BEACON_TOKEN}"}`}
+  />
+)}
