@@ -1,0 +1,46 @@
+---
+title: The R$60,000 quote she didn't pay
+description: A boutique Rio finance firm wanted a client-management hub. An agency quoted R$60k. The founder built it herself with an AI agent in two weeks — and owns it.
+pubDate: 2026-06-02
+tags: ["case study", "small business", "ai agents"]
+draft: false
+featured: false
+---
+
+A boutique finance firm in Urca, on the quiet edge of Rio de Janeiro, needed a client-management hub. Nothing exotic: a dashboard to see active clients at a glance, manage tasks, handle the recurring ones that eat a Tuesday, and back the whole thing up so a dead laptop doesn't become a crisis. The kind of internal tool that every services business reinvents and nobody enjoys paying for.
+
+The firm is [Foster Finance](https://foster.services), which sells outsourced financial management and intelligence to SMEs: CFO-as-a-service, plus legal and consulting. They sit on the other side of exactly this problem for their clients, helping small companies make sober decisions about where the money goes. So when the founder went looking for her own internal system and an agency came back with a quote, she was well placed to read it.
+
+The quote was R$60,000. Roughly US$10,000 for a CRUD app with a dashboard and some scheduled jobs.
+
+She is, by her own description, a non-technical tinkerer. Not a developer, not pretending to be one, but the sort of person who likes to understand how the machine works rather than hand it off and hope. R$60,000 to outsource something she suspected was tractable felt less like a price and more like a tax on not knowing how. So she didn't pay it. She built the hub herself, with Liv, in about two weeks.
+
+## What "built it herself" actually means
+
+The honest version matters here, because the dishonest version is everywhere. She did not type one sentence and walk away while an autonomous genie shipped production software. That story sells well and ages badly.
+
+What happened is closer to pairing with a very patient, very fast colleague who already knows the APIs. Liv walked her through the setup decisions, then did the configuration work itself: writing the automation scripts, calling the services' APIs, wiring the pieces together. When it hit a step an agent genuinely can't do alone — granting a permission, approving access to an account, the occasional manual click that lives behind a login — it stopped and asked. She supplied the human-in-the-loop bits. Liv did the parts that, for a non-technical owner, are the actual wall: the scripting, the integration plumbing, the bits where one wrong flag costs you an afternoon.
+
+The stack is unglamorous and that is the point. [Nextcloud](https://nextcloud.com) for the files and the hub itself, [GitHub](https://github.com) for the code and version history, AWS underneath. On top of that: a dashboard with smart alerts surfacing active clients and outstanding tasks, quick call-to-action buttons for the things she does daily, client and task management, recurring tasks that schedule themselves, and automated backups so the whole arrangement survives a bad day.
+
+{/* optional pull-quote from the Foster founder goes here */}
+
+Two weeks, no R$60,000, and a system she can open the hood on. If something breaks, she isn't filing a support ticket with the agency and waiting on a retainer. She asks Liv, or she looks herself.
+
+## Where the build-versus-hire line moved
+
+For most of the last two decades, the calculus for a small-business owner who needed software was bleak. Building meant either learning to code, which is a career, or hiring someone, which is a budget. The R$60k quote isn't a rip-off; it's roughly what bespoke internal tooling costs when a shop has to scope it, build it, and carry it. The agency was pricing real work.
+
+The thing that changed isn't that the work disappeared. It's that a managed agent can now do a large slice of it under supervision, which drags the break-even point for "just hire it out" a long way in the owner's favour. The question stops being *can I afford a developer* and becomes *which parts genuinely need one*. For a client-management hub built on standard services, the answer turned out to be: fewer than you'd think. This is the same shift we keep seeing across [small businesses reaching for an AI agent](/answers/ai-agent-for-small-business) rather than a contractor, and it reframes the older [agent-versus-hiring-a-developer](/answers/ai-agent-vs-hiring-a-developer) decision that used to be settled by your bank balance.
+
+There's a second-order effect that's easy to miss from the price tag. The agency build would have left her with a system and a dependency. Every change, every integration, every awkward edge case routes back through someone else's calendar and someone else's invoice. Owning the build means the marginal cost of the next change is close to zero, which is precisely the position a services firm wants to be in when its own processes keep evolving. Ownership compounds; outsourcing recurs.
+
+None of this requires being technical in the way the industry has long insisted. It requires being curious enough to stay in the loop and willing to grant permissions deliberately rather than blindly. That's a real bar, and not everyone clears it, but it's a different bar from "learn to code or pay R$60k." A [non-technical person can build with an agent](/answers/can-a-non-technical-person-build-with-an-ai-agent) precisely because the agent handles the syntax while the human keeps the judgement.
+
+## The unglamorous lesson
+
+The interesting part of this story isn't the savings, satisfying as they are. It's that a finance professional who advises other companies on where to spend money looked at a R$60,000 line item, recognised it as optional, and acted on that recognition. She treated software the way she'd tell a client to treat any large expense: understand what you're actually buying before you sign.
+
+For owners staring at their own version of that quote, the practical move is small. Pick the boring internal tool you've been avoiding, the one you'd manage with an agent if you knew how, and try [managing it with an agent](/answers/how-to-manage-clients-with-an-ai-agent) before you brief a vendor. You might still hire out the hard parts. But you'll know which parts those are, and you'll own everything else.
+
+If you'd like to find out where your own build-versus-hire line sits, you can [start a trial](https://app.liv4all.com).

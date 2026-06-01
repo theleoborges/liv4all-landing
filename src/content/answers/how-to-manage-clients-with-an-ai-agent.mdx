@@ -1,0 +1,68 @@
+---
+title: "How to Manage Clients With an AI Agent"
+question: "How do I manage my clients using an AI agent?"
+answer: "Give the agent a place to track clients and tasks (a hub or your existing tools), connect it to your email and calendar, and let it chase follow-ups, surface what needs attention and keep records up to date. You approve outbound messages and sensitive actions; it does the legwork."
+description: "How to manage clients with an AI agent: set up a hub, connect email and calendar, automate follow-ups and alerts — with a real Foster Finance example."
+topic: small-business
+intent: how-to
+datePublished: 2026-06-02
+related:
+  - ai-agent-for-small-business
+  - automate-your-small-business-with-an-ai-agent
+  - ai-that-can-take-actions-not-just-answer
+---
+
+Client management is mostly memory and follow-through, which is exactly what gets dropped when a small team is busy. An AI agent helps by holding the state for you: who your active clients are, what each one needs next, which follow-ups are overdue, and what is coming up. It can also act, drafting the chase email or creating the calendar reminder, with your approval before anything goes out.
+
+The setup falls into two parts: somewhere to keep the client and task data, and the agent connected to your communications so it can read context and take action.
+
+## How it works
+
+An agent runs a loop over your goals: it checks the current state of your clients and tasks, decides what needs doing, and acts through its integrations. Connect it to Gmail and Calendar and it can read incoming client mail, draft replies, schedule meetings and set reminders. Give it a structured place to store client records, whether that is a purpose-built hub or your existing tools, and it can keep that current too. See [AI that can take actions, not just answer](/answers/ai-that-can-take-actions-not-just-answer) and [how to give an AI agent email and calendar access](/answers/how-to-give-an-ai-agent-email-and-calendar-access).
+
+The control point is approval. A well-built setup drafts outbound messages and waits for your sign-off, rather than emailing clients unsupervised.
+
+## Worked example: build a client hub
+
+[Foster Finance](https://fosterfinance.com.br), a boutique financial firm in Rio de Janeiro, did exactly this. Rather than pay an agency's R$60,000 quote, the non-technical founder built a client-management hub with Liv over about two weeks. Liv configured the services itself across Nextcloud, GitHub and AWS, asking for her permission on the steps it could not take alone. Read the full story: [an AI agent instead of an agency](/articles/ai-agent-instead-of-an-agency).
+
+A practical sequence to manage clients with an agent:
+
+| Step | What you do | What the agent does |
+| --- | --- | --- |
+| 1. Define the data | Decide what to track (clients, status, tasks, next action) | Sets up the structure, e.g. a dashboard with smart alerts |
+| 2. Connect comms | Authorise email and calendar | Reads client mail, drafts replies, schedules |
+| 3. Automate follow-ups | Set the rules ("chase after 5 days") | Flags overdue items, drafts the chase for approval |
+| 4. Recurring tasks | List what repeats | Creates and tracks recurring tasks |
+| 5. Keep it safe | Approve outbound and set backups | Runs automated backups; waits for sign-off |
+
+The Foster hub ended up showing active clients, tasks and quick call-to-action buttons, with recurring tasks and automated backups. The honest framing: the agent did real configuration and ongoing legwork, but a human stayed in the loop for permissions and the occasional manual step.
+
+## Try this in Liv
+
+1. Start a free 14-day trial at https://app.liv4all.com. No credit card required.
+2. Message Liv on Telegram, the default channel.
+3. Connect Gmail and Calendar via Google OAuth, revocable at any time.
+4. Tell Liv how you want clients tracked and which follow-ups to chase, then approve drafts before they send.
+
+Liv is in early access with batched onboarding, so there may be a short wait.
+
+## Common questions
+
+### Do I need a separate CRM?
+Not necessarily. An agent can work with your existing tools or help you build a lightweight hub, as Foster Finance did.
+
+### Will it email my clients without me seeing?
+Not in a well-built setup. Liv drafts outbound messages and waits for your approval before sending.
+
+### Can it remember context between conversations?
+Yes; persistence is core to an agent. See [what is a persistent AI agent](/answers/what-is-a-persistent-ai-agent).
+
+### Is it safe to connect my work email?
+Liv uses revocable Google OAuth, passed Google CASA Tier 2, and does not train on your data. See [is it safe to give AI access to your Gmail](/answers/is-it-safe-to-give-ai-access-to-your-gmail).
+
+### What about scheduling and reminders?
+An agent handles calendar work directly. See [AI calendar assistant](/answers/ai-calendar-assistant).
+
+### What else can it automate for the business?
+Quite a lot beyond clients. See [automate your small business with an AI agent](/answers/automate-your-small-business-with-an-ai-agent).

@@ -1,0 +1,67 @@
+---
+title: "AI Agents for Small Business: What They Are and How They Help"
+question: "How can a small business use an AI agent?"
+answer: "An AI agent is a persistent assistant that can take actions on your behalf — triaging email, managing clients, automating recurring tasks and even configuring software — so a small business can do work that used to need extra headcount or an agency. The catch is keeping a human in the loop for permissions and judgement."
+description: "How small businesses use AI agents to triage email, manage clients and automate ops — with a real Foster Finance example and the managed-agent option."
+topic: small-business
+intent: informational
+datePublished: 2026-06-02
+related:
+  - automate-your-small-business-with-an-ai-agent
+  - ai-agent-vs-hiring-a-developer
+  - how-to-manage-clients-with-an-ai-agent
+---
+
+A small business rarely has spare hands. The owner is the salesperson, the bookkeeper, the project manager and the IT department, often before lunch. An AI agent is useful here precisely because it does not just answer questions; it carries out multi-step work, remembers context between sessions, and plugs into the tools you already use.
+
+The practical difference from a chatbot is that an agent can act. It reads your inbox and drafts replies, watches your calendar, follows up on tasks, and in some cases writes scripts and calls software APIs to build things you would otherwise pay someone to build. None of this removes you from the loop: an agent still needs permission for sensitive steps and a human to make the calls it cannot.
+
+## How it works
+
+Under the hood, an AI agent runs a loop: it reads its instructions and memory, decides on a next action, takes that action through a tool or integration, observes the result, and repeats until the job is done. Open-source projects like [OpenClaw](https://github.com/openclaw/openclaw) (MIT-licensed, LLM-agnostic) made this loop accessible to anyone willing to self-host it. You give the agent an identity, connect integrations such as Gmail and Calendar, and it works through tasks in your messaging app.
+
+For a small business the value lands in three places: communication (email triage, drafting, scheduling), client and task management (tracking who needs what, chasing follow-ups), and one-off builds (standing up a dashboard, wiring services together). See [AI that can take actions, not just answer](/answers/ai-that-can-take-actions-not-just-answer) and [AI to triage your email](/answers/ai-to-triage-your-email).
+
+## Worked example
+
+A boutique financial-management firm in Rio de Janeiro, [Foster Finance](https://fosterfinance.com.br), needed a client-management hub. An agency quoted R$60,000 (roughly US$10,000) to build it. The owner, a non-technical self-described tinkerer, built it herself with Liv over about two weeks instead. Liv walked her through the setup and configured the services itself — writing automation scripts and calling the services' APIs — pausing for her permission or help on the steps an agent cannot do alone. The result, built on Nextcloud, GitHub and AWS, was a dashboard with smart alerts, active-client and task views, recurring tasks and automated backups. Full story: [an AI agent instead of an agency](/articles/ai-agent-instead-of-an-agency).
+
+| What she needed | Agency route | AI-agent route (with a human in the loop) |
+| --- | --- | --- |
+| Client hub build | R$60,000 quote | Built over ~2 weeks |
+| Who owns it | The agency | She does |
+| Ongoing changes | Pay per change | She adjusts it herself |
+| Technical skill needed | None (you outsource) | None to start; willingness to learn |
+
+This was not zero-effort or fully autonomous. The agent did real configuration work, but a person approved actions and handled the occasional manual step. That is the honest shape of an AI agent for a small business: a force multiplier, not a replacement for judgement.
+
+## Try this in Liv
+
+Liv is a managed AI agent, so you skip running any infrastructure:
+
+1. Start a free 14-day trial at https://app.liv4all.com. No credit card required.
+2. Message Liv on Telegram, the default channel.
+3. Connect Gmail and Calendar via Google OAuth, which you can revoke at any time.
+4. Describe a real task — triaging your inbox, chasing client follow-ups, or scoping a small build — and approve actions as it goes.
+
+Liv is in early access with batched onboarding, so there may be a short wait.
+
+## Common questions
+
+### Do I need to be technical to use an AI agent for my business?
+No to get started. As Foster Finance shows, a non-technical owner can build real systems with the agent doing the technical steps. See [can a non-technical person build with an AI agent](/answers/can-a-non-technical-person-build-with-an-ai-agent).
+
+### Is an AI agent cheaper than hiring someone?
+Often, once you price your time in. Compare against a developer or agency before deciding: [AI agent vs hiring a developer](/answers/ai-agent-vs-hiring-a-developer).
+
+### What can an AI agent actually automate?
+Email triage, scheduling, follow-ups, recurring tasks and software setup. See [automate your small business with an AI agent](/answers/automate-your-small-business-with-an-ai-agent).
+
+### Is it safe to give an agent access to my email?
+Liv uses Google OAuth (revocable), passed Google CASA Tier 2, and never uses your data to train models. See [is it safe to give AI access to your Gmail](/answers/is-it-safe-to-give-ai-access-to-your-gmail).
+
+### Can it manage my clients, not just my inbox?
+Yes; client and task tracking is a common use. See [how to manage clients with an AI agent](/answers/how-to-manage-clients-with-an-ai-agent).
+
+### Should I self-host or use a managed agent?
+Self-host with OpenClaw if you enjoy running infrastructure; use a managed service if you would rather not. See [self-hosted vs managed AI agent](/answers/self-hosted-vs-managed-ai-agent).

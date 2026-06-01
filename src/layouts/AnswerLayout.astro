@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import JsonLd from '../components/JsonLd.astro';
+import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -10,6 +11,13 @@ interface Props {
 const { entry } = Astro.props;
 const { title, question, answer, description, datePublished, updated } = entry.data;
 const url = `https://liv4all.com/answers/${entry.id}`;
+
+// Resolve `related` slugs to real entries for the "Related questions" block.
+// Missing or draft (in prod) targets are dropped, so links never 404.
+const allAnswers = await getCollection('answers');
+const related = entry.data.related
+  .map((slug) => allAnswers.find((a) => a.id === slug))
+  .filter((a) => a && (!a.data.draft || !import.meta.env.PROD)) as CollectionEntry<'answers'>[];
 
 // UTM-tag the CTA so a trial started from this page is attributable downstream
 // (in app.liv4all.com's own analytics) to the exact answer that drove it.
@@ -89,6 +97,17 @@ const graph: Record<string, unknown>[] = [
     <div class="article-prose">
       <slot />
     </div>
+
+    {related.length > 0 && (
+      <section class="related" aria-label="Related questions">
+        <h2>Related questions</h2>
+        <ul>
+          {related.map((r) => (
+            <li><a href={`/answers/${r.id}`}>{r.data.title}</a></li>
+          ))}
+        </ul>
+      </section>
+    )}
 
     <aside class="cta-box">
       <p class="cta-kicker">Try this in Liv</p>
@@ -191,6 +210,40 @@ const graph: Record<string, unknown>[] = [
   }
 
   .answer-meta .dot { opacity: 0.5; }
+
+  .related {
+    margin: 48px 0 8px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .related h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+  }
+
+  .related ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .related li {
+    margin-bottom: 6px;
+  }
+
+  .related a {
+    color: var(--accent);
+    font-size: 0.95rem;
+    text-decoration: none;
+  }
+
+  .related a:hover { text-decoration: underline; }
 
   .cta-box {
     margin: 56px 0 32px;

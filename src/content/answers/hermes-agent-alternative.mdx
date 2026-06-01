@@ -1,0 +1,65 @@
+---
+title: "Hermes Agent alternatives: self-hosted and managed options"
+question: "What are the best alternatives to Hermes Agent?"
+answer: "The closest open-source alternative is OpenClaw, another self-hosted personal agent with a bigger integration ecosystem. If you'd rather not self-host at all, a managed agent like Liv gives you a persistent agent with no ops."
+description: "Hermes Agent alternatives compared: OpenClaw for more integrations, or a managed agent like Liv if you'd rather not run a VPS at all."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-02
+related:
+  - what-is-hermes-agent
+  - run-hermes-agent-without-a-vps
+  - self-hosted-vs-managed-ai-agent
+---
+
+[Hermes Agent](/answers/what-is-hermes-agent) is an excellent open-source choice if you want a lean, self-improving agent you run yourself. People look for alternatives for two reasons: they want a wider integration ecosystem, or they don't want to run a server at all. Each reason points to a different option.
+
+Be clear about what you actually want before you switch. The alternatives split cleanly along that line.
+
+## How it works
+
+If you want to stay self-hosted and open-source but get broader reach, [OpenClaw](https://github.com/openclaw/openclaw) is the natural comparison: 15,000+ stars, 200+ contributors, roughly 24 supported platforms, and a large skill library. It self-hosts via Docker, Node or a Railway one-click template. The full breakdown is in [Hermes Agent vs OpenClaw](/answers/hermes-agent-vs-openclaw).
+
+If the real friction is the server, then the alternative isn't another self-hosted agent at all, it's a managed one. A [managed personal AI agent](/answers/self-hosted-vs-managed-ai-agent) gives you the same outcome, a persistent agent with memory that lives in your chat apps and acts on your email and calendar, while someone else runs the infrastructure, applies updates and handles security.
+
+## Worked example
+
+| Want | Best alternative | Why |
+| --- | --- | --- |
+| More integrations, still self-host | OpenClaw | ~24 platforms, large skill ecosystem |
+| Lean, self-improving, fully local | Stay on Hermes Agent | Learning loop, $5 VPS footprint |
+| No server to run | Managed agent (e.g. Liv) | Persistent agent, zero ops |
+| One-off cloud tasks | Manus | Sandbox, no integrations, credit-priced |
+
+Self-hosting Hermes Agent or OpenClaw still costs you roughly 1–3 hours a month in upkeep: OAuth token expiry, updates, debugging. A managed agent removes that. See [self-host AI agent maintenance](/answers/self-host-ai-agent-maintenance) for what that time goes to.
+
+## Try this in Liv
+
+Liv is the managed alternative for people who want a persistent personal agent without running or maintaining anything themselves.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth, revocable at any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### What's the closest open-source alternative to Hermes Agent?
+OpenClaw, another self-hosted, MIT-licensed personal agent. It trades Hermes Agent's learning loop for a much larger integration ecosystem.
+
+### Is there a Hermes Agent option without a server?
+Yes, a managed agent. See [run Hermes Agent without a VPS](/answers/run-hermes-agent-without-a-vps).
+
+### How much does a managed agent cost versus self-hosting?
+Self-hosting infra plus LLM usage is typically under $100/month before your own time. Managed pricing is fixed; see [how much does a managed AI agent cost](/answers/how-much-does-a-managed-ai-agent-cost).
+
+### Does a managed agent keep persistent memory like Hermes Agent?
+Yes. A [persistent AI agent](/answers/what-is-a-persistent-ai-agent) keeps memory across sessions; Liv stores secrets in encrypted per-user vaults.
+
+### Is Manus a good alternative?
+Only for one-off, self-contained cloud tasks. It has no integrations and is credit-priced, so it isn't a like-for-like swap for a persistent personal agent.
+
+### Will I lose control by going managed?
+You keep account-level control: Gmail and Calendar access is via revocable Google OAuth, and outbound drafts need your approval before sending.

@@ -1,0 +1,68 @@
+---
+title: "Hermes Agent vs OpenClaw: two self-hosted agent philosophies"
+question: "What's the difference between Hermes Agent and OpenClaw?"
+answer: "Both are free, self-hosted, open-source agents. Hermes Agent optimises for a small server footprint, scripting and a self-improving learning loop. OpenClaw optimises for multi-channel reach and a large skill ecosystem."
+description: "Hermes Agent vs OpenClaw compared: a privacy-first learning loop versus a multi-channel skill ecosystem. Two self-hosted philosophies, neither strictly better."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-02
+related:
+  - what-is-hermes-agent
+  - openclaw-vs-manus
+  - best-personal-ai-agent
+---
+
+Hermes Agent and OpenClaw aim at the same goal, a personal AI agent you own and run, but they get there with different priorities. Both are free, MIT-licensed and built for technical users who are comfortable on a server. The choice is about philosophy, not quality.
+
+Neither is "better" in the abstract. They suit different temperaments.
+
+## How it works
+
+[Hermes Agent](https://github.com/nousresearch/hermes-agent) from Nous Research is a Python agent with over 64,000 GitHub stars since its February 2026 launch. It is privacy-first and runs fully on your machine, optimising for a small server-side footprint, scripting, and a learning loop that creates and refines its own skills from experience while building a model of you. It runs on a $5 VPS, a GPU cluster, or serverless across six backends, and reaches you via a terminal UI or a gateway into Telegram, Discord, Slack, WhatsApp, Signal or Email.
+
+[OpenClaw](https://github.com/openclaw/openclaw) has 15,000+ stars and 200+ contributors, and optimises for multi-channel personal-assistant reach and a large skill and integration ecosystem, around 24 platforms. You self-host via Docker or Node in about 15 minutes, or a Railway one-click template in about 5, and configure behaviour in plain-text files like [`SOUL.md`](/answers/openclaw-soul-md-explained). The trade-off: it pushes frequent updates, which can occasionally break a running instance.
+
+## Worked example
+
+| Dimension | Hermes Agent | OpenClaw |
+| --- | --- | --- |
+| Licence | MIT, open-source | MIT, open-source |
+| Language | Python | JavaScript/Node |
+| Optimises for | Footprint, scripting, learning loop | Channel reach, skill ecosystem |
+| Channels | 6 (Telegram, Discord, Slack, WhatsApp, Signal, Email) | ~24 platforms |
+| Self-improvement | Builds/refines its own skills | Large ready-made skill library |
+| Update style | Privacy-first, runs on your box | Frequent updates, can break instances |
+| Ops | You maintain it | You maintain it |
+
+Pick Hermes Agent if you value a lean, private, self-improving agent you script yourself. Pick OpenClaw if you want the widest channel and skill coverage out of the box.
+
+## Try this in Liv
+
+Both options assume you want to run and maintain a server. If you'd rather have the same outcome, a persistent personal agent with memory in your chat apps that acts on your email and calendar, without any of the ops, Liv is the managed route.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth, revocable at any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### Are both free?
+Yes. Hermes Agent and OpenClaw are both MIT-licensed and free to run; you pay for hosting and LLM usage.
+
+### Which has more integrations?
+OpenClaw, with roughly 24 platforms and a larger skill ecosystem. Hermes Agent supports six channels and leans on its learning loop instead.
+
+### Which is more stable?
+Hermes Agent runs privacy-first on your own machine; OpenClaw's frequent updates can sometimes disrupt a running instance. Both are maintainable with care.
+
+### Can I use my own LLM with either?
+Yes. Both are model-agnostic. See [how an AI agent loop works](/answers/how-an-ai-agent-loop-works) for the mechanism they share.
+
+### Do I have to self-host either one?
+Yes, both are self-hosted by design. For a no-self-hosting option see [self-hosted vs managed AI agent](/answers/self-hosted-vs-managed-ai-agent).
+
+### How does OpenClaw compare to a cloud agent like Manus?
+That's a different axis, open self-host versus closed cloud sandbox. See [OpenClaw vs Manus](/answers/openclaw-vs-manus).

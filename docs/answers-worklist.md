@@ -74,3 +74,31 @@ Liv is an independent managed service built on OpenClaw — **not affiliated wit
 | 50 | todo | how-to-get-started-with-a-personal-ai-agent | getting-started | how-to | direct | med | 87 | how-to-build-a-personal-ai-agent, build-vs-buy-ai-agent, what-is-an-ai-chief-of-staff |
 
 Note row 6's related uses a stray `|` in source; canonical related for #6 = [how-much-does-openclaw-cost-to-run, openclaw-hosting, is-openclaw-free→n/a]; writers use the master slug list and the `related` column values.
+
+## Batch 2 (added 2026-06-02) — Hermes + small business
+
+Facts + positioning + the full 60-slug master list live in `docs/answers-writer-brief-batch2.md`.
+
+**Hermes / personal-agent category** (topic `comparisons`). Captures the Hermes Agent search space (Nous Research, OpenClaw's main rival). Liv positioned framework-neutrally as the managed/no-self-host option — does NOT claim OpenClaw lineage on these pages.
+
+| slug | intent |
+|---|---|
+| what-is-hermes-agent | definitional |
+| hermes-agent-vs-openclaw | comparison |
+| hermes-agent-alternative | comparison |
+| run-hermes-agent-without-a-vps | informational |
+| best-personal-ai-agent | comparison |
+
+**Small business** (new topic `small-business`). Grounded in the Foster Finance case (Urca, Rio; non-technical founder built a Nextcloud+GitHub+AWS client hub with Liv over ~2 weeks, avoiding an R$60k agency quote).
+
+| slug | intent |
+|---|---|
+| ai-agent-for-small-business | informational |
+| can-a-non-technical-person-build-with-an-ai-agent | informational |
+| ai-agent-vs-hiring-a-developer | comparison |
+| how-to-manage-clients-with-an-ai-agent | how-to |
+| automate-your-small-business-with-an-ai-agent | how-to |
+
+**Case-study article** (editorial collection, not an answer page): `src/content/articles/ai-agent-instead-of-an-agency.mdx` — the Foster Finance story. The 5 small-business answer pages link to it; it links back to several of them.
+
+Infra changes this batch: added `small-business` to `ANSWER_TOPICS` (`src/content.config.ts`) + the hub label map (`answers/index.astro`); `AnswerLayout` now renders a "Related questions" block from the `related` frontmatter (benefits all answer pages).

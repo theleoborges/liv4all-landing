@@ -29,6 +29,7 @@ const ANSWER_TOPICS = [
   'messaging',
   'security',
   'getting-started',
+  'small-business',
 ] as const;
 
 const ANSWER_INTENTS = ['comparison', 'informational', 'definitional', 'how-to'] as const;

@@ -1,0 +1,69 @@
+---
+title: "What is Hermes Agent? Nous Research's self-improving personal agent"
+question: "What is Hermes Agent?"
+answer: "Hermes Agent is a free, MIT-licensed personal AI agent from Nous Research, written in Python. It self-hosts on a small VPS and runs a learning loop that builds its own skills and a model of you over time."
+description: "Hermes Agent is Nous Research's open-source, self-hosted personal AI agent with persistent memory and a self-improving learning loop. What it is, who it's for."
+topic: comparisons
+intent: definitional
+datePublished: 2026-06-02
+related:
+  - hermes-agent-vs-openclaw
+  - hermes-agent-alternative
+  - best-personal-ai-agent
+---
+
+Hermes Agent is an open-source personal agent from Nous Research, released in February 2026 and written in Python. It has gathered over 64,000 GitHub stars. You run it yourself, give it access to your messaging channels, and it learns from what it does.
+
+One naming note up front: this is the Hermes *Agent* project, not the Hermes family of language models that Nous also publishes. The two are separate things that share a name.
+
+## How it works
+
+[Hermes Agent](https://github.com/nousresearch/hermes-agent) is MIT-licensed and self-hosted, so you host and maintain it yourself. It keeps persistent memory across sessions and runs a "learning loop": rather than only executing fixed skills, it creates and refines its own skills from experience and builds a model of you the more you use it. That self-improving design is its headline feature.
+
+It is model-agnostic. You can point it at Nous Portal, OpenRouter, OpenAI, or your own endpoint. It runs in modest places, a $5 VPS, a GPU cluster, or serverless, with six terminal backends to choose from: local, Docker, SSH, Daytona, Singularity and Modal. There are two ways to reach it: a terminal UI for hands-on use, or a gateway you talk to from Telegram, Discord, Slack, WhatsApp, Signal or Email.
+
+Because it is privacy-first and runs fully on your own machine, your data and memory stay where you put them. The trade-off is that it is built for technical users: you own the deploy, the upgrades and the debugging.
+
+## Worked example
+
+| Dimension | Hermes Agent | Liv (managed) |
+| --- | --- | --- |
+| Licence | MIT, open-source | Proprietary service |
+| Where it runs | Your VPS / serverless | Managed infrastructure |
+| Memory | Persistent, on your box | Persistent, encrypted vaults |
+| Setup | Self-host + config | Trial sign-up |
+| Channels | Telegram, Discord, Slack, WhatsApp, Signal, Email | Telegram (default), WhatsApp (invite-only) |
+| Ops | You maintain it | None for you |
+
+If the learning loop and full local control are what you want, Hermes Agent is a strong, free choice. If you want a persistent personal agent without running a server, see [run Hermes Agent without a VPS](/answers/run-hermes-agent-without-a-vps).
+
+## Try this in Liv
+
+Liv is a managed personal AI agent for people who want the same outcome, a persistent agent with memory that lives in their chat apps and acts on their email and calendar, without self-hosting anything.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth, revocable at any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### Is Hermes Agent the same as the Hermes language model?
+No. Hermes Agent is a Python agent project; the Hermes models are separate LLMs from Nous Research. Always say "Hermes Agent" to keep them apart.
+
+### Is Hermes Agent free?
+Yes, it is MIT-licensed and free to run. You pay only for hosting and any LLM API usage.
+
+### What hardware does it need?
+Very little. It runs on a $5 VPS, scales up to a GPU cluster, and also runs serverless via backends like Modal and Daytona.
+
+### How is it different from OpenClaw?
+Both are self-hosted and open-source, but they optimise for different things. See [Hermes Agent vs OpenClaw](/answers/hermes-agent-vs-openclaw).
+
+### Can I use my own model?
+Yes. It is model-agnostic and works with Nous Portal, OpenRouter, OpenAI, or a custom endpoint.
+
+### What if I don't want to self-host?
+Then a [managed personal AI agent](/answers/self-hosted-vs-managed-ai-agent) like Liv gives you the persistent-agent outcome without the ops.
