@@ -1,0 +1,71 @@
+---
+title: "How to Give Your AI Agent Memory"
+question: "How do I give my AI agent memory?"
+answer: "You give an agent memory by writing what it learns to durable storage it reads on every loop, rather than relying on a single conversation. In OpenClaw you use SOUL.md and memory files; with Liv, persistent memory is managed for you in encrypted vaults."
+description: "How to give your AI agent memory: OpenClaw's SOUL.md and memory files versus Liv's managed persistent memory, with a practical setup comparison."
+topic: ai-agents
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - openclaw-soul-md-explained
+  - what-is-a-persistent-ai-agent
+  - how-to-give-an-ai-agent-email-and-calendar-access
+---
+
+Without memory, an agent meets you fresh every morning. You re-explain your job, your preferences, the project you mentioned yesterday. Memory fixes that: the agent writes down what matters and reads it back on every pass, so it accumulates context instead of forgetting it.
+
+There are two layers worth separating. Identity, the stable facts about who the agent is and who you are. And working memory, the evolving record of what is happening in your life and work. A good setup persists both.
+
+## How it works
+
+Memory works because the agent reads its stored context at the start of each [loop](/answers/how-an-ai-agent-loop-works), then writes new facts back as it learns them. The storage survives restarts, so the knowledge compounds over time. That continuity is exactly what makes an agent persistent; see [what a persistent AI agent is](/answers/what-is-a-persistent-ai-agent).
+
+[OpenClaw](https://github.com/openclaw/openclaw), the open-source personal agent, makes the layers explicit as files. `SOUL.md` holds the agent's identity and personality, the stable core, and takes 20–45 minutes to write well; see [OpenClaw's SOUL.md explained](/answers/openclaw-soul-md-explained). `USER.md` captures who you are. `AGENTS.md` and dedicated memory files hold the evolving working memory. Because these are plain files on your server, you can read and edit them directly. You also own keeping them tidy and backed up, part of the self-host upkeep.
+
+Liv handles this layer for you. It stores what it learns in encrypted per-user vaults, the same vaults that hold connected secrets, and that memory is not used to train models. You do not write or maintain memory files; you just keep talking to it and it remembers. Memory also pairs with access: an agent that remembers your preferences and can see your [email and calendar](/answers/how-to-give-an-ai-agent-email-and-calendar-access) gets noticeably more useful.
+
+## Worked example
+
+Setting up agent memory two ways:
+
+| Aspect | Self-host (OpenClaw) | Managed (Liv) |
+| --- | --- | --- |
+| Identity memory | Write `SOUL.md` (20–45 min) | Configured as you chat |
+| User facts | Maintain `USER.md` | Learned and stored |
+| Working memory | Edit memory files | Automatic |
+| Storage | Files on your server | Encrypted per-user vault |
+| Upkeep | You back up and tidy | None |
+| Training use | Your LLM provider's terms | Not used for training |
+
+The self-host route gives you raw, editable control over every memory file. The managed route gives you persistence with nothing to maintain.
+
+## Try this in Liv
+
+Liv's memory is on from the start, so there is nothing to wire up:
+
+1. Start a free 14-day trial at https://app.liv4all.com. No credit card.
+2. Message Liv on Telegram, the default channel, and tell it about yourself and your work.
+3. Connect Gmail and Calendar via Google OAuth so memory has real context to draw on.
+4. Come back tomorrow; it remembers what you told it today.
+
+Liv stores memory in encrypted per-user vaults and is in early access with batched onboarding.
+
+## Common questions
+
+### Where does an AI agent store its memory?
+In durable storage it reads each loop: files on your server with OpenClaw, or encrypted per-user vaults with Liv.
+
+### What is the difference between SOUL.md and memory files?
+`SOUL.md` is stable identity and personality; memory files are the evolving record of facts and context. See [OpenClaw's SOUL.md explained](/answers/openclaw-soul-md-explained).
+
+### Will my agent remember me between sessions?
+Yes, if it has persistent memory. That is what distinguishes it from a stateless chatbot. See [what a persistent AI agent is](/answers/what-is-a-persistent-ai-agent).
+
+### Is my memory data private?
+With Liv, memory sits in encrypted per-user vaults and is not used to train models. Self-hosting depends on your provider.
+
+### Do I have to write memory files myself?
+Only on the self-host route. Liv manages memory for you.
+
+### Can I edit what my agent remembers?
+With OpenClaw, directly in the files. With Liv, by telling it to update or correct what it knows.

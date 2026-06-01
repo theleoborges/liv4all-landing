@@ -1,0 +1,67 @@
+---
+title: "ChatGPT vs an AI agent: answering versus acting"
+question: "What's the difference between ChatGPT and an AI agent?"
+answer: "ChatGPT answers questions and drafts text in a chat window. An AI agent runs continuously, holds memory, and takes actions in your real accounts, like sending email or booking a calendar slot."
+description: "ChatGPT vs an AI agent: one answers questions, the other takes actions across your accounts. Understand the difference and when each is the right tool."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - ai-agent-vs-chatbot
+  - ai-that-can-take-actions-not-just-answer
+  - what-is-an-autonomous-ai-agent
+---
+
+ChatGPT is a conversational assistant: you ask, it answers. It is excellent at drafting, summarising, explaining and reasoning. What it does not do, in its standard chat form, is reach into your inbox, watch your calendar, or follow up on a task tomorrow without you prompting it again.
+
+An AI agent is built for exactly that gap. It runs on a loop, keeps memory between conversations, and is wired into the tools where your work happens, so it can act rather than just advise.
+
+## How it works
+
+ChatGPT operates per-prompt. Each message is a request, and the assistant responds within the chat. OpenAI's ChatGPT Agent feature (which replaced Operator) extends this with some autonomous browsing, but the everyday product is fundamentally request-and-response inside a window.
+
+An [autonomous AI agent](/answers/what-is-an-autonomous-ai-agent) works differently. It reads incoming events (a new email, a scheduled check), decides what to do, calls tools, and stores the result for next time. [OpenClaw](https://github.com/openclaw/openclaw), the open-source agent framework, is a clear example: it runs a persistent [agent loop](/answers/how-an-ai-agent-loop-works), connects to Gmail and Calendar via OAuth, and chats through Telegram or WhatsApp. The distinction is action and persistence, not raw intelligence; both can use the same underlying models. See [agent vs chatbot](/answers/ai-agent-vs-chatbot) for more.
+
+## Worked example
+
+| Capability | ChatGPT (chat) | AI agent (e.g. Liv) |
+| --- | --- | --- |
+| Answer a question | Yes | Yes |
+| Draft an email | Yes | Yes, then sends on approval |
+| Read your real inbox | No | Yes, via OAuth |
+| Act overnight on a schedule | No | Yes |
+| Remember context across days | Limited | Persistent memory |
+| Book a restaurant or calendar slot | No | Yes |
+
+If you need a thinking and writing tool, ChatGPT is the right call. If you need something that triages email and acts on your behalf, you want an agent.
+
+## Try this in Liv
+
+Liv is an AI agent reached through Telegram. It triages email, manages your calendar, books things, and sends daily briefings, with outbound drafts held for your approval before sending.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth, revocable at any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### Can ChatGPT read my email?
+Not in standard chat. It has no standing access to your inbox. An agent with OAuth integration can, with your permission.
+
+### Is an AI agent just ChatGPT with extra steps?
+They can share the same model, but an agent adds a persistent loop, memory and real integrations. See [what an agent can do that a chatbot can't](/answers/ai-that-can-take-actions-not-just-answer).
+
+### Does ChatGPT Agent count as an agent?
+It adds limited autonomous browsing, but it is not wired into your personal accounts the way a dedicated assistant agent is.
+
+### Will the agent send email without asking?
+With Liv, outbound drafts need your approval before sending. You stay in control of what goes out.
+
+### Which uses a better model?
+Both can use top models; an agent like OpenClaw is LLM-agnostic. The difference is what it does with the model, not which one.
+
+### Is Liv affiliated with OpenAI?
+No. Liv is an independent managed service built on OpenClaw, not affiliated with or endorsed by OpenAI.

@@ -1,0 +1,70 @@
+---
+title: "What Is a Persistent AI Agent?"
+question: "What is a persistent AI agent?"
+answer: "A persistent AI agent is one that keeps running between conversations, remembering you and acting on a schedule, rather than resetting each time you open a chat. Persistence is what separates an agent from a chatbot."
+description: "A persistent AI agent runs continuously, remembers you across sessions and acts on a schedule. Here is how persistence works and why it matters."
+topic: ai-agents
+intent: definitional
+datePublished: 2026-06-01
+related:
+  - how-an-ai-agent-loop-works
+  - ai-agent-vs-chatbot
+  - what-is-an-autonomous-ai-agent
+---
+
+Most AI tools forget you the moment you close the tab. You explain your context, get an answer, and start from scratch tomorrow. A persistent agent does the opposite: it stays alive, carries memory forward, and can do things while you are asleep.
+
+Persistence is the quiet feature that changes everything. Without it you have a clever autocomplete. With it you have something closer to a colleague who remembers last week's decisions and chases the follow-up you forgot.
+
+## How it works
+
+Persistence has three parts. First, a running process. Instead of spinning up only when you type, the agent runs in a loop that ticks on a schedule, so it can act without being prompted; see [how an AI agent loop works](/answers/how-an-ai-agent-loop-works). Second, durable memory. The agent writes facts about you and your work to storage that survives restarts, so tomorrow it still knows your manager's name and your travel preferences. Third, a heartbeat, the scheduled cadence that wakes it to check your inbox, prep a meeting or send a briefing.
+
+[OpenClaw](https://github.com/openclaw/openclaw), the open-source personal agent, models this directly. Its `HEARTBEAT.md` defines the schedule, `SOUL.md` defines identity, and dedicated memory files persist what it learns. Because the process keeps running and the memory keeps growing, the agent becomes more useful over time rather than starting cold each session. You can build persistence into your own [memory setup](/answers/how-to-give-your-ai-agent-memory).
+
+A persistent agent is also distinct from an autonomous one, though the two often travel together. Persistence is about continuity over time; autonomy is about acting without step-by-step instructions. See [what an autonomous AI agent is](/answers/what-is-an-autonomous-ai-agent).
+
+## Worked example
+
+The same request, handled by a stateless tool versus a persistent agent:
+
+| Aspect | Stateless chatbot | Persistent agent |
+| --- | --- | --- |
+| Memory across sessions | None, resets each chat | Durable, grows over time |
+| Acts without prompting | No | Yes, on a heartbeat |
+| Overnight work | No | Yes |
+| Follow-ups | You track them | It tracks them |
+| Example | "Draft an email" | "Watch this thread and remind me if no reply by Friday" |
+
+The persistent version remembers the thread, knows it never got a reply, and surfaces it on Friday without being asked. That continuity is the whole point.
+
+## Try this in Liv
+
+Liv is a persistent agent with managed memory, so you do not have to build the storage layer yourself:
+
+1. Start a free 14-day trial at https://app.liv4all.com. No credit card.
+2. Message Liv on Telegram, the default channel, to begin a continuous conversation it remembers.
+3. Connect Gmail and Calendar via Google OAuth so it can act on a schedule, including overnight.
+4. Optionally link WhatsApp later (invite-only, dedicated eSIM).
+
+Liv stores what it learns in encrypted per-user vaults and is in early access with batched onboarding.
+
+## Common questions
+
+### What makes an agent "persistent"?
+A long-running process plus durable memory plus a schedule. Remove any one and you lose continuity.
+
+### Does a persistent agent run even when I am offline?
+Yes. The heartbeat lets it act on a schedule, so it can triage email or send a morning briefing without you present.
+
+### Where does the memory live?
+In the self-host route, in OpenClaw's memory files on your server. In Liv, in encrypted per-user vaults the company does not use to train models.
+
+### Is a persistent agent the same as an autonomous one?
+No. Persistence is continuity over time; autonomy is acting without explicit instructions. See [what an autonomous AI agent is](/answers/what-is-an-autonomous-ai-agent).
+
+### How is this different from a chatbot?
+Chatbots are stateless and reactive; persistent agents remember and act on their own. See [AI agent vs chatbot](/answers/ai-agent-vs-chatbot).
+
+### Can I build a persistent agent myself?
+Yes, with OpenClaw, though you own the hosting and upkeep. See [how to build a personal AI agent](/answers/how-to-build-a-personal-ai-agent).

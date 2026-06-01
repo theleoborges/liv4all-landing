@@ -1,0 +1,73 @@
+---
+title: "Self-hosted AI agent security risks"
+question: "What are the security risks of self-hosting an AI agent?"
+answer: "Self-hosting puts you in charge of secrets, OAuth tokens, patching, network exposure and approvals. The main risks are leaked credentials, unpatched dependencies, an over-permissioned agent, and missing compliance for restricted scopes. All are manageable, but they're now your job."
+description: "Self-hosting an AI agent means you own secrets, patching, OAuth, exposure and approvals. Here are the real risks and how to reduce them."
+topic: security
+intent: informational
+datePublished: 2026-06-01
+related:
+  - self-host-ai-agent-maintenance
+  - how-to-securely-store-api-keys-for-ai-agents
+  - self-hosted-vs-managed-ai-agent
+---
+
+Running your own AI agent is appealing for good reasons: full control, no vendor lock-in, and your data on your own infrastructure. The trade is that every security responsibility a managed provider would shoulder is now yours, and an agent that can read your email, spend money and act on your behalf is a high-value target if any of those responsibilities slip.
+
+None of this means self-hosting is unsafe. It means the safety is a function of your operational discipline rather than someone else's.
+
+## How it works
+
+The risk surface of a self-hosted agent clusters into a few areas.
+
+- **Credential and secret leakage.** The agent holds an LLM key, OAuth tokens and bot tokens. Stored badly (plaintext files, committed `.env`), any one of them is a breach. See [how to securely store API keys](/answers/how-to-securely-store-api-keys-for-ai-agents).
+- **Unpatched dependencies.** [OpenClaw](https://github.com/openclaw/openclaw) and its libraries update regularly. Skipping updates leaves known vulnerabilities open; tracking and applying them is part of [ongoing maintenance](/answers/self-host-ai-agent-maintenance).
+- **Network exposure.** A misconfigured server, an open port or a weak SSH setup turns your agent host into an entry point. Lock down the box like any production service.
+- **Over-permissioned agent.** An agent that can send mail and move money autonomously, with no approval step, will eventually do something you didn't intend. Keep a human in the loop on outbound actions.
+- **Missing compliance.** Restricted Gmail scopes require passing Google's security assessment. Self-hosting does not exempt you from that obligation; see [what CASA Tier 2 means](/answers/what-is-casa-tier-2-gmail).
+
+## Worked example
+
+How responsibility shifts between self-hosting and a managed service.
+
+| Risk area | Self-hosted OpenClaw | Liv (managed) |
+| --- | --- | --- |
+| Secrets storage | You build and run it | Encrypted per-user vaults |
+| Patching dependencies | ~1–3 hours/month, your job | Handled for you |
+| Server hardening | You own the box | Managed infrastructure |
+| OAuth + Gmail compliance | You arrange CASA | CASA Tier 2, verified by TAC Security |
+| Send approvals | You implement gating | Drafts need your approval |
+| Data training policy | You choose providers | Not used to train models |
+
+If you enjoy that work, the control is the reward. If you don't, a [managed alternative](/answers/self-hosted-vs-managed-ai-agent) removes most of these risks by absorbing the ops.
+
+## Try this in Liv
+
+Liv runs the same OpenClaw agent loop, but the security responsibilities above are handled for you: encrypted vaults, managed patching and hardening, [CASA Tier 2](/answers/what-is-casa-tier-2-gmail) (independently verified by TAC Security), revocable Google OAuth, no model training on your data, and approval required before any draft is sent.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth, revocable any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### Is self-hosting an AI agent inherently insecure?
+No. It is as secure as you make it. The risk is that all the controls become your responsibility, and gaps are easy to leave open.
+
+### What is the single biggest risk?
+Leaked credentials, usually from secrets stored in plaintext or committed to source. Fixing that one thing removes a large share of the danger.
+
+### Do I still need CASA if I self-host?
+If your agent uses restricted Gmail scopes, the assessment obligation applies regardless of who runs the server. [CASA Tier 2 explained](/answers/what-is-casa-tier-2-gmail).
+
+### How much ongoing work does secure self-hosting take?
+Plan for roughly 1–3 hours a month on updates, token expiry and debugging, on top of initial hardening. See [self-host maintenance](/answers/self-host-ai-agent-maintenance).
+
+### Should the agent be able to act without my approval?
+For anything irreversible (sending mail, spending money), no. Gate those actions behind explicit approval, as Liv does by default.
+
+### When is managed the better choice?
+When you want the agent's capabilities without owning the security work. Compare the trade-offs in [self-hosted vs managed](/answers/self-hosted-vs-managed-ai-agent).

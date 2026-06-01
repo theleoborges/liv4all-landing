@@ -1,0 +1,70 @@
+---
+title: "OpenClaw Setup Guide"
+question: "How do I set up OpenClaw from scratch?"
+answer: "Set up OpenClaw by provisioning a server, installing via Docker or Node (~15 min) or the Railway one-click template (~5 min), adding an LLM API key, connecting a chat channel, and writing your SOUL.md."
+description: "A step-by-step OpenClaw setup guide: server, install, LLM key, channel, and SOUL.md. Plus the managed alternative if you'd rather skip ops."
+topic: openclaw
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - how-to-deploy-openclaw
+  - openclaw-soul-md-explained
+  - openclaw-system-requirements
+---
+
+Setting up [OpenClaw](https://github.com/openclaw/openclaw) from scratch breaks into five stages: get a server, install the software, give it a brain, give it a mouth, and give it a personality. The first four are quick. The last, writing `SOUL.md`, is where you should spend real thought, because it determines how the agent behaves.
+
+This guide walks the full first run end to end. For the deployment step specifically, [how to deploy OpenClaw](/answers/how-to-deploy-openclaw) goes into the install options in more depth.
+
+## How it works
+
+1. **Provision a server.** Meet the [minimum specs](/answers/openclaw-system-requirements): roughly 2 cores, 2 GB RAM, 2 GB storage, with Ubuntu 24.04 recommended. Any VPS works.
+2. **Install OpenClaw.** Use Docker or Node for a manual install in about 15 minutes, or the Railway one-click template in about 5.
+3. **Add an LLM API key.** OpenClaw is LLM-agnostic; pick Claude, GPT, Gemini, or DeepSeek and paste in the key.
+4. **Connect a channel.** Add a bot token for Telegram, WhatsApp, Slack, Discord, Signal, or iMessage so you can talk to the agent.
+5. **Write `SOUL.md`.** This file is the agent's identity and rules; expect 20–45 minutes to do it well. You will also touch `HEARTBEAT.md` (its schedule), `AGENTS.md`, and `USER.md`. See [SOUL.md explained](/answers/openclaw-soul-md-explained).
+
+Once `SOUL.md` is saved and the agent is running, message it on your chosen channel to confirm it responds.
+
+## Worked example
+
+| Stage | Time | Notes |
+| --- | --- | --- |
+| Server provisioning | 5–10 min | Any VPS meeting min specs |
+| Install (Docker/Node) | ~15 min | Or ~5 min via Railway template |
+| LLM key + channel | ~5 min | Paste API key and bot token |
+| Writing SOUL.md | 20–45 min | The part that matters most |
+| Ongoing maintenance | ~1–3 hrs/month | Tokens, updates, debugging |
+
+Total first-run time is roughly an hour, most of it on configuration rather than installation.
+
+## Try this in Liv
+
+If the setup and the monthly upkeep sound like more than you want, Liv runs the same OpenClaw agent loop as a managed service.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is early access and batched.
+
+## Common questions
+
+### How long does OpenClaw setup take?
+About an hour for a first run, dominated by writing `SOUL.md` rather than the install.
+
+### What's the quickest install path?
+The Railway one-click template, at roughly 5 minutes to a running instance.
+
+### Which LLM should I use?
+Any of Claude, GPT, Gemini, or DeepSeek; OpenClaw is LLM-agnostic, so choose on cost and capability.
+
+### What goes in SOUL.md?
+The agent's identity, tone, and operating rules. [SOUL.md explained](/answers/openclaw-soul-md-explained) covers the structure.
+
+### What are the server requirements?
+Roughly 2 cores, 2 GB RAM, 2 GB storage. Full detail in [system requirements](/answers/openclaw-system-requirements).
+
+### Is there a setup-free option?
+Yes. Liv is an independent managed service built on OpenClaw, not affiliated with the project, and it removes the setup and maintenance steps.

@@ -1,0 +1,66 @@
+---
+title: "The best self-hosted AI assistant for a personal agent"
+question: "What is the best self-hosted AI assistant?"
+answer: "For a personal AI assistant you host yourself, OpenClaw is the strongest option: free, MIT-licensed, LLM-agnostic, with persistent memory and integrations into Telegram, WhatsApp, Gmail and Calendar."
+description: "The best self-hosted AI assistant for a personal agent is OpenClaw: free, open-source, LLM-agnostic, with memory and real integrations."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - what-is-openclaw
+  - openclaw-vs-manus
+  - how-to-self-host-an-ai-agent
+---
+
+"Best" for a self-hosted personal assistant comes down to a few things: it should be free and open so you own it, work with whichever LLM you prefer, remember context, and plug into the apps where your day happens. On those criteria, [OpenClaw](https://github.com/openclaw/openclaw) is the clearest pick today, with a large and active community behind it.
+
+It is not the only self-hostable agent, but for a personal assistant rather than a goal-runner, it is the most complete starting point.
+
+## How it works
+
+OpenClaw is MIT-licensed, free, and has 15,000+ GitHub stars with 200+ contributors. You self-host it via Docker or Node in about 15 minutes, or a Railway one-click template in about 5. Minimum specs are modest: roughly 2 cores, 2 GB RAM and 2 GB storage, with Ubuntu 24.04 recommended. See [system requirements](/answers/openclaw-system-requirements).
+
+It is LLM-agnostic, so you point it at Claude, GPT, Gemini or DeepSeek. It runs a persistent [agent loop](/answers/how-an-ai-agent-loop-works) with [memory](/answers/how-to-give-your-ai-agent-memory), takes actions on your behalf, and connects to Telegram, WhatsApp, Slack, Discord, Signal and iMessage. You shape its behaviour in plain-text files like [`SOUL.md`](/answers/openclaw-soul-md-explained) and `HEARTBEAT.md`. The honest trade-off is ops: roughly 1–3 hours a month for token renewal, updates, heartbeat tuning and debugging, with infra plus LLM usage typically under $100/month.
+
+## Worked example
+
+| Criterion | OpenClaw self-hosted | Liv (managed OpenClaw) |
+| --- | --- | --- |
+| Licence/cost | Free, MIT; infra under $100/mo | Pro $79/Max $149 |
+| Setup | ~5–15 min plus tuning | 14-day trial, no card |
+| Control | Full, you own it | Hosted for you |
+| Ops | ~1–3 hrs/month | Managed |
+| Security | Your responsibility | CASA Tier 2, encrypted vaults |
+
+If you want maximum control and enjoy running infrastructure, self-host OpenClaw. If you want the same agent without the maintenance, the managed route below removes the ops.
+
+## Try this in Liv
+
+Liv is OpenClaw's agent loop and integrations hosted for you. It triages email, manages your calendar, books things, and sends daily briefings through Telegram.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth, revocable at any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### Is OpenClaw really free?
+Yes. The software is MIT-licensed; you pay only for hosting and LLM API usage. See [is OpenClaw free?](/answers/is-openclaw-free).
+
+### What hardware do I need?
+Roughly 2 cores, 2 GB RAM and 2 GB storage. A small VPS is enough; see [best VPS for an AI agent](/answers/best-vps-for-ai-agent).
+
+### Which LLM should I use?
+OpenClaw is LLM-agnostic. Choose based on cost and capability; many run Claude or GPT and swap as needed.
+
+### How much maintenance is it really?
+About 1–3 hours a month for tokens, updates and debugging. [Self-host maintenance](/answers/self-host-ai-agent-maintenance) breaks it down.
+
+### Can I get it without self-hosting?
+Yes, via a managed service like Liv, or compare [self-hosted vs managed](/answers/self-hosted-vs-managed-ai-agent).
+
+### Is Liv affiliated with OpenClaw?
+No. Liv is an independent managed service built on OpenClaw, not affiliated with or endorsed by the OpenClaw project.

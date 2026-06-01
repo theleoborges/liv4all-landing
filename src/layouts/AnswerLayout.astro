@@ -1,0 +1,353 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import JsonLd from '../components/JsonLd.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'answers'>;
+}
+
+const { entry } = Astro.props;
+const { title, question, answer, description, datePublished, updated } = entry.data;
+const url = `https://liv4all.com/answers/${entry.id}`;
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': 'Article',
+    headline: title,
+    description,
+    datePublished: datePublished.toISOString(),
+    ...(updated && { dateModified: updated.toISOString() }),
+    author: { '@type': 'Organization', name: 'Liv4All', url: 'https://liv4all.com' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Liv4All',
+      logo: { '@type': 'ImageObject', url: 'https://liv4all.com/og-image.png' },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: question,
+        acceptedAnswer: { '@type': 'Answer', text: answer },
+      },
+    ],
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://liv4all.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Answers', item: 'https://liv4all.com/answers' },
+      { '@type': 'ListItem', position: 3, name: title, item: url },
+    ],
+  },
+];
+---
+<BaseLayout
+  title={`${title} — Liv4All`}
+  description={description}
+  ogUrl={url}
+  ogType="article"
+  ogTitle={title}
+  canonical={url}
+>
+  <JsonLd slot="head" graph={graph} />
+
+  <article class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">home</a>
+      <span class="sep">/</span>
+      <a href="/answers">answers</a>
+      <span class="sep">/</span>
+      <span class="current">{title}</span>
+    </nav>
+
+    <h1>{title}</h1>
+    <p class="answer-lede">{answer}</p>
+    <p class="answer-meta">
+      <span>{formatDate(datePublished)}</span>
+      {updated && (
+        <>
+          <span class="dot">·</span>
+          <span class="updated">updated {formatDate(updated)}</span>
+        </>
+      )}
+    </p>
+
+    <div class="article-prose">
+      <slot />
+    </div>
+
+    <aside class="cta-box">
+      <p class="cta-kicker">Try this in Liv</p>
+      <p class="cta-copy">
+        Liv is OpenClaw as a service — the agent loop and security, fully managed, no ops.
+        Start a 14-day free trial; no credit card.
+      </p>
+      <a href="https://app.liv4all.com" class="cta-btn">start your trial →</a>
+    </aside>
+
+    <footer class="disclaimer">
+      <p>
+        Liv4All is an independent managed service built on the open-source OpenClaw framework;
+        it is not affiliated with or endorsed by the OpenClaw project, Manus, or any other
+        product named here. Names are used for identification only. Details reflect the product
+        at time of writing — check the relevant official source before relying on them.
+      </p>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .container {
+    padding-top: 120px;
+    max-width: 760px;
+  }
+
+  .crumbs {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 28px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .crumbs a {
+    color: var(--text-dim);
+    transition: color 0.2s;
+  }
+
+  .crumbs a:hover { color: var(--accent); text-decoration: none; }
+  .crumbs .sep { opacity: 0.4; }
+  .crumbs .current { color: var(--text); }
+
+  h1 {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .answer-lede {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--text);
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 20px;
+    margin-bottom: 16px;
+  }
+
+  .answer-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .answer-meta .dot { opacity: 0.5; }
+
+  .cta-box {
+    margin: 56px 0 32px;
+    padding: 28px 28px 32px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: var(--radius-lg);
+  }
+
+  .cta-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .cta-copy {
+    color: var(--text);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 11px 22px;
+    border-radius: 100px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px var(--accent-glow);
+    text-decoration: none;
+    color: var(--bg);
+  }
+
+  .disclaimer {
+    border-top: 1px solid var(--border-light);
+    margin-top: 40px;
+    padding-top: 24px;
+  }
+
+  .disclaimer p {
+    font-size: 0.78rem;
+    line-height: 1.7;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  /* prose styles mirror ArticleLayout's .article-prose */
+  .article-prose {
+    color: var(--text-dim);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .article-prose :global(h2) {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin: 48px 0 16px;
+  }
+
+  .article-prose :global(h3) {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 32px 0 12px;
+  }
+
+  .article-prose :global(h4) {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 24px 0 8px;
+  }
+
+  .article-prose :global(p) {
+    margin-bottom: 20px;
+  }
+
+  .article-prose :global(strong) { color: var(--text); font-weight: 500; }
+  .article-prose :global(em) { color: var(--text); font-style: italic; }
+
+  .article-prose :global(a) {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: rgba(139, 92, 246, 0.3);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .article-prose :global(a:hover) {
+    text-decoration-color: var(--accent);
+  }
+
+  .article-prose :global(ul),
+  .article-prose :global(ol) {
+    padding-left: 24px;
+    margin-bottom: 20px;
+  }
+
+  .article-prose :global(li) { margin-bottom: 8px; }
+
+  .article-prose :global(blockquote) {
+    border-left: 3px solid var(--accent);
+    padding: 4px 20px;
+    margin: 24px 0;
+    font-style: italic;
+    color: var(--text);
+    background: var(--accent-glow);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+
+  .article-prose :global(blockquote p:last-child) { margin-bottom: 0; }
+
+  .article-prose :global(hr) {
+    border: none;
+    border-top: 1px solid var(--border-light);
+    margin: 48px 0;
+  }
+
+  .article-prose :global(code) {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88em;
+    color: var(--text);
+    background: rgba(139, 92, 246, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border-light);
+  }
+
+  .article-prose :global(pre) {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 24px 0;
+    overflow-x: auto;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .article-prose :global(pre code) {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .article-prose :global(img),
+  .article-prose :global(video) {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-light);
+    margin: 24px 0;
+    display: block;
+  }
+
+  .article-prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.9rem;
+  }
+
+  .article-prose :global(th),
+  .article-prose :global(td) {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .article-prose :global(th) {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>

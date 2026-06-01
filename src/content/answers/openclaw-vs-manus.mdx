@@ -1,0 +1,67 @@
+---
+title: "OpenClaw vs Manus: open-source agent vs cloud sandbox"
+question: "What's the difference between OpenClaw and Manus?"
+answer: "OpenClaw is a free, open-source agent you self-host with real integrations and persistent memory. Manus is a proprietary cloud-sandbox agent: polished and zero-setup, but solo, credit-priced, and without integrations."
+description: "OpenClaw vs Manus compared: open-source self-hosting with integrations versus a proprietary credit-priced cloud sandbox. See which suits your needs."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - manus-ai-alternative
+  - what-is-openclaw
+  - best-self-hosted-ai-assistant
+---
+
+These two tools answer the same wish, an AI that does things for you, from opposite ends. OpenClaw is open and yours to run; Manus is closed and run for you. The right choice turns on whether you want control and integrations, or zero setup for self-contained tasks.
+
+Neither is "better" in the abstract. They are built for different people.
+
+## How it works
+
+[OpenClaw](https://github.com/openclaw/openclaw) is a free, MIT-licensed personal AI agent with 15,000+ GitHub stars and 200+ contributors. You self-host it via Docker or Node in about 15 minutes, or a Railway one-click template in about 5. It is LLM-agnostic (Claude, GPT, Gemini, DeepSeek), runs a persistent [agent loop](/answers/how-an-ai-agent-loop-works) with memory, and connects to Telegram, WhatsApp, Slack, Discord, Signal and iMessage. You configure its behaviour in plain-text files like [`SOUL.md`](/answers/openclaw-soul-md-explained) and `HEARTBEAT.md`. Ongoing maintenance is roughly 1–3 hours a month.
+
+Manus, built by Butterfly Effect and acquired by Meta in December 2025, runs in a hosted cloud sandbox with a "My Computer" feature. There is nothing to install. It is solo and invite-gated, has no persistent workspace and no integrations, and is priced on credits: a free tier with limited daily credits, then Pro at $20–200/month, with complex tasks consuming 500–900 credits.
+
+## Worked example
+
+| Dimension | OpenClaw | Manus |
+| --- | --- | --- |
+| Licence | MIT, open-source | Proprietary |
+| Setup | ~5–15 min self-host | None, hosted |
+| Integrations | Telegram, WhatsApp, Gmail/Calendar via OAuth | None |
+| Memory/persistence | Persistent across sessions | Sandbox, task-scoped |
+| Pricing | Infra + LLM, under $100/mo | Credits, $20–200/mo |
+| Ops | ~1–3 hrs/month | None |
+
+Pick OpenClaw for control, persistence and real account access. Pick Manus for zero-setup, one-off autonomous jobs.
+
+## Try this in Liv
+
+If you like OpenClaw's model but not its maintenance, Liv runs that same agent loop for you with built-in integrations and CASA Tier 2 security.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth, revocable at any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### Is OpenClaw free and Manus paid?
+OpenClaw is free and MIT-licensed; you pay for hosting and LLM usage. Manus has a limited free tier and paid Pro plans. See [is OpenClaw free?](/answers/is-openclaw-free).
+
+### Does Manus integrate with Gmail?
+No. Manus has no integrations. OpenClaw connects to Gmail and Calendar via OAuth when you wire it up.
+
+### Which is easier to start?
+Manus, since there is nothing to install. OpenClaw needs a 5–15 minute deploy and some configuration.
+
+### Can I get OpenClaw without self-hosting?
+Yes, via managed hosting. [OpenClaw hosting](/answers/openclaw-hosting) covers the options, including Liv.
+
+### Does Manus remember past tasks?
+Not as a persistent workspace; it operates per-task in a sandbox. OpenClaw keeps [persistent memory](/answers/what-is-a-persistent-ai-agent).
+
+### Is Liv affiliated with either?
+No. Liv is an independent managed service built on OpenClaw, not affiliated with or endorsed by OpenClaw or Manus.

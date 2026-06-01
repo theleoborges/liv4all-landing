@@ -1,0 +1,71 @@
+---
+title: "How to Build a Personal AI Agent"
+question: "How do I build my own personal AI agent?"
+answer: "Building a personal AI agent means wiring an LLM into a persistent loop with memory, a schedule and real tool access. The fastest open-source path is OpenClaw, which you self-host; if you would rather skip the ops, Liv runs the same agent loop as a managed service."
+description: "How to build a personal AI agent: the open-source OpenClaw build path versus the managed buy path, with an honest setup and ops comparison."
+topic: ai-agents
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - build-vs-buy-ai-agent
+  - what-is-a-persistent-ai-agent
+  - how-to-deploy-openclaw
+---
+
+A "personal AI agent" is not a chatbot you open and close. It is a long-running system: an LLM wrapped in a loop that remembers you, runs on a schedule, and can actually touch your email, calendar and messages. Building one is now a weekend project rather than a research effort, but the real cost is the part nobody screenshots: keeping it running.
+
+You have two honest routes. Build it yourself with open-source software and own every layer. Or buy a managed version and skip the ops. Both are legitimate; the right answer depends on how much you enjoy maintaining infrastructure.
+
+## How it works
+
+Every personal agent, built or bought, needs four ingredients. A model (Claude, GPT, Gemini or similar) for reasoning. A persistent loop so it keeps running between your messages rather than resetting each time. Memory so it knows who you are tomorrow. And tools, the integrations that let it read your inbox, add a calendar event or send a message. The loop is what makes it an agent rather than a prompt; see [how an AI agent loop works](/answers/how-an-ai-agent-loop-works) and [what a persistent AI agent is](/answers/what-is-a-persistent-ai-agent).
+
+The build path is [OpenClaw](https://github.com/openclaw/openclaw), an MIT-licensed open-source agent (15k+ GitHub stars, 200+ contributors) that runs on any OS and is LLM-agnostic. You define its identity in a `SOUL.md` file, its schedule in `HEARTBEAT.md`, and connect channels like Telegram, WhatsApp, Slack or Signal. You self-host it via Docker or Node in roughly 15 minutes, or a Railway one-click template in about 5. From there you own the upkeep: OAuth tokens expire, the codebase updates, skills break and need debugging.
+
+The buy path is a managed service that runs the same kind of loop for you. Liv is OpenClaw's agent loop, persistence and integrations wrapped in managed infrastructure plus security (Google CASA Tier 2, encrypted per-user vaults), so you never touch a server.
+
+## Worked example
+
+Building the same capable personal agent two ways:
+
+| Step | Build it (OpenClaw, self-hosted) | Buy it (Liv, managed) |
+| --- | --- | --- |
+| Initial setup | ~15 min Docker/Node, plus writing `SOUL.md` (20–45 min) | Start a trial, message on Telegram |
+| Hosting | Your own VPS (~2 cores / 2 GB RAM) | Included |
+| Integrations | Wire your own OAuth for Gmail/Calendar | Google OAuth, user-revocable |
+| Monthly cost | Infra + LLM API, typically under $100 | Pro $79, Max $149 |
+| Ongoing ops | ~1–3 hours/month | None |
+| Security/compliance | You own it | CASA Tier 2, encrypted vaults |
+
+If you enjoy the tinkering, building is rewarding and you keep full control. If you want the outcome without the maintenance, buying wins. See the fuller [build vs buy comparison](/answers/build-vs-buy-ai-agent).
+
+## Try this in Liv
+
+If the managed path appeals, Liv is the shortest route to a working agent:
+
+1. Start a free 14-day trial at https://app.liv4all.com. No credit card.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar through Google OAuth so it can triage email and manage your schedule.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM) once you are set up.
+
+Liv is currently in early access with batched onboarding, so you may join a queue.
+
+## Common questions
+
+### Do I need to know how to code to build a personal AI agent?
+For the self-host route, basic comfort with the command line and Docker helps a lot. The managed route needs none.
+
+### Can I build a personal AI agent for free?
+The OpenClaw software is free and MIT-licensed, but you still pay for hosting and LLM API calls, typically under $100/month. See [is OpenClaw free](/answers/is-openclaw-free).
+
+### What can a personal AI agent actually do?
+With email and calendar access it can triage your inbox, draft replies, manage your schedule and send you daily briefings. See [AI that can take actions, not just answer](/answers/ai-that-can-take-actions-not-just-answer).
+
+### How is this different from ChatGPT?
+ChatGPT answers when prompted; a personal agent runs continuously and takes actions on your behalf. See [AI agent vs chatbot](/answers/ai-agent-vs-chatbot).
+
+### How long does it take to build one?
+Standing up OpenClaw takes minutes; writing a good `SOUL.md` and tuning behaviour takes an hour or two. Plan for ongoing tuning after that.
+
+### Is the managed version really the same agent?
+Liv runs the same agent loop and integration model as OpenClaw, wrapped in managed hosting and security. It is an independent service, not affiliated with OpenClaw.

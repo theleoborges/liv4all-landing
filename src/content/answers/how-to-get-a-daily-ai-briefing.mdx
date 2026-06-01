@@ -1,0 +1,66 @@
+---
+title: "How to Get a Daily AI Briefing"
+question: "How do I get a daily briefing from an AI agent?"
+answer: "Give a persistent AI agent a schedule and access to your inbox and calendar, and it can send you a daily briefing: what's on today, what needs a reply, what changed overnight. Liv sends this to you on Telegram each morning."
+description: "How to set up a daily AI briefing of your calendar and inbox, delivered to chat each morning. Built on OpenClaw's heartbeat, run by Liv without the ops."
+topic: use-cases
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - ai-to-triage-your-email
+  - what-is-an-ai-chief-of-staff
+  - openclaw-soul-md-explained
+---
+
+A daily briefing is the simplest, highest-leverage thing a persistent agent does. Each morning it pulls together what's on your calendar, what's waiting in your inbox, and anything that shifted while you were offline, then sends you a short summary in chat. You start the day knowing where to point your attention without opening five apps.
+
+The reason this works is that the agent runs on a schedule rather than waiting for you to ask. It wakes up, gathers the context, and delivers it, every day, unprompted.
+
+## How it works
+
+A daily briefing depends on two things: scheduled execution and access to your data. In [OpenClaw](https://github.com/openclaw/openclaw), the schedule lives in a config file called `HEARTBEAT.md`, which tells the agent when to wake up and what to do. The agent's personality and rules, including how it should summarise and what it should prioritise, live in `SOUL.md`; see [SOUL.md explained](/answers/openclaw-soul-md-explained) for how that file shapes the agent's behaviour.
+
+When the heartbeat fires, the agent reads your calendar and inbox, applies the same logic it uses for [email triage](/answers/ai-to-triage-your-email), and composes the briefing. Liv reaches Gmail and Google Calendar through OAuth you can revoke, and delivers the summary to you on Telegram. This scheduled, proactive behaviour is the heart of [what an AI chief of staff does](/answers/what-is-an-ai-chief-of-staff).
+
+## Worked example
+
+You can configure a heartbeat yourself on OpenClaw or have the schedule run for you. The mechanism is identical; the difference is the ongoing tuning and maintenance.
+
+| Dimension | Self-hosted OpenClaw | Liv (OpenClaw as a service) |
+| --- | --- | --- |
+| Setup | Deploy, write SOUL.md and HEARTBEAT.md, connect data | 14-day trial, no card |
+| Scheduling | You tune the heartbeat | Daily briefing out of the box |
+| Monthly cost | Infra + LLM, typically under $100, self-managed | Pro $79/mo, Max $149/mo |
+| Ops | ~1–3 hours/month, including heartbeat tuning | Managed for you |
+| Compliance | Your responsibility | CASA Tier 2, encrypted vaults |
+
+## Try this in Liv
+
+Liv wraps the OpenClaw agent loop, scheduling, and real integrations in managed infrastructure, so you get a morning briefing without writing a heartbeat file.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Google Calendar via OAuth.
+4. Liv sends a daily briefing to your Telegram chat; tell it what you'd like emphasised.
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### When does the briefing arrive?
+Each morning. The agent runs on a schedule rather than waiting for you to ask.
+
+### Where is it delivered?
+To your Telegram chat, which is Liv's default and required channel. WhatsApp is invite-only and needs a dedicated eSIM.
+
+### What's in the briefing?
+Your calendar for the day, items in your inbox that need attention, and anything that changed overnight.
+
+### Can I customise what it covers?
+Yes. Tell Liv what to prioritise. On self-hosted OpenClaw this is governed by `SOUL.md` and `HEARTBEAT.md`; see [SOUL.md explained](/answers/openclaw-soul-md-explained).
+
+### Does it read my email to build the briefing?
+Yes, through Gmail over OAuth you can revoke. Your data is not used to train models. See [is it safe to give AI access to your Gmail](/answers/is-it-safe-to-give-ai-access-to-your-gmail).
+
+### Is a daily briefing all it does?
+No. It also triages email, manages your calendar, and books things. See [what is an AI chief of staff](/answers/what-is-an-ai-chief-of-staff).

@@ -1,4 +1,19 @@
 User-agent: *
 Allow: /
 
+# Explicitly welcome AI assistants / answer engines (GEO). These read indexed
+# web content and increasingly cite their sources — we want to be citable.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: Bytespider
+Allow: /
+
 Sitemap: https://liv4all.com/sitemap-index.xml

@@ -1,0 +1,71 @@
+---
+title: "AI Agent vs Chatbot: What's the Difference?"
+question: "What is the difference between an AI agent and a chatbot?"
+answer: "A chatbot answers questions in a single conversation and forgets you afterwards; an AI agent runs continuously, remembers you and takes real actions using tools. The line is whether it can do things, not just say things."
+description: "AI agent vs chatbot: a chatbot replies and forgets; an agent remembers, runs on a schedule and takes actions. A clear, practical comparison."
+topic: ai-agents
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - what-is-an-autonomous-ai-agent
+  - chatgpt-vs-ai-agent
+  - ai-that-can-take-actions-not-just-answer
+---
+
+The words get used interchangeably, but they describe very different things. A chatbot is a conversation: you ask, it answers, the session ends. An agent is a worker: it remembers you, runs on its own schedule, and acts on the world through tools like your inbox and calendar.
+
+The simplest test is whether it can take an action. A chatbot can tell you how to book a table. An agent books it.
+
+## How it works
+
+A chatbot is essentially a language model behind a chat window. It responds to what you type, within a single session, and has no standing memory or ability to act. Close the tab and the context is gone. That makes it excellent for questions, drafting and brainstorming.
+
+An agent wraps that same model in three extra layers. An [agent loop](/answers/how-an-ai-agent-loop-works) so it can take a step, observe the result and continue. Persistent [memory](/answers/what-is-a-persistent-ai-agent) so it knows you tomorrow. And tools so it can actually do things: read email, create calendar events, send messages. Add a schedule and it acts without being prompted. That combination is what [an agent that takes actions, not just answers](/answers/ai-that-can-take-actions-not-just-answer) really means.
+
+[OpenClaw](https://github.com/openclaw/openclaw), the open-source personal agent, is a clean example: LLM-agnostic, with memory files, a `HEARTBEAT.md` schedule and real channel integrations. Many products sit between the two poles. ChatGPT is mostly a chatbot, though its agent mode adds limited action-taking; see [ChatGPT vs an AI agent](/answers/chatgpt-vs-ai-agent).
+
+## Worked example
+
+The same request to each:
+
+| Capability | Chatbot | AI agent |
+| --- | --- | --- |
+| Answer a question | Yes | Yes |
+| Remember you next session | No | Yes |
+| Act on a schedule | No | Yes |
+| Send an email for you | No | Yes, with approval |
+| Triage your inbox overnight | No | Yes |
+| "Watch this thread, remind me Friday" | Just explains how | Actually does it |
+
+A chatbot ends the conversation when you stop typing. An agent keeps working between your messages, which is the whole reason to use one for ongoing tasks rather than one-off questions.
+
+## Try this in Liv
+
+Liv is an agent, not a chatbot, so it remembers you and acts on your behalf:
+
+1. Start a free 14-day trial at https://app.liv4all.com. No credit card.
+2. Message Liv on Telegram, the default channel.
+3. Connect Gmail and Calendar via Google OAuth so it can take real actions, not just reply.
+4. Ask it to triage your inbox or send a daily briefing; outbound drafts wait for your approval.
+
+Liv is in early access with batched onboarding, so you may join a short queue.
+
+## Common questions
+
+### Is ChatGPT a chatbot or an agent?
+Primarily a chatbot, though its agent mode adds limited action-taking. See [ChatGPT vs an AI agent](/answers/chatgpt-vs-ai-agent).
+
+### Can a chatbot take actions like sending email?
+Not on its own. That requires the tool access and loop that define an agent.
+
+### Do agents still answer questions like chatbots?
+Yes. An agent does everything a chatbot does, plus memory, scheduling and actions.
+
+### Is an agent always autonomous?
+Agents act on their own steps, but a good one pauses for approval on sensitive actions. See [what an autonomous AI agent is](/answers/what-is-an-autonomous-ai-agent).
+
+### Which do I need?
+For one-off questions, a chatbot is fine. For ongoing work like inbox triage and scheduling, you want an agent.
+
+### Can I run my own agent?
+Yes, OpenClaw is open-source and self-hostable, or use a managed service like Liv. See [build vs buy an AI agent](/answers/build-vs-buy-ai-agent).

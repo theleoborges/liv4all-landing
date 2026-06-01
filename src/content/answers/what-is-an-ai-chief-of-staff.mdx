@@ -1,0 +1,68 @@
+---
+title: "What Is an AI Chief of Staff?"
+question: "What is an AI chief of staff?"
+answer: "An AI chief of staff is a continuous system, not a one-off tool: it triages your email, manages your calendar, prepares for what's ahead, and works in the background. AI handles roughly 70–80% of the role; humans keep relationships and strategic judgement."
+description: "An AI chief of staff is a continuous system that triages email, manages your calendar, and works in the background. Here's what it does and its limits."
+topic: use-cases
+intent: definitional
+datePublished: 2026-06-01
+related:
+  - ai-chief-of-staff-vs-executive-assistant
+  - ai-that-can-take-actions-not-just-answer
+  - ai-to-triage-your-email
+---
+
+A chief of staff is the person who keeps the operation running so the principal can think: they manage the inbox, prepare for meetings, track follow-ups, and handle the logistics that would otherwise fragment the day. An AI chief of staff applies that same job description to software. It is a continuous system rather than a tool you prompt once, and the distinction matters: you don't ask it a question, you delegate an ongoing responsibility.
+
+In practice, an AI handles roughly 70–80% of the role: email, scheduling, follow-up, routine tasks, and the proactive work of surfacing what needs attention. The remaining slice stays human. Relationships, strategic judgement, and physical presence don't delegate to software.
+
+## How it works
+
+The defining feature is that it runs continuously. It triages your inbox, manages your calendar, sends a [daily briefing](/answers/how-to-get-a-daily-ai-briefing), turns forwarded messages into events, and books things, all on a schedule rather than on demand. This depends on [an agent that takes actions, not just answers](/answers/ai-that-can-take-actions-not-just-answer): it connects to your real services and acts on them.
+
+Technically, it's an agent loop with persistent memory and real integrations. Open-source frameworks like [OpenClaw](https://github.com/openclaw/openclaw) provide the loop, the memory, and connectors to Gmail, Calendar, and chat apps. Liv connects to Gmail and Google Calendar through OAuth you can revoke, drafts outbound mail for your approval before sending, and stores secrets in encrypted per-user vaults. For the hands-on examples, see [AI to triage your email](/answers/ai-to-triage-your-email) and [AI calendar assistant](/answers/ai-calendar-assistant).
+
+## Worked example
+
+You can assemble an AI chief of staff yourself on OpenClaw or have it managed. The role is the same; the difference is who carries the operations.
+
+| Dimension | Self-hosted OpenClaw | Liv (OpenClaw as a service) |
+| --- | --- | --- |
+| Setup | Deploy, write config, connect Gmail and Calendar | 14-day trial, no card |
+| Capabilities | You wire each one up | Triage, calendar, briefings, bookings, vaults |
+| Monthly cost | Infra + LLM, typically under $100, self-managed | Pro $79/mo, Max $149/mo |
+| Ops | ~1–3 hours/month maintenance | Managed for you |
+| Compliance | Your responsibility | CASA Tier 2, encrypted vaults |
+
+For reference, a human chief of staff runs $120–200k a year; an executive assistant $60–150k. See [AI chief of staff vs executive assistant](/answers/ai-chief-of-staff-vs-executive-assistant) for where each fits.
+
+## Try this in Liv
+
+Liv is the OpenClaw agent loop and real integrations wrapped in managed infrastructure, so you get a working AI chief of staff without running a server.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Google Calendar via OAuth.
+4. Delegate ongoing work: triage, scheduling, briefings, bookings. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### How is it different from a chatbot?
+A chatbot answers questions when prompted; a chief of staff works continuously and takes action. See [AI that can take actions, not just answer](/answers/ai-that-can-take-actions-not-just-answer).
+
+### What can't an AI chief of staff do?
+The human parts of the role: building relationships, exercising strategic judgement, and being physically present. AI covers roughly 70–80% of the work, not all of it.
+
+### Does it replace a human chief of staff or EA?
+It covers much of the operational load at a fraction of the cost. See [AI chief of staff vs executive assistant](/answers/ai-chief-of-staff-vs-executive-assistant).
+
+### Will it send emails or make bookings without me?
+Liv drafts outbound mail for your approval before sending. It acts on your instructions.
+
+### How do I reach it?
+Through Telegram by default; WhatsApp is invite-only and needs a dedicated eSIM.
+
+### Is my data used to train models?
+No. Your data is not used to train models, and secrets are kept in encrypted per-user vaults.

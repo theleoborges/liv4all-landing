@@ -1,0 +1,73 @@
+---
+title: "What Maintenance Does a Self-Hosted AI Agent Need?"
+question: "How much maintenance does a self-hosted AI agent need?"
+answer: "Plan for roughly 1 to 3 hours a month. The recurring work is renewing expired OAuth tokens, applying codebase updates, tuning the agent's heartbeat schedule and debugging the occasional broken skill. None of it is hard, but it never fully stops."
+description: "A self-hosted AI agent needs about 1–3 hours of upkeep a month: OAuth token renewals, updates, heartbeat tuning and debugging skill failures."
+topic: self-hosting
+intent: informational
+datePublished: 2026-06-01
+related:
+  - self-hosted-vs-managed-ai-agent
+  - how-to-run-openclaw-without-devops
+  - self-hosted-ai-agent-security-risks
+---
+
+The setup gets the attention, but the ongoing upkeep is the part that decides whether self-hosting is worth it for you. For a personal agent like [OpenClaw](https://github.com/openclaw/openclaw), that upkeep runs about 1 to 3 hours a month once things are stable.
+
+The work is light but persistent. It is less "fix the broken server" and more "keep the connections fresh and the agent behaving."
+
+## How it works
+
+Self-hosted maintenance clusters into four recurring jobs:
+
+- **OAuth token renewal.** The tokens that let your agent read email or calendar expire periodically. When they do, an integration goes quiet until you re-authenticate. This is the single most common cause of an agent that "stopped working."
+- **Codebase updates.** OpenClaw is actively developed by 200+ contributors. New features and fixes land often. You pull updates, occasionally adjust config, and check nothing broke.
+- **Heartbeat tuning.** `HEARTBEAT.md` defines what the agent does on its own and how often. Over time you will trim noisy routines and add useful ones. This also keeps your LLM bill in check.
+- **Debugging skill failures.** A skill might break after an update or an upstream API change. You read the logs, work out which step failed, and fix it.
+
+There is also a quieter, always-on responsibility: security. Patching the host, rotating keys and watching for issues is yours to own; the [security risks of a self-hosted agent](/answers/self-hosted-ai-agent-security-risks) page covers that side.
+
+## Worked example
+
+A typical month of upkeep, with rough time costs:
+
+| Task | Frequency | Time |
+|---|---|---|
+| Re-authenticate expired OAuth tokens | As they expire | 10–20 min |
+| Pull and check codebase updates | Monthly-ish | 20–40 min |
+| Tune heartbeat schedule | Occasional | 10–30 min |
+| Debug a broken skill | When it happens | 0–60 min |
+| **Total** | | **~1–3 hrs/month** |
+
+That hour or three is the real "cost" of self-hosting, alongside the cash. Whether it is acceptable depends on what your time is worth and how much you enjoy the tinkering. The [self-hosted vs managed comparison](/answers/self-hosted-vs-managed-ai-agent) puts a number on that trade. If you want most of self-hosting's control with less of the ops, [how to run OpenClaw without DevOps](/answers/how-to-run-openclaw-without-devops) covers the lighter-touch routes.
+
+## Try this in Liv
+
+If 1 to 3 hours a month is time you would rather spend elsewhere, Liv runs the agent on managed infrastructure: token renewals, updates and security are handled for you.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card.
+2. Message Liv on Telegram, the default channel.
+3. Connect Gmail and Google Calendar via Google OAuth, revocable any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Liv is early access with batched onboarding, so you may join a queue.
+
+## Common questions
+
+### Why do agents "stop working" most often?
+Expired OAuth tokens. The agent loses access to an integration until you re-authenticate, which is quick once you know to check.
+
+### Do I have to apply every update?
+No, but staying current avoids security gaps and keeps skills compatible. Most people batch updates monthly.
+
+### Can I automate the maintenance?
+Partly. You can script updates and monitoring, but OAuth re-auth and judgement calls on heartbeat tuning still need a human.
+
+### Is the 1–3 hours on top of setup?
+Yes. Setup is a one-off (about 15 minutes to deploy plus configuration). The 1 to 3 hours is the recurring monthly figure.
+
+### Does maintenance get lighter over time?
+The heartbeat tuning does, as your config settles. Token renewals and updates are perpetual.
+
+### How does a managed service remove this?
+The provider runs the infrastructure, applies updates and handles security, so the recurring ops drop to roughly zero on your side.

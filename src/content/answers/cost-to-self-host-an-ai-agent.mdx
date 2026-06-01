@@ -1,0 +1,72 @@
+---
+title: "How Much Does It Cost to Self-Host an AI Agent?"
+question: "How much does it cost to self-host an AI agent?"
+answer: "For a single person, expect under $100 a month: a cheap VPS from roughly $5 to $20, plus LLM API usage that varies with how hard your agent works. The software itself (OpenClaw) is free and MIT-licensed; the real cost is the model, not the hosting."
+description: "Self-hosting an AI agent typically costs under $100/month: a $5–20 VPS plus LLM API usage. OpenClaw is free; the model is the main variable."
+topic: self-hosting
+intent: informational
+datePublished: 2026-06-01
+related:
+  - how-much-does-openclaw-cost-to-run
+  - self-host-ai-agent-maintenance
+  - self-hosted-vs-managed-ai-agent
+---
+
+The headline number for self-hosting a personal AI agent is comfortably under $100 a month, and often far less. The software is free: [OpenClaw](https://github.com/openclaw/openclaw) is MIT-licensed and open source. What you pay for is the server it runs on and the LLM doing the thinking.
+
+The catch is that the LLM bill is variable, not fixed. A quiet agent that sends a morning briefing costs cents a day; a busy one running frequent heartbeats and long reasoning tasks costs more. So budget a range, not a single figure.
+
+## How it works
+
+Three line items make up the bill, plus one that is easy to forget.
+
+- **Hosting.** A VPS that meets OpenClaw's minimum specs (2 cores, 2 GB RAM, 2 GB storage) runs from roughly $5 to $20 a month. A managed one-click platform like Railway sits at the higher end of that but removes server admin.
+- **LLM API.** This is the swing factor. You pay per token to your chosen provider (Claude, GPT, Gemini or DeepSeek). DeepSeek is the cheap option; frontier Claude or GPT models cost more but reason better. Frequent heartbeats and long tasks raise the bill.
+- **Channels and integrations.** Telegram is free. WhatsApp Business and a dedicated number may carry small fees depending on how you connect.
+- **Your time.** Not a cash cost, but real: plan for [1 to 3 hours a month of maintenance](/answers/self-host-ai-agent-maintenance). At any sensible hourly rate, that is the largest hidden cost.
+
+## Worked example
+
+A realistic monthly budget for one person, compared with a managed service:
+
+| Item | Self-host OpenClaw | Liv (managed) |
+|---|---|---|
+| Software licence | Free (MIT) | Included |
+| Hosting | $5–20 VPS | Included |
+| LLM API | Variable, ~$10–60+ | Included |
+| Maintenance time | 1–3 hrs/month | None |
+| Security/compliance | DIY | CASA Tier 2, vaults |
+| **Cash total** | **Often under $100** | **$79 (Pro) / $149 (Max)** |
+
+The honest read: self-hosting can be cheaper in cash, especially with a cheap model and a quiet agent. Whether it is cheaper overall depends on what your time is worth, since the ops hours are the part the spreadsheet hides. The [self-hosted vs managed comparison](/answers/self-hosted-vs-managed-ai-agent) works through that trade in full, and [how much OpenClaw costs to run](/answers/how-much-does-openclaw-cost-to-run) drills into the per-token side.
+
+## Try this in Liv
+
+If a predictable bill matters more than the lowest possible floor, Liv folds hosting, LLM usage and security into one price.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card.
+2. Message Liv on Telegram, the default channel.
+3. Connect Gmail and Google Calendar via Google OAuth, revocable any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Liv is early access with batched onboarding, so you may join a queue. Pricing is flat: Pro $79/month, Max $149/month, no per-task credits to track.
+
+## Common questions
+
+### Is OpenClaw free?
+Yes, the software is MIT-licensed and free. You pay only for hosting and LLM usage. See [is OpenClaw free](/answers/is-openclaw-free).
+
+### What is the cheapest way to run it?
+A $5 VPS plus a low-cost model like DeepSeek, with a light heartbeat schedule. Costs scale with how much the agent actually does.
+
+### Why is the LLM cost so variable?
+You pay per token. Complex reasoning, long context and frequent heartbeats all consume more tokens, so a busy agent costs noticeably more than a quiet one.
+
+### How does this compare to credit-based tools?
+Credit-priced agents like Manus can burn 500 to 900 credits on a single complex task, making costs hard to predict. A self-hosted setup at least bills transparently per token.
+
+### Does a managed host save money?
+Cheap managed OpenClaw hosts (around $12–22/month) save you server admin but still leave the LLM bill and add little security. A fully managed service trades a higher flat fee for zero ops.
+
+### What is the real total cost of ownership?
+Cash plus time. Add your maintenance hours to the cash figure before comparing against a managed flat fee.

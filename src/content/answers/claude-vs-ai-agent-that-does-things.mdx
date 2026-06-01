@@ -1,0 +1,67 @@
+---
+title: "Claude vs an AI agent that does things for you"
+question: "What's the difference between Claude and an AI agent that takes actions?"
+answer: "Claude and ChatGPT answer questions and draft content in a chat. An AI agent like Liv runs continuously and takes actions in your accounts: triaging email, managing your calendar, and booking things."
+description: "Claude vs an AI agent that takes actions: one answers in a chat window, the other acts across your real accounts. See the difference and when each fits."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - chatgpt-vs-ai-agent
+  - ai-that-can-take-actions-not-just-answer
+  - ai-agent-vs-chatbot
+---
+
+Claude is an outstanding conversational AI: it reasons, writes, summarises and explains, and many people use it all day. In its chat form, though, it responds to what you type and stops there. It does not stand watch over your inbox or act on your calendar between conversations.
+
+An AI agent is built to close that loop. It runs on a schedule, holds memory, and connects to your real tools so it can take actions, not just produce answers. Tellingly, an agent often uses Claude as its underlying model, the difference is what surrounds the model.
+
+## How it works
+
+Claude works per-prompt inside a chat window or via its API. You ask, it answers, beautifully. There is no standing connection to your Gmail or Calendar in the everyday product, and no autonomous follow-up tomorrow.
+
+An [autonomous AI agent](/answers/what-is-an-autonomous-ai-agent) wraps a model like Claude in an [agent loop](/answers/how-an-ai-agent-loop-works): it reacts to events, decides, calls tools, and remembers. [OpenClaw](https://github.com/openclaw/openclaw), the open-source agent framework, is LLM-agnostic and frequently runs Claude as its brain, while adding the persistence and integrations the chat product lacks. So the comparison is not Claude versus an agent in capability terms; it is a chat assistant versus a system that [takes actions on your accounts](/answers/ai-that-can-take-actions-not-just-answer).
+
+## Worked example
+
+| Capability | Claude (chat) | AI agent (e.g. Liv) |
+| --- | --- | --- |
+| Answer and reason | Yes, excellent | Yes, often using Claude |
+| Draft an email | Yes | Yes, sends on your approval |
+| Read your real inbox | No | Yes, via OAuth |
+| Manage your calendar | No | Yes |
+| Act on a schedule overnight | No | Yes |
+| Remember across days | Limited | Persistent memory |
+
+If you want a brilliant thinking and writing partner, Claude is the tool. If you want something that triages email and acts for you, you want an agent built on a model like Claude.
+
+## Try this in Liv
+
+Liv is an AI agent reached through Telegram. It triages email, manages your calendar, books things, and sends daily briefings, with outbound drafts held for your approval.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth, revocable at any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### Can Claude read my email?
+Not in standard chat; it has no standing inbox access. An agent with OAuth can, once you grant it.
+
+### Does an agent replace Claude?
+No, it often uses Claude underneath. The agent adds persistence, memory and integrations around the model. See [agent vs chatbot](/answers/ai-agent-vs-chatbot).
+
+### Which model does Liv use?
+Liv is built on OpenClaw, which is LLM-agnostic. The point is the actions it takes, not a single locked-in model.
+
+### Will the agent act without my say-so?
+With Liv, outbound drafts need your approval before sending, so you stay in control.
+
+### Is this just Claude with plugins?
+An agent is more than plugins: it runs a continuous loop and keeps memory. Compare [ChatGPT vs an AI agent](/answers/chatgpt-vs-ai-agent) for the same distinction.
+
+### Is Liv affiliated with Anthropic?
+No. Liv is an independent managed service built on OpenClaw, not affiliated with or endorsed by Anthropic.

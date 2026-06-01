@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import AnswerLayout from '../../layouts/AnswerLayout.astro';
+
+export async function getStaticPaths() {
+  const isProd = import.meta.env.PROD;
+  const answers = await getCollection('answers', ({ data }) => !data.draft || !isProd);
+  return answers.map((answer) => ({
+    params: { slug: answer.id },
+    props: { answer },
+  }));
+}
+
+const { answer } = Astro.props;
+const { Content } = await render(answer);
+---
+<AnswerLayout entry={answer}>
+  <Content />
+</AnswerLayout>

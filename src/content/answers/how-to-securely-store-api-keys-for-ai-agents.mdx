@@ -1,0 +1,71 @@
+---
+title: "How to securely store API keys for AI agents"
+question: "How do I securely store API keys and secrets for an AI agent?"
+answer: "Never leave keys in plaintext config files or environment variables baked into an image. Store each secret in an encrypted vault scoped to its owner, inject it only at runtime, rotate it on a schedule, and grant the agent the narrowest scope it needs."
+description: "Store AI agent API keys in an encrypted, per-user vault, inject at runtime, scope narrowly, and rotate often. Avoid plaintext config files."
+topic: security
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - is-it-safe-to-give-ai-access-to-your-gmail
+  - self-hosted-ai-agent-security-risks
+  - how-to-give-an-ai-agent-email-and-calendar-access
+---
+
+An AI agent that does real work accumulates secrets fast: an LLM provider key, OAuth tokens for Gmail and Calendar, a Telegram bot token, maybe a payment or booking integration. Each one is a credential that can spend money, read your mail or impersonate you. The default that most quick-start guides reach for, dropping everything into a `.env` file or a config block, is exactly the pattern that leaks.
+
+The goal is straightforward: secrets should be encrypted at rest, available to the agent only at the moment it needs them, and easy to revoke without rebuilding anything.
+
+## How it works
+
+A few principles cover almost every case.
+
+- **Encrypt at rest in a dedicated store.** Use a secrets manager or an encrypted vault rather than a file on disk. The agent reads the secret through the store's API; the value is never written to your repository or your container image.
+- **Inject at runtime, never bake in.** Mount or fetch secrets when the process starts. Anything baked into an image or committed to source control is effectively published.
+- **Scope narrowly.** Request only the OAuth scopes and API permissions the task requires. A key that can only read calendars cannot drain a budget.
+- **Rotate and revoke.** Set an expiry, rotate on a schedule, and make sure revoking a single credential does not take the whole agent down. For Google access, OAuth tokens are revocable from your Google Account independently of the app.
+
+If you self-host [OpenClaw](https://github.com/openclaw/openclaw), this is your responsibility to wire up: a secrets backend, runtime injection, rotation. It is very doable, but it is part of the ongoing [self-host maintenance](/answers/self-host-ai-agent-maintenance) and a common source of [self-hosting security risk](/answers/self-hosted-ai-agent-security-risks).
+
+## Worked example
+
+How the same set of secrets is handled across approaches.
+
+| Practice | Plaintext `.env` (don't) | Self-hosted vault (DIY) | Liv user vaults (managed) |
+| --- | --- | --- | --- |
+| Storage | File on disk, often committed | Encrypted store you run | Encrypted per-user vault |
+| Injection | Loaded into env at boot | Fetched at runtime | Fetched at runtime |
+| Rotation | Manual, often forgotten | You schedule it | Handled for you |
+| Blast radius if leaked | All secrets exposed | Scoped to that vault | Scoped to one user's vault |
+| Your ops burden | None, until it leaks | You own it all | None |
+
+## Try this in Liv
+
+Liv stores your secrets in encrypted per-user **vaults**, so each user's credentials are isolated and never sit in a shared plaintext config. Gmail and Calendar access uses Google OAuth (revocable any time), and Liv has passed [Google CASA Tier 2](/answers/what-is-casa-tier-2-gmail), independently verified by TAC Security.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth; tokens are held in your encrypted vault.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### Are environment variables safe enough for secrets?
+They are better than committing keys to source, but env vars can leak through logs, crash dumps and child processes. A dedicated encrypted store is the stronger default.
+
+### What is a per-user vault?
+An encrypted store scoped to a single user, so one person's credentials are isolated from everyone else's. Liv uses this model, which keeps the blast radius of any incident small.
+
+### How often should I rotate API keys?
+On a schedule that matches the sensitivity: high-value keys quarterly or sooner, and immediately on any suspected exposure. Automate it so it actually happens.
+
+### What if I give an agent my Gmail credentials directly?
+Don't. Use [Google OAuth](/answers/how-to-give-an-ai-agent-email-and-calendar-access) instead, so no password is shared and access stays revocable.
+
+### Where do API keys leak most often?
+Committed config files, build logs, screenshots and over-broad scopes. Narrow scope and runtime injection close most of those gaps.
+
+### Is a managed service automatically more secure?
+No, but it can remove whole classes of mistake by handling encryption and rotation for you. Weigh that against the [security risks of self-hosting](/answers/self-hosted-ai-agent-security-risks).

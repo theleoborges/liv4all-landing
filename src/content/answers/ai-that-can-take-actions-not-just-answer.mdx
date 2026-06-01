@@ -1,0 +1,67 @@
+---
+title: "AI That Can Take Actions, Not Just Answer"
+question: "Is there an AI that can take actions instead of just answering questions?"
+answer: "Yes. An AI agent, unlike a chatbot, runs a loop that lets it act: it can send email, create calendar events, and make bookings, not just reply. Liv does this through your real Gmail and Calendar, with outbound drafts held for your approval."
+description: "How an AI agent takes real actions, not just answers: sending mail, booking, scheduling. The difference from a chatbot, built on OpenClaw, run by Liv."
+topic: use-cases
+intent: informational
+datePublished: 2026-06-01
+related:
+  - ai-agent-vs-chatbot
+  - chatgpt-vs-ai-agent
+  - what-is-an-ai-chief-of-staff
+---
+
+A chatbot gives you words. You ask, it answers, and any follow-through is on you. An AI agent closes that gap: it can carry out the task you described, using tools and connections to your real services. The shift from answering to acting is what separates a clever conversation partner from something that actually reduces your workload.
+
+The capability sounds small until you use it. "Find me a slot and book dinner on Thursday" produces a confirmed reservation in your calendar, not a list of suggestions you still have to act on.
+
+## How it works
+
+The mechanism is the agent loop. Instead of generating a single response, an agent reads your request, decides what to do, calls a tool or integration, observes the result, and repeats until the task is done. [How an agent loop works](/answers/how-an-ai-agent-loop-works) covers this in detail, and [AI agent vs chatbot](/answers/ai-agent-vs-chatbot) draws the line between the two clearly.
+
+Open-source frameworks like [OpenClaw](https://github.com/openclaw/openclaw) implement this loop with persistent memory and connectors to Gmail, Calendar, and chat apps. Liv uses it to take concrete actions: [triaging your inbox](/answers/ai-to-triage-your-email) and drafting replies, [managing your calendar](/answers/ai-calendar-assistant), and [booking restaurants](/answers/ai-that-books-restaurants). Access is through revocable Google OAuth, secrets sit in encrypted vaults, and outbound mail is held as a draft for your approval before anything is sent. That approval step is the safeguard that makes action-taking trustworthy.
+
+## Worked example
+
+The difference between a chatbot and an action-taking agent, in one task.
+
+| Step | Chatbot | AI agent (Liv) |
+| --- | --- | --- |
+| "Book dinner Thursday" | Suggests restaurants | Checks your calendar, reserves a table |
+| Result | A list to act on | A confirmed event in your calendar |
+| "Reply to this email" | Drafts text for you to copy | Prepares a draft in Gmail for your approval |
+| Follow-through | Yours | The agent's, with your sign-off |
+
+Compared with general assistants, see [ChatGPT vs AI agent](/answers/chatgpt-vs-ai-agent) and [Claude vs an AI agent that does things](/answers/claude-vs-ai-agent-that-does-things).
+
+## Try this in Liv
+
+Liv is the OpenClaw agent loop and real integrations wrapped in managed infrastructure, so you get action-taking without building or hosting it.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Google Calendar via OAuth.
+4. Ask it to do something concrete: draft a reply, book a table, add an event. Review any outbound drafts before they send.
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### What's the difference from a chatbot?
+A chatbot answers; an agent acts, using tools and integrations to complete the task. See [AI agent vs chatbot](/answers/ai-agent-vs-chatbot).
+
+### Will it act without my approval?
+Liv prepares outbound mail as drafts and waits for your approval before sending. It acts on your instructions.
+
+### What actions can it take?
+Triaging and drafting email, creating and moving calendar events, and making bookings, through your connected Gmail and Calendar.
+
+### How does it actually do this?
+It runs an agent loop: read, decide, call a tool, observe, repeat. See [how an AI agent loop works](/answers/how-an-ai-agent-loop-works).
+
+### Isn't ChatGPT an agent now?
+ChatGPT has agent features, but a dedicated agent with persistent integrations behaves differently. See [ChatGPT vs AI agent](/answers/chatgpt-vs-ai-agent).
+
+### What does this enable overall?
+A system that runs your operational work continuously. See [what is an AI chief of staff](/answers/what-is-an-ai-chief-of-staff).

@@ -1,0 +1,68 @@
+---
+title: "How to get started with a personal AI agent"
+question: "How do I get started with a personal AI agent?"
+answer: "Decide first whether you want to build and run it yourself or use a managed service. To self-host, deploy an open-source agent like OpenClaw, write its config files and connect your channels. To skip the ops, start a managed trial, message the agent, and connect Gmail and Calendar via OAuth."
+description: "Getting started with a personal AI agent: choose build vs buy, then either self-host OpenClaw or start a managed trial and connect your accounts."
+topic: getting-started
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - how-to-build-a-personal-ai-agent
+  - build-vs-buy-ai-agent
+  - what-is-an-ai-chief-of-staff
+---
+
+A personal AI agent is a continuous system rather than a single chat session: it remembers context, follows a schedule, and takes actions for you through the apps you already use. Getting started is mostly one decision followed by a short setup. The decision is whether you want to own the infrastructure or have someone run it for you.
+
+Both routes lead to roughly the same capability, so choose on appetite for operations rather than on features.
+
+## How it works
+
+The first fork is [build vs buy](/answers/build-vs-buy-ai-agent).
+
+**If you want to self-host**, the open-source path is well trodden. Deploy [OpenClaw](https://github.com/openclaw/openclaw) via Docker or Node in about 15 minutes, or a Railway one-click template in about 5. Then you write its config files: `SOUL.md` for its identity and personality (budget 20–45 minutes to do well), `HEARTBEAT.md` for its schedule, plus `AGENTS.md` and `USER.md` for working context. Connect your channels (Telegram, WhatsApp and others) and point it at an LLM. After that you carry roughly 1–3 hours of [maintenance](/answers/self-host-ai-agent-maintenance) a month. See the full [build guide](/answers/how-to-build-a-personal-ai-agent).
+
+**If you want to skip the ops**, use a managed service. You start a trial, message the agent, and connect your accounts through OAuth; the hosting, patching and security are handled. The [cost comparison](/answers/how-much-does-a-managed-ai-agent-cost) lays out what each path runs to.
+
+## Worked example
+
+The two getting-started paths, side by side.
+
+| Step | Self-host OpenClaw | Managed (Liv) |
+| --- | --- | --- |
+| Initial setup | Deploy + write config files | Start a 14-day trial, no card |
+| Time to first use | ~30–60 min including SOUL.md | Minutes once onboarded |
+| Connect email/calendar | Configure OAuth yourself | Click through Google OAuth |
+| Ongoing work | ~1–3 hrs/month | None |
+| Security | Your responsibility | CASA Tier 2, encrypted vaults |
+
+## Try this in Liv
+
+Liv is the OpenClaw agent loop wrapped in managed infrastructure, so getting started is connecting accounts rather than running servers.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth, revocable any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+From there, ask it to send you a [daily briefing](/answers/how-to-get-a-daily-ai-briefing), [triage your inbox](/answers/ai-to-triage-your-email), or manage your calendar. Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### Do I need to be technical to start?
+To self-host, comfort with a terminal helps, though the config is plain Markdown rather than code. A managed service needs no technical setup beyond connecting accounts.
+
+### What can a personal AI agent actually do?
+Triage email, manage your calendar, send daily briefings, turn forwarded messages into events, and book things. This is the [AI chief of staff](/answers/what-is-an-ai-chief-of-staff) idea.
+
+### Which messaging app should I use?
+Telegram is the most common default and is required for Liv; WhatsApp is available too. See [best messaging app for an AI agent](/answers/best-messaging-app-for-an-ai-agent).
+
+### How long does setup take?
+Self-hosting is about 15 minutes to deploy plus config time. A managed trial is usable within minutes of onboarding.
+
+### Should I build or buy?
+Build for control and learning, buy to skip the ops and compliance work. Read [build vs buy](/answers/build-vs-buy-ai-agent).
+
+### What does it cost to get going?
+A managed trial is free for 14 days. After that, see [how much a managed AI agent costs](/answers/how-much-does-a-managed-ai-agent-cost).

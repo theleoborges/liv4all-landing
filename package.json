@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node scripts/generate-redirects.mjs",
+    "build": "astro build && node scripts/generate-redirects.mjs && node scripts/indexnow-ping.mjs",
     "preview": "astro preview",
+    "indexnow": "node scripts/indexnow-ping.mjs --force",
     "astro": "astro"
   },
   "dependencies": {

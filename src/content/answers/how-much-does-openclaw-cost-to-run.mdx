@@ -1,0 +1,71 @@
+---
+title: "How Much Does OpenClaw Cost to Run?"
+question: "How much does OpenClaw cost to run per month?"
+answer: "OpenClaw itself is free and MIT-licensed. Running it costs hosting plus LLM API usage, typically under $100 a month for one person: a $5–20 VPS, plus a model bill that swings with how hard your agent works."
+description: "OpenClaw is free (MIT). Running it costs a $5–20 VPS plus variable LLM API usage, typically under $100/month for a single user."
+topic: self-hosting
+intent: informational
+datePublished: 2026-06-01
+related:
+  - is-openclaw-free
+  - cost-to-self-host-an-ai-agent
+  - self-hosted-vs-managed-ai-agent
+---
+
+[OpenClaw](https://github.com/openclaw/openclaw) is free to download and use: it is MIT-licensed open source with 15,000+ GitHub stars. There is no licence fee, ever. The monthly cost comes entirely from running it, and that splits into two parts: the server and the model.
+
+For a typical single user, the all-in figure lands under $100 a month, often well under. The variable part is the LLM, so your bill tracks how busy you keep the agent.
+
+## How it works
+
+Three things determine what you actually pay:
+
+- **Hosting.** OpenClaw needs roughly 2 cores, 2 GB RAM and 2 GB storage. A VPS in that class runs $5 to $20 a month. A Railway one-click deploy sits at the higher end but skips server admin.
+- **LLM API usage.** This is the swing factor. OpenClaw is LLM-agnostic, so you choose: DeepSeek for low cost, Claude or GPT for stronger reasoning, Gemini in between. You pay per token, so frequent heartbeats and long tasks raise the bill.
+- **Heartbeat frequency.** `HEARTBEAT.md` controls how often the agent wakes and acts on its own. A chatty schedule consumes more tokens than a once-a-day briefing. Tuning it is one of the levers you have on cost.
+
+There is no per-task credit system to second-guess. You pay your model provider directly and transparently per token.
+
+## Worked example
+
+A realistic monthly estimate for one person, light versus heavy usage:
+
+| Item | Light agent | Heavy agent |
+|---|---|---|
+| Software (OpenClaw) | Free | Free |
+| VPS | ~$5 | ~$15 |
+| LLM API | ~$10 (DeepSeek, daily briefing) | ~$60+ (Claude, frequent heartbeats) |
+| **Monthly total** | **~$15** | **~$75+** |
+
+A quiet agent on a cheap model is genuinely inexpensive. A busy one on a frontier model still stays under the $100 mark for most single users. The [cost to self-host an AI agent](/answers/cost-to-self-host-an-ai-agent) page works through the same maths for any open-source agent, and [is OpenClaw free](/answers/is-openclaw-free) covers the licence side. Remember the one cost the table omits: your time, around 1 to 3 hours a month of maintenance.
+
+## Try this in Liv
+
+If you would rather not watch a variable token bill, Liv folds OpenClaw's loop, the hosting and the LLM usage into one flat price.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card.
+2. Message Liv on Telegram, the default channel.
+3. Connect Gmail and Google Calendar via Google OAuth, revocable any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Liv is early access with batched onboarding. Pricing is flat: Pro $79/month, Max $149/month.
+
+## Common questions
+
+### Is there a licence fee for OpenClaw?
+No. It is MIT-licensed, so the software is free to use and modify forever.
+
+### What is the single biggest cost?
+Usually the LLM API. Hosting is small and fixed; the model bill grows with usage.
+
+### How can I lower the cost?
+Use a cheaper model like DeepSeek, trim heartbeat frequency, and keep tasks tight. These are the main levers.
+
+### How does this compare to Manus?
+Manus is credit-priced (Pro $20–200/month), and complex tasks can burn 500 to 900 credits, making costs hard to predict. OpenClaw's per-token billing is more transparent.
+
+### Are managed OpenClaw hosts cheaper?
+Hosts like OneClaw run around $12–22/month and save server admin, but you still pay LLM costs and get little security or compliance.
+
+### Will costs rise as I add integrations?
+Mostly indirectly: more capability tends to mean more agent activity, which means more tokens. The base hosting stays the same.

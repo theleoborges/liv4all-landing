@@ -1,0 +1,68 @@
+---
+title: "AI Calendar Assistant"
+question: "What can an AI calendar assistant do?"
+answer: "An AI calendar assistant reads and manages your schedule for you: it creates and moves events, turns forwarded messages into calendar entries, and keeps your day in order. Liv does this through Google Calendar over OAuth you can revoke."
+description: "What an AI calendar assistant does: create and move events, convert forwarded mail to entries, manage your day. Built on OpenClaw, run by Liv."
+topic: use-cases
+intent: informational
+datePublished: 2026-06-01
+related:
+  - ai-to-triage-your-email
+  - ai-that-books-restaurants
+  - how-to-give-an-ai-agent-email-and-calendar-access
+---
+
+A calendar assistant that understands plain language saves you the fiddly mechanics of scheduling. Instead of opening your calendar, finding a slot, and typing in the details, you tell the agent what you need and it does the work: book this, move that, find a free hour on Thursday, add the dinner someone just emailed you about.
+
+The useful version of this is connected to your real calendar and your real inbox, so it can act on actual events rather than answering hypothetical questions about scheduling.
+
+## How it works
+
+A calendar agent runs the same agent loop that powers any [persistent AI agent](/answers/what-is-a-persistent-ai-agent): it reads a request, decides what action it needs, calls the calendar API, and confirms the result. Frameworks like [OpenClaw](https://github.com/openclaw/openclaw) provide this loop and connect to the services you already use.
+
+Liv reaches your calendar through Google Calendar via OAuth, which you grant during setup and can revoke at any time. One of its more useful tricks is turning a forwarded message into an event: forward a confirmation email or a Telegram message about a meeting, and Liv extracts the date, time, and details and creates the entry. That pairs naturally with [email triage](/answers/ai-to-triage-your-email), since the agent that reads your inbox is the same one that fills your calendar. For the access mechanics, see [how to give an AI agent email and calendar access](/answers/how-to-give-an-ai-agent-email-and-calendar-access).
+
+Calendar work also feeds into booking. When the agent needs to reserve a table or slot around your availability, it draws on the same schedule; see [AI that books restaurants](/answers/ai-that-books-restaurants).
+
+## Worked example
+
+You can run a calendar agent yourself on OpenClaw or have it managed. The capability is identical; the operational burden differs.
+
+| Dimension | Self-hosted OpenClaw | Liv (OpenClaw as a service) |
+| --- | --- | --- |
+| Setup | Deploy, write config, wire Google Calendar | 14-day trial, no card, OAuth in a few clicks |
+| Calendar access | You configure and secure it | Google OAuth, user-revocable |
+| Monthly cost | Infra + LLM, typically under $100, self-managed | Pro $79/mo, Max $149/mo |
+| Ops | ~1–3 hours/month maintenance | Managed for you |
+| Compliance | Your responsibility | CASA Tier 2, encrypted vaults |
+
+## Try this in Liv
+
+Liv wraps the OpenClaw agent loop and Google Calendar integration in managed infrastructure, so you get a working calendar assistant without the setup.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Google Calendar via OAuth.
+4. Ask Liv to add, move, or find events, or forward it a message and ask it to put the details in your calendar.
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### Which calendar does it work with?
+Liv connects to Google Calendar through OAuth, which you can revoke at any time.
+
+### Can it create an event from a forwarded email?
+Yes. Forward a message to Liv and it extracts the date, time, and details to create a calendar entry.
+
+### Will it move or cancel events on its own?
+It acts on your instructions. You tell it what to schedule or change, and it confirms what it did.
+
+### Can it manage email too?
+Yes. The same agent triages your inbox and drafts replies. See [AI to triage your email](/answers/ai-to-triage-your-email).
+
+### Is my calendar data used to train models?
+No. Your data is not used to train models.
+
+### Can it book things that depend on my availability?
+Yes. It uses your calendar to find slots and can reserve tables or appointments. See [AI that books restaurants](/answers/ai-that-books-restaurants).

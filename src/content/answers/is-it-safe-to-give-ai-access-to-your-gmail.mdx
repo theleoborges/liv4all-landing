@@ -1,0 +1,72 @@
+---
+title: "Is it safe to give an AI access to your Gmail?"
+question: "Is it safe to give an AI agent access to your Gmail?"
+answer: "It can be, if the access goes through Google OAuth (so you can revoke it any time), the app has passed Google's CASA security assessment for restricted Gmail scopes, your data isn't used to train models, and outbound emails need your approval. Those four properties matter far more than the brand on the box."
+description: "Giving an AI Gmail access is safe when it uses revocable OAuth, passes Google CASA, doesn't train on your data, and needs approval to send."
+topic: security
+intent: informational
+datePublished: 2026-06-01
+related:
+  - how-to-give-an-ai-agent-email-and-calendar-access
+  - what-is-casa-tier-2-gmail
+  - how-to-securely-store-api-keys-for-ai-agents
+---
+
+The honest answer is that "an AI" is not one thing, and the safety depends entirely on how the access is wired. A read-only assistant that summarises your inbox and a fully autonomous agent that can send mail on your behalf carry very different risk. What you actually want to check is the mechanism: how the connection is granted, who can see the data, whether it trains a model, and what the agent can do without asking you first.
+
+Get those four right and email access becomes a sensible convenience rather than a standing liability. Get them wrong and you have handed a third party a copy of your most sensitive correspondence with no off switch.
+
+## How it works
+
+A well-built agent never asks for your Gmail password. It uses [Google OAuth](https://developers.google.com/identity/protocols/oauth2), where you grant scoped, time-limited access through Google's own consent screen and can revoke it at any time from your Google Account security settings. No password ever changes hands, and you keep the kill switch.
+
+Beyond the connection, three things decide whether the access is safe:
+
+- **Independent security verification.** Any app requesting restricted Gmail scopes (reading message bodies, sending on your behalf) must pass Google's Cloud Application Security Assessment. See [what CASA Tier 2 means](/answers/what-is-casa-tier-2-gmail) for the detail.
+- **Data handling.** Your mail should be encrypted at rest and never fed into model training. Ask the vendor directly; a clear answer is itself a signal.
+- **Action gating.** A safe agent drafts, then waits for your approval before sending. Autonomy without a human in the loop is where most real damage happens.
+
+## Worked example
+
+The same Gmail access can be safe or reckless depending on the surrounding controls.
+
+| Property | Risky setup | Safer setup |
+| --- | --- | --- |
+| Connection | App password / full IMAP credentials | Google OAuth, scoped and revocable |
+| Security review | None | Passed Google CASA for restricted scopes |
+| Training | Data used to improve models | Not used to train models |
+| Sending | Sends autonomously | Drafts, then waits for your approval |
+| Secrets storage | Plaintext config file | Encrypted per-user vault |
+
+If you self-host an open-source agent like [OpenClaw](https://github.com/openclaw/openclaw), all of those controls are yours to implement and maintain. That is real work, and the [security risks of self-hosting](/answers/self-hosted-ai-agent-security-risks) are worth reading before you commit.
+
+## Try this in Liv
+
+Liv is the OpenClaw agent loop wrapped in managed infrastructure, with the four controls above already in place: Google OAuth, [CASA Tier 2](/answers/what-is-casa-tier-2-gmail) (independently verified by TAC Security), encrypted per-user vaults, no model training on your data, and approval required before any draft is sent.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth; you can revoke access any time from your Google Account.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### Does the AI see all my emails?
+Only the scopes you grant through OAuth. Granting restricted scopes lets it read and send mail, which is why those scopes require a CASA assessment.
+
+### Can I revoke access later?
+Yes. Because access is via Google OAuth, you remove it from your Google Account security settings at any time, independently of the app.
+
+### Will my emails be used to train an AI model?
+They should not be. With Liv your data is not used to train models. Always confirm this in writing with any vendor.
+
+### Can the AI send emails without asking me?
+With a safe design, no. Liv prepares drafts and waits for your approval before anything is sent. See [how to give an agent email and calendar access](/answers/how-to-give-an-ai-agent-email-and-calendar-access).
+
+### Is self-hosting safer than a managed service?
+Not automatically. Self-hosting gives you control but also full responsibility for OAuth handling, encryption and patching. Read [self-hosted AI agent security risks](/answers/self-hosted-ai-agent-security-risks).
+
+### What about API keys and other secrets the agent uses?
+They should live in an encrypted store, not a plaintext file. See [how to securely store API keys for AI agents](/answers/how-to-securely-store-api-keys-for-ai-agents).

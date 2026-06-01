@@ -1,0 +1,76 @@
+---
+title: "OpenClaw SOUL.md Explained"
+question: "What is the SOUL.md file in OpenClaw?"
+answer: "SOUL.md is OpenClaw's identity file: a plain-text Markdown document that defines the agent's personality, tone, values, and operating rules. It's the single most important file you write, and a good one takes 20–45 minutes."
+description: "SOUL.md is OpenClaw's identity file, defining the agent's personality and rules. Here's what goes in it and how it works with the other config files."
+topic: openclaw
+intent: definitional
+datePublished: 2026-06-01
+related:
+  - what-is-openclaw
+  - openclaw-setup-guide
+  - how-to-give-your-ai-agent-memory
+---
+
+`SOUL.md` is the file that turns OpenClaw from a generic model into your agent. It is plain Markdown, not code, and it defines who the agent is: its name, personality, tone, values, and the rules it follows when deciding what to do. Get it right and the agent feels consistent and useful; leave it thin and the agent feels generic.
+
+Of all the files you touch when setting up [OpenClaw](https://github.com/openclaw/openclaw), this is the one worth slowing down for. Plan on 20–45 minutes to write a good one.
+
+## How it works
+
+OpenClaw loads `SOUL.md` as part of the context that shapes every decision the agent's loop makes. Because the agent reads it on each cycle, the file behaves like a persistent system prompt: a stable identity that survives across conversations and sessions.
+
+It sits alongside the other config files, each with a distinct job:
+
+- **`SOUL.md`** — identity, personality, tone, and operating rules.
+- **`HEARTBEAT.md`** — the agent's schedule, what it does and when.
+- **`AGENTS.md`** — working context about agents and tools.
+- **`USER.md`** — context about you, the person it serves.
+- **Memory files** — what the agent learns over time; see [giving your AI agent memory](/answers/how-to-give-your-ai-agent-memory).
+
+A strong `SOUL.md` is specific. Vague instructions like "be helpful" produce bland behaviour; concrete guidance about tone, boundaries, and how to handle ambiguity produces an agent that acts the way you want.
+
+## Worked example
+
+A practical `SOUL.md` usually covers these sections:
+
+| Section | What it defines |
+| --- | --- |
+| Identity | Name, role, who it works for |
+| Personality & tone | How it speaks, formality, humour |
+| Values & priorities | What it optimises for, what it won't do |
+| Operating rules | When to act vs ask, escalation rules |
+| Boundaries | Topics or actions that need approval |
+
+Time spent here pays off across every interaction, which is why setup guides recommend treating it as the main task rather than an afterthought. The [setup guide](/answers/openclaw-setup-guide) places it as the final, most considered step.
+
+## Try this in Liv
+
+Liv runs the same OpenClaw agent loop, with identity and behaviour configured for you and refined through use, so you get a coherent agent without writing config files.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card.
+2. Message Liv on Telegram, the default channel.
+3. Connect Gmail and Calendar via Google OAuth.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is early access and batched.
+
+## Common questions
+
+### Is SOUL.md code?
+No. It is plain Markdown text. You describe the agent in natural language, no programming required.
+
+### How long should SOUL.md be?
+Long enough to be specific. A useful one takes 20–45 minutes to write and covers identity, tone, rules, and boundaries.
+
+### Can I change SOUL.md later?
+Yes. Edit the file and the agent picks up the new identity on its next loop.
+
+### What's the difference between SOUL.md and memory?
+`SOUL.md` is the fixed identity you author; memory is what the agent accumulates over time. See [AI agent memory](/answers/how-to-give-your-ai-agent-memory).
+
+### Do other config files matter as much?
+They matter, but `SOUL.md` shapes behaviour most. `HEARTBEAT.md`, `AGENTS.md`, and `USER.md` support it.
+
+### Does Liv use SOUL.md?
+Liv is built on OpenClaw and configures the agent's identity for you. It is an independent managed service, not affiliated with the OpenClaw project.

@@ -1,0 +1,144 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const isProd = import.meta.env.PROD;
+const all = await getCollection('answers', ({ data }) => !data.draft || !isProd);
+
+// Stable topic order + display labels. Keep in sync with ANSWER_TOPICS in content.config.ts.
+const TOPIC_LABELS: Record<string, string> = {
+  openclaw: 'OpenClaw',
+  'self-hosting': 'Self-hosting',
+  'ai-agents': 'AI agents',
+  comparisons: 'Comparisons',
+  'use-cases': 'Use cases',
+  messaging: 'Messaging',
+  security: 'Security & privacy',
+  'getting-started': 'Getting started',
+};
+const TOPIC_ORDER = Object.keys(TOPIC_LABELS);
+
+const grouped = TOPIC_ORDER.map((topic) => ({
+  topic,
+  label: TOPIC_LABELS[topic],
+  entries: all
+    .filter((a) => a.data.topic === topic)
+    .sort((a, b) => a.data.title.localeCompare(b.data.title)),
+})).filter((g) => g.entries.length > 0);
+---
+<BaseLayout
+  title="Answers — Liv4All"
+  description="Straight answers on OpenClaw, self-hosting AI agents, and running a managed AI chief of staff."
+  ogUrl="https://liv4all.com/answers"
+  canonical="https://liv4all.com/answers"
+>
+  <div class="container">
+    <h1>answers</h1>
+    <p class="subtitle">
+      Straight answers on OpenClaw, building and self-hosting AI agents, and what it takes to
+      run a personal AI chief of staff — from the team behind Liv, OpenClaw as a service.
+    </p>
+
+    {all.length === 0 && <p class="empty">No answers published yet.</p>}
+
+    {grouped.map((group) => (
+      <section class="topic">
+        <h2>{group.label}</h2>
+        <ul class="answer-list">
+          {group.entries.map((entry) => (
+            <li>
+              <a href={`/answers/${entry.id}`}>
+                <span class="q">{entry.data.title}</span>
+                <span class="a">{entry.data.answer}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .container {
+    padding-top: 120px;
+    max-width: 820px;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 56px;
+    line-height: 1.7;
+    max-width: 640px;
+  }
+
+  .empty {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    padding: 48px 0;
+  }
+
+  .topic {
+    margin-bottom: 48px;
+  }
+
+  .topic h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .answer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .answer-list li {
+    margin-bottom: 4px;
+  }
+
+  .answer-list a {
+    display: block;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    color: var(--text);
+  }
+
+  .answer-list a:hover {
+    border-color: rgba(139, 92, 246, 0.25);
+    background: var(--surface-glass);
+    transform: translateX(4px);
+    text-decoration: none;
+  }
+
+  .answer-list .q {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .answer-list .a {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+</style>

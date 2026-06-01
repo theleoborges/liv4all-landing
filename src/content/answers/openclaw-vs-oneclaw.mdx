@@ -1,0 +1,67 @@
+---
+title: "OpenClaw hosting compared: cheap managed hosts vs a secured service"
+question: "What's the difference between cheap OpenClaw hosts and a secured managed service?"
+answer: "Cheap managed OpenClaw hosts like OneClaw run the software for around $12–22/month but add little security or built-in integrations. A service like Liv adds CASA Tier 2 security, encrypted vaults, and built-in Gmail/Calendar."
+description: "Compare cheap managed OpenClaw hosting to a secured service. See where bare hosting at $12–22/mo fits and where security and integrations are worth more."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - openclaw-hosting
+  - self-hosted-vs-managed-ai-agent
+  - how-much-does-a-managed-ai-agent-cost
+---
+
+Once you decide not to self-host [OpenClaw](https://github.com/openclaw/openclaw), the managed market splits in two. At the cheap end, hosts like OneClaw and Blink Claw run the OpenClaw software for you at roughly $12–22/month. They take the install off your plate, which is genuinely useful. What they typically do not add is security hardening, compliance, or integrations wired up and ready.
+
+The other end of the market trades a higher price for exactly those things. The question is how much the difference matters for an agent that will touch your email.
+
+## How it works
+
+A cheap managed host runs the standard OpenClaw codebase on a server they manage. You still configure the agent, connect your own accounts, and trust the host's baseline security. It is essentially self-hosting with the box managed for you, at a low price. See [OpenClaw hosting](/answers/openclaw-hosting) for the landscape.
+
+A secured service like Liv runs the same agent loop but wraps it in managed infrastructure plus security and integrations. Liv passed Google [CASA Tier 2](/answers/what-is-casa-tier-2-gmail), independently verified by TAC Security, stores secrets in encrypted per-user vaults, connects Gmail and Calendar via Google OAuth that you can revoke, and gives each agent its own email address and Telegram identity. Your data is not used to train models, and outbound drafts need your approval before sending.
+
+## Worked example
+
+| Dimension | Cheap managed host | Liv (secured managed) |
+| --- | --- | --- |
+| Price | ~$12–22/month | Pro $79/Max $149 |
+| Install/hosting | Managed | Managed |
+| Security/compliance | Baseline, host-defined | CASA Tier 2, encrypted vaults |
+| Integrations | Connect them yourself | Gmail/Calendar/Telegram built in |
+| Secret storage | Your responsibility | Encrypted per-user vaults |
+| Data training | Host-dependent | Not used to train models |
+
+If you just want OpenClaw running cheaply and you will handle security and setup yourself, a budget host is a fair fit. If the agent will hold inbox access and secrets, the security and compliance layer is where the extra cost earns its keep.
+
+## Try this in Liv
+
+Liv triages email, manages your calendar, books things, and sends daily briefings through Telegram.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth, revocable at any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### Are cheap OpenClaw hosts safe?
+They run real OpenClaw, but security depends on the host's setup, and you carry the configuration. Review [self-hosted security risks](/answers/self-hosted-ai-agent-security-risks) before connecting accounts.
+
+### What does CASA Tier 2 add?
+It is an independent security assessment Google requires for sensitive Gmail access. Liv passed it, verified by TAC Security. See [what is CASA Tier 2](/answers/what-is-casa-tier-2-gmail).
+
+### Why is Liv more expensive than a $12 host?
+The price reflects security, compliance, encrypted vaults and built-in integrations, not just running the software. See [how much a managed agent costs](/answers/how-much-does-a-managed-ai-agent-cost).
+
+### Do cheap hosts include Gmail integration?
+Usually you connect your own accounts. Liv ships Gmail and Calendar integration built in, via revocable OAuth.
+
+### Should I just self-host instead?
+If you enjoy the ops, yes. [Self-hosted vs managed](/answers/self-hosted-vs-managed-ai-agent) weighs both paths.
+
+### Is Liv affiliated with OneClaw or OpenClaw?
+No. Liv is an independent managed service built on OpenClaw, not affiliated with or endorsed by OneClaw or the OpenClaw project.

@@ -1,0 +1,72 @@
+---
+title: "What is CASA Tier 2 for Gmail?"
+question: "What is Google CASA Tier 2 and why does a Gmail integration need it?"
+answer: "CASA (Cloud Application Security Assessment) is Google's security verification programme, run through the App Defense Alliance, for apps requesting restricted scopes. Any app that reads your email or sends on your behalf must pass it. Tier 2 involves an independent assessor running a security scan and reviewing the app against a controls checklist, repeated annually."
+description: "CASA Tier 2 is Google's security assessment for apps using restricted Gmail scopes: an independent scan and controls review, renewed yearly."
+topic: security
+intent: definitional
+datePublished: 2026-06-01
+related:
+  - is-it-safe-to-give-ai-access-to-your-gmail
+  - how-to-give-an-ai-agent-email-and-calendar-access
+  - ai-to-triage-your-email
+---
+
+When an app wants to do more than basic sign-in with your Google account, reading the contents of your inbox or sending mail as you, Google treats that as a "restricted scope" and requires the app to prove it handles your data responsibly. CASA, the Cloud Application Security Assessment, is the mechanism for that proof. It is administered through the [App Defense Alliance](https://appdefensealliance.dev/casa), now under the Linux Foundation, and built on the OWASP Application Security Verification Standard (ASVS).
+
+For an AI agent that triages your email, this is the difference between a credible product and one that simply asked for sweeping access and hoped you wouldn't notice.
+
+## How it works
+
+CASA has tiers reflecting how the assessment is performed. Tier 2 is the common bar for restricted Gmail and Calendar scopes: an independent, Google-recognised assessor runs a security scan against the production app, produces a findings report, and reviews the app against the ASVS controls checklist via a self-assessment questionnaire that the assessor validates. Any findings must be remediated to pass.
+
+A few properties matter:
+
+- **Independent.** The assessment is carried out by an approved third-party lab, not self-attested. Liv's CASA Tier 2 was independently verified by [TAC Security](https://tacsecurity.com).
+- **Tied to restricted scopes.** You only need it because the app touches sensitive Gmail data. See [Google's restricted scope verification](https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification) for the official requirement.
+- **Annual.** Verification is not one-and-done; apps using restricted scopes must reassess each year to keep their access.
+
+CASA sits alongside, not instead of, the OAuth model: you still grant access through Google's consent screen and can [revoke it any time](/answers/how-to-give-an-ai-agent-email-and-calendar-access).
+
+## Worked example
+
+What CASA Tier 2 does and does not tell you.
+
+| Question | What CASA Tier 2 answers |
+| --- | --- |
+| Did an independent party review security? | Yes, an approved assessor scanned and reviewed the app |
+| Is it required for inbox access? | Yes, restricted Gmail scopes trigger it |
+| Is it a one-off badge? | No, it must be renewed annually |
+| Does it cover data-training policy? | Not directly; ask the vendor separately |
+| Does it replace OAuth consent? | No, you still grant and revoke access yourself |
+
+## Try this in Liv
+
+Liv has passed Google CASA Tier 2, independently verified by TAC Security, which is what lets it read and triage your Gmail through restricted scopes responsibly. Access is via Google OAuth and revocable any time, secrets sit in encrypted per-user vaults, your data is not used to train models, and outbound drafts need your approval.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### What does CASA stand for?
+Cloud Application Security Assessment, Google's security verification for apps requesting sensitive or restricted OAuth scopes.
+
+### Why does an email AI need CASA?
+Because reading message bodies or sending mail is a restricted scope. Google requires apps using those scopes to pass the assessment. Read [is it safe to give AI access to your Gmail](/answers/is-it-safe-to-give-ai-access-to-your-gmail).
+
+### What is the difference between the tiers?
+Higher tiers mean a deeper, more independent assessment against more controls. Tier 2 is the common requirement for restricted Gmail and Calendar scopes.
+
+### Is CASA a one-time check?
+No. Apps using restricted scopes must reassess annually to keep their access.
+
+### Who verifies it?
+An approved third-party assessor, not the app vendor. Liv's was verified by TAC Security.
+
+### Does passing CASA mean my data is private?
+It means security controls were independently reviewed. For data-handling specifics, such as whether your data trains a model, confirm directly with the vendor. With Liv, it does not.

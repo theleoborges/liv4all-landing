@@ -6,6 +6,7 @@ interface Props {
   ogType?: string;
   ogTitle?: string;
   ogDescription?: string;
+  canonical?: string;
 }
 
 const {
@@ -15,12 +16,14 @@ const {
   ogType = 'website',
   ogTitle = title,
   ogDescription = description,
+  canonical,
 } = Astro.props;
 ---
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{title}</title>
 <meta name="description" content={description} />
+{canonical && <link rel="canonical" href={canonical} />}
 <meta property="og:title" content={ogTitle} />
 <meta property="og:description" content={ogDescription} />
 <meta property="og:type" content={ogType} />

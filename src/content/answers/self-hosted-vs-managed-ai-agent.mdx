@@ -1,0 +1,72 @@
+---
+title: "Self-Hosted vs Managed AI Agent: Which Should You Choose?"
+question: "Should I self-host my AI agent or use a managed service?"
+answer: "Self-host if you want total control, the lowest cash cost and you enjoy the tinkering. Choose a managed service if you want the agent working today, a predictable bill and someone else handling security and the 1–3 hours of monthly ops."
+description: "Self-hosted vs managed AI agent: self-host for control and low cash cost; go managed for zero ops, predictable pricing and built-in security."
+topic: self-hosting
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - build-vs-buy-ai-agent
+  - openclaw-hosting
+  - self-host-ai-agent-maintenance
+---
+
+Both routes run the same kind of agent loop. The difference is who carries the operational weight. Self-hosting puts the server, the security and the maintenance on you in exchange for control and a lower cash floor. A managed service takes all of that off your plate for a flat fee.
+
+There is no universally correct answer, only a fit for how you value your time and how much control you actually need.
+
+## How it works
+
+Self-hosting an open-source agent like [OpenClaw](https://github.com/openclaw/openclaw) means you provision a server, deploy the software, supply an LLM key and own everything after that: updates, OAuth token renewals, security and uptime. You set the agent's identity in `SOUL.md` and its schedule in `HEARTBEAT.md`, and you debug it when a skill breaks.
+
+A managed service runs the same loop on infrastructure someone else maintains. You lose some control (you cannot patch the source) and gain time, predictable pricing and, with the better services, real security and compliance. There is a middle tier too: cheap managed OpenClaw hosts like OneClaw or Blink Claw (around $12–22/month) run the software for you but add little security or compliance beyond that.
+
+## Worked example
+
+The same single-person agent, two ways:
+
+| | Self-host OpenClaw | Managed (e.g. Liv) |
+|---|---|---|
+| Setup | 15 min + ~1 hr config | Sign up, message on Telegram |
+| Monthly cost | Infra + API, under $100 | $79 (Pro) / $149 (Max) |
+| Pricing model | Variable per token | Flat |
+| Ops burden | 1–3 hrs/month | None |
+| Security | Your responsibility | CASA Tier 2, encrypted vaults |
+| Control | Total, can fork the code | Convenience over control |
+| Best for | Tinkerers, the cost-sensitive | People who want it working now |
+
+The decision tends to come down to two questions. Do you want to own the infrastructure and the code? Self-host. Do you want the agent triaging your email this afternoon without you babysitting a server? Go managed. The [build vs buy](/answers/build-vs-buy-ai-agent) framing covers the same trade-off from a budgeting angle, and [OpenClaw hosting](/answers/openclaw-hosting) lays out the options between the two extremes.
+
+The honest caveat on self-hosting is the [maintenance](/answers/self-host-ai-agent-maintenance): tokens expire, the codebase updates, heartbeats need tuning. None of it is hard, but it never stops.
+
+## Try this in Liv
+
+Liv is the managed middle ground: the OpenClaw agent loop and real integrations, wrapped in managed infrastructure and security, so you skip the ops.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Google Calendar via Google OAuth, revocable any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Liv is early access with batched onboarding, so you may join a queue.
+
+## Common questions
+
+### Is self-hosting cheaper?
+In cash, often yes: under $100 a month versus a flat managed fee. Once you price in 1 to 3 hours of monthly ops, the gap narrows or closes.
+
+### Can I move from managed to self-hosted later?
+Yes. Because Liv is built on OpenClaw, the concepts (`SOUL.md`, heartbeats, channels) transfer if you later choose to run your own.
+
+### What about security?
+Self-hosting makes security your job. A managed service can carry compliance you would struggle to match alone; Liv passed Google CASA Tier 2, independently verified by TAC Security.
+
+### Do managed services use my data to train models?
+Check each provider. Liv does not use your data to train models, and outbound drafts need your approval before sending.
+
+### What is the cheapest managed option?
+Bare managed OpenClaw hosts run around $12–22/month but offer minimal security. A fully managed service costs more and includes compliance and encrypted vaults.
+
+### Which suits a non-technical person?
+A managed service. Self-hosting rewards comfort with servers and config files, even via a one-click deploy.

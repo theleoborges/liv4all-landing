@@ -1,0 +1,64 @@
+---
+title: "OpenClaw Hosting: Self-Host vs Managed Options"
+question: "What are my options for hosting OpenClaw?"
+answer: "You can self-host OpenClaw on any VPS, use a cheap managed host like OneClaw or Blink Claw (~$12–22/month), or use a managed service like Liv that adds real integrations and security on top of the same agent."
+description: "Compare OpenClaw hosting options: self-host on a VPS, cheap managed hosts, or a fully managed service with integrations and compliance."
+topic: openclaw
+intent: informational
+datePublished: 2026-06-01
+related:
+  - how-to-run-openclaw-without-devops
+  - self-hosted-vs-managed-ai-agent
+  - openclaw-vs-oneclaw
+---
+
+OpenClaw is open-source, so where it runs is your choice. The options form a spectrum from "run it all yourself" to "someone else runs everything", trading control for convenience and, at the managed end, for security and compliance you would otherwise build alone.
+
+Three broad routes exist: self-host on your own VPS, use a low-cost managed host that wraps the same software, or use a full managed service that adds integrations and a security posture on top.
+
+## How it works
+
+**Self-host.** You provision a server, install [OpenClaw](https://github.com/openclaw/openclaw) via Docker or Node, and own the agent end to end. Infra plus LLM API typically stays under $100/month, and you carry roughly 1–3 hours/month of [maintenance](/answers/self-host-ai-agent-maintenance). Maximum control, maximum ownership.
+
+**Cheap managed hosts.** Services like OneClaw and Blink Claw run OpenClaw for you at roughly $12–22/month. They remove the server admin, but add little in the way of security hardening or compliance. See [OpenClaw vs OneClaw](/answers/openclaw-vs-oneclaw) for that comparison.
+
+**Full managed service.** Liv runs the OpenClaw agent loop with persistence and real integrations (Gmail, Calendar, Telegram, WhatsApp), wrapped in managed infrastructure plus security: Google CASA Tier 2 (independently verified by TAC Security) and encrypted per-user vaults for secrets. You skip the ops and inherit the compliance work.
+
+## Worked example
+
+| Option | Monthly cost | You manage | Security/compliance |
+| --- | --- | --- | --- |
+| Self-host on a VPS | Under $100 (infra + LLM) | Everything | Yours to build |
+| OneClaw / Blink Claw | ~$12–22 | Little; basic hosting | Minimal |
+| Liv (managed service) | Pro $79 / Max $149 | Nothing | CASA Tier 2, encrypted vaults |
+
+The cheap managed tier and the full service are not really competing on price; they are solving different problems. One removes the server; the other removes the server and the security/integration burden.
+
+## Try this in Liv
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Calendar via Google OAuth, revocable any time.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Onboarding is early access and batched.
+
+## Common questions
+
+### What's the cheapest way to host OpenClaw?
+A low-cost managed host (~$12–22/month) or a small self-hosted VPS. Self-hosting adds your time as a hidden cost.
+
+### Is self-hosting hard?
+The install is quick; the ongoing maintenance is the real commitment. See [running OpenClaw without DevOps](/answers/how-to-run-openclaw-without-devops).
+
+### What does a cheap managed host leave out?
+Mostly security hardening, compliance, and deep integrations. They keep the agent running but little more.
+
+### How is Liv different from OneClaw?
+Liv adds CASA Tier 2 compliance, encrypted vaults, and real Gmail/Calendar integration. [OpenClaw vs OneClaw](/answers/openclaw-vs-oneclaw) goes deeper.
+
+### Do I have to choose now?
+No. Many people self-host to learn, then move to a [managed service](/answers/self-hosted-vs-managed-ai-agent) when the maintenance stops being fun.
+
+### Is Liv affiliated with OpenClaw?
+No. Liv is an independent managed service built on OpenClaw, not affiliated with or endorsed by the project.

@@ -1,0 +1,68 @@
+---
+title: "How an AI Agent Loop Works"
+question: "How does an AI agent loop work?"
+answer: "An AI agent loop is the cycle of observe, think, act, repeat: the agent reads its context, decides on a step, calls a tool, observes the result and loops again until the task is done. This loop is what turns a language model into an agent."
+description: "How an AI agent loop works: the observe-think-act cycle, tool calls and the heartbeat that lets agents run on their own. Clear, jargon-free."
+topic: ai-agents
+intent: definitional
+datePublished: 2026-06-01
+related:
+  - what-is-a-persistent-ai-agent
+  - what-is-an-autonomous-ai-agent
+  - what-is-openclaw
+---
+
+A language model on its own just predicts text. The agent loop is the wrapper that turns that prediction into action: it lets the model take a step, see what happened, and decide what to do next. Run that cycle enough times and a one-shot answer becomes a completed task.
+
+The idea is simple, almost mechanical. The power comes from repetition. Each pass through the loop gives the model new information, so it can correct course, chain several tools together, and keep going until the goal is met.
+
+## How it works
+
+A single pass through the loop has four stages. Observe: the agent gathers its current context, the latest message, relevant memory, the result of its last action. Think: the model reasons about what to do next and chooses a tool. Act: it calls that tool, for example reading an email, creating a calendar event or sending a message. Repeat: the result of the action becomes the next observation, and the loop continues until the task is finished or it needs your input.
+
+[OpenClaw](https://github.com/openclaw/openclaw), the open-source personal agent, runs exactly this kind of loop and is LLM-agnostic, so the reasoning step can be Claude, GPT, Gemini or DeepSeek. Two things make the loop genuinely useful over time. Memory, so each pass can draw on what the agent already knows about you. And a schedule, OpenClaw's `HEARTBEAT.md`, which wakes the loop on a cadence so it can act without you prompting it. Continuous looping plus durable memory is what makes an agent persistent; see [what a persistent AI agent is](/answers/what-is-a-persistent-ai-agent) and [what OpenClaw is](/answers/what-is-openclaw).
+
+## Worked example
+
+"Find a dinner slot next week and book it." Watch the loop run:
+
+| Pass | Observe | Think | Act |
+| --- | --- | --- | --- |
+| 1 | Request received | Need free evenings | Read calendar |
+| 2 | Tue and Thu are free | Confirm preference | Ask user which night |
+| 3 | User picks Thursday | Need a restaurant | Search options |
+| 4 | Three options found | Pick and reserve | Book table |
+| 5 | Booking confirmed | Record it | Create calendar event |
+
+No single model call did all of that. The loop did, by feeding each result back in as the next observation. The agent paused at pass 2 because some actions need your confirmation before it proceeds.
+
+## Try this in Liv
+
+Liv runs this loop for you as a managed service, so you watch the results rather than the plumbing:
+
+1. Start a free 14-day trial at https://app.liv4all.com. No credit card.
+2. Message Liv on Telegram, the default channel, and give it a multi-step task.
+3. Connect Gmail and Calendar via Google OAuth so the loop has tools to act on.
+4. Optionally link WhatsApp later (invite-only, dedicated eSIM).
+
+Outbound drafts wait for your approval before sending, and Liv is in early access with batched onboarding.
+
+## Common questions
+
+### What is the difference between a model and an agent loop?
+The model produces one response; the loop runs the model repeatedly with tool access until a task is done.
+
+### What stops the loop running forever?
+It ends when the task is complete, when it needs your input, or at safe limits the system sets. Sensitive actions pause for your approval.
+
+### What is a heartbeat in this context?
+A scheduled trigger that wakes the loop on a cadence so the agent can act without being prompted, defined in OpenClaw's `HEARTBEAT.md`.
+
+### Does every agent use the same loop?
+The observe-think-act pattern is near-universal, though implementations differ in memory, tools and scheduling.
+
+### How does the loop make an agent autonomous?
+By letting it choose and chain its own steps towards a goal. See [what an autonomous AI agent is](/answers/what-is-an-autonomous-ai-agent).
+
+### Can I run my own agent loop?
+Yes, OpenClaw is open-source and self-hostable. See [how to build a personal AI agent](/answers/how-to-build-a-personal-ai-agent).

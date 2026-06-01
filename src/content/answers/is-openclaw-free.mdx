@@ -1,0 +1,68 @@
+---
+title: "Is OpenClaw Free?"
+question: "Is OpenClaw free to use?"
+answer: "Yes. OpenClaw is free and open-source under the MIT licence. The software costs nothing; you only pay for the server it runs on and your LLM API usage, typically under $100/month combined."
+description: "OpenClaw is free under the MIT licence. The software is free; you pay only for hosting and LLM API usage, usually under $100/month total."
+topic: openclaw
+intent: informational
+datePublished: 2026-06-01
+related:
+  - how-much-does-openclaw-cost-to-run
+  - openclaw-hosting
+  - what-is-openclaw
+---
+
+OpenClaw itself is genuinely free. It is released under the MIT licence, one of the most permissive open-source licences, which means you can run, modify, and even commercialise it without paying for the software. With 15,000+ GitHub stars and 200+ contributors, it is a maintained community project, not a freemium funnel.
+
+"Free software" is not the same as "free to operate", though. There is no licence fee, but running an always-on agent has two unavoidable running costs: somewhere to host it and the LLM it thinks with.
+
+## How it works
+
+[OpenClaw](https://github.com/openclaw/openclaw) is downloaded and run on infrastructure you control. The two cost lines are:
+
+- **Hosting.** A small VPS meeting the [minimum specs](/answers/openclaw-system-requirements) (roughly 2 cores, 2 GB RAM). Low-cost managed hosts like OneClaw or Blink Claw run ~$12–22/month if you would rather not manage a server.
+- **LLM API usage.** OpenClaw is LLM-agnostic, so you pay your provider (Claude, GPT, Gemini, DeepSeek) for what the agent consumes.
+
+Combined, infra plus LLM API typically lands under $100/month. There is also a time cost: roughly 1–3 hours/month of [maintenance](/answers/self-host-ai-agent-maintenance) that does not show up on any invoice. For the full breakdown see [how much OpenClaw costs to run](/answers/how-much-does-openclaw-cost-to-run).
+
+## Worked example
+
+| Line item | Cost | Free? |
+| --- | --- | --- |
+| OpenClaw software (MIT) | $0 | Yes |
+| Hosting (VPS or cheap managed) | ~$12–100/month | No |
+| LLM API usage | Pay-as-you-go | No |
+| Your maintenance time | ~1–3 hrs/month | No |
+
+So the answer is "free to download, not free to run". For most people the meaningful cost is the LLM usage plus the hours of upkeep.
+
+## Try this in Liv
+
+If you want predictable pricing and no upkeep, Liv runs the OpenClaw agent loop as a managed service for a flat monthly fee.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card.
+2. Message Liv on Telegram, the default channel.
+3. Connect Gmail and Calendar via Google OAuth.
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Liv is Pro $79/mo or Max $149/mo. Onboarding is early access and batched.
+
+## Common questions
+
+### Does OpenClaw have a paid tier?
+No. The project is fully MIT-licensed and free. Costs come only from hosting and LLM usage.
+
+### What's the cheapest way to run it?
+A small VPS or a low-cost managed host (~$12–22/month), plus modest LLM usage.
+
+### How much does running it actually cost?
+Infra plus LLM API usually stays under $100/month. See [the full cost breakdown](/answers/how-much-does-openclaw-cost-to-run).
+
+### Are there hidden costs?
+The main one is your time: roughly 1–3 hours/month of maintenance.
+
+### Is Liv free?
+Liv has a 14-day free trial with no card, then Pro $79/mo or Max $149/mo. It is an independent managed service built on OpenClaw.
+
+### Can I commercialise something built on OpenClaw?
+Yes. The MIT licence permits commercial use, which is exactly how managed services are built on top of it.

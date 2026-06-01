@@ -1,0 +1,75 @@
+---
+title: "How to Self-Host an AI Agent"
+question: "How do I self-host my own AI agent?"
+answer: "Pick an open-source agent like OpenClaw, run it on a small Linux server via Docker or a Railway one-click template, give it an LLM API key and your channel of choice, then write its config files. Budget about 15 minutes to boot it and an hour to make it genuinely useful."
+description: "Self-host an AI agent in five steps: choose OpenClaw, provision a 2-core VPS, deploy via Docker, connect an LLM and a chat channel, then tune its config."
+topic: self-hosting
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - self-hosted-vs-managed-ai-agent
+  - best-vps-for-ai-agent
+  - how-to-deploy-openclaw
+---
+
+Self-hosting an AI agent means running the agent loop on infrastructure you control, with your own LLM key and your own data. The practical winner for most people is [OpenClaw](https://github.com/openclaw/openclaw), an MIT-licensed personal agent with 15,000+ GitHub stars and 200+ contributors. It runs on any OS, talks to most LLMs (Claude, GPT, Gemini, DeepSeek), and connects to Telegram, WhatsApp, Slack, Discord, Signal and more.
+
+The setup itself is short. The part that matters is the configuration: an agent is only as good as the identity and schedule you give it.
+
+## How it works
+
+A self-hosted agent has four moving parts: a host (a small Linux server), the agent software, an LLM that does the thinking, and a channel you message it through. Here is the path from nothing to a working agent.
+
+1. **Provision a host.** OpenClaw's minimum specs are roughly 2 cores, 2 GB RAM and 2 GB storage, with Ubuntu 24.04 recommended. A cheap VPS is plenty; see [best VPS for an AI agent](/answers/best-vps-for-ai-agent) for picks, or run it on a spare machine at home.
+2. **Deploy the software.** Two routes: Docker or Node on your own box (about 15 minutes), or a Railway one-click template (about 5 minutes, no server admin). The full walkthrough is in [how to deploy OpenClaw](/answers/how-to-deploy-openclaw).
+3. **Add an LLM key.** Drop in an API key from Anthropic, OpenAI, Google or DeepSeek. This is what your agent's usage bills against.
+4. **Connect a channel.** Link Telegram or WhatsApp so you can actually talk to it.
+5. **Write the config files.** `SOUL.md` defines the agent's identity and personality and is worth 20 to 45 minutes of real thought. `HEARTBEAT.md` sets its schedule (what it does, and when, without you asking). `AGENTS.md`, `USER.md` and the memory files round it out.
+
+Skipping step five is the most common mistake. An agent with an empty `SOUL.md` is a chatbot; a well-written one is a chief of staff.
+
+## Worked example
+
+Two routes to the same agent loop, with the trade-offs laid out:
+
+| | Self-host OpenClaw | Liv (managed) |
+|---|---|---|
+| Setup time | 15 min deploy + ~1 hr config | Sign up, message on Telegram |
+| Where it runs | Your VPS or home server | Managed infrastructure |
+| Monthly cost | Infra + LLM API, typically under $100 | $79 (Pro) / $149 (Max) |
+| Security/compliance | You own it | CASA Tier 2, encrypted vaults |
+| Ongoing ops | ~1–3 hrs/month | None |
+| Control | Total | Convenience over total control |
+
+Self-hosting gives you full control and a lower floor on cost. The trade is the ongoing work: OAuth tokens expire, the codebase updates, heartbeats need tuning and skills occasionally break. Plan for [1 to 3 hours a month of maintenance](/answers/self-host-ai-agent-maintenance) and decide whether that is time well spent. The [self-hosted vs managed comparison](/answers/self-hosted-vs-managed-ai-agent) breaks down who each option suits.
+
+## Try this in Liv
+
+Liv is OpenClaw as a service: the same agent loop and real integrations, on managed infrastructure, so you skip the ops.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com). No credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail and Google Calendar via Google OAuth (revocable any time).
+4. Optionally link WhatsApp (invite-only, needs a dedicated eSIM).
+
+Liv is currently early access with batched onboarding, so you may join a queue.
+
+## Common questions
+
+### Do I need to be a developer to self-host?
+Not strictly. A Railway one-click deploy needs little server knowledge, but writing config and debugging skills rewards comfort with the command line. See [how to run OpenClaw without DevOps](/answers/how-to-run-openclaw-without-devops).
+
+### What does it cost to run?
+Infrastructure plus LLM API usage, typically under $100 a month for one person. Full breakdown in [cost to self-host an AI agent](/answers/cost-to-self-host-an-ai-agent).
+
+### Which LLM should I use?
+OpenClaw is LLM-agnostic. Claude and GPT are common for quality; DeepSeek is cheaper. You can switch by changing the key.
+
+### Can I run it without a server at all?
+Yes, on a spare laptop or mini PC at home, though uptime suffers. See [do I need a server for a personal AI agent](/answers/do-i-need-a-server-for-a-personal-ai-agent).
+
+### How is self-hosting different from a managed host like OneClaw?
+Managed OpenClaw hosts (OneClaw, Blink Claw, around $12–22/month) run the software for you but add little security or compliance. A fully managed service like Liv adds CASA Tier 2 and encrypted vaults.
+
+### Is my data private when self-hosting?
+Yes, your data stays on your infrastructure. The trade is that securing it is also your responsibility.

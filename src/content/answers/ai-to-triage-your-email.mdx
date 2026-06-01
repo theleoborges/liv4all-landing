@@ -1,0 +1,68 @@
+---
+title: "AI to Triage Your Email"
+question: "Can an AI agent triage my email for me?"
+answer: "Yes. A persistent AI agent can read your inbox, sort what matters from what doesn't, summarise the important threads, and draft replies for your approval. Liv does this through Gmail, sending drafts you confirm before anything goes out."
+description: "How an AI agent triages your inbox: sorting, summarising, and drafting replies you approve. Built on OpenClaw, run by Liv without the self-hosting ops."
+topic: use-cases
+intent: informational
+datePublished: 2026-06-01
+related:
+  - ai-calendar-assistant
+  - how-to-get-a-daily-ai-briefing
+  - how-to-give-an-ai-agent-email-and-calendar-access
+---
+
+Email triage is the most repetitive part of inbox work: deciding what needs a reply, what can wait, what is noise, and what someone is actually asking you to do. An AI agent with access to your inbox can take the first pass at all of it. It reads incoming mail, ranks it by what looks urgent or important, summarises long threads into a sentence or two, and prepares replies for the ones that need them.
+
+The point is not to hand your inbox to a black box. A well-built agent shows its work: it tells you what it found, why it flagged something, and what it proposes to send, leaving the decision with you.
+
+## How it works
+
+Under the hood, an email-triage agent runs an agent loop: it connects to your mailbox, reads new messages, classifies them, and decides what action each one needs. Open-source frameworks like [OpenClaw](https://github.com/openclaw/openclaw) provide exactly this loop, with persistent memory so the agent learns which senders and topics matter to you over time.
+
+Access is the sensitive part. Liv connects to Gmail through Google OAuth, which you can revoke at any time, and reads only what it needs to do the job. Any reply it writes is held as a draft until you approve it, so nothing is sent in your name without your say-so. For the security detail, see [is it safe to give AI access to your Gmail](/answers/is-it-safe-to-give-ai-access-to-your-gmail) and [what is CASA Tier 2 Gmail](/answers/what-is-casa-tier-2-gmail).
+
+Triage rarely lives alone. The same agent that sorts your inbox can turn a forwarded email into a calendar event, which is where [an AI calendar assistant](/answers/ai-calendar-assistant) takes over.
+
+## Worked example
+
+You can build this yourself on OpenClaw or have it run for you. The agent logic is the same; the difference is who carries the setup and maintenance.
+
+| Dimension | Self-hosted OpenClaw | Liv (OpenClaw as a service) |
+| --- | --- | --- |
+| Setup | ~15 min to deploy, then write SOUL.md and wire up Gmail | 14-day trial, no card, OAuth in a few clicks |
+| Inbox access | You configure and secure it | Google OAuth, user-revocable |
+| Monthly cost | Infra + LLM, typically under $100, you manage it | Pro $79/mo, Max $149/mo |
+| Ops | ~1–3 hours/month (token expiry, updates, debugging) | Managed for you |
+| Compliance | Your responsibility | CASA Tier 2, encrypted vaults |
+
+## Try this in Liv
+
+Liv is the OpenClaw agent loop and real Gmail integration wrapped in managed infrastructure, so you get inbox triage without running a server.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Gmail via Google OAuth so Liv can read and draft.
+4. Ask Liv to summarise your unread mail or flag anything urgent; review the drafts it proposes before they send.
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### Will the AI send emails without asking me?
+No. Liv prepares outbound replies as drafts and waits for your approval before sending anything.
+
+### Does it work with Gmail?
+Yes. Liv connects to Gmail through Google OAuth, which you can revoke whenever you like.
+
+### Can it learn which emails matter to me?
+Yes. The agent keeps persistent memory, so over time it gets better at recognising the senders and topics you care about. See [how to give your AI agent memory](/answers/how-to-give-your-ai-agent-memory).
+
+### Is my email used to train AI models?
+No. Your data is not used to train models.
+
+### Can it also handle my calendar?
+Yes. The same agent manages your schedule and can turn forwarded mail into events. See [AI calendar assistant](/answers/ai-calendar-assistant).
+
+### How is this different from a chatbot?
+A chatbot answers when you ask; a triage agent works continuously and takes action. See [AI that can take actions, not just answer](/answers/ai-that-can-take-actions-not-just-answer).

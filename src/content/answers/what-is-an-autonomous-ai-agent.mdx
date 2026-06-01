@@ -1,0 +1,70 @@
+---
+title: "What Is an Autonomous AI Agent?"
+question: "What is an autonomous AI agent?"
+answer: "An autonomous AI agent decides its own steps towards a goal and carries them out using tools, rather than waiting for you to instruct each action. Autonomy is about acting independently; a well-designed agent still pauses for approval on sensitive actions."
+description: "An autonomous AI agent chooses and executes its own steps towards a goal using tools. Here is how autonomy works and where the guardrails sit."
+topic: ai-agents
+intent: definitional
+datePublished: 2026-06-01
+related:
+  - what-is-a-persistent-ai-agent
+  - how-an-ai-agent-loop-works
+  - ai-agent-vs-chatbot
+---
+
+Tell a normal assistant "book me a table" and it tells you how to do it. Tell an autonomous agent the same thing and it checks your calendar, picks a slot, finds a restaurant and makes the reservation. The difference is autonomy: the agent figures out the steps itself.
+
+Autonomy is not the same as being unsupervised. The best agents act independently on the routine and ask for your sign-off on anything consequential. You set the goal and the boundaries; the agent handles the path between them.
+
+## How it works
+
+Autonomy comes from giving a language model two things: a goal and tools, then letting it plan. Inside its [agent loop](/answers/how-an-ai-agent-loop-works) the model decides on the next step, calls a tool, observes the result and chooses again, repeating until the goal is met. Because it chains its own steps rather than following a fixed script, it can handle tasks you did not spell out in advance.
+
+[OpenClaw](https://github.com/openclaw/openclaw), the open-source personal agent, is built this way: LLM-agnostic reasoning, real tool access (email, calendar, messaging) and a schedule so it can act without prompting. Autonomy pairs naturally with persistence. An autonomous agent that also remembers you and runs continuously becomes a standing helper rather than a one-off; see [what a persistent AI agent is](/answers/what-is-a-persistent-ai-agent).
+
+Guardrails are part of good design, not a contradiction. Scoped permissions limit what the agent can touch. Approval gates pause it before sensitive actions like sending an email or spending money. With Liv, outbound drafts wait for your approval before they go out, so autonomy never means losing oversight.
+
+## Worked example
+
+The same goal, handled with and without autonomy:
+
+| Goal: "Sort out the team offsite" | Non-autonomous | Autonomous agent |
+| --- | --- | --- |
+| Find a date everyone is free | You check calendars | Agent checks them |
+| Suggest a venue | You search | Agent searches and shortlists |
+| Send invites | You write each one | Agent drafts, you approve |
+| Track RSVPs | You chase | Agent chases and reports |
+| Your role | Do every step | Set the goal, approve key actions |
+
+The autonomous version compresses a dozen small actions into one instruction and a few approvals. You stay in the loop where it matters and out of it where it does not.
+
+## Try this in Liv
+
+Liv is an autonomous agent with approval gates built in, delivered as a managed service:
+
+1. Start a free 14-day trial at https://app.liv4all.com. No credit card.
+2. Message Liv on Telegram, the default channel, and hand it a goal rather than a step.
+3. Connect Gmail and Calendar via Google OAuth so it has tools to act with.
+4. Optionally link WhatsApp later (invite-only, dedicated eSIM).
+
+Liv asks before sending anything outbound and is in early access with batched onboarding.
+
+## Common questions
+
+### Does autonomous mean the agent acts without my permission?
+No. It chooses its own steps, but a good agent pauses for approval on sensitive actions. Liv requires sign-off before sending email.
+
+### What is the difference between autonomous and persistent?
+Autonomy is acting independently towards a goal; persistence is running continuously and remembering you. See [what a persistent AI agent is](/answers/what-is-a-persistent-ai-agent).
+
+### Can an autonomous agent make mistakes?
+Yes, which is why scopes and approval gates matter. You bound what it can do and review consequential actions.
+
+### How is this different from a chatbot?
+A chatbot answers; an autonomous agent plans and acts. See [AI agent vs chatbot](/answers/ai-agent-vs-chatbot).
+
+### What powers the agent's decisions?
+A language model running inside an agent loop. See [how an AI agent loop works](/answers/how-an-ai-agent-loop-works).
+
+### Can I run an autonomous agent myself?
+Yes, OpenClaw is open-source and self-hostable, though you own the hosting and upkeep. See [how to build a personal AI agent](/answers/how-to-build-a-personal-ai-agent).

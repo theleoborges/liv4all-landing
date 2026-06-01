@@ -1,0 +1,71 @@
+---
+title: "How to Give an AI Agent Email and Calendar Access"
+question: "How do I give an AI agent access to my email and calendar?"
+answer: "You grant access through OAuth, an authorisation flow that hands the agent a revocable token scoped to specific permissions, rather than giving it your password. With Liv, you connect Gmail and Calendar via Google OAuth and can revoke access at any time."
+description: "How to give an AI agent email and calendar access safely using OAuth and scopes, and how Liv connects via Google OAuth with CASA Tier 2."
+topic: ai-agents
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - is-it-safe-to-give-ai-access-to-your-gmail
+  - ai-to-triage-your-email
+  - how-to-securely-store-api-keys-for-ai-agents
+---
+
+An agent that can read your inbox and manage your calendar is far more useful than one that just chats. But you should never hand it your password. The correct mechanism is OAuth, the same flow that lets an app "Sign in with Google" without ever seeing your credentials.
+
+Done properly, you stay in control. The agent gets a token, not your password, and that token is scoped to exactly the permissions you approve and revocable the moment you change your mind.
+
+## How it works
+
+OAuth is a delegated authorisation flow. You log in with Google directly, on Google's own page, and approve a specific set of permissions called scopes. Google then issues the agent a token that represents that limited access. The agent uses the token to call the Gmail and Calendar APIs; it never sees your password, and you can revoke the token from your Google account at any time.
+
+Scopes are the safety dial. Read-only scopes let an agent triage and summarise without sending anything; broader scopes let it draft and create events. A well-designed agent requests the narrowest scopes it needs and pauses for your approval before sensitive actions. Storing the resulting token securely matters too; see [how to securely store API keys for AI agents](/answers/how-to-securely-store-api-keys-for-ai-agents).
+
+If you self-host [OpenClaw](https://github.com/openclaw/openclaw), you register your own OAuth credentials and manage token refreshes yourself, which is part of the ~1–3 hours/month of upkeep. Liv handles the OAuth flow as a managed service. It connects Gmail and Calendar through Google OAuth, the access is user-revocable, secrets sit in encrypted per-user vaults, and Liv passed Google [CASA Tier 2](https://appdefensealliance.dev/casa), independently verified by TAC Security. Outbound drafts wait for your approval before sending, and your data is not used to train models. For the risk view, see [is it safe to give AI access to your Gmail](/answers/is-it-safe-to-give-ai-access-to-your-gmail).
+
+## Worked example
+
+Granting email and calendar access two ways:
+
+| Step | Self-host (OpenClaw) | Managed (Liv) |
+| --- | --- | --- |
+| OAuth credentials | You register and manage them | Handled for you |
+| Scopes | You configure | Requested transparently |
+| Token storage | Your responsibility | Encrypted per-user vault |
+| Token refresh | Manual upkeep | Automatic |
+| Revoke access | Via Google | Via Google, any time |
+| Compliance | You own it | CASA Tier 2 verified |
+
+Both routes reach the same place: the agent acts on your inbox and calendar through a scoped, revocable token. The difference is who carries the security work.
+
+## Try this in Liv
+
+Connecting Liv to your email and calendar takes a couple of minutes:
+
+1. Start a free 14-day trial at https://app.liv4all.com. No credit card.
+2. Message Liv on Telegram, the default channel.
+3. Connect Gmail and Calendar through Google OAuth, approving the scopes on Google's own page.
+4. Ask Liv to triage your inbox or surface your day; it drafts replies for your approval before sending.
+
+Liv is in early access with batched onboarding, so you may join a short queue.
+
+## Common questions
+
+### Does the agent get my password?
+No. OAuth hands over a scoped token, never your password, and you authorise it on Google's own login page.
+
+### Can I limit what the agent can do?
+Yes, through scopes. Read-only access lets it triage without sending anything.
+
+### How do I revoke access later?
+From your Google account security settings, where connected apps can be removed at any time.
+
+### Will the agent send emails without asking?
+With Liv, outbound drafts require your approval before sending. A self-hosted agent does whatever you configure.
+
+### Is my email data used to train AI models?
+With Liv, no. Self-hosting depends on the LLM provider you choose.
+
+### What is CASA Tier 2?
+A Google-recognised security assessment for apps that access Gmail data; Liv passed it, verified by TAC Security. See [what CASA Tier 2 Gmail means](/answers/what-is-casa-tier-2-gmail).

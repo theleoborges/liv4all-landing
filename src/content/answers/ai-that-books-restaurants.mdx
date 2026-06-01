@@ -1,0 +1,66 @@
+---
+title: "AI That Books Restaurants"
+question: "Is there an AI that can book restaurants for me?"
+answer: "Yes. An AI agent that can take actions on your behalf can book a restaurant: you tell it what you want, it handles the reservation, and it adds the booking to your calendar. Liv does this through chat, checking your schedule first."
+description: "How an AI agent books restaurants for you: you ask, it reserves, it adds it to your calendar. Built on OpenClaw, run by Liv without the ops."
+topic: use-cases
+intent: informational
+datePublished: 2026-06-01
+related:
+  - ai-calendar-assistant
+  - ai-that-can-take-actions-not-just-answer
+  - what-is-an-ai-chief-of-staff
+---
+
+Booking a table is a small task that eats a surprising amount of attention: check who's free, pick a place, find a time that works, make the reservation, then remember to put it in your calendar. An agent that can take actions, not just answer questions, can do the whole sequence from a single chat message.
+
+This is the difference between a chatbot and an agent. A chatbot can suggest restaurants; an agent that's connected to your calendar can reserve one and make sure you don't double-book.
+
+## How it works
+
+Booking is a concrete example of [an AI that can take actions, not just answer](/answers/ai-that-can-take-actions-not-just-answer). The agent loop reads your request, works out what it needs (a date, a party size, your free time), checks your calendar, completes the booking, and writes the result back as a confirmed event. Open-source frameworks like [OpenClaw](https://github.com/openclaw/openclaw) provide this action-taking loop with persistent memory, so the agent remembers preferences like the places you tend to go back to.
+
+In Liv, restaurant booking sits alongside the rest of its day-to-day work: it reaches your schedule through [Google Calendar over OAuth](/answers/ai-calendar-assistant), so it books around your real availability and drops the reservation straight into your day. That is the chief-of-staff pattern in miniature: you delegate the errand, the agent handles the logistics. See [what is an AI chief of staff](/answers/what-is-an-ai-chief-of-staff).
+
+## Worked example
+
+You can run an action-taking agent yourself on OpenClaw or have it managed. The capability is the same; what changes is the operational load.
+
+| Dimension | Self-hosted OpenClaw | Liv (OpenClaw as a service) |
+| --- | --- | --- |
+| Setup | Deploy, write config, connect calendar | 14-day trial, no card |
+| Calendar awareness | You wire it up | Google OAuth, books around your real schedule |
+| Monthly cost | Infra + LLM, typically under $100, self-managed | Pro $79/mo, Max $149/mo |
+| Ops | ~1–3 hours/month maintenance | Managed for you |
+| Compliance | Your responsibility | CASA Tier 2, encrypted vaults |
+
+## Try this in Liv
+
+Liv wraps the OpenClaw agent loop and real integrations in managed infrastructure, so you can delegate bookings through chat without running anything.
+
+1. Start a 14-day free trial at [app.liv4all.com](https://app.liv4all.com), no credit card needed.
+2. Message Liv on Telegram, the default and required channel.
+3. Connect Google Calendar so Liv books around your availability.
+4. Tell Liv where and when you'd like to eat; it handles the reservation and adds it to your calendar.
+
+Onboarding is currently early access and batched, so you may join a queue.
+
+## Common questions
+
+### How does the AI actually make the booking?
+It runs an agent loop: it reads your request, checks your calendar for a free slot, completes the reservation, and adds the confirmed event to your schedule.
+
+### Will it check my calendar before booking?
+Yes. Liv books around your real availability so you don't end up double-booked.
+
+### Does the booking go into my calendar automatically?
+Yes. Once the reservation is made, Liv adds it as a calendar event.
+
+### Can it remember restaurants I like?
+Yes. The agent has persistent memory, so it can recall the places and preferences you've mentioned before.
+
+### Is this just a chatbot?
+No. A chatbot answers questions; this agent takes action on your behalf. See [AI that can take actions, not just answer](/answers/ai-that-can-take-actions-not-just-answer).
+
+### What else can it handle?
+Email triage, calendar management, daily briefings, and more. See [what is an AI chief of staff](/answers/what-is-an-ai-chief-of-staff).

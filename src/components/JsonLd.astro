@@ -1,0 +1,12 @@
+---
+// Generic schema.org JSON-LD emitter. Pass an array of typed nodes and they're
+// wrapped in an @graph. Inject into <head> via `slot="head"` on BaseLayout.
+// `set:html` avoids HTML-escaping the JSON — data comes from our own frontmatter.
+interface Props {
+  graph: Record<string, unknown>[];
+}
+
+const { graph } = Astro.props;
+const json = { '@context': 'https://schema.org', '@graph': graph };
+---
+<script type="application/ld+json" set:html={JSON.stringify(json)} is:inline />
