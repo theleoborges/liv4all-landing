@@ -1,0 +1,1556 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { canonicalUrl, localizePath, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const lastUpdated = '2026-05-05';
+const lovMailto = 'mailto:support@liv4all.com?subject=Letter%20of%20Validation%20request';
+const securityMailto = 'mailto:security@liv4all.com';
+
+const copy = {
+  en: {
+    metaTitle: 'Trust — Liv4All',
+    metaDescription:
+      "How Liv handles your Gmail, calendar, and personal API keys. Independently assessed under Google's CASA Tier 2 framework by TAC Security.",
+
+    eyebrow: '// trust & security',
+    heroTitle: 'independently assessed.<br />every 12 months.',
+    heroSub: 'TAC Security CASA Tier 2 · Google OAuth verified · Data hosted in Australia.',
+
+    badgeImgAlt: 'TAC Security ESOF — Verified and Secured by ADA CASA Assessor',
+    badge1Name: 'CASA Tier 2',
+    badge1Detail: 'TAC Security · Letter of Validation',
+    badge2Name: 'OAuth verified',
+    badge2Detail: 'Google CASA-required scopes',
+    badge3Name: 'Data in Australia',
+    badge3Detail: 'AWS ap-southeast-2 (Sydney)',
+
+    badgeCaption:
+      "What we're assessed against: Google's <strong>Cloud Application Security Assessment</strong>, aligned to OWASP ASVS V1–V14. CASA Tier 2 is a <strong>Letter of Validation</strong>, valid 12 months — not a SOC 2 or ISO 27001 certification, both of which are on our path to GA.",
+
+    coverageLabel: '// what this covers',
+    coverageItems: [
+      'The Liv web app at <code>app.liv4all.com</code> — the surface that holds your tokens.',
+      'The full Google OAuth lifecycle — consent, storage, use, revocation.',
+      'Application security controls per OWASP ASVS V1–V14.',
+    ],
+
+    ctaPrimary: 'Letter of Validation available on request',
+    ctaSecondary: 'Read our Security Policy →',
+
+    navAriaLabel: 'On this page',
+    navLinks: [
+      { href: '#compliance', label: 'Compliance' },
+      { href: '#data', label: 'Data' },
+      { href: '#architecture', label: 'Architecture' },
+      { href: '#ai-safety', label: 'AI safety' },
+      { href: '#sub-processors', label: 'Sub-processors' },
+      { href: '#disclosure', label: 'Disclosure' },
+    ],
+
+    sectionBLabel: '// section B · compliance',
+    sectionBTitle: 'what CASA Tier 2 actually means',
+    prose: [
+      "<strong>CASA</strong> (Cloud Application Security Assessment) Tier 2 is the security review Google requires for any app that handles <strong>restricted</strong> Gmail scopes. It's an OWASP-ASVS-aligned assessment performed by a Google-authorised lab and includes static analysis (SAST), dynamic analysis (DAST), and a manual architecture review.",
+      `Liv reads and drafts email on your behalf. Google rightly classifies that as a restricted scope, so an independent lab — <strong>TAC Security</strong> — assessed our app, infrastructure, and data flows end-to-end. The Letter of Validation is available on request: email <a href="${lovMailto}">support@liv4all.com</a> and we'll reply with the document.`,
+      "What that means for you: an outside party — not Liv's founders — verified that the way we store your Google tokens, the way we isolate your data from other users', and the way we expose our app to the internet meet a published industry bar. The Letter of Validation is re-issued every 12 months for as long as we keep that bar.",
+    ],
+
+    flowAriaLabel: 'Assessment scope: your browser to Google APIs',
+    flowLabel: '// assessment scope',
+    flowNodes: ['your browser', "Liv's edge", "Liv's web app", 'encrypted secret store', 'Google APIs'],
+    flowCaption:
+      'Every hop above — including the boundary between the web app and the secret store — was in scope for the assessment.',
+
+    sectionCLabel: '// section C · data handling',
+    sectionCTitle: 'how we handle your data',
+    sectionCSub:
+      'Five answers to the questions a security-conscious person actually asks before connecting Gmail.',
+    dataCards: [
+      {
+        id: 'c1',
+        headline: 'Your Google tokens never touch our application database.',
+        body: 'Tokens are written to a per-user encrypted secret store, separate from the database that holds your account record.',
+      },
+      {
+        id: 'c2',
+        headline: 'Tokens are never returned to your browser.',
+        body: 'The dashboard shows only the names of vault entries, never the values. The same applies to OAuth tokens — they are used by the agent and never round-tripped through the browser.',
+      },
+      {
+        id: 'c3',
+        headline: 'Modern TLS from your browser to Liv.',
+        body: 'We accept TLS 1.3 only, redirect HTTP to HTTPS, and ship HSTS. Certificate-chain and load-balancer details are audited as part of the assessment rather than published here.',
+      },
+      {
+        id: 'c4',
+        headline: 'We hold the minimum Google scopes we need.',
+        body: 'calendar.readonly, calendar.events, contacts.readonly, gmail.modify — nothing else. These are the same scopes Google shows you on the consent screen.',
+      },
+      {
+        id: 'c5',
+        headline: 'You can disconnect Google in one click.',
+        body: "The disconnect button calls Google's revoke endpoint and removes the corresponding secret from our store in the same request.",
+      },
+    ],
+
+    sectionDLabel: '// section D · architecture',
+    sectionDTitle: 'architecture & isolation',
+    sectionDSub:
+      "Two design properties carry most of the weight here. Both are enforced by the surrounding infrastructure, not by the application — the app couldn't break them by accident if it tried.",
+    panels: [
+      {
+        tag: 'D1',
+        title: 'your data lives in your own walled garden',
+        items: [
+          '<strong>One operator, one runtime.</strong> Every operator gets their own dedicated agent runtime. Code execution, memory, and storage are not shared with any other operator.',
+          "<strong>Least-privilege identity per operator.</strong> Each runtime carries permissions scoped exclusively to that operator's mailbox prefix and outbound mail address. Cross-user reads and cross-user sends are rejected at the infrastructure layer, not just the application layer.",
+          "<strong>Filesystem isolation, enforced below the application.</strong> An operator's files are only visible inside that operator's runtime. The boundary is enforced by the platform itself — the application can't accidentally step over it because the surrounding infrastructure won't allow it.",
+          '<strong>No public ingress to the data plane.</strong> Internet traffic terminates at our edge; the database, secret store, and agent runtimes have no public network endpoints.',
+        ],
+      },
+      {
+        tag: 'D2',
+        title: 'secrets the agent itself cannot read',
+        items: [
+          'The agent process is <strong>denied direct access to user vault entries</strong> at the platform layer; it cannot fetch them on its own.',
+          "When an outbound call genuinely needs a credential, a separate broker resolves it on the agent's behalf — only for the duration of that one call, and only for the operator that owns it.",
+          "A prompt-injected agent that tries to dump its own environment or read its own files finds <em>nothing useful</em>. The credentials aren't there to begin with.",
+        ],
+      },
+    ],
+
+    sectionELabel: '// section E · AI safety',
+    sectionETitle: 'AI-specific safety',
+    sectionESub:
+      'The failure modes people fear with an AI agent are different from a normal SaaS product — a runaway loop, an injected prompt, a confidently-wrong send. We treat them as a real risk class and design around them.',
+    aiCards: [
+      {
+        tag: 'draft-first email',
+        body: 'Liv never silently sends email. Every outbound message is drafted and surfaced to you in Telegram for explicit approval. No surprise sends, ever.',
+      },
+      {
+        tag: 'allowlisted Telegram',
+        body: "Each user's bot only accepts messages from the owner's Telegram user ID. Strangers messaging the bot are dropped — bounding the blast radius of any attempt to social-engineer the agent through its own messaging channel.",
+      },
+      {
+        tag: 'per-user spend caps',
+        body: "Every operator's agent runs against a hard per-operator inference budget. A runaway loop or hostile prompt cannot rack up unbounded model spend — not on someone else's account, not on Liv's.",
+      },
+      {
+        tag: 'prompt injection — modelled, not ignored',
+        body: 'Indirect prompt injection (adversarial content in emails, web pages, or calendar invites the agent reads) is a real risk class. We mitigate it with the properties above: human-in-the-loop on outbound mail, allowlisted messaging, and least-privilege secret access. Defence-in-depth is the only honest answer.',
+      },
+    ],
+
+    sectionFLabel: '// section F · sub-processors',
+    sectionFTitle: 'sub-processors',
+    sectionFSub:
+      "Vendors that process operator data on Liv's behalf. We list the vendor and the region — not the specific managed services we use inside each vendor.",
+    tableHeaders: ['Sub-processor', 'Purpose', 'Region', 'Data class'],
+    subprocessors: [
+      {
+        name: 'AWS',
+        purpose: 'Cloud hosting, storage, secret management, transactional email',
+        region: 'Australia (Sydney)',
+        data: 'Account data, OAuth tokens, operational logs',
+      },
+      {
+        name: 'Google',
+        purpose: 'OAuth + Gmail / Calendar / Contacts APIs the operator authorises',
+        region: 'Google global',
+        data: 'OAuth tokens, operator email',
+      },
+      {
+        name: 'Telegram',
+        purpose: "Operator's chat channel",
+        region: 'Telegram global',
+        data: 'Operator chat IDs and messages',
+      },
+      {
+        name: 'Anthropic',
+        purpose: 'LLM inference (Claude)',
+        region: 'Anthropic global',
+        data: 'Conversation content',
+      },
+      {
+        name: 'AWS Bedrock',
+        purpose: 'LLM inference (Claude, fallback)',
+        region: 'AWS Bedrock global',
+        data: 'Conversation content',
+      },
+      {
+        name: 'Browserbase',
+        purpose: "Headless web browsing on the operator's behalf",
+        region: 'US',
+        data: 'URLs fetched',
+      },
+      {
+        name: 'Brave Search',
+        purpose: 'Web search',
+        region: 'US',
+        data: 'Search queries',
+      },
+      {
+        name: 'TAC Security',
+        purpose: 'CASA Tier 2 assessor',
+        region: 'Global',
+        data: 'No runtime data; sees code and staging during the audit window only',
+      },
+    ],
+    commitmentLabel: '// notification commitment',
+    commitmentBody:
+      'We commit to <strong>30 days advance notice</strong> before adding any new sub-processor that processes operator data, with one carve-out: where a change is required for <strong>service continuity</strong> — for example, a primary provider becoming unavailable — we will notify affected operators within <strong>7 days of the change</strong>. Notifications are sent by email to the address on file for each active operator account.',
+    privacyAside:
+      'See our <a href="/privacy">privacy policy</a> for the full data-handling story, including retention and your rights.',
+
+    sectionGLabel: '// section G · disclosure',
+    sectionGTitle: 'vulnerability disclosure',
+    sectionGSub:
+      "Found something? We'd like to hear from you. Researchers acting in good faith will not be pursued — see the safe-harbour clause below.",
+    disclosureContactLabel: '// contact',
+    disclosureContactTitle: 'security@liv4all.com',
+    disclosureContactBody: `Please email <a href="${securityMailto}">security@liv4all.com</a> with a description of the issue, reproduction steps, and any artefacts (logs, screenshots, proof-of-concept) you can share. PGP-encrypted reports welcome on request.`,
+    disclosureResponseLabel: '// response window',
+    disclosureResponseTitle: '3 business days to acknowledge',
+    disclosureResponseBody:
+      "We'll acknowledge a report within <strong>3 business days</strong> and provide an initial assessment within <strong>10 business days</strong>. Severity-driven remediation timelines follow from there, and we'll keep you in the loop.",
+    disclosureSafeLabel: '// safe harbour',
+    disclosureSafeP1:
+      "We will not pursue legal action against researchers who, in good faith, follow this policy: avoid privacy violations, destruction of data, and degradation of service; only interact with accounts you own or have explicit permission to test; give us reasonable time to remediate before public disclosure; and don't exploit any vulnerability beyond what's necessary to demonstrate it.",
+    disclosureSafeP2:
+      'Out of scope: denial-of-service, social-engineering of staff, physical attacks on infrastructure, and findings on third-party services where Liv has no remediation path.',
+
+    sectionHLabel: '// section H · resources',
+    sectionHTitle: 'frequently asked',
+    faq: [
+      {
+        q: 'Is Liv SOC 2 certified?',
+        a: 'Not yet. CASA Tier 2 covers the OAuth-touching application surface per OWASP ASVS. SOC 2 Type II is on our path to GA.',
+      },
+      {
+        q: 'Where is my data stored?',
+        a: 'Australia (Sydney). We do not currently offer multi-region residency.',
+      },
+      {
+        q: 'Can I export or delete my data?',
+        a: 'Yes. Disconnecting Google revokes the tokens with Google and removes the corresponding entries from our secret store. A full account-deletion request to <a href="mailto:support@liv4all.com">support@liv4all.com</a> tears down your account record, your dedicated agent runtime, and every credential we hold for you. Operational logs are retained for the period documented in our <a href="/privacy">privacy policy</a>.',
+      },
+      {
+        q: 'What model does Liv use?',
+        a: "Claude (the latest GA Sonnet model from Anthropic). We do not train models on your data; Anthropic's enterprise terms apply.",
+      },
+      {
+        q: 'Does the embed widget see my dashboard data?',
+        a: 'No. The public widget runs against a separate, isolated knowledge-base service that has no access to operator data.',
+      },
+      {
+        q: 'How often is the Letter of Validation refreshed?',
+        a: "Annually. We've set a calendar reminder ten months out so the re-scan is in flight before the current LoV expires.",
+      },
+    ],
+
+    bottomUpdated: 'Last updated',
+    bottomLov: 'Request the Letter of Validation',
+    bottomSecurity: 'Security policy',
+    bottomSecurityTxt: 'security.txt',
+  },
+  'pt-br': {
+    metaTitle: 'Confiança — Liv4All',
+    metaDescription:
+      'Como a Liv trata seu Gmail, calendário e chaves de API pessoais. Avaliada de forma independente sob o framework CASA Tier 2 do Google pela TAC Security.',
+
+    eyebrow: '// confiança e segurança',
+    heroTitle: 'avaliada de forma independente.<br />a cada 12 meses.',
+    heroSub: 'TAC Security CASA Tier 2 · Google OAuth verificado · Dados hospedados na Austrália.',
+
+    badgeImgAlt: 'Selo TAC Security ESOF — Verified and Secured by ADA CASA Assessor',
+    badge1Name: 'CASA Tier 2',
+    badge1Detail: 'TAC Security · Letter of Validation',
+    badge2Name: 'OAuth verificado',
+    badge2Detail: 'Escopos exigidos pelo CASA do Google',
+    badge3Name: 'Dados na Austrália',
+    badge3Detail: 'AWS ap-southeast-2 (Sydney)',
+
+    badgeCaption:
+      'Contra o que somos avaliados: o <strong>Cloud Application Security Assessment</strong> do Google, alinhado ao OWASP ASVS V1–V14. O CASA Tier 2 é uma <strong>Letter of Validation</strong>, válida por 12 meses — não uma certificação SOC 2 ou ISO 27001, ambas no nosso caminho até o GA.',
+
+    coverageLabel: '// o que isso cobre',
+    coverageItems: [
+      'O web app da Liv em <code>app.liv4all.com</code> — a superfície que guarda seus tokens.',
+      'O ciclo de vida completo do OAuth do Google — consentimento, armazenamento, uso, revogação.',
+      'Controles de segurança de aplicação conforme OWASP ASVS V1–V14.',
+    ],
+
+    ctaPrimary: 'Letter of Validation disponível sob solicitação',
+    ctaSecondary: 'Leia nossa Política de Segurança →',
+
+    navAriaLabel: 'Nesta página',
+    navLinks: [
+      { href: '#compliance', label: 'Conformidade' },
+      { href: '#data', label: 'Dados' },
+      { href: '#architecture', label: 'Arquitetura' },
+      { href: '#ai-safety', label: 'Segurança de IA' },
+      { href: '#sub-processors', label: 'Suboperadores' },
+      { href: '#disclosure', label: 'Divulgação' },
+    ],
+
+    sectionBLabel: '// seção B · conformidade',
+    sectionBTitle: 'o que o CASA Tier 2 realmente significa',
+    prose: [
+      '<strong>CASA</strong> (Cloud Application Security Assessment) Tier 2 é a revisão de segurança que o Google exige de qualquer app que lida com escopos <strong>restritos</strong> do Gmail. É uma avaliação alinhada ao OWASP ASVS, realizada por um laboratório autorizado pelo Google, e inclui análise estática (SAST), análise dinâmica (DAST) e uma revisão manual de arquitetura.',
+      `A Liv lê e rascunha e-mails em seu nome. O Google, com razão, classifica isso como escopo restrito, então um laboratório independente — a <strong>TAC Security</strong> — avaliou nosso app, nossa infraestrutura e nossos fluxos de dados de ponta a ponta. A Letter of Validation está disponível sob solicitação: escreva para <a href="${lovMailto}">support@liv4all.com</a> e respondemos com o documento.`,
+      'O que isso significa para você: uma parte externa — não os fundadores da Liv — verificou que a forma como armazenamos seus tokens do Google, como isolamos seus dados dos de outros usuários e como expomos nosso app à internet atende a um padrão publicado da indústria. A Letter of Validation é reemitida a cada 12 meses enquanto mantivermos esse padrão.',
+    ],
+
+    flowAriaLabel: 'Escopo da avaliação: do seu navegador às APIs do Google',
+    flowLabel: '// escopo da avaliação',
+    flowNodes: ['seu navegador', 'edge da Liv', 'web app da Liv', 'cofre de segredos criptografado', 'APIs do Google'],
+    flowCaption:
+      'Cada salto acima — incluindo a fronteira entre o web app e o cofre de segredos — esteve no escopo da avaliação.',
+
+    sectionCLabel: '// seção C · tratamento de dados',
+    sectionCTitle: 'como tratamos seus dados',
+    sectionCSub:
+      'Cinco respostas às perguntas que uma pessoa preocupada com segurança realmente faz antes de conectar o Gmail.',
+    dataCards: [
+      {
+        id: 'c1',
+        headline: 'Seus tokens do Google nunca tocam nosso banco de dados de aplicação.',
+        body: 'Os tokens são gravados em um cofre de segredos criptografado por usuário, separado do banco de dados que guarda o registro da sua conta.',
+      },
+      {
+        id: 'c2',
+        headline: 'Tokens nunca são devolvidos ao seu navegador.',
+        body: 'O painel mostra apenas os nomes das entradas do cofre, nunca os valores. O mesmo vale para tokens OAuth — eles são usados pelo agente e nunca fazem o caminho de volta pelo navegador.',
+      },
+      {
+        id: 'c3',
+        headline: 'TLS moderno do seu navegador até a Liv.',
+        body: 'Aceitamos apenas TLS 1.3, redirecionamos HTTP para HTTPS e enviamos HSTS. Detalhes da cadeia de certificados e do balanceador de carga são auditados como parte da avaliação, não publicados aqui.',
+      },
+      {
+        id: 'c4',
+        headline: 'Mantemos o mínimo de escopos do Google de que precisamos.',
+        body: 'calendar.readonly, calendar.events, contacts.readonly, gmail.modify — nada além disso. São os mesmos escopos que o Google mostra na tela de consentimento.',
+      },
+      {
+        id: 'c5',
+        headline: 'Você pode desconectar o Google em um clique.',
+        body: 'O botão de desconexão chama o endpoint de revogação do Google e remove o segredo correspondente do nosso cofre na mesma requisição.',
+      },
+    ],
+
+    sectionDLabel: '// seção D · arquitetura',
+    sectionDTitle: 'arquitetura e isolamento',
+    sectionDSub:
+      'Duas propriedades de design carregam a maior parte do peso aqui. Ambas são impostas pela infraestrutura ao redor, não pela aplicação — o app não conseguiria quebrá-las por acidente nem se tentasse.',
+    panels: [
+      {
+        tag: 'D1',
+        title: 'seus dados vivem no seu próprio jardim murado',
+        items: [
+          '<strong>Um operador, um runtime.</strong> Cada operador tem seu próprio runtime de agente dedicado. Execução de código, memória e armazenamento não são compartilhados com nenhum outro operador.',
+          '<strong>Identidade de privilégio mínimo por operador.</strong> Cada runtime carrega permissões com escopo exclusivo para o prefixo de caixa de correio e o endereço de envio daquele operador. Leituras e envios entre usuários são rejeitados na camada de infraestrutura, não apenas na camada de aplicação.',
+          '<strong>Isolamento de sistema de arquivos, imposto abaixo da aplicação.</strong> Os arquivos de um operador só são visíveis dentro do runtime daquele operador. A fronteira é imposta pela própria plataforma — a aplicação não consegue ultrapassá-la por acidente porque a infraestrutura ao redor não permite.',
+          '<strong>Nenhum acesso público ao plano de dados.</strong> O tráfego da internet termina no nosso edge; o banco de dados, o cofre de segredos e os runtimes dos agentes não têm endpoints públicos de rede.',
+        ],
+      },
+      {
+        tag: 'D2',
+        title: 'segredos que nem o próprio agente consegue ler',
+        items: [
+          'O processo do agente tem <strong>acesso direto negado às entradas do cofre do usuário</strong> na camada de plataforma; ele não consegue buscá-las por conta própria.',
+          'Quando uma chamada externa realmente precisa de uma credencial, um broker separado a resolve em nome do agente — apenas pela duração daquela chamada, e apenas para o operador dono dela.',
+          'Um agente comprometido por prompt injection que tente despejar o próprio ambiente ou ler os próprios arquivos não encontra <em>nada de útil</em>. As credenciais simplesmente não estão lá.',
+        ],
+      },
+    ],
+
+    sectionELabel: '// seção E · segurança de IA',
+    sectionETitle: 'segurança específica de IA',
+    sectionESub:
+      'Os modos de falha que as pessoas temem em um agente de IA são diferentes dos de um SaaS comum — um loop descontrolado, um prompt injetado, um envio confiante e errado. Tratamos isso como uma classe real de risco e projetamos em torno dela.',
+    aiCards: [
+      {
+        tag: 'e-mail rascunho primeiro',
+        body: 'A Liv nunca envia e-mail silenciosamente. Toda mensagem de saída é rascunhada e apresentada a você no Telegram para aprovação explícita. Nada de envios surpresa, nunca.',
+      },
+      {
+        tag: 'Telegram com lista de permissões',
+        body: 'O bot de cada usuário só aceita mensagens do ID de usuário do Telegram do dono. Estranhos que mandarem mensagem para o bot são descartados — limitando o raio de dano de qualquer tentativa de engenharia social contra o agente pelo próprio canal de mensagens.',
+      },
+      {
+        tag: 'limites de gasto por usuário',
+        body: 'O agente de cada operador roda contra um orçamento rígido de inferência por operador. Um loop descontrolado ou um prompt hostil não consegue acumular gasto ilimitado de modelo — nem na conta de outra pessoa, nem na da Liv.',
+      },
+      {
+        tag: 'prompt injection — modelado, não ignorado',
+        body: 'Prompt injection indireto (conteúdo adversarial em e-mails, páginas web ou convites de calendário que o agente lê) é uma classe real de risco. Mitigamos com as propriedades acima: humano no circuito para e-mails de saída, mensagens com lista de permissões e acesso a segredos com privilégio mínimo. Defesa em profundidade é a única resposta honesta.',
+      },
+    ],
+
+    sectionFLabel: '// seção F · suboperadores',
+    sectionFTitle: 'suboperadores',
+    sectionFSub:
+      'Fornecedores que processam dados de operadores em nome da Liv. Listamos o fornecedor e a região — não os serviços gerenciados específicos que usamos dentro de cada fornecedor.',
+    tableHeaders: ['Suboperador', 'Finalidade', 'Região', 'Classe de dados'],
+    subprocessors: [
+      {
+        name: 'AWS',
+        purpose: 'Hospedagem em nuvem, armazenamento, gestão de segredos, e-mail transacional',
+        region: 'Austrália (Sydney)',
+        data: 'Dados de conta, tokens OAuth, logs operacionais',
+      },
+      {
+        name: 'Google',
+        purpose: 'OAuth + APIs de Gmail / Calendar / Contacts que o operador autoriza',
+        region: 'Google global',
+        data: 'Tokens OAuth, e-mail do operador',
+      },
+      {
+        name: 'Telegram',
+        purpose: 'Canal de chat do operador',
+        region: 'Telegram global',
+        data: 'IDs de chat e mensagens do operador',
+      },
+      {
+        name: 'Anthropic',
+        purpose: 'Inferência de LLM (Claude)',
+        region: 'Anthropic global',
+        data: 'Conteúdo das conversas',
+      },
+      {
+        name: 'AWS Bedrock',
+        purpose: 'Inferência de LLM (Claude, contingência)',
+        region: 'AWS Bedrock global',
+        data: 'Conteúdo das conversas',
+      },
+      {
+        name: 'Browserbase',
+        purpose: 'Navegação web headless em nome do operador',
+        region: 'EUA',
+        data: 'URLs acessadas',
+      },
+      {
+        name: 'Brave Search',
+        purpose: 'Busca na web',
+        region: 'EUA',
+        data: 'Consultas de busca',
+      },
+      {
+        name: 'TAC Security',
+        purpose: 'Avaliador CASA Tier 2',
+        region: 'Global',
+        data: 'Nenhum dado de runtime; vê código e staging apenas durante a janela de auditoria',
+      },
+    ],
+    commitmentLabel: '// compromisso de notificação',
+    commitmentBody:
+      'Nos comprometemos com <strong>30 dias de aviso prévio</strong> antes de adicionar qualquer novo suboperador que processe dados de operadores, com uma exceção: quando uma mudança for necessária para a <strong>continuidade do serviço</strong> — por exemplo, um provedor primário ficando indisponível — notificaremos os operadores afetados em até <strong>7 dias após a mudança</strong>. As notificações são enviadas por e-mail para o endereço cadastrado de cada conta de operador ativa.',
+    privacyAside:
+      'Veja nossa <a href="/privacy">política de privacidade</a> para a história completa do tratamento de dados, incluindo retenção e seus direitos.',
+
+    sectionGLabel: '// seção G · divulgação',
+    sectionGTitle: 'divulgação de vulnerabilidades',
+    sectionGSub:
+      'Encontrou algo? Queremos saber. Pesquisadores agindo de boa-fé não serão processados — veja a cláusula de porto seguro abaixo.',
+    disclosureContactLabel: '// contato',
+    disclosureContactTitle: 'security@liv4all.com',
+    disclosureContactBody: `Envie um e-mail para <a href="${securityMailto}">security@liv4all.com</a> com uma descrição do problema, os passos de reprodução e quaisquer artefatos (logs, capturas de tela, prova de conceito) que puder compartilhar. Relatórios criptografados com PGP são bem-vindos sob solicitação.`,
+    disclosureResponseLabel: '// janela de resposta',
+    disclosureResponseTitle: '3 dias úteis para confirmar',
+    disclosureResponseBody:
+      'Confirmaremos o recebimento de um relatório em até <strong>3 dias úteis</strong> e forneceremos uma avaliação inicial em até <strong>10 dias úteis</strong>. Prazos de correção orientados pela severidade seguem a partir daí, e manteremos você informado.',
+    disclosureSafeLabel: '// porto seguro',
+    disclosureSafeP1:
+      'Não tomaremos medidas legais contra pesquisadores que, de boa-fé, sigam esta política: evitem violações de privacidade, destruição de dados e degradação do serviço; interajam apenas com contas próprias ou com permissão explícita para testar; nos deem tempo razoável para corrigir antes da divulgação pública; e não explorem nenhuma vulnerabilidade além do necessário para demonstrá-la.',
+    disclosureSafeP2:
+      'Fora do escopo: negação de serviço, engenharia social contra a equipe, ataques físicos à infraestrutura e descobertas em serviços de terceiros onde a Liv não tem caminho de correção.',
+
+    sectionHLabel: '// seção H · recursos',
+    sectionHTitle: 'perguntas frequentes',
+    faq: [
+      {
+        q: 'A Liv tem certificação SOC 2?',
+        a: 'Ainda não. O CASA Tier 2 cobre a superfície da aplicação que toca o OAuth, conforme o OWASP ASVS. SOC 2 Type II está no nosso caminho até o GA.',
+      },
+      {
+        q: 'Onde meus dados ficam armazenados?',
+        a: 'Na Austrália (Sydney). No momento não oferecemos residência de dados multirregião.',
+      },
+      {
+        q: 'Posso exportar ou excluir meus dados?',
+        a: 'Sim. Desconectar o Google revoga os tokens junto ao Google e remove as entradas correspondentes do nosso cofre de segredos. Uma solicitação de exclusão completa de conta para <a href="mailto:support@liv4all.com">support@liv4all.com</a> derruba o registro da sua conta, seu runtime de agente dedicado e todas as credenciais que guardamos para você. Logs operacionais são retidos pelo período documentado na nossa <a href="/privacy">política de privacidade</a>.',
+      },
+      {
+        q: 'Qual modelo a Liv usa?',
+        a: 'Claude (o modelo Sonnet GA mais recente da Anthropic). Não treinamos modelos com seus dados; os termos enterprise da Anthropic se aplicam.',
+      },
+      {
+        q: 'O widget de embed vê os dados do meu painel?',
+        a: 'Não. O widget público roda contra um serviço de base de conhecimento separado e isolado, sem nenhum acesso a dados de operadores.',
+      },
+      {
+        q: 'Com que frequência a Letter of Validation é renovada?',
+        a: 'Anualmente. Deixamos um lembrete no calendário dez meses antes para que a reavaliação já esteja em andamento quando a LoV atual expirar.',
+      },
+    ],
+
+    bottomUpdated: 'Última atualização',
+    bottomLov: 'Solicitar a Letter of Validation',
+    bottomSecurity: 'Política de segurança',
+    bottomSecurityTxt: 'security.txt',
+  },
+}[lang];
+
+const securityHref = localizePath('/security', lang);
+---
+<BaseLayout
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  ogUrl={canonicalUrl('/trust', lang)}
+  canonical={canonicalUrl('/trust', lang)}
+  lang={lang}
+>
+  <div class="trust-page">
+    <!-- Section A — Hero / Compliance summary -->
+    <header class="hero">
+      <div class="container-trust">
+        <div class="eyebrow fade-in">{copy.eyebrow}</div>
+
+        <h1 class="fade-in fade-in-delay-1" set:html={copy.heroTitle} />
+
+        <p class="hero-sub fade-in fade-in-delay-2">{copy.heroSub}</p>
+
+        <div class="badge-row fade-in fade-in-delay-2">
+          <div class="badge-card badge-card-primary">
+            <img
+              src="/tac-esof-casa-tier2-badge.png"
+              alt={copy.badgeImgAlt}
+              width="120"
+              height="138"
+              loading="eager"
+            />
+            <div class="badge-meta">
+              <div class="badge-name">{copy.badge1Name}</div>
+              <div class="badge-detail">{copy.badge1Detail}</div>
+            </div>
+          </div>
+
+          <div class="badge-card">
+            <div class="badge-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <div class="badge-meta">
+              <div class="badge-name">{copy.badge2Name}</div>
+              <div class="badge-detail">{copy.badge2Detail}</div>
+            </div>
+          </div>
+
+          <div class="badge-card">
+            <div class="badge-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3.5 12h17M12 3.5c2.5 2.7 4 6 4 8.5s-1.5 5.8-4 8.5C9.5 17.8 8 14.5 8 12s1.5-5.8 4-8.5Z"/></svg>
+            </div>
+            <div class="badge-meta">
+              <div class="badge-name">{copy.badge3Name}</div>
+              <div class="badge-detail">{copy.badge3Detail}</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="badge-caption fade-in fade-in-delay-3" set:html={copy.badgeCaption} />
+
+        <div class="hero-coverage fade-in fade-in-delay-3">
+          <div class="hero-coverage-label">{copy.coverageLabel}</div>
+          <ul>
+            {copy.coverageItems.map((item) => (
+              <li set:html={item} />
+            ))}
+          </ul>
+        </div>
+
+        <div class="hero-ctas fade-in fade-in-delay-4">
+          <a href={lovMailto} class="cta cta-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+            {copy.ctaPrimary}
+          </a>
+          <a href={securityHref} class="cta cta-secondary">{copy.ctaSecondary}</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sticky in-page nav -->
+    <nav class="trust-nav" aria-label={copy.navAriaLabel}>
+      <div class="container-trust trust-nav-inner">
+        {copy.navLinks.map((link) => (
+          <a href={link.href}>{link.label}</a>
+        ))}
+      </div>
+    </nav>
+
+    <!-- Section B — What CASA Tier 2 actually means -->
+    <section id="compliance" class="section">
+      <div class="container-trust">
+        <div class="section-label fade-in">{copy.sectionBLabel}</div>
+        <h2 class="fade-in">{copy.sectionBTitle}</h2>
+
+        <div class="prose fade-in">
+          {copy.prose.map((para) => (
+            <p set:html={para} />
+          ))}
+        </div>
+
+        <div class="flow fade-in" aria-label={copy.flowAriaLabel}>
+          <div class="flow-label">{copy.flowLabel}</div>
+          <div class="flow-row">
+            <div class="flow-node">
+              <div class="flow-node-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18"/></svg>
+              </div>
+              <div class="flow-node-label">{copy.flowNodes[0]}</div>
+            </div>
+            <div class="flow-arrow" aria-hidden="true">→</div>
+            <div class="flow-node">
+              <div class="flow-node-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6m0 8v6M2 12h6m8 0h6M5 5l4 4m6 6 4 4M5 19l4-4m6-6 4-4"/></svg>
+              </div>
+              <div class="flow-node-label">{copy.flowNodes[1]}</div>
+            </div>
+            <div class="flow-arrow" aria-hidden="true">→</div>
+            <div class="flow-node">
+              <div class="flow-node-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              </div>
+              <div class="flow-node-label">{copy.flowNodes[2]}</div>
+            </div>
+            <div class="flow-arrow" aria-hidden="true">→</div>
+            <div class="flow-node flow-node-emphasis">
+              <div class="flow-node-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+              </div>
+              <div class="flow-node-label">{copy.flowNodes[3]}</div>
+            </div>
+            <div class="flow-arrow" aria-hidden="true">→</div>
+            <div class="flow-node">
+              <div class="flow-node-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3.5 12h17M12 3.5c2.5 2.7 4 6 4 8.5s-1.5 5.8-4 8.5C9.5 17.8 8 14.5 8 12s1.5-5.8 4-8.5Z"/></svg>
+              </div>
+              <div class="flow-node-label">{copy.flowNodes[4]}</div>
+            </div>
+          </div>
+          <p class="flow-caption">{copy.flowCaption}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section C — How we handle your data -->
+    <section id="data" class="section section-alt">
+      <div class="container-trust">
+        <div class="section-label fade-in">{copy.sectionCLabel}</div>
+        <h2 class="fade-in">{copy.sectionCTitle}</h2>
+        <p class="section-sub fade-in">{copy.sectionCSub}</p>
+
+        <div class="card-grid fade-in">
+          {copy.dataCards.map((card) => (
+            <article class="data-card">
+              <div class="data-card-id">{card.id.toUpperCase()}</div>
+              <h3>{card.headline}</h3>
+              <p>{card.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Section D — Architecture & isolation -->
+    <section id="architecture" class="section">
+      <div class="container-trust">
+        <div class="section-label fade-in">{copy.sectionDLabel}</div>
+        <h2 class="fade-in">{copy.sectionDTitle}</h2>
+        <p class="section-sub fade-in">{copy.sectionDSub}</p>
+
+        {copy.panels.map((panel) => (
+          <div class="panel fade-in">
+            <div class="panel-tag">{panel.tag}</div>
+            <h3>{panel.title}</h3>
+            <ul class="panel-list">
+              {panel.items.map((item) => (
+                <li set:html={item} />
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section E — AI-specific safety -->
+    <section id="ai-safety" class="section section-alt">
+      <div class="container-trust">
+        <div class="section-label fade-in">{copy.sectionELabel}</div>
+        <h2 class="fade-in">{copy.sectionETitle}</h2>
+        <p class="section-sub fade-in">{copy.sectionESub}</p>
+
+        <div class="ai-grid">
+          {copy.aiCards.map((card) => (
+            <article class="ai-card fade-in">
+              <div class="ai-card-tag">{card.tag}</div>
+              <p>{card.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Section F — Sub-processors -->
+    <section id="sub-processors" class="section">
+      <div class="container-trust">
+        <div class="section-label fade-in">{copy.sectionFLabel}</div>
+        <h2 class="fade-in">{copy.sectionFTitle}</h2>
+        <p class="section-sub fade-in">{copy.sectionFSub}</p>
+
+        <div class="table-wrap fade-in">
+          <table class="trust-table">
+            <thead>
+              <tr>
+                {copy.tableHeaders.map((header) => (
+                  <th>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {copy.subprocessors.map((row) => (
+                <tr>
+                  <td><strong>{row.name}</strong></td>
+                  <td>{row.purpose}</td>
+                  <td>{row.region}</td>
+                  <td>{row.data}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="commitment fade-in">
+          <div class="commitment-label">{copy.commitmentLabel}</div>
+          <p set:html={copy.commitmentBody} />
+        </div>
+
+        <p class="section-aside fade-in" set:html={copy.privacyAside} />
+      </div>
+    </section>
+
+    <!-- Section G — Disclosure -->
+    <section id="disclosure" class="section section-alt">
+      <div class="container-trust">
+        <div class="section-label fade-in">{copy.sectionGLabel}</div>
+        <h2 class="fade-in">{copy.sectionGTitle}</h2>
+        <p class="section-sub fade-in">{copy.sectionGSub}</p>
+
+        <div class="disclosure-grid">
+          <div class="disclosure-card fade-in">
+            <div class="disclosure-card-label">{copy.disclosureContactLabel}</div>
+            <h3>{copy.disclosureContactTitle}</h3>
+            <p set:html={copy.disclosureContactBody} />
+          </div>
+
+          <div class="disclosure-card fade-in">
+            <div class="disclosure-card-label">{copy.disclosureResponseLabel}</div>
+            <h3>{copy.disclosureResponseTitle}</h3>
+            <p set:html={copy.disclosureResponseBody} />
+          </div>
+
+          <div class="disclosure-card disclosure-card-wide fade-in">
+            <div class="disclosure-card-label">{copy.disclosureSafeLabel}</div>
+            <p set:html={copy.disclosureSafeP1} />
+            <p set:html={copy.disclosureSafeP2} />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section H — FAQ / Resources -->
+    <section id="faq" class="section">
+      <div class="container-trust">
+        <div class="section-label fade-in">{copy.sectionHLabel}</div>
+        <h2 class="fade-in">{copy.sectionHTitle}</h2>
+
+        <div class="trust-faq fade-in">
+          {copy.faq.map((item) => (
+            <details>
+              <summary>{item.q}</summary>
+              <p set:html={item.a} />
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Section I — Page footer -->
+    <div class="trust-bottom">
+      <div class="container-trust trust-bottom-inner">
+        <span>{copy.bottomUpdated} <time datetime={lastUpdated}>{lastUpdated}</time></span>
+        <span class="trust-bottom-sep" aria-hidden="true">·</span>
+        <a href={lovMailto}>{copy.bottomLov}</a>
+        <span class="trust-bottom-sep" aria-hidden="true">·</span>
+        <a href={securityHref}>{copy.bottomSecurity}</a>
+        <span class="trust-bottom-sep" aria-hidden="true">·</span>
+        <a href="/.well-known/security.txt">{copy.bottomSecurityTxt}</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .trust-page { padding-top: 80px; }
+
+  .container-trust {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 56px 0 40px;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    max-width: 640px;
+    margin-bottom: 40px;
+  }
+
+  /* ── Badge row ── */
+  .badge-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 720px) {
+    .badge-row { grid-template-columns: 1fr; }
+  }
+
+  .badge-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 22px;
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+
+  .badge-card:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  .badge-card-primary {
+    border-color: rgba(139, 92, 246, 0.25);
+    background: linear-gradient(140deg, rgba(139, 92, 246, 0.08), rgba(18, 18, 26, 0.6));
+  }
+
+  .badge-card img {
+    display: block;
+    width: 56px;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .badge-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+
+  .badge-icon svg { width: 22px; height: 22px; }
+
+  .badge-meta { min-width: 0; }
+  .badge-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 2px;
+    letter-spacing: -0.01em;
+  }
+  .badge-detail {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+  }
+
+  .badge-caption {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    max-width: 720px;
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+  .badge-caption :global(strong) { color: var(--text); font-weight: 500; }
+
+  /* ── Hero coverage ── */
+  .hero-coverage {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 24px 26px;
+    margin-bottom: 36px;
+  }
+
+  .hero-coverage-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .hero-coverage ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+  }
+
+  .hero-coverage li {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    padding-left: 22px;
+    position: relative;
+  }
+
+  .hero-coverage li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 8px;
+    height: 8px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+
+  .hero-coverage :global(code) {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    color: var(--text);
+    background: rgba(139, 92, 246, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border-light);
+  }
+
+  /* ── CTAs ── */
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    padding: 14px 22px;
+    border-radius: 100px;
+    transition: all 0.25s;
+    border: 1px solid transparent;
+  }
+
+  .cta svg { width: 16px; height: 16px; }
+
+  .cta-primary {
+    background: var(--accent);
+    color: #fff !important;
+    box-shadow: 0 6px 24px rgba(139, 92, 246, 0.25);
+  }
+  .cta-primary:hover {
+    background: #7c3aed;
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.45);
+    text-decoration: none !important;
+    transform: translateY(-1px);
+  }
+
+  .cta-secondary {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--border-light);
+  }
+  .cta-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none !important;
+  }
+
+  /* ── Sticky in-page nav ── */
+  .trust-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+    margin-top: 32px;
+  }
+
+  .trust-nav-inner {
+    display: flex;
+    gap: 28px;
+    overflow-x: auto;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    scrollbar-width: none;
+  }
+
+  .trust-nav-inner::-webkit-scrollbar { display: none; }
+
+  .trust-nav a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .trust-nav a:hover { color: var(--text); text-decoration: none; }
+
+  /* ── Sections ── */
+  .section { padding: 72px 0; }
+  .section-alt { background: rgba(255, 255, 255, 0.015); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 3vw, 1.9rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .section-sub {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    max-width: 700px;
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+
+  .section-aside {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    margin-top: 24px;
+  }
+
+  /* ── Prose ── */
+  .prose { max-width: 760px; margin-bottom: 48px; }
+  .prose p { font-size: 0.98rem; color: var(--text-dim); line-height: 1.8; margin-bottom: 16px; }
+  .prose :global(strong) { color: var(--text); font-weight: 500; }
+  .prose :global(a) { color: var(--accent); }
+
+  /* ── Flow diagram ── */
+  .flow {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+  }
+
+  .flow-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .flow-row {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: thin;
+  }
+
+  .flow-node {
+    flex: 1 1 0;
+    min-width: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 18px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .flow-node-emphasis {
+    border-color: rgba(139, 92, 246, 0.4);
+    background: linear-gradient(140deg, rgba(139, 92, 246, 0.08), var(--bg));
+    box-shadow: 0 0 32px rgba(139, 92, 246, 0.08);
+  }
+
+  .flow-node-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .flow-node-icon svg { width: 22px; height: 22px; }
+
+  .flow-node-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--text-dim);
+    font-size: 1.1rem;
+  }
+
+  .flow-caption {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-top: 16px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 720px) {
+    .flow-row { flex-direction: column; align-items: stretch; }
+    .flow-arrow { justify-content: center; transform: rotate(90deg); padding: 4px 0; }
+    .flow-node { min-width: 0; }
+  }
+
+  /* ── Data cards ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .data-card {
+    position: relative;
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 26px;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+
+  .data-card:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3), 0 0 32px var(--accent-glow);
+  }
+
+  .data-card-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+  }
+
+  .data-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .data-card p {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  /* ── Architecture panels ── */
+  .panel {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .panel-tag {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    padding: 4px 10px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 100px;
+  }
+
+  .panel h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: 18px;
+    padding-right: 60px;
+  }
+
+  .panel-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 14px;
+  }
+
+  .panel-list li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 0.93rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .panel-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 8px;
+    height: 8px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+  }
+
+  .panel-list :global(strong) { color: var(--text); font-weight: 500; }
+  .panel-list :global(em) { color: var(--text); font-style: italic; }
+
+  /* ── AI safety cards ── */
+  .ai-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .ai-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 24px 26px;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+
+  .ai-card:hover {
+    border-color: rgba(192, 132, 252, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  }
+
+  .ai-card-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--pink);
+    letter-spacing: 0.05em;
+    background: rgba(192, 132, 252, 0.08);
+    border: 1px solid rgba(192, 132, 252, 0.2);
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 12px;
+  }
+
+  .ai-card p {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* ── Sub-processors table ── */
+  .table-wrap {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .trust-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .trust-table th, .trust-table td {
+    text-align: left;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-dim);
+    vertical-align: top;
+  }
+
+  .trust-table tr:last-child td { border-bottom: 0; }
+
+  .trust-table th {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .trust-table td strong { color: var(--text); font-weight: 500; }
+
+  @media (max-width: 720px) {
+    .trust-table { font-size: 0.84rem; }
+    .trust-table th, .trust-table td { padding: 12px 14px; }
+  }
+
+  .commitment {
+    margin-top: 24px;
+    padding: 22px 26px;
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-left: 2px solid var(--accent);
+    border-radius: var(--radius);
+  }
+
+  .commitment-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .commitment p {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .commitment :global(strong) { color: var(--text); font-weight: 500; }
+
+  /* ── Disclosure ── */
+  .disclosure-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 720px) {
+    .disclosure-grid { grid-template-columns: 1fr; }
+  }
+
+  .disclosure-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 26px;
+  }
+
+  .disclosure-card-wide { grid-column: 1 / -1; }
+
+  .disclosure-card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .disclosure-card h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 12px;
+    word-break: break-word;
+  }
+
+  .disclosure-card p {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .disclosure-card p:last-child { margin-bottom: 0; }
+  .disclosure-card :global(strong) { color: var(--text); font-weight: 500; }
+
+  /* ── FAQ ── */
+  .trust-faq {
+    display: grid;
+    gap: 10px;
+  }
+
+  .trust-faq details {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    transition: border-color 0.3s;
+  }
+
+  .trust-faq details:hover { border-color: rgba(139, 92, 246, 0.25); }
+
+  .trust-faq summary {
+    padding: 18px 22px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    gap: 16px;
+  }
+
+  .trust-faq summary::-webkit-details-marker { display: none; }
+
+  .trust-faq summary::after {
+    content: '+';
+    font-size: 1.2rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .trust-faq details[open] summary::after { content: '−'; }
+
+  .trust-faq p {
+    padding: 0 22px 22px;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .trust-faq :global(a) { color: var(--accent); }
+
+  /* ── Bottom strip ── */
+  .trust-bottom {
+    border-top: 1px solid var(--border-light);
+    padding: 28px 0;
+  }
+
+  .trust-bottom-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  .trust-bottom-inner a { color: var(--text-dim); }
+  .trust-bottom-inner a:hover { color: var(--accent); text-decoration: none; }
+  .trust-bottom-sep { color: var(--border); }
+
+  @media (max-width: 600px) {
+    .section { padding: 56px 0; }
+    .panel { padding: 24px; }
+    .panel-tag { position: static; display: inline-block; margin-bottom: 12px; }
+    .panel h3 { padding-right: 0; }
+  }
+</style>
