@@ -6,5 +6,10 @@ export default defineConfig({
   site: 'https://liv4all.com',
   trailingSlash: 'ignore',
   build: { format: 'directory' },
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'pt-br'],
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [mdx(), sitemap()],
 });

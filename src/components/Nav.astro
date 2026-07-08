@@ -1,26 +1,37 @@
 ---
-import { mainNavItems, isNavGroup } from '../data/nav';
+import { getMainNavItems, isNavGroup } from '../data/nav';
+import { alternateUrl, ui, type Lang } from '../i18n';
 
 interface Props {
   variant?: 'default' | 'home';
+  lang?: Lang;
 }
 
-const { variant = 'default' } = Astro.props;
+const { variant = 'default', lang = 'en' } = Astro.props;
 const isHome = variant === 'home';
-const logoHref = isHome ? '#' : '/';
+const homeBase = lang === 'pt-br' ? '/pt-br/' : '/';
+const logoHref = isHome ? '#' : homeBase;
 const ctaHref = 'https://app.liv4all.com';
 
-// On the homepage, in-page anchors like /#why should become #why so they
-// scroll instead of navigating. Off-home, leave the absolute path alone.
+const navItems = getMainNavItems(lang);
+const t = ui[lang];
+
+// Language toggle targets, derived from the current page. Pages without a
+// counterpart in the other language fall back to that language's home.
+const enUrl = alternateUrl(Astro.url.pathname, 'en');
+const ptUrl = alternateUrl(Astro.url.pathname, 'pt-br');
+
+// On the homepage, in-page anchors like /#why (or /pt-br/#why) should become
+// #why so they scroll instead of navigating. Off-home, leave the path alone.
 const hrefFor = (href: string) =>
-  isHome && href.startsWith('/#') ? href.slice(1) : href;
+  isHome && href.startsWith(`${homeBase}#`) ? href.slice(homeBase.length) : href;
 ---
 <nav>
   <div class="nav-inner">
     <a href={logoHref} class="nav-logo">liv<span>4all</span></a>
 
     <div class="nav-links">
-      {mainNavItems.map((item) => (
+      {navItems.map((item) => (
         isNavGroup(item) ? (
           <div class="nav-dropdown" data-nav-dropdown>
             <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
@@ -37,8 +48,13 @@ const hrefFor = (href: string) =>
           <a href={hrefFor(item.href)}>{item.label}</a>
         )
       ))}
-      <a href="https://app.liv4all.com" class="nav-login">Login</a>
-      <a href={ctaHref} class="nav-cta">Start Trial</a>
+      <div class="nav-lang" aria-label="Language / Idioma">
+        <a href={enUrl} class:list={[{ 'is-active': lang === 'en' }]} aria-current={lang === 'en' ? 'true' : undefined} hreflang="en">EN</a>
+        <span class="nav-lang-sep" aria-hidden="true">/</span>
+        <a href={ptUrl} class:list={[{ 'is-active': lang === 'pt-br' }]} aria-current={lang === 'pt-br' ? 'true' : undefined} hreflang="pt-BR">PT</a>
+      </div>
+      <a href="https://app.liv4all.com" class="nav-login">{t.login}</a>
+      <a href={ctaHref} class="nav-cta">{t.startTrial}</a>
     </div>
 
     <button type="button" class="nav-hamburger" aria-label="open menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -50,7 +66,7 @@ const hrefFor = (href: string) =>
 
   <div class="nav-mobile" id="mobile-menu" hidden>
     <div class="nav-mobile-inner">
-      {mainNavItems.map((item) => (
+      {navItems.map((item) => (
         isNavGroup(item) ? (
           <div class="nav-mobile-group">
             <div class="nav-mobile-group-label">{item.label}</div>
@@ -62,8 +78,13 @@ const hrefFor = (href: string) =>
           <a href={hrefFor(item.href)} class="nav-mobile-link">{item.label}</a>
         )
       ))}
-      <a href="https://app.liv4all.com" class="nav-mobile-link">Login</a>
-      <a href={ctaHref} class="nav-mobile-cta">Start Trial</a>
+      <div class="nav-lang nav-lang-mobile" aria-label="Language / Idioma">
+        <a href={enUrl} class:list={[{ 'is-active': lang === 'en' }]} hreflang="en">EN</a>
+        <span class="nav-lang-sep" aria-hidden="true">/</span>
+        <a href={ptUrl} class:list={[{ 'is-active': lang === 'pt-br' }]} hreflang="pt-BR">PT</a>
+      </div>
+      <a href="https://app.liv4all.com" class="nav-mobile-link">{t.login}</a>
+      <a href={ctaHref} class="nav-mobile-cta">{t.startTrial}</a>
     </div>
   </div>
 </nav>

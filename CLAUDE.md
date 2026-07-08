@@ -17,6 +17,18 @@ Static marketing site for **Liv4All** — an AI Chief of Staff product. Canonica
 - `answers` is a second MDX collection (`src/content/answers/`) powering a hidden programmatic SEO/GEO layer — see the "Answers" section below. Rendered by `src/layouts/AnswerLayout.astro` via `src/pages/answers/[...slug].astro`, hub at `src/pages/answers/index.astro`. Structured-data (`src/components/JsonLd.astro`) and canonical tags (threaded through `Head.astro`/`BaseLayout.astro`) were added for this layer and are reusable elsewhere.
 - `public/` holds static assets, `CNAME`, and `.nojekyll`. Files there are copied to `dist/` verbatim.
 
+## Internationalisation (i18n)
+
+The site is bilingual: English (default, unprefixed URLs) and Brazilian Portuguese under `/pt-br/`.
+
+- All helpers live in `src/i18n/index.ts`: the `Lang` type (`'en' | 'pt-br'`), `TRANSLATED_ROUTES` (the routes that exist in both languages), `localizePath()` (prefixes internal links for pt-br, leaves English-only routes alone), `canonicalUrl()`, `alternateUrl()` (language-toggle target), and the shared chrome strings (`ui`).
+- **Translated page pattern:** each bilingual page's full markup/CSS/scripts live in a component under `src/components/pages/` (e.g. `AboutPage.astro`) that takes a `lang` prop and pulls every user-visible string from a `const copy = { en: {...}, 'pt-br': {...} }[lang]` dictionary in its frontmatter. `src/pages/<route>.astro` and `src/pages/pt-br/<route>.astro` are thin wrappers rendering that component with `lang="en"` / `lang="pt-br"`. Markup is single-sourced — never duplicate HTML per language.
+- When adding a new bilingual page: create the component + both wrappers AND add the route to `TRANSLATED_ROUTES` in `src/i18n/index.ts` (that's what turns on nav link localisation, the hreflang pair in `Head.astro`, and the language-toggle mapping).
+- Nav/footer labels are bilingual in `src/data/nav.ts` (each item carries a `label: { en, 'pt-br' }`); `Nav.astro` renders the EN/PT toggle and localises links via `localizePath`.
+- `BaseLayout` takes `lang` (defaults to `'en'`) and sets `<html lang>`; `Head.astro` emits `hreflang` alternates (en / pt-BR / x-default) for routes in `TRANSLATED_ROUTES`, plus `og:locale`.
+- **English-only surfaces (deliberate):** articles, answers, demo pages, RSS, `/terms`, `/privacy`, and `/guides/whatsapp-onboarding`. `localizePath` leaves links to them unprefixed, and the language toggle on those pages falls back to the pt-br home.
+- Form endpoints (Formspree) and submitted field `name`/`value` attributes stay identical in both languages — only visible labels are translated.
+
 ## Pages
 
 - `index.astro` — hero, carousel, demos, features, docs, signup form

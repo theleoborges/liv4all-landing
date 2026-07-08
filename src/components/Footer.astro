@@ -1,13 +1,17 @@
 ---
-import { footerLinks, homeFooterExtras } from '../data/nav';
+import { getFooterLinks, getHomeFooterExtras } from '../data/nav';
+import { ui, type Lang } from '../i18n';
 
 interface Props {
   variant?: 'default' | 'home';
+  lang?: Lang;
 }
 
-const { variant = 'default' } = Astro.props;
+const { variant = 'default', lang = 'en' } = Astro.props;
+const footerLinks = getFooterLinks(lang);
+const homeBase = lang === 'pt-br' ? '/pt-br/' : '/';
 const links = variant === 'home'
-  ? [...homeFooterExtras, ...footerLinks.filter((l) => l.href !== '/')]
+  ? [...getHomeFooterExtras(lang), ...footerLinks.filter((l) => l.href !== homeBase && l.href !== '/')]
   : footerLinks;
 ---
 <footer>
@@ -19,6 +23,6 @@ const links = variant === 'home'
           : <a href={link.href}>{link.label}</a>
       ))}
     </div>
-    <p>built with 🖤 by liv & leo</p>
+    <p>{ui[lang].footerTagline}</p>
   </div>
 </footer>
