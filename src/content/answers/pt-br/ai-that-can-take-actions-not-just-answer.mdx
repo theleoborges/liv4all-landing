@@ -1,0 +1,67 @@
+---
+title: "IA que executa ações, não apenas responde"
+question: "Existe uma IA que executa ações em vez de só responder perguntas?"
+answer: "Sim. Um agente de IA, diferente de um chatbot, roda um loop que permite agir: ele pode enviar e-mails, criar eventos no calendário e fazer reservas, não apenas responder. A Liv faz isso pelo seu Gmail e Calendar reais, com rascunhos de saída retidos para sua aprovação."
+description: "Como um agente de IA executa ações reais, não só respostas: enviar e-mail, reservar, agendar. A diferença para um chatbot, no OpenClaw, operado pela Liv."
+topic: use-cases
+intent: informational
+datePublished: 2026-06-01
+related:
+  - ai-agent-vs-chatbot
+  - chatgpt-vs-ai-agent
+  - what-is-an-ai-chief-of-staff
+---
+
+Um chatbot te dá palavras. Você pergunta, ele responde, e qualquer execução fica por sua conta. Um agente de IA fecha essa lacuna: ele pode realizar a tarefa que você descreveu, usando ferramentas e conexões com seus serviços reais. A mudança de responder para agir é o que separa um parceiro de conversa inteligente de algo que realmente reduz sua carga de trabalho.
+
+A capacidade parece pequena até você usar. "Encontre um horário e reserve um jantar na quinta" produz uma reserva confirmada no seu calendário, não uma lista de sugestões sobre a qual você ainda precisa agir.
+
+## Como funciona
+
+O mecanismo é o loop de agente. Em vez de gerar uma única resposta, um agente lê seu pedido, decide o que fazer, chama uma ferramenta ou integração, observa o resultado e repete até a tarefa estar concluída. [Como funciona um loop de agente](/pt-br/answers/how-an-ai-agent-loop-works) cobre isso em detalhe, e [agente de IA vs chatbot](/pt-br/answers/ai-agent-vs-chatbot) traça a linha entre os dois com clareza.
+
+Frameworks open-source como o [OpenClaw](https://github.com/openclaw/openclaw) implementam esse loop com memória persistente e conectores para Gmail, Calendar e apps de chat. A Liv o usa para executar ações concretas: [triar sua caixa de entrada](/pt-br/answers/ai-to-triage-your-email) e rascunhar respostas, [gerenciar seu calendário](/pt-br/answers/ai-calendar-assistant) e [reservar restaurantes](/pt-br/answers/ai-that-books-restaurants). O acesso é via Google OAuth revogável, segredos ficam em cofres criptografados, e e-mails de saída são retidos como rascunho para sua aprovação antes de qualquer envio. Essa etapa de aprovação é a salvaguarda que torna a execução de ações confiável.
+
+## Exemplo na prática
+
+A diferença entre um chatbot e um agente que executa ações, em uma tarefa.
+
+| Etapa | Chatbot | Agente de IA (Liv) |
+| --- | --- | --- |
+| "Reserve um jantar na quinta" | Sugere restaurantes | Checa seu calendário, reserva uma mesa |
+| Resultado | Uma lista para você agir | Um evento confirmado no seu calendário |
+| "Responda este e-mail" | Rascunha texto para você copiar | Prepara um rascunho no Gmail para sua aprovação |
+| Execução | Sua | Do agente, com seu aval |
+
+Em comparação com assistentes gerais, veja [ChatGPT vs agente de IA](/pt-br/answers/chatgpt-vs-ai-agent) e [Claude vs um agente de IA que faz coisas](/pt-br/answers/claude-vs-ai-agent-that-does-things).
+
+## Experimente na Liv
+
+A Liv é o loop de agente do OpenClaw e integrações reais envolvidos em infraestrutura gerenciada, então você ganha a execução de ações sem construir nem hospedar nada.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Fale com a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Google Calendar via OAuth.
+4. Peça algo concreto: rascunhar uma resposta, reservar uma mesa, adicionar um evento. Revise qualquer rascunho de saída antes do envio.
+
+O onboarding está atualmente em acesso antecipado e em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### Qual é a diferença para um chatbot?
+Um chatbot responde; um agente age, usando ferramentas e integrações para completar a tarefa. Veja [agente de IA vs chatbot](/pt-br/answers/ai-agent-vs-chatbot).
+
+### Ele vai agir sem a minha aprovação?
+A Liv prepara e-mails de saída como rascunhos e espera sua aprovação antes de enviar. Ela age sob suas instruções.
+
+### Quais ações ele consegue executar?
+Triar e rascunhar e-mails, criar e mover eventos de calendário e fazer reservas, pelo seu Gmail e Calendar conectados.
+
+### Como ele realmente faz isso?
+Ele roda um loop de agente: ler, decidir, chamar uma ferramenta, observar, repetir. Veja [como funciona um loop de agente de IA](/pt-br/answers/how-an-ai-agent-loop-works).
+
+### O ChatGPT não é um agente agora?
+O ChatGPT tem recursos de agente, mas um agente dedicado com integrações persistentes se comporta de forma diferente. Veja [ChatGPT vs agente de IA](/pt-br/answers/chatgpt-vs-ai-agent).
+
+### O que isso viabiliza no geral?
+Um sistema que roda seu trabalho operacional continuamente. Veja [o que é um Chief of Staff de IA](/pt-br/answers/what-is-an-ai-chief-of-staff).

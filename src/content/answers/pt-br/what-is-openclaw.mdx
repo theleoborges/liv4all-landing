@@ -1,0 +1,67 @@
+---
+title: "O que é o OpenClaw?"
+question: "O que é o OpenClaw e o que ele faz?"
+answer: "O OpenClaw é um agente de IA pessoal open-source e gratuito, com licença MIT, que você hospeda por conta própria. Ele roda um loop agêntico com memória persistente, conecta-se a apps de chat como Telegram e WhatsApp e funciona com qualquer LLM importante."
+description: "OpenClaw é um agente de IA pessoal open-source e gratuito que você mesmo hospeda. O que ele faz, como funciona e como difere de serviços gerenciados."
+topic: openclaw
+intent: definitional
+datePublished: 2026-06-01
+related:
+  - how-to-deploy-openclaw
+  - openclaw-soul-md-explained
+  - openclaw-hosting
+---
+
+O OpenClaw é um framework open-source para construir seu próprio agente de IA pessoal, lançado sob a permissiva licença MIT. Seu slogan é "the lobster way" 🦞, e o projeto já cresceu para mais de 15.000 estrelas no GitHub e mais de 200 contribuidores. Diferente de um chatbot que você comanda uma pergunta por vez, o OpenClaw roda continuamente: lembra do contexto entre conversas, segue uma agenda e pode executar ações em seu nome pelos apps de mensagem que você já usa.
+
+O trade-off é que ele foi feito para tinkerers. Você o roda na sua própria infraestrutura, define a personalidade e as regras dele em arquivos de configuração e assume a manutenção contínua. Esse controle é o objetivo para algumas pessoas e o obstáculo para outras.
+
+## Como funciona
+
+O [OpenClaw](https://github.com/openclaw/openclaw) embrulha um modelo de linguagem grande em um loop de agente: ele lê as mensagens que chegam, decide o que fazer, chama ferramentas ou "skills", escreve os resultados de volta e guarda o que aprendeu para a próxima vez. É agnóstico de LLM, então você pode apontá-lo para Claude, GPT, Gemini ou DeepSeek conforme custo e capacidade.
+
+Seu comportamento é guiado por arquivos de configuração em texto puro, não por código. O `SOUL.md` define a identidade e a personalidade do agente, o `HEARTBEAT.md` estabelece a agenda, `AGENTS.md` e `USER.md` capturam o contexto de trabalho, e arquivos de memória separados persistem o que ele aprende. Veja [nossa análise do SOUL.md](/pt-br/answers/openclaw-soul-md-explained) para entender como esse arquivo molda o agente.
+
+No lado dos canais, ele fala Telegram, WhatsApp, Slack, Discord, Signal, iMessage e mais, então o agente encontra você onde você já conversa.
+
+## Exemplo na prática
+
+O mesmo loop de agente pode ser self-hosted ou consumido como serviço gerenciado. A diferença é quem carrega o peso operacional.
+
+| Dimensão | OpenClaw self-hosted | Liv (OpenClaw como serviço) |
+| --- | --- | --- |
+| Setup | ~15 min (Docker/Node) até algumas horas de ajuste | Trial de 14 dias, sem cartão |
+| Custo de infra + LLM | Tipicamente abaixo de $100/mês, você gerencia | Pro $79/mês, Max $149/mês |
+| Operação | ~1–3 horas/mês (tokens, updates, debugging) | Gerenciada para você |
+| Segurança/compliance | Responsabilidade sua | CASA Tier 2, cofres criptografados |
+
+## Experimente na Liv
+
+A Liv é o loop de agente do OpenClaw e integrações reais embrulhados em infraestrutura gerenciada, então você tem o agente sem a operação.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Fale com a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth (revogável a qualquer momento).
+4. Opcionalmente, vincule o WhatsApp (somente por convite, exige um eSIM dedicado).
+
+O onboarding está em acesso antecipado e é feito em lotes, então pode haver uma fila.
+
+## Perguntas comuns
+
+### O OpenClaw é gratuito?
+Sim. O software tem licença MIT e é gratuito; você paga apenas pelo servidor em que ele roda e pelo seu uso de API de LLM. Veja [o OpenClaw é gratuito?](/pt-br/answers/is-openclaw-free) para os detalhes.
+
+### Em que posso rodá-lo?
+Qualquer sistema operacional. Os requisitos mínimos são cerca de 2 núcleos, 2 GB de RAM e 2 GB de armazenamento. [Requisitos de sistema](/pt-br/answers/openclaw-system-requirements) cobre isso por completo.
+
+### Como instalo?
+Via Docker ou Node em cerca de 15 minutos, ou com um template de um clique no Railway em cerca de 5. Veja [como fazer o deploy do OpenClaw](/pt-br/answers/how-to-deploy-openclaw).
+
+### Preciso escrever código?
+Não. A configuração é feita em arquivos Markdown de texto puro, não em programação, embora intimidade com um terminal ajude.
+
+### A Liv é o mesmo que o OpenClaw?
+A Liv é um serviço gerenciado independente construído sobre o OpenClaw. Não é afiliada ao projeto OpenClaw nem endossada por ele.
+
+### E se eu não quiser rodar um servidor?
+Use uma opção gerenciada. [Hospedagem de OpenClaw](/pt-br/answers/openclaw-hosting) compara as escolhas.

@@ -1,0 +1,67 @@
+---
+title: "OpenClaw vs Manus: agente open-source vs sandbox na nuvem"
+question: "Qual é a diferença entre OpenClaw e Manus?"
+answer: "O OpenClaw é um agente gratuito e open-source que você mesmo hospeda, com integrações reais e memória persistente. O Manus é um agente proprietário em sandbox na nuvem: refinado e sem configuração, mas individual, cobrado por créditos e sem integrações."
+description: "OpenClaw vs Manus: self-hosting open-source com integrações contra um sandbox proprietário na nuvem cobrado por créditos. Veja qual combina com você."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - manus-ai-alternative
+  - what-is-openclaw
+  - best-self-hosted-ai-assistant
+---
+
+As duas ferramentas respondem ao mesmo desejo, uma IA que faz coisas por você, a partir de extremos opostos. O OpenClaw é aberto e seu para rodar; o Manus é fechado e rodado para você. A escolha certa depende de você querer controle e integrações, ou zero configuração para tarefas autocontidas.
+
+Nenhum é "melhor" no abstrato. Eles são feitos para pessoas diferentes.
+
+## Como funciona
+
+O [OpenClaw](https://github.com/openclaw/openclaw) é um agente de IA pessoal gratuito, licenciado sob MIT, com mais de 15.000 estrelas no GitHub e mais de 200 contribuidores. Você faz self-host via Docker ou Node em cerca de 15 minutos, ou pelo template one-click do Railway em cerca de 5. É agnóstico de LLM (Claude, GPT, Gemini, DeepSeek), roda um [loop de agente](/pt-br/answers/how-an-ai-agent-loop-works) persistente com memória e se conecta a Telegram, WhatsApp, Slack, Discord, Signal e iMessage. Você configura o comportamento dele em arquivos de texto puro como o [`SOUL.md`](/pt-br/answers/openclaw-soul-md-explained) e o `HEARTBEAT.md`. A manutenção contínua é de cerca de 1–3 horas por mês.
+
+O Manus, criado pela Butterfly Effect e adquirido pela Meta em dezembro de 2025, roda em um sandbox hospedado na nuvem com um recurso "My Computer". Não há nada para instalar. É individual e restrito a convites, não tem workspace persistente nem integrações, e é cobrado por créditos: um plano gratuito com créditos diários limitados, depois o Pro a $20–200/mês, com tarefas complexas consumindo 500–900 créditos.
+
+## Exemplo na prática
+
+| Dimensão | OpenClaw | Manus |
+| --- | --- | --- |
+| Licença | MIT, open-source | Proprietária |
+| Configuração | ~5–15 min em self-host | Nenhuma, hospedado |
+| Integrações | Telegram, WhatsApp, Gmail/Calendar via OAuth | Nenhuma |
+| Memória/persistência | Persistente entre sessões | Sandbox, por tarefa |
+| Preço | Infra + LLM, abaixo de $100/mês | Créditos, $20–200/mês |
+| Operação | ~1–3 h/mês | Nenhuma |
+
+Escolha o OpenClaw por controle, persistência e acesso real às contas. Escolha o Manus para trabalhos autônomos pontuais, sem configuração.
+
+## Experimente na Liv
+
+Se você gosta do modelo do OpenClaw mas não da manutenção dele, a Liv roda esse mesmo loop de agente para você, com integrações embutidas e segurança CASA Tier 2.
+
+1. Comece um teste gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Envie mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (apenas por convite, exige um eSIM dedicado).
+
+O onboarding está em acesso antecipado e em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### O OpenClaw é gratuito e o Manus é pago?
+O OpenClaw é gratuito e licenciado sob MIT; você paga por hosting e uso de LLM. O Manus tem um plano gratuito limitado e planos Pro pagos. Veja [o OpenClaw é gratuito?](/pt-br/answers/is-openclaw-free).
+
+### O Manus se integra ao Gmail?
+Não. O Manus não tem integrações. O OpenClaw se conecta ao Gmail e ao Calendar via OAuth quando você faz a configuração.
+
+### Qual é mais fácil de começar?
+O Manus, já que não há nada para instalar. O OpenClaw exige um deploy de 5–15 minutos e alguma configuração.
+
+### Posso ter o OpenClaw sem self-hosting?
+Sim, via hosting gerenciado. [Hosting de OpenClaw](/pt-br/answers/openclaw-hosting) cobre as opções, incluindo a Liv.
+
+### O Manus lembra de tarefas passadas?
+Não como um workspace persistente; ele opera por tarefa em um sandbox. O OpenClaw mantém [memória persistente](/pt-br/answers/what-is-a-persistent-ai-agent).
+
+### A Liv é afiliada a algum dos dois?
+Não. A Liv é um serviço gerenciado independente construído sobre o OpenClaw, sem afiliação ou endosso do OpenClaw ou do Manus.

@@ -1,0 +1,68 @@
+---
+title: "Como funciona o loop de um agente de IA"
+question: "Como funciona o loop de um agente de IA?"
+answer: "O loop de um agente de IA é o ciclo de observar, pensar, agir, repetir: o agente lê seu contexto, decide um passo, chama uma ferramenta, observa o resultado e repete até a tarefa terminar. Esse loop é o que transforma um modelo de linguagem em um agente."
+description: "Como funciona o loop de um agente de IA: o ciclo observar-pensar-agir, chamadas de ferramentas e o heartbeat que o deixa agir sozinho. Sem jargão."
+topic: ai-agents
+intent: definitional
+datePublished: 2026-06-01
+related:
+  - what-is-a-persistent-ai-agent
+  - what-is-an-autonomous-ai-agent
+  - what-is-openclaw
+---
+
+Um modelo de linguagem sozinho só prevê texto. O loop do agente é o invólucro que transforma essa previsão em ação: ele deixa o modelo dar um passo, ver o que aconteceu e decidir o que fazer em seguida. Rode esse ciclo vezes suficientes e uma resposta única vira uma tarefa concluída.
+
+A ideia é simples, quase mecânica. O poder vem da repetição. Cada passagem pelo loop dá ao modelo informação nova, então ele pode corrigir o rumo, encadear várias ferramentas e continuar até o objetivo ser atingido.
+
+## Como funciona
+
+Uma passagem pelo loop tem quatro estágios. Observar: o agente reúne seu contexto atual, a última mensagem, memória relevante, o resultado da última ação. Pensar: o modelo raciocina sobre o que fazer em seguida e escolhe uma ferramenta. Agir: ele chama essa ferramenta, por exemplo lendo um e-mail, criando um evento no calendário ou enviando uma mensagem. Repetir: o resultado da ação vira a próxima observação, e o loop continua até a tarefa terminar ou até precisar da sua entrada.
+
+O [OpenClaw](https://github.com/openclaw/openclaw), o agente pessoal open-source, roda exatamente esse tipo de loop e é agnóstico de LLM, então o passo de raciocínio pode ser Claude, GPT, Gemini ou DeepSeek. Duas coisas tornam o loop genuinamente útil ao longo do tempo. Memória, para que cada passagem possa usar o que o agente já sabe sobre você. E um cronograma, o `HEARTBEAT.md` do OpenClaw, que acorda o loop em uma cadência para que ele aja sem você pedir. Loop contínuo mais memória durável é o que torna um agente persistente; veja [o que é um agente de IA persistente](/pt-br/answers/what-is-a-persistent-ai-agent) e [o que é o OpenClaw](/pt-br/answers/what-is-openclaw).
+
+## Exemplo na prática
+
+"Encontre um horário para jantar na semana que vem e reserve." Veja o loop rodar:
+
+| Passagem | Observar | Pensar | Agir |
+| --- | --- | --- | --- |
+| 1 | Pedido recebido | Preciso das noites livres | Ler o calendário |
+| 2 | Ter e qui estão livres | Confirmar preferência | Perguntar ao usuário qual noite |
+| 3 | Usuário escolhe quinta | Preciso de um restaurante | Buscar opções |
+| 4 | Três opções encontradas | Escolher e reservar | Reservar mesa |
+| 5 | Reserva confirmada | Registrar | Criar evento no calendário |
+
+Nenhuma chamada única ao modelo fez tudo isso. O loop fez, realimentando cada resultado como a próxima observação. O agente pausou na passagem 2 porque algumas ações precisam da sua confirmação antes de prosseguir.
+
+## Experimente na Liv
+
+A Liv roda esse loop para você como serviço gerenciado, então você acompanha os resultados em vez do encanamento:
+
+1. Comece um trial gratuito de 14 dias em https://app.liv4all.com. Sem cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão, e dê a ela uma tarefa de múltiplos passos.
+3. Conecte Gmail e Calendar via Google OAuth para o loop ter ferramentas sobre as quais agir.
+4. Opcionalmente, vincule o WhatsApp depois (por convite, eSIM dedicado).
+
+Rascunhos de envio aguardam sua aprovação antes de sair, e a Liv está em early access com onboarding em lotes.
+
+## Perguntas comuns
+
+### Qual é a diferença entre um modelo e um loop de agente?
+O modelo produz uma resposta; o loop roda o modelo repetidamente com acesso a ferramentas até a tarefa terminar.
+
+### O que impede o loop de rodar para sempre?
+Ele termina quando a tarefa está completa, quando precisa da sua entrada, ou em limites seguros definidos pelo sistema. Ações sensíveis pausam para sua aprovação.
+
+### O que é um heartbeat nesse contexto?
+Um gatilho agendado que acorda o loop em uma cadência para o agente agir sem ser solicitado, definido no `HEARTBEAT.md` do OpenClaw.
+
+### Todo agente usa o mesmo loop?
+O padrão observar-pensar-agir é quase universal, embora as implementações variem em memória, ferramentas e agendamento.
+
+### Como o loop torna um agente autônomo?
+Deixando-o escolher e encadear os próprios passos rumo a um objetivo. Veja [o que é um agente de IA autônomo](/pt-br/answers/what-is-an-autonomous-ai-agent).
+
+### Posso rodar meu próprio loop de agente?
+Sim, o OpenClaw é open-source e self-hostable. Veja [como criar um agente de IA pessoal](/pt-br/answers/how-to-build-a-personal-ai-agent).

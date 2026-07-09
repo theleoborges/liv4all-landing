@@ -1,0 +1,71 @@
+---
+title: "Como armazenar chaves de API para agentes de IA com segurança"
+question: "Como armazeno com segurança chaves de API e segredos de um agente de IA?"
+answer: "Nunca deixe chaves em arquivos de configuração em texto puro ou em variáveis de ambiente embutidas numa imagem. Armazene cada segredo num cofre criptografado com escopo por dono, injete apenas em runtime, faça rotação programada e conceda ao agente o escopo mais estreito de que ele precisa."
+description: "Guarde chaves de API de agentes de IA num cofre criptografado por usuário, injete em runtime, restrinja escopos e faça rotação. Evite arquivos em texto puro."
+topic: security
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - is-it-safe-to-give-ai-access-to-your-gmail
+  - self-hosted-ai-agent-security-risks
+  - how-to-give-an-ai-agent-email-and-calendar-access
+---
+
+Um agente de IA que faz trabalho de verdade acumula segredos rápido: uma chave de provedor de LLM, tokens OAuth do Gmail e do Calendar, um token de bot do Telegram, talvez uma integração de pagamento ou de reservas. Cada um é uma credencial que pode gastar dinheiro, ler seus e-mails ou se passar por você. O padrão que a maioria dos guias rápidos adota, jogar tudo num arquivo `.env` ou num bloco de configuração, é exatamente o padrão que vaza.
+
+O objetivo é direto: segredos devem estar criptografados em repouso, disponíveis ao agente apenas no momento em que ele precisa deles, e fáceis de revogar sem reconstruir nada.
+
+## Como funciona
+
+Alguns princípios cobrem quase todos os casos.
+
+- **Criptografe em repouso num armazenamento dedicado.** Use um gerenciador de segredos ou um cofre criptografado em vez de um arquivo em disco. O agente lê o segredo pela API do armazenamento; o valor nunca é gravado no seu repositório nem na sua imagem de container.
+- **Injete em runtime, nunca embuta.** Monte ou busque os segredos quando o processo inicia. Qualquer coisa embutida numa imagem ou commitada no controle de versão está, na prática, publicada.
+- **Restrinja o escopo.** Solicite apenas os escopos OAuth e as permissões de API que a tarefa exige. Uma chave que só consegue ler calendários não pode esvaziar um orçamento.
+- **Faça rotação e revogue.** Defina expiração, faça rotação programada e garanta que revogar uma única credencial não derrube o agente inteiro. Para acesso ao Google, tokens OAuth são revogáveis pela sua Conta Google, independentemente do aplicativo.
+
+Se você faz self-host do [OpenClaw](https://github.com/openclaw/openclaw), é sua responsabilidade montar isso: um backend de segredos, injeção em runtime, rotação. É totalmente viável, mas faz parte da [manutenção contínua do self-host](/pt-br/answers/self-host-ai-agent-maintenance) e é uma fonte comum de [risco de segurança no self-hosting](/pt-br/answers/self-hosted-ai-agent-security-risks).
+
+## Exemplo na prática
+
+Como o mesmo conjunto de segredos é tratado em cada abordagem.
+
+| Prática | `.env` em texto puro (não faça) | Cofre self-hosted (DIY) | Cofres de usuário da Liv (gerenciado) |
+| --- | --- | --- | --- |
+| Armazenamento | Arquivo em disco, muitas vezes commitado | Armazenamento criptografado que você opera | Cofre criptografado por usuário |
+| Injeção | Carregado no env no boot | Buscado em runtime | Buscado em runtime |
+| Rotação | Manual, muitas vezes esquecida | Você agenda | Cuidada para você |
+| Raio de dano se vazar | Todos os segredos expostos | Limitado àquele cofre | Limitado ao cofre de um usuário |
+| Sua carga de ops | Nenhuma, até vazar | Você carrega tudo | Nenhuma |
+
+## Experimente na Liv
+
+A Liv armazena seus segredos em **cofres** criptografados por usuário, então as credenciais de cada usuário ficam isoladas e nunca num arquivo de configuração compartilhado em texto puro. O acesso ao Gmail e ao Calendar usa Google OAuth (revogável a qualquer momento), e a Liv passou no [CASA Tier 2 do Google](/pt-br/answers/what-is-casa-tier-2-gmail), verificado de forma independente pela TAC Security.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem precisar de cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth; os tokens ficam guardados no seu cofre criptografado.
+4. Opcionalmente, vincule o WhatsApp (somente por convite, precisa de um eSIM dedicado).
+
+O onboarding está atualmente em early access e por lotes, então você pode entrar numa fila.
+
+## Perguntas comuns
+
+### Variáveis de ambiente são seguras o suficiente para segredos?
+São melhores do que commitar chaves no código, mas variáveis de ambiente podem vazar por logs, crash dumps e processos filhos. Um armazenamento criptografado dedicado é o padrão mais forte.
+
+### O que é um cofre por usuário?
+Um armazenamento criptografado com escopo de um único usuário, de modo que as credenciais de uma pessoa ficam isoladas das de todas as outras. A Liv usa esse modelo, que mantém pequeno o raio de dano de qualquer incidente.
+
+### Com que frequência devo fazer rotação das chaves de API?
+Num cronograma condizente com a sensibilidade: chaves de alto valor a cada trimestre ou antes, e imediatamente diante de qualquer suspeita de exposição. Automatize para que aconteça de verdade.
+
+### E se eu der ao agente minhas credenciais do Gmail diretamente?
+Não faça isso. Use o [Google OAuth](/pt-br/answers/how-to-give-an-ai-agent-email-and-calendar-access), assim nenhuma senha é compartilhada e o acesso continua revogável.
+
+### Onde as chaves de API mais vazam?
+Arquivos de configuração commitados, logs de build, screenshots e escopos amplos demais. Escopo estreito e injeção em runtime fecham a maioria dessas brechas.
+
+### Um serviço gerenciado é automaticamente mais seguro?
+Não, mas ele pode eliminar classes inteiras de erro ao cuidar da criptografia e da rotação por você. Pese isso contra os [riscos de segurança do self-hosting](/pt-br/answers/self-hosted-ai-agent-security-risks).

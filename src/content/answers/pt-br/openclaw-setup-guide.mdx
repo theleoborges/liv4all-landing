@@ -1,0 +1,70 @@
+---
+title: "Guia de configuração do OpenClaw"
+question: "Como eu configuro o OpenClaw do zero?"
+answer: "Configure o OpenClaw provisionando um servidor, instalando via Docker ou Node (~15 min) ou pelo template one-click do Railway (~5 min), adicionando uma chave de API de LLM, conectando um canal de chat e escrevendo seu SOUL.md."
+description: "Guia passo a passo do OpenClaw: servidor, instalação, chave de LLM, canal e SOUL.md. Mais a alternativa gerenciada se preferir pular a operação."
+topic: openclaw
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - how-to-deploy-openclaw
+  - openclaw-soul-md-explained
+  - openclaw-system-requirements
+---
+
+Configurar o [OpenClaw](https://github.com/openclaw/openclaw) do zero se divide em cinco etapas: conseguir um servidor, instalar o software, dar a ele um cérebro, dar a ele uma boca e dar a ele uma personalidade. As quatro primeiras são rápidas. A última, escrever o `SOUL.md`, é onde vale gastar reflexão de verdade, porque é ela que determina como o agente se comporta.
+
+Este guia percorre a primeira execução completa de ponta a ponta. Para a etapa de deploy especificamente, [como fazer deploy do OpenClaw](/pt-br/answers/how-to-deploy-openclaw) aprofunda as opções de instalação.
+
+## Como funciona
+
+1. **Provisione um servidor.** Atenda aos [requisitos mínimos](/pt-br/answers/openclaw-system-requirements): cerca de 2 cores, 2 GB de RAM, 2 GB de armazenamento, com Ubuntu 24.04 recomendado. Qualquer VPS serve.
+2. **Instale o OpenClaw.** Use Docker ou Node para uma instalação manual em cerca de 15 minutos, ou o template one-click do Railway em cerca de 5.
+3. **Adicione uma chave de API de LLM.** O OpenClaw é agnóstico de LLM; escolha Claude, GPT, Gemini ou DeepSeek e cole a chave.
+4. **Conecte um canal.** Adicione um token de bot para Telegram, WhatsApp, Slack, Discord, Signal ou iMessage para poder conversar com o agente.
+5. **Escreva o `SOUL.md`.** Esse arquivo é a identidade e as regras do agente; espere 20–45 minutos para fazê-lo bem. Você também vai mexer no `HEARTBEAT.md` (a agenda dele), no `AGENTS.md` e no `USER.md`. Veja [SOUL.md explicado](/pt-br/answers/openclaw-soul-md-explained).
+
+Com o `SOUL.md` salvo e o agente rodando, envie uma mensagem no canal escolhido para confirmar que ele responde.
+
+## Exemplo na prática
+
+| Etapa | Tempo | Observações |
+| --- | --- | --- |
+| Provisionar o servidor | 5–10 min | Qualquer VPS que atenda aos requisitos mínimos |
+| Instalação (Docker/Node) | ~15 min | Ou ~5 min via template do Railway |
+| Chave de LLM + canal | ~5 min | Cole a chave de API e o token do bot |
+| Escrever o SOUL.md | 20–45 min | A parte que mais importa |
+| Manutenção contínua | ~1–3 h/mês | Tokens, atualizações, depuração |
+
+O tempo total da primeira execução é de aproximadamente uma hora, a maior parte em configuração e não em instalação.
+
+## Experimente na Liv
+
+Se a configuração e a manutenção mensal soam como mais do que você quer, a Liv roda o mesmo loop de agente do OpenClaw como serviço gerenciado.
+
+1. Comece um teste gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Envie mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth.
+4. Opcionalmente, vincule o WhatsApp (apenas por convite, exige um eSIM dedicado).
+
+O onboarding está em acesso antecipado e em lotes.
+
+## Perguntas comuns
+
+### Quanto tempo leva a configuração do OpenClaw?
+Cerca de uma hora na primeira vez, dominada pela escrita do `SOUL.md` e não pela instalação.
+
+### Qual é o caminho de instalação mais rápido?
+O template one-click do Railway, com aproximadamente 5 minutos até uma instância rodando.
+
+### Qual LLM devo usar?
+Qualquer um entre Claude, GPT, Gemini ou DeepSeek; o OpenClaw é agnóstico de LLM, então escolha por custo e capacidade.
+
+### O que vai no SOUL.md?
+A identidade, o tom e as regras de operação do agente. [SOUL.md explicado](/pt-br/answers/openclaw-soul-md-explained) cobre a estrutura.
+
+### Quais são os requisitos de servidor?
+Cerca de 2 cores, 2 GB de RAM, 2 GB de armazenamento. Detalhe completo em [requisitos de sistema](/pt-br/answers/openclaw-system-requirements).
+
+### Existe uma opção sem configuração?
+Sim. A Liv é um serviço gerenciado independente construído sobre o OpenClaw, sem afiliação com o projeto, e remove as etapas de configuração e manutenção.

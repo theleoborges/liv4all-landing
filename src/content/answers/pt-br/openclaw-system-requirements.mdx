@@ -1,0 +1,73 @@
+---
+title: "Requisitos de sistema do OpenClaw"
+question: "Quais são os requisitos de sistema do OpenClaw?"
+answer: "O OpenClaw precisa de cerca de 2 cores de CPU, 2 GB de RAM e 2 GB de armazenamento, e roda em qualquer sistema operacional, com Ubuntu 24.04 recomendado. É leve porque o trabalho pesado acontece na API do LLM, não no seu servidor."
+description: "Requisitos mínimos do OpenClaw: ~2 cores, 2 GB de RAM, 2 GB de armazenamento, qualquer SO (Ubuntu 24.04 recomendado). Leve porque o LLM roda via API."
+topic: openclaw
+intent: informational
+datePublished: 2026-06-01
+related:
+  - how-to-deploy-openclaw
+  - best-vps-for-ai-agent
+  - how-much-does-openclaw-cost-to-run
+---
+
+O OpenClaw é deliberadamente leve. Os requisitos mínimos são cerca de 2 cores de CPU, 2 GB de RAM e 2 GB de armazenamento, e ele roda em qualquer sistema operacional. O Ubuntu 24.04 é o SO recomendado, principalmente porque tem bom suporte e é o que a maioria dos guias assume.
+
+Ele pode ser assim modesto porque a computação cara, a inferência do modelo, acontece na nuvem do provedor de LLM via API. Seu servidor orquestra o loop do agente e guarda estado; ele não roda um modelo. É por isso que uma máquina pequena e barata basta.
+
+## Como funciona
+
+O [OpenClaw](https://github.com/openclaw/openclaw) roda como um processo (via Docker ou Node) que gerencia o loop do agente: receber mensagens, chamar o LLM, executar skills e persistir memória. Nada disso é faminto por CPU ou RAM, então o gargalo quase nunca é o seu hardware. É a sua cota de API do LLM e a sua conexão de rede.
+
+Uma linha de base prática:
+
+- **CPU:** ~2 cores.
+- **RAM:** ~2 GB (mais folga ajuda se você roda muitas skills).
+- **Armazenamento:** ~2 GB (arquivos de memória e logs crescem devagar).
+- **SO:** qualquer um; Ubuntu 24.04 recomendado.
+- **Rede:** HTTPS de saída estável para as APIs do seu LLM e dos canais.
+
+Praticamente qualquer VPS moderno passa nesse teste. Para escolher um, veja [melhor VPS para um agente de IA](/pt-br/answers/best-vps-for-ai-agent).
+
+## Exemplo na prática
+
+| Recurso | Mínimo | Confortável |
+| --- | --- | --- |
+| CPU | 2 cores | 2 cores |
+| RAM | 2 GB | 4 GB |
+| Armazenamento | 2 GB | 10 GB+ |
+| SO | Qualquer | Ubuntu 24.04 |
+
+Como os requisitos são baixos, o que puxa o custo não é o servidor. Infra mais API de LLM tipicamente fica abaixo de $100/mês, com o uso do LLM respondendo pela maior parte do gasto. Veja [quanto custa rodar o OpenClaw](/pt-br/answers/how-much-does-openclaw-cost-to-run).
+
+## Experimente na Liv
+
+Se você prefere não dimensionar, provisionar ou manter servidor nenhum, a Liv roda o loop de agente do OpenClaw em infraestrutura gerenciada.
+
+1. Comece um teste gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Envie mensagem para a Liv no Telegram, o canal padrão.
+3. Conecte Gmail e Calendar via Google OAuth.
+4. Opcionalmente, vincule o WhatsApp (apenas por convite, exige um eSIM dedicado).
+
+O onboarding está em acesso antecipado e em lotes.
+
+## Perguntas comuns
+
+### Posso rodar o OpenClaw em um Raspberry Pi?
+Se ele atender a ~2 cores e 2 GB de RAM, sim. Os requisitos são baixos o bastante para computadores de placa única pequenos.
+
+### Precisa de GPU?
+Não. A inferência acontece via API do LLM, então nenhuma GPU local é necessária.
+
+### Que SO devo usar?
+Qualquer um funciona; o Ubuntu 24.04 é recomendado por suporte e alinhamento com a documentação.
+
+### Quanto armazenamento ele usa com o tempo?
+Pouco. Arquivos de memória e logs crescem devagar; 2 GB é um bom ponto de partida.
+
+### Qual VPS é o melhor?
+Qualquer um que atenda aos requisitos mínimos. [Melhor VPS para um agente de IA](/pt-br/answers/best-vps-for-ai-agent) compara as opções.
+
+### Preciso de um servidor afinal?
+Não, se você usar um serviço gerenciado. A Liv é um serviço gerenciado independente construído sobre o OpenClaw, sem afiliação com o projeto, e roda a infraestrutura para você.

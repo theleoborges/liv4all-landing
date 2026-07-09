@@ -1,0 +1,67 @@
+---
+title: "Hosting de OpenClaw comparado: hosts gerenciados baratos vs um serviço com segurança"
+question: "Qual é a diferença entre hosts baratos de OpenClaw e um serviço gerenciado com segurança?"
+answer: "Hosts gerenciados baratos de OpenClaw como o OneClaw rodam o software por cerca de $12–22/mês, mas adicionam pouca segurança e poucas integrações embutidas. Um serviço como a Liv adiciona segurança CASA Tier 2, cofres criptografados e Gmail/Calendar integrados."
+description: "Compare hosting gerenciado barato de OpenClaw com um serviço com segurança. Onde o hosting puro a $12–22/mês serve e onde segurança e integrações valem mais."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - openclaw-hosting
+  - self-hosted-vs-managed-ai-agent
+  - how-much-does-a-managed-ai-agent-cost
+---
+
+Depois que você decide não fazer self-host do [OpenClaw](https://github.com/openclaw/openclaw), o mercado gerenciado se divide em dois. Na ponta barata, hosts como OneClaw e Blink Claw rodam o software OpenClaw para você por cerca de $12–22/mês. Eles tiram a instalação do seu prato, o que é genuinamente útil. O que eles normalmente não adicionam é hardening de segurança, compliance ou integrações já configuradas e prontas.
+
+A outra ponta do mercado troca um preço mais alto exatamente por essas coisas. A questão é o quanto a diferença importa para um agente que vai tocar o seu e-mail.
+
+## Como funciona
+
+Um host gerenciado barato roda o código padrão do OpenClaw em um servidor que eles gerenciam. Você ainda configura o agente, conecta as suas próprias contas e confia na segurança básica do host. É essencialmente self-hosting com a máquina gerenciada para você, a um preço baixo. Veja [hosting de OpenClaw](/pt-br/answers/openclaw-hosting) para o panorama.
+
+Um serviço com segurança como a Liv roda o mesmo loop de agente, mas o embrulha em infraestrutura gerenciada mais segurança e integrações. A Liv passou no Google [CASA Tier 2](/pt-br/answers/what-is-casa-tier-2-gmail), verificado de forma independente pela TAC Security, armazena segredos em cofres criptografados por usuário, conecta Gmail e Calendar via Google OAuth que você pode revogar, e dá a cada agente seu próprio endereço de e-mail e identidade no Telegram. Seus dados não são usados para treinar modelos, e rascunhos de saída precisam da sua aprovação antes do envio.
+
+## Exemplo na prática
+
+| Dimensão | Host gerenciado barato | Liv (gerenciada com segurança) |
+| --- | --- | --- |
+| Preço | ~$12–22/mês | Pro $79/Max $149 |
+| Instalação/hosting | Gerenciados | Gerenciados |
+| Segurança/compliance | Básica, definida pelo host | CASA Tier 2, cofres criptografados |
+| Integrações | Você mesmo conecta | Gmail/Calendar/Telegram integrados |
+| Armazenamento de segredos | Sua responsabilidade | Cofres criptografados por usuário |
+| Treinamento com dados | Depende do host | Não usados para treinar modelos |
+
+Se você só quer o OpenClaw rodando barato e vai cuidar da segurança e da configuração por conta própria, um host econômico é uma escolha justa. Se o agente vai guardar acesso à caixa de entrada e segredos, a camada de segurança e compliance é onde o custo extra se paga.
+
+## Experimente na Liv
+
+A Liv faz a triagem do e-mail, gerencia seu calendário, faz reservas e envia briefings diários pelo Telegram.
+
+1. Comece um teste gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Envie mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (apenas por convite, exige um eSIM dedicado).
+
+O onboarding está em acesso antecipado e em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### Hosts baratos de OpenClaw são seguros?
+Eles rodam o OpenClaw de verdade, mas a segurança depende da configuração do host, e a configuração fica com você. Revise [os riscos de segurança do self-hosting](/pt-br/answers/self-hosted-ai-agent-security-risks) antes de conectar contas.
+
+### O que o CASA Tier 2 acrescenta?
+É uma avaliação de segurança independente que o Google exige para acesso sensível ao Gmail. A Liv passou nela, com verificação da TAC Security. Veja [o que é CASA Tier 2](/pt-br/answers/what-is-casa-tier-2-gmail).
+
+### Por que a Liv é mais cara que um host de $12?
+O preço reflete segurança, compliance, cofres criptografados e integrações embutidas, não apenas rodar o software. Veja [quanto custa um agente gerenciado](/pt-br/answers/how-much-does-a-managed-ai-agent-cost).
+
+### Hosts baratos incluem integração com Gmail?
+Normalmente você conecta as suas próprias contas. A Liv já entrega a integração com Gmail e Calendar embutida, via OAuth revogável.
+
+### Não seria melhor eu fazer self-host?
+Se você curte a operação, sim. [Self-hosted vs gerenciado](/pt-br/answers/self-hosted-vs-managed-ai-agent) pesa os dois caminhos.
+
+### A Liv é afiliada ao OneClaw ou ao OpenClaw?
+Não. A Liv é um serviço gerenciado independente construído sobre o OpenClaw, sem afiliação ou endosso do OneClaw ou do projeto OpenClaw.

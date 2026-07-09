@@ -1,0 +1,69 @@
+---
+title: "O que é o Hermes Agent? O agente pessoal auto-aprimorável da Nous Research"
+question: "O que é o Hermes Agent?"
+answer: "O Hermes Agent é um agente de IA pessoal gratuito, com licença MIT, da Nous Research, escrito em Python. Ele roda em self-host em um VPS pequeno e executa um loop de aprendizado que constrói as próprias skills e um modelo de você ao longo do tempo."
+description: "Hermes Agent é o agente de IA pessoal open-source e self-hosted da Nous Research, com memória persistente e loop de aprendizado. O que é e para quem serve."
+topic: comparisons
+intent: definitional
+datePublished: 2026-06-02
+related:
+  - hermes-agent-vs-openclaw
+  - hermes-agent-alternative
+  - best-personal-ai-agent
+---
+
+O Hermes Agent é um agente pessoal open-source da Nous Research, lançado em fevereiro de 2026 e escrito em Python. Ele já acumulou mais de 64.000 estrelas no GitHub. Você o roda por conta própria, dá a ele acesso aos seus canais de mensagem, e ele aprende com o que faz.
+
+Uma observação de nomenclatura logo de início: este é o projeto Hermes *Agent*, não a família Hermes de modelos de linguagem que a Nous também publica. São duas coisas separadas que compartilham o nome.
+
+## Como funciona
+
+O [Hermes Agent](https://github.com/nousresearch/hermes-agent) tem licença MIT e é self-hosted, então você mesmo o hospeda e mantém. Ele guarda memória persistente entre sessões e roda um "loop de aprendizado": em vez de apenas executar skills fixas, ele cria e refina as próprias skills a partir da experiência e constrói um modelo de você quanto mais você o usa. Esse design auto-aprimorável é seu recurso de destaque.
+
+Ele é agnóstico de modelo. Você pode apontá-lo para o Nous Portal, OpenRouter, OpenAI ou seu próprio endpoint. Roda em lugares modestos, um VPS de $5, um cluster de GPUs ou serverless, com seis backends de terminal para escolher: local, Docker, SSH, Daytona, Singularity e Modal. Há duas formas de alcançá-lo: uma UI de terminal para uso direto, ou um gateway com o qual você conversa pelo Telegram, Discord, Slack, WhatsApp, Signal ou e-mail.
+
+Como é privacy-first e roda totalmente na sua própria máquina, seus dados e sua memória ficam onde você os colocou. O trade-off é que ele foi feito para usuários técnicos: o deploy, os upgrades e o debugging são seus.
+
+## Exemplo na prática
+
+| Dimensão | Hermes Agent | Liv (gerenciada) |
+| --- | --- | --- |
+| Licença | MIT, open-source | Serviço proprietário |
+| Onde roda | Seu VPS / serverless | Infraestrutura gerenciada |
+| Memória | Persistente, na sua máquina | Persistente, cofres criptografados |
+| Setup | Self-host + config | Cadastro no trial |
+| Canais | Telegram, Discord, Slack, WhatsApp, Signal, e-mail | Telegram (padrão), WhatsApp (por convite) |
+| Operação | Você mantém | Nenhuma para você |
+
+Se o loop de aprendizado e o controle local total são o que você quer, o Hermes Agent é uma escolha forte e gratuita. Se você quer um agente pessoal persistente sem rodar um servidor, veja [rode o Hermes Agent sem um VPS](/pt-br/answers/run-hermes-agent-without-a-vps).
+
+## Experimente na Liv
+
+A Liv é um agente de IA pessoal gerenciado para quem quer o mesmo resultado, um agente persistente com memória que vive nos seus apps de chat e age sobre seu e-mail e sua agenda, sem fazer self-host de nada.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Fale com a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (somente por convite, exige um eSIM dedicado).
+
+O onboarding está em acesso antecipado e é feito em lotes, então pode haver uma fila.
+
+## Perguntas comuns
+
+### O Hermes Agent é o mesmo que o modelo de linguagem Hermes?
+Não. O Hermes Agent é um projeto de agente em Python; os modelos Hermes são LLMs separados da Nous Research. Diga sempre "Hermes Agent" para não confundir.
+
+### O Hermes Agent é gratuito?
+Sim, tem licença MIT e é gratuito para rodar. Você paga apenas pela hospedagem e por qualquer uso de API de LLM.
+
+### Que hardware ele precisa?
+Muito pouco. Roda em um VPS de $5, escala até um cluster de GPUs e também roda serverless via backends como Modal e Daytona.
+
+### Qual a diferença para o OpenClaw?
+Ambos são self-hosted e open-source, mas otimizam para coisas diferentes. Veja [Hermes Agent vs OpenClaw](/pt-br/answers/hermes-agent-vs-openclaw).
+
+### Posso usar meu próprio modelo?
+Sim. Ele é agnóstico de modelo e funciona com Nous Portal, OpenRouter, OpenAI ou um endpoint customizado.
+
+### E se eu não quiser fazer self-host?
+Então um [agente de IA pessoal gerenciado](/pt-br/answers/self-hosted-vs-managed-ai-agent) como a Liv entrega o resultado do agente persistente sem a operação.

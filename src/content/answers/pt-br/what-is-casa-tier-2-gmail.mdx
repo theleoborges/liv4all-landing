@@ -1,0 +1,72 @@
+---
+title: "O que é CASA Tier 2 para Gmail?"
+question: "O que é o Google CASA Tier 2 e por que uma integração com o Gmail precisa dele?"
+answer: "CASA (Cloud Application Security Assessment) é o programa de verificação de segurança do Google, conduzido pela App Defense Alliance, para apps que solicitam escopos restritos. Qualquer app que lê seu e-mail ou envia em seu nome precisa passar por ele. O Tier 2 envolve um avaliador independente rodando um scan de segurança e revisando o app contra um checklist de controles, repetido anualmente."
+description: "CASA Tier 2 é a avaliação de segurança do Google para apps com escopos restritos do Gmail: scan independente e revisão de controles, renovada todo ano."
+topic: security
+intent: definitional
+datePublished: 2026-06-01
+related:
+  - is-it-safe-to-give-ai-access-to-your-gmail
+  - how-to-give-an-ai-agent-email-and-calendar-access
+  - ai-to-triage-your-email
+---
+
+Quando um app quer fazer mais do que o login básico com sua conta Google, como ler o conteúdo da sua caixa de entrada ou enviar e-mails como você, o Google trata isso como um "escopo restrito" e exige que o app prove que lida com seus dados de forma responsável. O CASA, Cloud Application Security Assessment, é o mecanismo dessa prova. Ele é administrado pela [App Defense Alliance](https://appdefensealliance.dev/casa), hoje sob a Linux Foundation, e construído sobre o OWASP Application Security Verification Standard (ASVS).
+
+Para um agente de IA que tria seu e-mail, essa é a diferença entre um produto crível e um que simplesmente pediu acesso amplo e torceu para você não notar.
+
+## Como funciona
+
+O CASA tem tiers que refletem como a avaliação é realizada. O Tier 2 é a régua comum para escopos restritos de Gmail e Calendar: um avaliador independente reconhecido pelo Google roda um scan de segurança contra o app em produção, produz um relatório de achados e revisa o app contra o checklist de controles do ASVS por meio de um questionário de autoavaliação que o avaliador valida. Quaisquer achados precisam ser remediados para passar.
+
+Algumas propriedades importam:
+
+- **Independente.** A avaliação é feita por um laboratório terceirizado aprovado, não é autodeclarada. O CASA Tier 2 da Liv foi verificado de forma independente pela [TAC Security](https://tacsecurity.com).
+- **Atrelado a escopos restritos.** Você só precisa dele porque o app toca dados sensíveis do Gmail. Veja a [verificação de escopo restrito do Google](https://developers.google.com/identity/protocols/oauth2/production-readiness/restricted-scope-verification) para o requisito oficial.
+- **Anual.** A verificação não é feita uma vez só; apps que usam escopos restritos precisam reavaliar a cada ano para manter o acesso.
+
+O CASA convive com o modelo OAuth, não o substitui: você ainda concede acesso pela tela de consentimento do Google e pode [revogá-lo a qualquer momento](/pt-br/answers/how-to-give-an-ai-agent-email-and-calendar-access).
+
+## Exemplo na prática
+
+O que o CASA Tier 2 diz e não diz a você.
+
+| Pergunta | O que o CASA Tier 2 responde |
+| --- | --- |
+| Uma parte independente revisou a segurança? | Sim, um avaliador aprovado escaneou e revisou o app |
+| É exigido para acesso à caixa de entrada? | Sim, escopos restritos do Gmail o acionam |
+| É um selo único? | Não, precisa ser renovado anualmente |
+| Cobre a política de treinamento com dados? | Não diretamente; pergunte ao fornecedor à parte |
+| Substitui o consentimento OAuth? | Não, você ainda concede e revoga o acesso |
+
+## Experimente na Liv
+
+A Liv passou no Google CASA Tier 2, verificado de forma independente pela TAC Security, e é isso que a permite ler e triar seu Gmail por escopos restritos de forma responsável. O acesso é via Google OAuth e revogável a qualquer momento, os segredos ficam em cofres criptografados por usuário, seus dados não são usados para treinar modelos e rascunhos de saída precisam da sua aprovação.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Fale com a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth.
+4. Opcionalmente, vincule o WhatsApp (somente por convite, exige um eSIM dedicado).
+
+O onboarding está em acesso antecipado e é feito em lotes, então pode haver uma fila.
+
+## Perguntas comuns
+
+### O que significa CASA?
+Cloud Application Security Assessment, a verificação de segurança do Google para apps que solicitam escopos OAuth sensíveis ou restritos.
+
+### Por que uma IA de e-mail precisa do CASA?
+Porque ler o corpo das mensagens ou enviar e-mails é um escopo restrito. O Google exige que apps que usam esses escopos passem pela avaliação. Leia [é seguro dar à IA acesso ao seu Gmail](/pt-br/answers/is-it-safe-to-give-ai-access-to-your-gmail).
+
+### Qual a diferença entre os tiers?
+Tiers mais altos significam uma avaliação mais profunda e mais independente contra mais controles. O Tier 2 é o requisito comum para escopos restritos de Gmail e Calendar.
+
+### O CASA é uma checagem única?
+Não. Apps que usam escopos restritos precisam reavaliar anualmente para manter o acesso.
+
+### Quem verifica?
+Um avaliador terceirizado aprovado, não o fornecedor do app. O da Liv foi verificado pela TAC Security.
+
+### Passar no CASA significa que meus dados são privados?
+Significa que os controles de segurança foram revisados de forma independente. Para os detalhes de tratamento de dados, como se seus dados treinam um modelo, confirme diretamente com o fornecedor. Com a Liv, não treinam.

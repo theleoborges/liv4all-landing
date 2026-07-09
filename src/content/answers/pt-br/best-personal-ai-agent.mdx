@@ -1,0 +1,66 @@
+---
+title: "Melhor agente de IA pessoal: Hermes Agent vs OpenClaw vs Manus vs gerenciado"
+question: "Qual é o melhor agente de IA pessoal?"
+answer: "Não existe um único melhor; depende de você querer ou não fazer self-hosting. Hermes Agent e OpenClaw são as principais escolhas open-source, o Manus serve para tarefas pontuais na nuvem, e um agente gerenciado como a Liv atende quem quer um agente persistente sem operação."
+description: "O melhor agente de IA pessoal depende do self-hosting. Compare Hermes Agent, OpenClaw, Manus e opções gerenciadas como a Liv em controle e esforço."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-02
+related:
+  - what-is-hermes-agent
+  - openclaw-vs-manus
+  - what-is-a-persistent-ai-agent
+---
+
+"Melhor" depende de uma decisão: você está disposto a rodar e manter um servidor? Responda isso e o campo se estreita rápido. Os agentes open-source são excelentes se você gosta de self-hosting; as opções na nuvem e gerenciadas existem justamente porque nem todo mundo gosta.
+
+Um [agente de IA pessoal](/pt-br/answers/what-is-a-persistent-ai-agent) é um sistema persistente com memória que age em seu nome, não um chatbot que você aciona uma vez. Veja como as principais opções se comparam.
+
+## Como funciona
+
+- **[Hermes Agent](https://github.com/nousresearch/hermes-agent)** (Nous Research, MIT, Python, 64,000+ estrelas): self-hosted, com privacidade em primeiro lugar, e um loop de aprendizado que se autoaperfeiçoa, constrói as próprias habilidades e um modelo de você. Roda em um VPS de $5, em serverless ou em um cluster de GPU. Melhor para usuários técnicos que querem um agente enxuto, local e programável. Veja [o que é o Hermes Agent](/pt-br/answers/what-is-hermes-agent).
+- **[OpenClaw](https://github.com/openclaw/openclaw)** (MIT, 15,000+ estrelas, 200+ contribuidores): self-hosted, com o mais amplo ecossistema de canais e habilidades (~24 plataformas) e arquivos de configuração em texto simples. Melhor para tinkerers que querem o máximo de integrações prontas.
+- **Manus** (Butterfly Effect, adquirido pela Meta em dezembro de 2025): um agente proprietário em sandbox na nuvem. Zero setup, mas individual, restrito a convites, sem integrações, sem workspace persistente e cobrado por créditos. Melhor para tarefas autônomas pontuais. Veja [OpenClaw vs Manus](/pt-br/answers/openclaw-vs-manus).
+- **Agentes gerenciados (ex.: Liv):** um agente persistente nos seus apps de chat que age no seu e-mail e na sua agenda, com infraestrutura, atualizações e segurança operadas para você. Melhor para quem quer o resultado sem a operação.
+
+## Exemplo na prática
+
+| Opção | Self-host? | Memória persistente | Integrações | Esforço |
+| --- | --- | --- | --- | --- |
+| Hermes Agent | Sim | Sim (loop de aprendizado) | 6 canais, agnóstico de modelo | ~1–3 h/mês |
+| OpenClaw | Sim | Sim | ~24 plataformas | ~1–3 h/mês |
+| Manus | Não (nuvem) | Não (sandbox) | Nenhuma | Nenhum |
+| Gerenciado (Liv) | Não | Sim (cofres criptografados) | Gmail, Calendar, Telegram, WhatsApp | Nenhum |
+
+Se você quer controle e não se importa com a manutenção, Hermes Agent ou OpenClaw vencem. Se quer um agente persistente com acesso real às contas e sem manutenção, um agente gerenciado se encaixa. Para o trade-off mais amplo, veja [agente de IA self-hosted vs gerenciado](/pt-br/answers/self-hosted-vs-managed-ai-agent).
+
+## Experimente na Liv
+
+A Liv é a opção gerenciada: um agente pessoal persistente com memória que faz triagem de e-mail, gerencia sua agenda e envia briefings diários, tudo sem self-hosting.
+
+1. Comece um teste gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (somente por convite, exige um eSIM dedicado).
+
+O onboarding está em early access e é feito em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### Qual agente de IA pessoal é o mais privado?
+Opções self-hosted como o Hermes Agent mantêm tudo na sua própria máquina. Entre os serviços gerenciados, a Liv usa cofres criptografados, OAuth revogável e não treina com seus dados.
+
+### Qual é o melhor agente de IA pessoal gratuito?
+Hermes Agent e OpenClaw são gratuitos e licenciados sob MIT. Você paga apenas hospedagem e uso de LLM.
+
+### Qual tem mais integrações?
+O OpenClaw, com cerca de 24 plataformas. O Hermes Agent suporta seis canais; agentes gerenciados como a Liv focam em Gmail, Calendar e apps de chat.
+
+### O Manus é um agente pessoal?
+É um agente em sandbox na nuvem para tarefas pontuais, sem integrações nem workspace persistente, então atende um uso mais estreito que um agente pessoal persistente.
+
+### E se eu não for técnico?
+Um agente gerenciado elimina o trabalho de servidor. Veja [agente de IA self-hosted vs gerenciado](/pt-br/answers/self-hosted-vs-managed-ai-agent) para saber se self-hosting vale a pena para você.
+
+### Quanto custa cada um?
+Fazer self-hosting do Hermes Agent ou do OpenClaw sai por menos de $100/mês em infra mais o uso de LLM. O preço gerenciado é fixo; veja [quanto custa um agente de IA gerenciado](/pt-br/answers/how-much-does-a-managed-ai-agent-cost).

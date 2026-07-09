@@ -1,0 +1,68 @@
+---
+title: "Alternativa ao Manus AI: opções com integrações e preço previsível"
+question: "Qual é uma boa alternativa ao Manus AI?"
+answer: "O Manus é um agente autônomo em sandbox, individual, cobrado por créditos e sem integrações. Se você quer acesso real a Gmail e Calendar e preço fixo, as alternativas incluem fazer self-host do OpenClaw ou usar um serviço gerenciado como a Liv."
+description: "Procurando alternativa ao Manus AI? Compare o Manus com OpenClaw e Liv em integrações, preço e operação, e escolha a opção que combina com você."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - best-manus-alternative
+  - openclaw-vs-manus
+  - self-hosted-vs-managed-ai-agent
+---
+
+O Manus, criado pela Butterfly Effect e adquirido pela Meta em dezembro de 2025, é um agente refinado em sandbox na nuvem, com um recurso "My Computer" que permite trabalhar de forma autônoma dentro do próprio ambiente. É genérico e capaz, mas também é individual, restrito a convites e cobrado por créditos. Não há colaboração em equipe, nem workspace persistente que acompanha você, nem integrações com as contas onde o seu trabalho de fato acontece.
+
+Esse último ponto costuma ser o que faz as pessoas procurarem alternativas. Se você quer um agente que lê sua caixa de entrada, gerencia seu calendário e age nas suas ferramentas reais em vez de um sandbox, há dois caminhos amplos: rodar um agente open-source por conta própria ou usar um serviço gerenciado que roda tudo para você.
+
+## Como funciona
+
+O Manus opera em um sandbox hospedado. Você dá uma tarefa, ele sobe um computador virtual, conclui o trabalho e devolve um resultado. Tarefas complexas podem consumir 500–900 créditos, e os planos Pro ficam entre $20–200/mês, então o gasto é difícil de prever.
+
+As alternativas centradas em integrações funcionam de outro jeito. O [OpenClaw](https://github.com/openclaw/openclaw) é um agente de IA pessoal gratuito, licenciado sob MIT, que você hospeda por conta própria. Ele roda um [loop de agente](/pt-br/answers/how-an-ai-agent-loop-works) persistente, mantém memória entre conversas e se conecta a Telegram, WhatsApp, Slack e mais. Como você é quem hospeda, é você quem o liga diretamente ao Gmail e ao Calendar via OAuth. O custo é a operação contínua: cerca de 1–3 horas por mês para renovação de tokens, atualizações e depuração.
+
+A Liv fica entre os dois. É o loop de agente do OpenClaw com integrações reais, embrulhado em infraestrutura gerenciada, então você tem tratamento persistente de e-mail e calendário sem carregar a operação nas costas.
+
+## Exemplo na prática
+
+| Dimensão | Manus | OpenClaw self-hosted | Liv (OpenClaw gerenciado) |
+| --- | --- | --- | --- |
+| Modelo | Sandbox, individual | Self-hosted, persistente | Gerenciado, persistente |
+| Integrações | Nenhuma | Gmail/Calendar via OAuth (você configura) | Gmail/Calendar integrados |
+| Preço | Por créditos, $20–200/mês | Infra + LLM, abaixo de $100/mês | Pro $79/mês, Max $149/mês |
+| Carga de operação | Nenhuma | ~1–3 h/mês | Gerenciada para você |
+| Segurança | Sandbox do fornecedor | Sua responsabilidade | CASA Tier 2, cofres criptografados |
+
+Se sua prioridade é zero configuração para tarefas autônomas pontuais, o Manus é uma escolha razoável. Se você quer um assistente fixo dentro das suas contas, os caminhos via OpenClaw vencem em integrações.
+
+## Experimente na Liv
+
+A Liv é acessada pelo Telegram e faz triagem de e-mail, gerencia seu calendário, faz reservas e envia briefings diários.
+
+1. Comece um teste gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Envie mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (apenas por convite, exige um eSIM dedicado).
+
+O onboarding está em acesso antecipado e em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### O Manus é open-source?
+Não. O Manus é um produto hospedado proprietário. Se você quer open-source, veja o [OpenClaw](/pt-br/answers/what-is-openclaw), que é licenciado sob MIT.
+
+### O Manus se conecta ao meu e-mail?
+Não. O Manus trabalha dentro do próprio sandbox e não tem integrações com Gmail ou Calendar. Para isso você precisa de um agente self-hosted ou gerenciado.
+
+### Qual alternativa é a mais barata?
+Fazer self-host do OpenClaw é o mais barato no papel, tipicamente abaixo de $100/mês, mas você paga em tempo de operação. Veja [a comparação de custos](/pt-br/answers/cost-to-self-host-an-ai-agent).
+
+### Por que o preço do Manus é difícil de prever?
+Ele é baseado em créditos, e tarefas complexas podem consumir 500–900 créditos, então o gasto mensal varia com o uso. Serviços de preço fixo como a Liv são mais fáceis de orçar.
+
+### Qual é a alternativa mais parecida com o Manus?
+Depende do que você valorizava no Manus. Nossa página de [melhor alternativa ao Manus](/pt-br/answers/best-manus-alternative) mapeia as opções por caso de uso.
+
+### A Liv é afiliada ao Manus ou ao OpenClaw?
+Não. A Liv é um serviço gerenciado independente construído sobre o OpenClaw, sem afiliação ou endosso do Manus ou do projeto OpenClaw.

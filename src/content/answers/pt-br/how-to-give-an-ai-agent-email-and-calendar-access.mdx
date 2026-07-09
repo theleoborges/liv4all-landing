@@ -1,0 +1,71 @@
+---
+title: "Como dar a um agente de IA acesso ao e-mail e ao calendário"
+question: "Como dou a um agente de IA acesso ao meu e-mail e calendário?"
+answer: "Você concede acesso por OAuth, um fluxo de autorização que entrega ao agente um token revogável com permissões específicas, em vez de dar sua senha. Com a Liv, você conecta Gmail e Calendar via Google OAuth e pode revogar o acesso a qualquer momento."
+description: "Como dar a um agente de IA acesso a e-mail e calendário com segurança usando OAuth e escopos, e como a Liv conecta via Google OAuth com CASA Tier 2."
+topic: ai-agents
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - is-it-safe-to-give-ai-access-to-your-gmail
+  - ai-to-triage-your-email
+  - how-to-securely-store-api-keys-for-ai-agents
+---
+
+Um agente que consegue ler sua caixa de entrada e gerenciar seu calendário é muito mais útil do que um que só conversa. Mas você nunca deveria entregar sua senha a ele. O mecanismo correto é o OAuth, o mesmo fluxo que permite a um aplicativo "Entrar com o Google" sem nunca ver suas credenciais.
+
+Feito direito, você continua no controle. O agente recebe um token, não sua senha, e esse token é limitado exatamente às permissões que você aprovou e revogável no momento em que você mudar de ideia.
+
+## Como funciona
+
+O OAuth é um fluxo de autorização delegada. Você faz login com o Google diretamente, na página do próprio Google, e aprova um conjunto específico de permissões chamadas escopos. O Google então emite ao agente um token que representa esse acesso limitado. O agente usa o token para chamar as APIs do Gmail e do Calendar; ele nunca vê sua senha, e você pode revogar o token da sua conta Google a qualquer momento.
+
+Os escopos são o dial de segurança. Escopos somente leitura permitem que um agente faça triagem e resuma sem enviar nada; escopos mais amplos permitem rascunhar e criar eventos. Um agente bem projetado solicita os escopos mais estreitos de que precisa e pausa para sua aprovação antes de ações sensíveis. Armazenar o token resultante com segurança também importa; veja [como armazenar chaves de API para agentes de IA com segurança](/pt-br/answers/how-to-securely-store-api-keys-for-ai-agents).
+
+Se você faz self-host do [OpenClaw](https://github.com/openclaw/openclaw), você registra suas próprias credenciais OAuth e gerencia os refreshes de token por conta própria, o que faz parte das ~1–3 horas/mês de manutenção. A Liv cuida do fluxo OAuth como serviço gerenciado. Ela conecta Gmail e Calendar pelo Google OAuth, o acesso é revogável pelo usuário, os segredos ficam em cofres criptografados por usuário, e a Liv passou no [CASA Tier 2](https://appdefensealliance.dev/casa) do Google, verificado de forma independente pela TAC Security. Rascunhos de saída aguardam sua aprovação antes do envio, e seus dados não são usados para treinar modelos. Para a visão de risco, veja [é seguro dar a uma IA acesso ao seu Gmail](/pt-br/answers/is-it-safe-to-give-ai-access-to-your-gmail).
+
+## Exemplo na prática
+
+Concedendo acesso a e-mail e calendário de duas formas:
+
+| Etapa | Self-host (OpenClaw) | Gerenciado (Liv) |
+| --- | --- | --- |
+| Credenciais OAuth | Você registra e gerencia | Cuidado para você |
+| Escopos | Você configura | Solicitados com transparência |
+| Armazenamento do token | Sua responsabilidade | Cofre criptografado por usuário |
+| Refresh do token | Manutenção manual | Automático |
+| Revogar acesso | Via Google | Via Google, a qualquer momento |
+| Compliance | Você é o dono | Verificado CASA Tier 2 |
+
+Os dois caminhos chegam ao mesmo lugar: o agente atua na sua caixa de entrada e no seu calendário por meio de um token com escopo definido e revogável. A diferença é quem carrega o trabalho de segurança.
+
+## Experimente na Liv
+
+Conectar a Liv ao seu e-mail e calendário leva alguns minutos:
+
+1. Comece um trial gratuito de 14 dias em https://app.liv4all.com. Sem cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão.
+3. Conecte Gmail e Calendar pelo Google OAuth, aprovando os escopos na página do próprio Google.
+4. Peça à Liv para fazer a triagem da sua caixa de entrada ou apresentar o seu dia; ela rascunha respostas para sua aprovação antes de enviar.
+
+A Liv está em early access com onboarding por lotes, então você pode entrar numa fila curta.
+
+## Perguntas comuns
+
+### O agente recebe minha senha?
+Não. O OAuth entrega um token com escopo definido, nunca sua senha, e você autoriza na página de login do próprio Google.
+
+### Posso limitar o que o agente pode fazer?
+Sim, pelos escopos. Acesso somente leitura permite triagem sem enviar nada.
+
+### Como revogo o acesso depois?
+Nas configurações de segurança da sua conta Google, onde aplicativos conectados podem ser removidos a qualquer momento.
+
+### O agente vai enviar e-mails sem perguntar?
+Com a Liv, rascunhos de saída exigem sua aprovação antes do envio. Um agente self-hosted faz o que você configurar.
+
+### Os dados do meu e-mail são usados para treinar modelos de IA?
+Com a Liv, não. No self-host, depende do provedor de LLM que você escolher.
+
+### O que é CASA Tier 2?
+Uma avaliação de segurança reconhecida pelo Google para aplicativos que acessam dados do Gmail; a Liv passou nela, com verificação da TAC Security. Veja [o que significa CASA Tier 2 para o Gmail](/pt-br/answers/what-is-casa-tier-2-gmail).

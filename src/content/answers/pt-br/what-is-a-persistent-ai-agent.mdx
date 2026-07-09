@@ -1,0 +1,70 @@
+---
+title: "O que é um agente de IA persistente?"
+question: "O que é um agente de IA persistente?"
+answer: "Um agente de IA persistente é aquele que continua rodando entre conversas, lembrando de você e agindo em uma agenda, em vez de zerar cada vez que você abre um chat. A persistência é o que separa um agente de um chatbot."
+description: "Um agente de IA persistente roda continuamente, lembra de você entre sessões e age em uma agenda. Como a persistência funciona e por que importa."
+topic: ai-agents
+intent: definitional
+datePublished: 2026-06-01
+related:
+  - how-an-ai-agent-loop-works
+  - ai-agent-vs-chatbot
+  - what-is-an-autonomous-ai-agent
+---
+
+A maioria das ferramentas de IA esquece de você no momento em que você fecha a aba. Você explica seu contexto, recebe uma resposta e recomeça do zero amanhã. Um agente persistente faz o oposto: continua vivo, carrega a memória adiante e consegue fazer coisas enquanto você dorme.
+
+A persistência é o recurso discreto que muda tudo. Sem ela, você tem um autocomplete esperto. Com ela, você tem algo mais próximo de um colega que lembra das decisões da semana passada e corre atrás do follow-up que você esqueceu.
+
+## Como funciona
+
+A persistência tem três partes. Primeiro, um processo em execução. Em vez de acordar só quando você digita, o agente roda em um loop que dispara em uma agenda, então pode agir sem ser provocado; veja [como funciona o loop de um agente de IA](/pt-br/answers/how-an-ai-agent-loop-works). Segundo, memória durável. O agente grava fatos sobre você e seu trabalho em um armazenamento que sobrevive a reinícios, então amanhã ele ainda sabe o nome do seu gestor e suas preferências de viagem. Terceiro, um heartbeat, a cadência agendada que o acorda para checar sua caixa de entrada, preparar uma reunião ou enviar um briefing.
+
+O [OpenClaw](https://github.com/openclaw/openclaw), o agente pessoal open-source, modela isso diretamente. Seu `HEARTBEAT.md` define a agenda, o `SOUL.md` define a identidade, e arquivos de memória dedicados persistem o que ele aprende. Como o processo continua rodando e a memória continua crescendo, o agente fica mais útil com o tempo em vez de começar frio a cada sessão. Você pode construir persistência na sua própria [configuração de memória](/pt-br/answers/how-to-give-your-ai-agent-memory).
+
+Um agente persistente também é diferente de um autônomo, embora os dois costumem andar juntos. Persistência é continuidade ao longo do tempo; autonomia é agir sem instruções passo a passo. Veja [o que é um agente de IA autônomo](/pt-br/answers/what-is-an-autonomous-ai-agent).
+
+## Exemplo na prática
+
+O mesmo pedido, tratado por uma ferramenta sem estado versus um agente persistente:
+
+| Aspecto | Chatbot sem estado | Agente persistente |
+| --- | --- | --- |
+| Memória entre sessões | Nenhuma, zera a cada chat | Durável, cresce com o tempo |
+| Age sem ser provocado | Não | Sim, em um heartbeat |
+| Trabalho durante a noite | Não | Sim |
+| Follow-ups | Você acompanha | Ele acompanha |
+| Exemplo | "Rascunhe um e-mail" | "Acompanhe esta thread e me lembre se não houver resposta até sexta" |
+
+A versão persistente lembra da thread, sabe que nunca chegou resposta e traz o assunto à tona na sexta sem que ninguém peça. Essa continuidade é o ponto central.
+
+## Experimente na Liv
+
+A Liv é um agente persistente com memória gerenciada, para você não precisar construir a camada de armazenamento sozinho:
+
+1. Comece um trial gratuito de 14 dias em https://app.liv4all.com. Sem cartão de crédito.
+2. Fale com a Liv no Telegram, o canal padrão, para começar uma conversa contínua da qual ela lembra.
+3. Conecte Gmail e Calendar via Google OAuth para que ela possa agir em uma agenda, inclusive de madrugada.
+4. Opcionalmente, vincule o WhatsApp depois (somente por convite, eSIM dedicado).
+
+A Liv guarda o que aprende em cofres criptografados por usuário e está em acesso antecipado com onboarding em lotes.
+
+## Perguntas comuns
+
+### O que torna um agente "persistente"?
+Um processo de longa duração mais memória durável mais uma agenda. Tire qualquer um dos três e você perde a continuidade.
+
+### Um agente persistente roda mesmo quando estou offline?
+Sim. O heartbeat permite que ele aja em uma agenda, então pode triar e-mails ou enviar um briefing matinal sem você presente.
+
+### Onde vive a memória?
+Na rota self-host, nos arquivos de memória do OpenClaw no seu servidor. Na Liv, em cofres criptografados por usuário que a empresa não usa para treinar modelos.
+
+### Um agente persistente é o mesmo que um autônomo?
+Não. Persistência é continuidade ao longo do tempo; autonomia é agir sem instruções explícitas. Veja [o que é um agente de IA autônomo](/pt-br/answers/what-is-an-autonomous-ai-agent).
+
+### Qual a diferença para um chatbot?
+Chatbots são sem estado e reativos; agentes persistentes lembram e agem por conta própria. Veja [agente de IA vs chatbot](/pt-br/answers/ai-agent-vs-chatbot).
+
+### Posso construir um agente persistente eu mesmo?
+Sim, com o OpenClaw, mas a hospedagem e a manutenção ficam por sua conta. Veja [como construir um agente de IA pessoal](/pt-br/answers/how-to-build-a-personal-ai-agent).

@@ -1,0 +1,66 @@
+---
+title: "IA que reserva restaurantes"
+question: "Existe uma IA que reserva restaurantes para mim?"
+answer: "Sim. Um agente de IA que executa ações em seu nome pode reservar um restaurante: você diz o que quer, ele cuida da reserva e adiciona o compromisso ao seu calendário. A Liv faz isso pelo chat, checando sua agenda antes."
+description: "Como um agente de IA reserva restaurantes: você pede, ele reserva e adiciona ao calendário. Construído no OpenClaw, operado pela Liv sem a parte de ops."
+topic: use-cases
+intent: informational
+datePublished: 2026-06-01
+related:
+  - ai-calendar-assistant
+  - ai-that-can-take-actions-not-just-answer
+  - what-is-an-ai-chief-of-staff
+---
+
+Reservar uma mesa é uma tarefa pequena que consome uma quantidade surpreendente de atenção: checar quem está livre, escolher um lugar, encontrar um horário que funcione, fazer a reserva e ainda lembrar de colocá-la no calendário. Um agente que executa ações, e não apenas responde perguntas, consegue fazer a sequência inteira a partir de uma única mensagem no chat.
+
+Essa é a diferença entre um chatbot e um agente. Um chatbot pode sugerir restaurantes; um agente conectado ao seu calendário pode reservar um e garantir que você não marque dois compromissos no mesmo horário.
+
+## Como funciona
+
+Reservar é um exemplo concreto de [uma IA que executa ações, não apenas responde](/pt-br/answers/ai-that-can-take-actions-not-just-answer). O loop de agente lê seu pedido, entende do que precisa (uma data, o número de pessoas, seus horários livres), checa seu calendário, completa a reserva e grava o resultado de volta como um evento confirmado. Frameworks open-source como o [OpenClaw](https://github.com/openclaw/openclaw) fornecem esse loop de ação com memória persistente, então o agente lembra de preferências como os lugares aos quais você costuma voltar.
+
+Na Liv, a reserva de restaurantes fica ao lado do resto do trabalho do dia a dia: ela acessa sua agenda pelo [Google Calendar via OAuth](/pt-br/answers/ai-calendar-assistant), então reserva em torno da sua disponibilidade real e coloca a reserva direto no seu dia. Esse é o padrão de chief of staff em miniatura: você delega a tarefa, o agente cuida da logística. Veja [o que é um Chief of Staff de IA](/pt-br/answers/what-is-an-ai-chief-of-staff).
+
+## Exemplo na prática
+
+Você pode rodar um agente que executa ações por conta própria no OpenClaw ou tê-lo gerenciado. A capacidade é a mesma; o que muda é a carga operacional.
+
+| Dimensão | OpenClaw self-hosted | Liv (OpenClaw como serviço) |
+| --- | --- | --- |
+| Configuração | Fazer deploy, escrever config, conectar o calendário | Trial de 14 dias, sem cartão |
+| Consciência de calendário | Você conecta tudo | Google OAuth, reserva em torno da sua agenda real |
+| Custo mensal | Infra + LLM, tipicamente abaixo de $100, autogerenciado | Pro $79/mês, Max $149/mês |
+| Ops | ~1–3 horas/mês de manutenção | Gerenciado para você |
+| Compliance | Sua responsabilidade | CASA Tier 2, cofres criptografados |
+
+## Experimente na Liv
+
+A Liv envolve o loop de agente do OpenClaw e integrações reais em infraestrutura gerenciada, então você pode delegar reservas pelo chat sem rodar nada.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Fale com a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte o Google Calendar para a Liv reservar em torno da sua disponibilidade.
+4. Diga à Liv onde e quando você gostaria de comer; ela cuida da reserva e adiciona ao seu calendário.
+
+O onboarding está atualmente em acesso antecipado e em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### Como a IA realmente faz a reserva?
+Ela roda um loop de agente: lê seu pedido, checa um horário livre no seu calendário, completa a reserva e adiciona o evento confirmado à sua agenda.
+
+### Ela vai checar meu calendário antes de reservar?
+Sim. A Liv reserva em torno da sua disponibilidade real para você não acabar com compromissos duplicados.
+
+### A reserva entra no meu calendário automaticamente?
+Sim. Assim que a reserva é feita, a Liv a adiciona como um evento de calendário.
+
+### Ela consegue lembrar dos restaurantes que eu gosto?
+Sim. O agente tem memória persistente, então pode recordar os lugares e as preferências que você mencionou antes.
+
+### Isso é só um chatbot?
+Não. Um chatbot responde perguntas; este agente executa ações em seu nome. Veja [IA que executa ações, não apenas responde](/pt-br/answers/ai-that-can-take-actions-not-just-answer).
+
+### O que mais ela consegue fazer?
+Triagem de e-mail, gestão de calendário, briefings diários e mais. Veja [o que é um Chief of Staff de IA](/pt-br/answers/what-is-an-ai-chief-of-staff).

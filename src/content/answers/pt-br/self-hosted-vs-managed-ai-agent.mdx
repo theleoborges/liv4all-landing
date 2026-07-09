@@ -1,0 +1,72 @@
+---
+title: "Agente de IA self-hosted vs gerenciado: qual escolher?"
+question: "Devo fazer self-host do meu agente de IA ou usar um serviço gerenciado?"
+answer: "Faça self-host se você quer controle total, o menor custo em dinheiro e gosta de mexer na configuração. Escolha um serviço gerenciado se quer o agente funcionando hoje, uma conta previsível e outra pessoa cuidando da segurança e das 1–3 horas de operação mensal."
+description: "Agente de IA self-hosted vs gerenciado: self-host para controle e custo baixo; gerenciado para zero ops, preço previsível e segurança embutida."
+topic: self-hosting
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - build-vs-buy-ai-agent
+  - openclaw-hosting
+  - self-host-ai-agent-maintenance
+---
+
+As duas rotas rodam o mesmo tipo de loop de agente. A diferença é quem carrega o peso operacional. O self-hosting coloca o servidor, a segurança e a manutenção nas suas mãos em troca de controle e um piso de custo menor. Um serviço gerenciado tira tudo isso do seu colo por uma mensalidade fixa.
+
+Não existe resposta universalmente correta, apenas o encaixe entre quanto você valoriza seu tempo e quanto controle você realmente precisa.
+
+## Como funciona
+
+Fazer self-host de um agente open-source como o [OpenClaw](https://github.com/openclaw/openclaw) significa provisionar um servidor, fazer o deploy do software, fornecer uma chave de LLM e assumir tudo depois disso: atualizações, renovações de token OAuth, segurança e uptime. Você define a identidade do agente no `SOUL.md` e a agenda dele no `HEARTBEAT.md`, e faz o debug quando uma skill quebra.
+
+Um serviço gerenciado roda o mesmo loop em infraestrutura que outra pessoa mantém. Você perde algum controle (não pode aplicar patches no código-fonte) e ganha tempo, preço previsível e, com os serviços melhores, segurança e compliance de verdade. Existe também um nível intermediário: hosts gerenciados baratos de OpenClaw como OneClaw ou Blink Claw (por volta de $12–22/mês) rodam o software para você, mas acrescentam pouco além disso em segurança ou compliance.
+
+## Exemplo na prática
+
+O mesmo agente de uma pessoa só, de dois jeitos:
+
+| | OpenClaw self-hosted | Gerenciado (ex.: Liv) |
+|---|---|---|
+| Setup | 15 min + ~1 h de configuração | Cadastre-se, fale no Telegram |
+| Custo mensal | Infra + API, abaixo de $100 | $79 (Pro) / $149 (Max) |
+| Modelo de preço | Variável por token | Fixo |
+| Carga de operação | 1–3 h/mês | Nenhuma |
+| Segurança | Responsabilidade sua | CASA Tier 2, cofres criptografados |
+| Controle | Total, pode fazer fork do código | Conveniência acima de controle |
+| Melhor para | Tinkerers e quem olha o custo | Quem quer funcionando agora |
+
+A decisão costuma se resumir a duas perguntas. Você quer ser dono da infraestrutura e do código? Faça self-host. Você quer o agente triando seu e-mail ainda hoje à tarde sem precisar babá de servidor? Vá de gerenciado. O enquadramento de [construir vs comprar](/pt-br/answers/build-vs-buy-ai-agent) cobre o mesmo trade-off pelo ângulo do orçamento, e [hospedagem de OpenClaw](/pt-br/answers/openclaw-hosting) apresenta as opções entre os dois extremos.
+
+A ressalva honesta sobre o self-hosting é a [manutenção](/pt-br/answers/self-host-ai-agent-maintenance): tokens expiram, o código é atualizado, heartbeats precisam de ajuste. Nada disso é difícil, mas nunca termina.
+
+## Experimente na Liv
+
+A Liv é o meio-termo gerenciado: o loop de agente do OpenClaw e integrações reais, embrulhados em infraestrutura e segurança gerenciadas, para você pular a operação.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão.
+2. Fale com a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Google Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (somente por convite, exige um eSIM dedicado).
+
+A Liv está em acesso antecipado com onboarding em lotes, então pode haver uma fila.
+
+## Perguntas comuns
+
+### Self-hosting é mais barato?
+Em dinheiro, muitas vezes sim: abaixo de $100 por mês contra uma mensalidade gerenciada fixa. Quando você precifica as 1 a 3 horas de operação mensal, a diferença encolhe ou desaparece.
+
+### Posso migrar de gerenciado para self-hosted depois?
+Sim. Como a Liv é construída sobre o OpenClaw, os conceitos (`SOUL.md`, heartbeats, canais) se transferem se você decidir rodar o seu próprio mais tarde.
+
+### E a segurança?
+Self-hosting torna a segurança tarefa sua. Um serviço gerenciado pode carregar um compliance difícil de igualar sozinho; a Liv passou no Google CASA Tier 2, verificado de forma independente pela TAC Security.
+
+### Serviços gerenciados usam meus dados para treinar modelos?
+Verifique cada provedor. A Liv não usa seus dados para treinar modelos, e rascunhos de saída precisam da sua aprovação antes do envio.
+
+### Qual é a opção gerenciada mais barata?
+Hosts gerenciados básicos de OpenClaw custam por volta de $12–22/mês, mas oferecem segurança mínima. Um serviço totalmente gerenciado custa mais e inclui compliance e cofres criptografados.
+
+### Qual convém a uma pessoa não técnica?
+Um serviço gerenciado. O self-hosting recompensa quem tem intimidade com servidores e arquivos de configuração, mesmo com deploy de um clique.

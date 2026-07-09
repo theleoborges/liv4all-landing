@@ -1,0 +1,67 @@
+---
+title: "Assistente de IA no Telegram"
+question: "Como tenho um assistente de IA dentro do Telegram?"
+answer: "Um assistente de IA no Telegram é um agente persistente com quem você fala em um chat normal do Telegram e que pode ler e-mails, gerenciar sua agenda e executar ações. O OpenClaw suporta Telegram nativamente; a Liv roda esse loop para você com o Telegram como canal padrão e obrigatório."
+description: "Um assistente de IA no Telegram vive nos seus chats e executa ações reais. Como funciona, o que usar e como pular a operação do self-hosting."
+topic: messaging
+intent: informational
+datePublished: 2026-06-01
+related:
+  - how-to-connect-an-ai-agent-to-telegram
+  - whatsapp-ai-agent
+  - best-messaging-app-for-an-ai-agent
+---
+
+O Telegram é o lar mais popular para agentes de IA pessoais, e por bons motivos: uma Bot API limpa, entrega rápida, nenhuma tarifa por mensagem e nenhuma maratona de verificação de empresa antes de poder enviar uma mensagem. Você fala com o agente em um chat comum, e ele responde, tria sua caixa de entrada, faz reservas e cutuca você quando algo precisa de atenção.
+
+Isso é diferente de um chatbot que você abre e comanda com prompts. Um assistente de IA no Telegram roda continuamente em segundo plano e chega até você no aplicativo que você já deixa aberto o dia todo.
+
+## Como funciona
+
+Um bot do Telegram tem uma API pública. Seu agente registra um bot com o [BotFather](https://core.telegram.org/bots), recebe um token e fica escutando as mensagens que chegam. Quando você envia algo, o loop do agente lê, decide o que fazer, chama ferramentas (e-mail, agenda, busca) e escreve a resposta direto no chat.
+
+O [OpenClaw](https://github.com/openclaw/openclaw), o framework open-source de agentes, trata o Telegram como canal de primeira classe ao lado de WhatsApp, Slack, Discord, Signal e iMessage. Você o aponta para qualquer LLM importante (Claude, GPT, Gemini, DeepSeek), fornece um token de bot, e ele responde no Telegram. A mecânica de montar isso está em [como conectar um agente de IA ao Telegram](/pt-br/answers/how-to-connect-an-ai-agent-to-telegram).
+
+O motivo pelo qual o Telegram costuma ganhar é a fricção. Comparado ao [WhatsApp](/pt-br/answers/whatsapp-ai-agent), que exige um número dedicado e aprovação de empresa, o Telegram deixa um bot começar a receber mensagens em minutos. Veja [a comparação completa de canais](/pt-br/answers/best-messaging-app-for-an-ai-agent) para os trade-offs.
+
+## Exemplo na prática
+
+Você pode rodar um agente no Telegram por conta própria ou deixar um serviço gerenciado rodar o mesmo loop. A diferença é quem carrega a operação.
+
+| Dimensão | OpenClaw self-hosted no Telegram | Liv (OpenClaw como serviço) |
+| --- | --- | --- |
+| Setup | Registrar um bot, hospedar o agente, ~15 min mais ajustes | Trial de 14 dias, sem cartão; Telegram por padrão |
+| Custo de infra + LLM | Tipicamente abaixo de $100/mês, você gerencia | Pro $79/mês, Max $149/mês |
+| Operação | ~1–3 horas/mês (expiração de tokens, updates, debugging) | Gerenciada para você |
+| Segurança | Responsabilidade sua | CASA Tier 2, cofres criptografados por usuário |
+
+## Experimente na Liv
+
+A Liv é o loop de agente do OpenClaw e integrações reais embrulhados em infraestrutura gerenciada, com o Telegram como canal padrão.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Fale com a Liv no Telegram, o canal obrigatório e padrão; cada agente ganha sua própria identidade no Telegram.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp depois, se tiver um convite.
+
+O onboarding está em acesso antecipado e é feito em lotes, então pode haver uma fila.
+
+## Perguntas comuns
+
+### Preciso de um número de telefone para um assistente de IA no Telegram?
+Não. Bots do Telegram se autenticam com um token, não com um SIM, o que é parte do motivo de o setup ser tão rápido.
+
+### O assistente pode ler e enviar meus e-mails?
+Sim, se você conceder acesso. A Liv conecta Gmail e Calendar via Google OAuth, e rascunhos de saída precisam da sua aprovação antes de serem enviados. Veja [é seguro dar à IA acesso ao seu Gmail](/pt-br/answers/is-it-safe-to-give-ai-access-to-your-gmail).
+
+### O Telegram é melhor que o WhatsApp para isso?
+Em velocidade de setup, geralmente sim. [Melhor app de mensagens para um agente de IA](/pt-br/answers/best-messaging-app-for-an-ai-agent) pesa as opções direito.
+
+### A Liv também suporta WhatsApp?
+Sim, mas é somente por convite e exige um eSIM dedicado. O Telegram continua sendo o padrão. Veja [agente de IA no WhatsApp](/pt-br/answers/whatsapp-ai-agent).
+
+### Posso construir isso sozinho de graça?
+Sim. O OpenClaw tem licença MIT e é gratuito; você paga por hospedagem e uso de LLM. [Como conectar um agente de IA ao Telegram](/pt-br/answers/how-to-connect-an-ai-agent-to-telegram) mostra o passo a passo.
+
+### A Liv é afiliada ao Telegram ou ao OpenClaw?
+Não. A Liv é um serviço gerenciado independente construído sobre o OpenClaw, sem afiliação ou endosso de nenhum dos dois projetos.

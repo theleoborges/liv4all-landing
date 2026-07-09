@@ -1,0 +1,72 @@
+---
+title: "É seguro dar a uma IA acesso ao seu Gmail?"
+question: "É seguro dar a um agente de IA acesso ao seu Gmail?"
+answer: "Pode ser, se o acesso passar pelo Google OAuth (para você poder revogar a qualquer momento), o aplicativo tiver passado na avaliação de segurança CASA do Google para escopos restritos do Gmail, seus dados não forem usados para treinar modelos, e e-mails de saída precisarem da sua aprovação. Essas quatro propriedades importam muito mais do que a marca na caixa."
+description: "Dar acesso ao Gmail a uma IA é seguro quando ela usa OAuth revogável, passou no CASA do Google, não treina com seus dados e pede aprovação para enviar."
+topic: security
+intent: informational
+datePublished: 2026-06-01
+related:
+  - how-to-give-an-ai-agent-email-and-calendar-access
+  - what-is-casa-tier-2-gmail
+  - how-to-securely-store-api-keys-for-ai-agents
+---
+
+A resposta honesta é que "uma IA" não é uma coisa só, e a segurança depende inteiramente de como o acesso é conectado. Um assistente somente leitura que resume sua caixa de entrada e um agente totalmente autônomo que pode enviar e-mails em seu nome carregam riscos muito diferentes. O que você quer verificar de verdade é o mecanismo: como a conexão é concedida, quem pode ver os dados, se eles treinam algum modelo, e o que o agente pode fazer sem perguntar antes.
+
+Acerte essas quatro coisas e o acesso ao e-mail vira uma conveniência sensata em vez de um passivo permanente. Erre e você terá entregado a um terceiro uma cópia da sua correspondência mais sensível sem botão de desligar.
+
+## Como funciona
+
+Um agente bem construído nunca pede sua senha do Gmail. Ele usa o [Google OAuth](https://developers.google.com/identity/protocols/oauth2), em que você concede acesso com escopo definido e por tempo limitado pela tela de consentimento do próprio Google e pode revogá-lo a qualquer momento nas configurações de segurança da sua Conta Google. Nenhuma senha muda de mãos, e você fica com o botão de emergência.
+
+Além da conexão, três coisas decidem se o acesso é seguro:
+
+- **Verificação de segurança independente.** Qualquer aplicativo que solicita escopos restritos do Gmail (ler o corpo das mensagens, enviar em seu nome) precisa passar na Cloud Application Security Assessment do Google. Veja [o que significa CASA Tier 2](/pt-br/answers/what-is-casa-tier-2-gmail) para os detalhes.
+- **Tratamento dos dados.** Seus e-mails devem estar criptografados em repouso e nunca ser alimentados no treinamento de modelos. Pergunte ao fornecedor diretamente; uma resposta clara já é, por si só, um sinal.
+- **Controle de ações.** Um agente seguro rascunha e então espera sua aprovação antes de enviar. Autonomia sem um humano no loop é onde a maior parte dos danos reais acontece.
+
+## Exemplo na prática
+
+O mesmo acesso ao Gmail pode ser seguro ou imprudente dependendo dos controles ao redor.
+
+| Propriedade | Configuração arriscada | Configuração mais segura |
+| --- | --- | --- |
+| Conexão | Senha de app / credenciais IMAP completas | Google OAuth, com escopo definido e revogável |
+| Revisão de segurança | Nenhuma | Passou no CASA do Google para escopos restritos |
+| Treinamento | Dados usados para melhorar modelos | Não usados para treinar modelos |
+| Envio | Envia de forma autônoma | Rascunha e espera sua aprovação |
+| Armazenamento de segredos | Arquivo de configuração em texto puro | Cofre criptografado por usuário |
+
+Se você faz self-host de um agente open-source como o [OpenClaw](https://github.com/openclaw/openclaw), todos esses controles são seus para implementar e manter. Isso é trabalho de verdade, e vale ler os [riscos de segurança do self-hosting](/pt-br/answers/self-hosted-ai-agent-security-risks) antes de se comprometer.
+
+## Experimente na Liv
+
+A Liv é o loop de agente do OpenClaw embalado em infraestrutura gerenciada, com os quatro controles acima já implementados: Google OAuth, [CASA Tier 2](/pt-br/answers/what-is-casa-tier-2-gmail) (verificado de forma independente pela TAC Security), cofres criptografados por usuário, nenhum treinamento de modelos com seus dados, e aprovação obrigatória antes do envio de qualquer rascunho.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem precisar de cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth; você pode revogar o acesso a qualquer momento pela sua Conta Google.
+4. Opcionalmente, vincule o WhatsApp (somente por convite, precisa de um eSIM dedicado).
+
+O onboarding está atualmente em early access e por lotes, então você pode entrar numa fila.
+
+## Perguntas comuns
+
+### A IA vê todos os meus e-mails?
+Somente os escopos que você concede pelo OAuth. Conceder escopos restritos permite ler e enviar e-mails, e é por isso que esses escopos exigem uma avaliação CASA.
+
+### Posso revogar o acesso depois?
+Sim. Como o acesso é via Google OAuth, você o remove das configurações de segurança da sua Conta Google a qualquer momento, independentemente do aplicativo.
+
+### Meus e-mails serão usados para treinar um modelo de IA?
+Não deveriam. Com a Liv, seus dados não são usados para treinar modelos. Sempre confirme isso por escrito com qualquer fornecedor.
+
+### A IA pode enviar e-mails sem me perguntar?
+Com um design seguro, não. A Liv prepara rascunhos e espera sua aprovação antes de qualquer envio. Veja [como dar a um agente acesso ao e-mail e ao calendário](/pt-br/answers/how-to-give-an-ai-agent-email-and-calendar-access).
+
+### Self-hosting é mais seguro do que um serviço gerenciado?
+Não automaticamente. O self-hosting dá controle, mas também responsabilidade total por OAuth, criptografia e patches. Leia [riscos de segurança de agentes de IA self-hosted](/pt-br/answers/self-hosted-ai-agent-security-risks).
+
+### E as chaves de API e outros segredos que o agente usa?
+Devem viver num armazenamento criptografado, não num arquivo em texto puro. Veja [como armazenar chaves de API para agentes de IA com segurança](/pt-br/answers/how-to-securely-store-api-keys-for-ai-agents).

@@ -1,0 +1,71 @@
+---
+title: "Quanto custa rodar o OpenClaw?"
+question: "Quanto custa rodar o OpenClaw por mês?"
+answer: "O OpenClaw em si é gratuito e tem licença MIT. Rodá-lo custa hospedagem mais uso de API de LLM, tipicamente menos de $100 por mês para uma pessoa: um VPS de $5–20, mais uma conta de modelo que varia conforme o quanto seu agente trabalha."
+description: "O OpenClaw é gratuito (MIT). Rodar custa um VPS de $5–20 mais uso variável de API de LLM, tipicamente abaixo de $100/mês para um único usuário."
+topic: self-hosting
+intent: informational
+datePublished: 2026-06-01
+related:
+  - is-openclaw-free
+  - cost-to-self-host-an-ai-agent
+  - self-hosted-vs-managed-ai-agent
+---
+
+O [OpenClaw](https://github.com/openclaw/openclaw) é gratuito para baixar e usar: é open-source com licença MIT e 15.000+ estrelas no GitHub. Não há taxa de licença, nunca. O custo mensal vem inteiramente de rodá-lo, e isso se divide em duas partes: o servidor e o modelo.
+
+Para um usuário único típico, o valor total fica abaixo de $100 por mês, muitas vezes bem abaixo. A parte variável é o LLM, então sua conta acompanha o quanto você mantém o agente ocupado.
+
+## Como funciona
+
+Três coisas determinam o que você de fato paga:
+
+- **Hospedagem.** O OpenClaw precisa de cerca de 2 núcleos, 2 GB de RAM e 2 GB de armazenamento. Um VPS nessa classe custa de $5 a $20 por mês. Um deploy one-click na Railway fica na ponta mais alta, mas dispensa administração de servidor.
+- **Uso de API de LLM.** Este é o fator de variação. O OpenClaw é agnóstico de LLM, então você escolhe: DeepSeek para custo baixo, Claude ou GPT para raciocínio mais forte, Gemini no meio. Você paga por token, então heartbeats frequentes e tarefas longas aumentam a conta.
+- **Frequência do heartbeat.** O `HEARTBEAT.md` controla com que frequência o agente acorda e age por conta própria. Um cronograma tagarela consome mais tokens do que um briefing uma vez por dia. Ajustá-lo é uma das alavancas de custo que você tem.
+
+Não há sistema de créditos por tarefa para adivinhar. Você paga seu provedor de modelo diretamente e de forma transparente, por token.
+
+## Exemplo na prática
+
+Uma estimativa mensal realista para uma pessoa, uso leve versus pesado:
+
+| Item | Agente leve | Agente pesado |
+|---|---|---|
+| Software (OpenClaw) | Grátis | Grátis |
+| VPS | ~$5 | ~$15 |
+| API de LLM | ~$10 (DeepSeek, briefing diário) | ~$60+ (Claude, heartbeats frequentes) |
+| **Total mensal** | **~$15** | **~$75+** |
+
+Um agente quieto em um modelo barato é genuinamente econômico. Um ocupado em um modelo de fronteira ainda fica abaixo da marca de $100 para a maioria dos usuários únicos. A página [custo de self-host de um agente de IA](/pt-br/answers/cost-to-self-host-an-ai-agent) faz as mesmas contas para qualquer agente open-source, e [o OpenClaw é gratuito?](/pt-br/answers/is-openclaw-free) cobre o lado da licença. Lembre do custo que a tabela omite: seu tempo, cerca de 1 a 3 horas de manutenção por mês.
+
+## Experimente na Liv
+
+Se você prefere não acompanhar uma conta variável de tokens, a Liv embute o loop do OpenClaw, a hospedagem e o uso de LLM em um preço fixo.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão.
+3. Conecte Gmail e Google Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (por convite, requer um eSIM dedicado).
+
+A Liv está em early access com onboarding em lotes. O preço é fixo: Pro $79/mês, Max $149/mês.
+
+## Perguntas comuns
+
+### Há taxa de licença para o OpenClaw?
+Não. Ele tem licença MIT, então o software é gratuito para usar e modificar para sempre.
+
+### Qual é o maior custo individual?
+Normalmente a API de LLM. A hospedagem é pequena e fixa; a conta do modelo cresce com o uso.
+
+### Como posso reduzir o custo?
+Use um modelo mais barato como o DeepSeek, reduza a frequência do heartbeat e mantenha as tarefas enxutas. Essas são as principais alavancas.
+
+### Como isso se compara ao Manus?
+O Manus cobra por créditos (Pro de $20–200/mês), e tarefas complexas podem queimar de 500 a 900 créditos, tornando os custos difíceis de prever. A cobrança por token do OpenClaw é mais transparente.
+
+### Hosts gerenciados de OpenClaw são mais baratos?
+Hosts como o OneClaw custam cerca de $12–22/mês e poupam administração de servidor, mas você ainda paga os custos de LLM e recebe pouca segurança ou conformidade.
+
+### Os custos sobem conforme adiciono integrações?
+Principalmente de forma indireta: mais capacidade tende a significar mais atividade do agente, o que significa mais tokens. A hospedagem base continua a mesma.

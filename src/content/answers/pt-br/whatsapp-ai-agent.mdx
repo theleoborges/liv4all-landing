@@ -1,0 +1,67 @@
+---
+title: "Agente de IA no WhatsApp"
+question: "Posso rodar um agente de IA dentro do WhatsApp?"
+answer: "Sim. Um agente de IA pode viver no WhatsApp e responder nos seus chats, mas o WhatsApp exige um número dedicado e aprovação de empresa, então o setup é mais pesado que no Telegram. O OpenClaw o suporta nativamente; a Liv oferece o WhatsApp como canal por convite em um eSIM dedicado."
+description: "Um agente de IA no WhatsApp responde nos seus chats e executa ações, mas exige um número dedicado. Como funciona e como a Liv lida com isso."
+topic: messaging
+intent: informational
+datePublished: 2026-06-01
+related:
+  - how-to-connect-an-ai-agent-to-whatsapp
+  - telegram-ai-assistant
+  - best-messaging-app-for-an-ai-agent
+---
+
+O WhatsApp é onde a maior parte do mundo já conversa, então colocar um agente de IA lá é atraente: as respostas chegam na mesma thread que sua família e seus colegas, sem app extra para checar. O porém é que o WhatsApp é bem mais rígido que o Telegram sobre quem pode enviar mensagens programáticas, o que torna o setup mais pesado.
+
+Um agente de IA no WhatsApp é um agente persistente que lê suas mensagens, executa ações como triar e-mails ou gerenciar sua agenda e responde no chat. O encanamento por baixo é o mesmo loop de agente que você usaria em qualquer canal; só a camada de conexão muda.
+
+## Como funciona
+
+Há duas formas de chegar ao WhatsApp. A rota oficial é a [WhatsApp Business Platform (Cloud API)](https://developers.facebook.com/docs/whatsapp), que exige uma empresa verificada, um número de telefone dedicado e aderência às regras de janela de mensagens e templates. A rota mais leve que alguns self-hosters usam amarra o agente a um número de telefone por uma ponte não oficial, o que é mais simples, porém menos confiável e contra os termos do WhatsApp.
+
+O [OpenClaw](https://github.com/openclaw/openclaw) lista o WhatsApp como canal suportado ao lado de Telegram, Slack, Discord, Signal e iMessage, então o agente em si não se importa de qual app a mensagem veio. O trabalho está na conexão. [Como conectar um agente de IA ao WhatsApp](/pt-br/answers/how-to-connect-an-ai-agent-to-whatsapp) mostra o passo a passo.
+
+Por causa dessa sobrecarga, a maioria das pessoas começa no [Telegram](/pt-br/answers/telegram-ai-assistant) e adiciona o WhatsApp depois. [Melhor app de mensagens para um agente de IA](/pt-br/answers/best-messaging-app-for-an-ai-agent) apresenta os trade-offs lado a lado.
+
+## Exemplo na prática
+
+O loop de agente é idêntico entre canais; o custo está em montar e manter a conexão com o WhatsApp.
+
+| Dimensão | OpenClaw self-hosted no WhatsApp | Liv (OpenClaw como serviço) |
+| --- | --- | --- |
+| Setup | Número dedicado, aprovação de empresa ou ponte, e então hospedar o agente | WhatsApp por convite em um eSIM dedicado |
+| Custo de infra + LLM | Tipicamente abaixo de $100/mês, você gerencia | Pro $79/mês, Max $149/mês |
+| Operação | ~1–3 horas/mês mais a manutenção da conexão com o WhatsApp | Gerenciada para você |
+| Chats em grupo | Você mesmo configura | O plano Max suporta chats em grupo |
+
+## Experimente na Liv
+
+Com a Liv, o WhatsApp é um canal por convite adicionado por cima do setup padrão via Telegram.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Fale com a Liv no Telegram primeiro; ele é o canal obrigatório e padrão.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Solicite o convite do WhatsApp. O WhatsApp roda em um eSIM dedicado: o Pro cobre mensagens diretas, o Max adiciona chats em grupo.
+
+O onboarding está em acesso antecipado e é feito em lotes, então pode haver uma fila.
+
+## Perguntas comuns
+
+### Por que o WhatsApp é mais difícil que o Telegram?
+O WhatsApp restringe mensagens programáticas e espera uma empresa verificada e um número dedicado; o Telegram deixa um bot começar em minutos. Veja [assistente de IA no Telegram](/pt-br/answers/telegram-ai-assistant).
+
+### Preciso de um número separado?
+Sim. Um agente no WhatsApp precisa de um número dedicado; a Liv usa um eSIM dedicado para isso, então não conflita com sua conta pessoal.
+
+### O agente pode entrar em chats de grupo?
+Com a Liv, chats em grupo estão no plano Max. Mensagens diretas estão disponíveis no Pro.
+
+### O WhatsApp é mais seguro que o Telegram para um agente?
+Ambos podem ser seguros. A Liv guarda credenciais em cofres criptografados por usuário e passou no Google CASA Tier 2 independentemente do canal. Veja [o que é CASA Tier 2](/pt-br/answers/what-is-casa-tier-2-gmail).
+
+### Posso fazer isso sozinho de graça?
+Sim, com o OpenClaw, que tem licença MIT. [Como conectar um agente de IA ao WhatsApp](/pt-br/answers/how-to-connect-an-ai-agent-to-whatsapp) cobre os passos.
+
+### A Liv é afiliada ao WhatsApp ou à Meta?
+Não. A Liv é um serviço gerenciado independente construído sobre o OpenClaw, sem afiliação ou endosso do WhatsApp, da Meta ou do projeto OpenClaw.

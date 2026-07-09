@@ -1,0 +1,66 @@
+---
+title: "O melhor assistente de IA self-hosted para um agente pessoal"
+question: "Qual é o melhor assistente de IA self-hosted?"
+answer: "Para um assistente de IA pessoal que você mesmo hospeda, o OpenClaw é a opção mais forte: gratuito, com licença MIT, agnóstico de LLM, com memória persistente e integrações com Telegram, WhatsApp, Gmail e Calendar."
+description: "O melhor assistente de IA self-hosted para um agente pessoal é o OpenClaw: gratuito, open-source, agnóstico de LLM, com memória e integrações reais."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - what-is-openclaw
+  - openclaw-vs-manus
+  - how-to-self-host-an-ai-agent
+---
+
+"Melhor" para um assistente pessoal self-hosted se resume a algumas coisas: ele deve ser gratuito e aberto para que seja seu, funcionar com o LLM que você preferir, lembrar contexto e se conectar aos apps onde seu dia acontece. Nesses critérios, o [OpenClaw](https://github.com/openclaw/openclaw) é a escolha mais clara hoje, com uma comunidade grande e ativa por trás.
+
+Não é o único agente que dá para self-hostear, mas, para um assistente pessoal em vez de um executor de metas, é o ponto de partida mais completo.
+
+## Como funciona
+
+O OpenClaw tem licença MIT, é gratuito e conta com 15,000+ estrelas no GitHub e 200+ contribuidores. Você o hospeda via Docker ou Node em cerca de 15 minutos, ou com um template de um clique no Railway em cerca de 5. Os requisitos mínimos são modestos: aproximadamente 2 núcleos, 2 GB de RAM e 2 GB de armazenamento, com Ubuntu 24.04 recomendado. Veja os [requisitos de sistema](/pt-br/answers/openclaw-system-requirements).
+
+Ele é agnóstico de LLM, então você o aponta para Claude, GPT, Gemini ou DeepSeek. Roda um [loop de agente](/pt-br/answers/how-an-ai-agent-loop-works) persistente com [memória](/pt-br/answers/how-to-give-your-ai-agent-memory), executa ações em seu nome e se conecta a Telegram, WhatsApp, Slack, Discord, Signal e iMessage. Você molda o comportamento dele em arquivos de texto simples como o [`SOUL.md`](/pt-br/answers/openclaw-soul-md-explained) e o `HEARTBEAT.md`. O trade-off honesto é a operação: cerca de 1–3 horas por mês para renovar tokens, atualizar, ajustar o heartbeat e depurar, com infra mais uso de LLM tipicamente abaixo de $100/mês.
+
+## Exemplo na prática
+
+| Critério | OpenClaw self-hosted | Liv (OpenClaw gerenciado) |
+| --- | --- | --- |
+| Licença/custo | Gratuito, MIT; infra abaixo de $100/mês | Pro $79/Max $149 |
+| Setup | ~5–15 min mais ajustes | Teste de 14 dias, sem cartão |
+| Controle | Total, é seu | Hospedado para você |
+| Operação | ~1–3 h/mês | Gerenciada |
+| Segurança | Sua responsabilidade | CASA Tier 2, cofres criptografados |
+
+Se você quer o máximo de controle e gosta de rodar infraestrutura, faça self-hosting do OpenClaw. Se quer o mesmo agente sem a manutenção, a rota gerenciada abaixo elimina a operação.
+
+## Experimente na Liv
+
+A Liv é o loop de agente e as integrações do OpenClaw hospedados para você. Ela faz triagem de e-mail, gerencia sua agenda, faz reservas e envia briefings diários pelo Telegram.
+
+1. Comece um teste gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (somente por convite, exige um eSIM dedicado).
+
+O onboarding está em early access e é feito em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### O OpenClaw é gratuito mesmo?
+Sim. O software tem licença MIT; você paga apenas hospedagem e uso da API de LLM. Veja [o OpenClaw é gratuito?](/pt-br/answers/is-openclaw-free).
+
+### Que hardware eu preciso?
+Aproximadamente 2 núcleos, 2 GB de RAM e 2 GB de armazenamento. Um VPS pequeno basta; veja [melhor VPS para um agente de IA](/pt-br/answers/best-vps-for-ai-agent).
+
+### Qual LLM devo usar?
+O OpenClaw é agnóstico de LLM. Escolha por custo e capacidade; muita gente roda Claude ou GPT e troca conforme a necessidade.
+
+### Quanta manutenção realmente dá?
+Cerca de 1–3 horas por mês para tokens, atualizações e depuração. [Manutenção de agente self-hosted](/pt-br/answers/self-host-ai-agent-maintenance) detalha tudo.
+
+### Dá para ter isso sem self-hosting?
+Sim, via um serviço gerenciado como a Liv, ou compare [self-hosted vs gerenciado](/pt-br/answers/self-hosted-vs-managed-ai-agent).
+
+### A Liv é afiliada ao OpenClaw?
+Não. A Liv é um serviço gerenciado independente construído sobre o OpenClaw, sem afiliação ou endosso do projeto OpenClaw.
