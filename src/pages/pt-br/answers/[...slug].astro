@@ -1,0 +1,23 @@
+---
+import { getCollection, render } from 'astro:content';
+import AnswerLayout from '../../../layouts/AnswerLayout.astro';
+import { entryLang, entrySlug } from '../../../i18n';
+
+export async function getStaticPaths() {
+  const isProd = import.meta.env.PROD;
+  const answers = await getCollection(
+    'answers',
+    ({ id, data }) => entryLang(id) === 'pt-br' && (!data.draft || !isProd)
+  );
+  return answers.map((answer) => ({
+    params: { slug: entrySlug(answer.id) },
+    props: { answer },
+  }));
+}
+
+const { answer } = Astro.props;
+const { Content } = await render(answer);
+---
+<AnswerLayout entry={answer}>
+  <Content />
+</AnswerLayout>

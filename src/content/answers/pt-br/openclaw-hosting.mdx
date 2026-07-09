@@ -1,0 +1,64 @@
+---
+title: "Hosting de OpenClaw: self-host vs opções gerenciadas"
+question: "Quais são as minhas opções para hospedar o OpenClaw?"
+answer: "Você pode fazer self-host do OpenClaw em qualquer VPS, usar um host gerenciado barato como OneClaw ou Blink Claw (~$12–22/mês), ou usar um serviço gerenciado como a Liv, que adiciona integrações reais e segurança sobre o mesmo agente."
+description: "Compare opções de hosting do OpenClaw: self-host em VPS, hosts gerenciados baratos ou um serviço totalmente gerenciado com integrações e compliance."
+topic: openclaw
+intent: informational
+datePublished: 2026-06-01
+related:
+  - how-to-run-openclaw-without-devops
+  - self-hosted-vs-managed-ai-agent
+  - openclaw-vs-oneclaw
+---
+
+O OpenClaw é open-source, então onde ele roda é escolha sua. As opções formam um espectro que vai de "rode tudo você mesmo" a "outra pessoa roda tudo", trocando controle por conveniência e, na ponta gerenciada, por segurança e compliance que você teria de construir sozinho.
+
+Existem três caminhos amplos: self-host no seu próprio VPS, um host gerenciado de baixo custo que embrulha o mesmo software, ou um serviço gerenciado completo que adiciona integrações e uma postura de segurança por cima.
+
+## Como funciona
+
+**Self-host.** Você provisiona um servidor, instala o [OpenClaw](https://github.com/openclaw/openclaw) via Docker ou Node e é dono do agente de ponta a ponta. Infra mais API de LLM tipicamente fica abaixo de $100/mês, e você carrega cerca de 1–3 horas/mês de [manutenção](/pt-br/answers/self-host-ai-agent-maintenance). Máximo controle, máxima responsabilidade.
+
+**Hosts gerenciados baratos.** Serviços como OneClaw e Blink Claw rodam o OpenClaw para você por cerca de $12–22/mês. Eles tiram a administração do servidor do seu caminho, mas acrescentam pouco em hardening de segurança ou compliance. Veja [OpenClaw vs OneClaw](/pt-br/answers/openclaw-vs-oneclaw) para essa comparação.
+
+**Serviço gerenciado completo.** A Liv roda o loop de agente do OpenClaw com persistência e integrações reais (Gmail, Calendar, Telegram, WhatsApp), embrulhado em infraestrutura gerenciada mais segurança: Google CASA Tier 2 (verificado de forma independente pela TAC Security) e cofres criptografados por usuário para segredos. Você pula a operação e herda o trabalho de compliance.
+
+## Exemplo na prática
+
+| Opção | Custo mensal | Você gerencia | Segurança/compliance |
+| --- | --- | --- | --- |
+| Self-host em um VPS | Abaixo de $100 (infra + LLM) | Tudo | Sua para construir |
+| OneClaw / Blink Claw | ~$12–22 | Pouco; hosting básico | Mínima |
+| Liv (serviço gerenciado) | Pro $79 / Max $149 | Nada | CASA Tier 2, cofres criptografados |
+
+O nível gerenciado barato e o serviço completo não competem exatamente em preço; eles resolvem problemas diferentes. Um remove o servidor; o outro remove o servidor e a carga de segurança/integração.
+
+## Experimente na Liv
+
+1. Comece um teste gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Envie mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (apenas por convite, exige um eSIM dedicado).
+
+O onboarding está em acesso antecipado e em lotes.
+
+## Perguntas comuns
+
+### Qual é o jeito mais barato de hospedar o OpenClaw?
+Um host gerenciado de baixo custo (~$12–22/mês) ou um VPS pequeno em self-host. Self-hosting adiciona seu tempo como custo oculto.
+
+### Self-hosting é difícil?
+A instalação é rápida; a manutenção contínua é o compromisso de verdade. Veja [como rodar OpenClaw sem DevOps](/pt-br/answers/how-to-run-openclaw-without-devops).
+
+### O que um host gerenciado barato deixa de fora?
+Principalmente hardening de segurança, compliance e integrações profundas. Eles mantêm o agente rodando, mas pouco além disso.
+
+### Como a Liv é diferente do OneClaw?
+A Liv adiciona compliance CASA Tier 2, cofres criptografados e integração real com Gmail/Calendar. [OpenClaw vs OneClaw](/pt-br/answers/openclaw-vs-oneclaw) aprofunda o tema.
+
+### Preciso escolher agora?
+Não. Muita gente faz self-host para aprender e depois migra para um [serviço gerenciado](/pt-br/answers/self-hosted-vs-managed-ai-agent) quando a manutenção deixa de ser divertida.
+
+### A Liv é afiliada ao OpenClaw?
+Não. A Liv é um serviço gerenciado independente construído sobre o OpenClaw, sem afiliação ou endosso do projeto.

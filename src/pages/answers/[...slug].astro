@@ -1,10 +1,14 @@
 ---
 import { getCollection, render } from 'astro:content';
 import AnswerLayout from '../../layouts/AnswerLayout.astro';
+import { entryLang } from '../../i18n';
 
 export async function getStaticPaths() {
   const isProd = import.meta.env.PROD;
-  const answers = await getCollection('answers', ({ data }) => !data.draft || !isProd);
+  const answers = await getCollection(
+    'answers',
+    ({ id, data }) => entryLang(id) === 'en' && (!data.draft || !isProd)
+  );
   return answers.map((answer) => ({
     params: { slug: answer.id },
     props: { answer },

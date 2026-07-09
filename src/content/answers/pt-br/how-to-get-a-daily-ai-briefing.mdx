@@ -1,0 +1,66 @@
+---
+title: "Como receber um briefing diário de IA"
+question: "Como recebo um briefing diário de um agente de IA?"
+answer: "Dê a um agente de IA persistente uma agenda de execução e acesso à sua caixa de entrada e ao seu calendário, e ele pode enviar um briefing diário: o que tem hoje, o que precisa de resposta, o que mudou durante a noite. A Liv envia isso para você no Telegram toda manhã."
+description: "Como configurar um briefing diário de IA do seu calendário e e-mail, entregue no chat toda manhã. Heartbeat do OpenClaw, rodado pela Liv sem ops."
+topic: use-cases
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - ai-to-triage-your-email
+  - what-is-an-ai-chief-of-staff
+  - openclaw-soul-md-explained
+---
+
+Um briefing diário é a coisa mais simples e de maior valor que um agente persistente faz. Toda manhã ele reúne o que está no seu calendário, o que espera na sua caixa de entrada e qualquer coisa que mudou enquanto você estava offline, e então envia um resumo curto no chat. Você começa o dia sabendo para onde apontar sua atenção sem abrir cinco aplicativos.
+
+Isso funciona porque o agente roda numa agenda em vez de esperar que você pergunte. Ele acorda, reúne o contexto e entrega, todos os dias, sem que você peça.
+
+## Como funciona
+
+Um briefing diário depende de duas coisas: execução agendada e acesso aos seus dados. No [OpenClaw](https://github.com/openclaw/openclaw), a agenda vive num arquivo de configuração chamado `HEARTBEAT.md`, que diz ao agente quando acordar e o que fazer. A personalidade e as regras do agente, incluindo como ele deve resumir e o que deve priorizar, vivem no `SOUL.md`; veja [SOUL.md explicado](/pt-br/answers/openclaw-soul-md-explained) para entender como esse arquivo molda o comportamento do agente.
+
+Quando o heartbeat dispara, o agente lê seu calendário e sua caixa de entrada, aplica a mesma lógica que usa para a [triagem de e-mail](/pt-br/answers/ai-to-triage-your-email) e compõe o briefing. A Liv acessa o Gmail e o Google Calendar por OAuth que você pode revogar, e entrega o resumo no Telegram. Esse comportamento agendado e proativo é o coração do [que um Chief of Staff de IA faz](/pt-br/answers/what-is-an-ai-chief-of-staff).
+
+## Exemplo na prática
+
+Você pode configurar um heartbeat por conta própria no OpenClaw ou deixar a agenda rodar para você. O mecanismo é idêntico; a diferença está no ajuste fino e na manutenção contínuos.
+
+| Dimensão | OpenClaw self-hosted | Liv (OpenClaw como serviço) |
+| --- | --- | --- |
+| Configuração | Fazer deploy, escrever SOUL.md e HEARTBEAT.md, conectar dados | Trial de 14 dias, sem cartão |
+| Agendamento | Você ajusta o heartbeat | Briefing diário pronto de fábrica |
+| Custo mensal | Infra + LLM, tipicamente abaixo de $100, autogerenciado | Pro $79/mês, Max $149/mês |
+| Ops | ~1–3 horas/mês, incluindo ajuste do heartbeat | Gerenciado para você |
+| Compliance | Sua responsabilidade | CASA Tier 2, cofres criptografados |
+
+## Experimente na Liv
+
+A Liv embala o loop de agente do OpenClaw, o agendamento e as integrações reais em infraestrutura gerenciada, então você recebe um briefing matinal sem escrever um arquivo de heartbeat.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem precisar de cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte o Gmail e o Google Calendar via OAuth.
+4. A Liv envia um briefing diário no seu chat do Telegram; diga a ela o que você quer que seja enfatizado.
+
+O onboarding está atualmente em early access e por lotes, então você pode entrar numa fila.
+
+## Perguntas comuns
+
+### Quando o briefing chega?
+Toda manhã. O agente roda numa agenda em vez de esperar que você pergunte.
+
+### Onde ele é entregue?
+No seu chat do Telegram, que é o canal padrão e obrigatório da Liv. O WhatsApp é somente por convite e precisa de um eSIM dedicado.
+
+### O que vem no briefing?
+Seu calendário do dia, itens da sua caixa de entrada que precisam de atenção e qualquer coisa que mudou durante a noite.
+
+### Posso personalizar o que ele cobre?
+Sim. Diga à Liv o que priorizar. No OpenClaw self-hosted isso é governado pelo `SOUL.md` e pelo `HEARTBEAT.md`; veja [SOUL.md explicado](/pt-br/answers/openclaw-soul-md-explained).
+
+### Ele lê meu e-mail para montar o briefing?
+Sim, pelo Gmail via OAuth que você pode revogar. Seus dados não são usados para treinar modelos. Veja [é seguro dar a uma IA acesso ao seu Gmail](/pt-br/answers/is-it-safe-to-give-ai-access-to-your-gmail).
+
+### Um briefing diário é tudo o que ele faz?
+Não. Ele também faz triagem de e-mail, gerencia seu calendário e faz reservas. Veja [o que é um Chief of Staff de IA](/pt-br/answers/what-is-an-ai-chief-of-staff).

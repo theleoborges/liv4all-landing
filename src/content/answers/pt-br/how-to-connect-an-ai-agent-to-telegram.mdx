@@ -1,0 +1,72 @@
+---
+title: "Como conectar um agente de IA ao Telegram"
+question: "Como conecto meu agente de IA ao Telegram?"
+answer: "Registre um bot com o BotFather para obter um token e aponte seu agente para a Bot API do Telegram, para que ele receba e envie mensagens. Com o OpenClaw é um passo de configuração; na Liv, o Telegram é o canal padrão e funciona de fábrica."
+description: "Conecte um agente de IA ao Telegram em minutos: registre um bot, adicione o token, rode o agente. Passo a passo, mais o atalho gerenciado."
+topic: messaging
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - telegram-ai-assistant
+  - best-messaging-app-for-an-ai-agent
+  - how-to-deploy-openclaw
+---
+
+Conectar um agente ao Telegram é o setup de canal mais rápido que existe. Você cria um bot, copia o token dele e diz ao seu agente para usá-lo. Sem número de telefone, sem verificação de empresa, sem custo por mensagem. A maioria dos agentes de IA pessoais começa por aqui exatamente por isso.
+
+Os passos abaixo assumem que você está fazendo self-host do [OpenClaw](https://github.com/openclaw/openclaw) ou de um agente similar. Se preferir pular a operação por completo, a Liv roda o mesmo loop com o Telegram como canal padrão.
+
+## Como funciona
+
+Um bot do Telegram é uma conta especial controlada pela [Bot API](https://core.telegram.org/bots/api). Seu agente guarda o token do bot e faz polling de atualizações ou as recebe via webhook. Mensagens recebidas entram no loop do agente; respostas voltam para o chat.
+
+Para configurar por conta própria:
+
+1. **Crie o bot.** No Telegram, mande mensagem para o [@BotFather](https://t.me/BotFather), envie `/newbot` e escolha um nome e um username. O BotFather devolve um token de API.
+2. **Guarde o token.** Mantenha-o fora do controle de versão. Coloque-o em uma variável de ambiente ou na configuração do agente, nunca em um arquivo commitado. Veja [como armazenar chaves de API para agentes de IA com segurança](/pt-br/answers/how-to-securely-store-api-keys-for-ai-agents).
+3. **Configure o canal.** No OpenClaw, configure o canal do Telegram com o token do seu bot. O agente começa a escutar assim que sobe. O básico de deploy está em [como fazer deploy do OpenClaw](/pt-br/answers/how-to-deploy-openclaw).
+4. **Inicie um chat.** Abra seu novo bot no Telegram e mande uma mensagem. O loop do agente a lê, age e responde.
+5. **Restrinja o acesso.** Limite o bot ao seu próprio ID de usuário do Telegram para que estranhos não possam comandar seu agente.
+
+O processo inteiro tipicamente leva minutos, e é por isso que o [Telegram é o canal padrão da maioria dos agentes](/pt-br/answers/telegram-ai-assistant).
+
+## Exemplo na prática
+
+| Etapa | OpenClaw self-hosted | Liv (OpenClaw como serviço) |
+| --- | --- | --- |
+| Obter um token de bot | Registre você mesmo com o BotFather | Feito para você |
+| Hospedar o agente | Docker/Node ~15 min, ou Railway ~5 min | Infraestrutura gerenciada |
+| Configurar o canal | Editar config, definir o token | Telegram ligado por padrão |
+| Operação contínua | ~1–3 horas/mês | Gerenciada para você |
+| Custo | Abaixo de $100/mês, por sua conta | Pro $79/mês, Max $149/mês |
+
+## Experimente na Liv
+
+Se você prefere não registrar um bot nem rodar um servidor, a Liv entrega um agente conectado ao Telegram imediatamente.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem precisar de cartão de crédito.
+2. Mande mensagem para a Liv no Telegram; é o canal padrão e obrigatório, e cada agente ganha a própria identidade no Telegram.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, adicione o WhatsApp depois (por convite, eSIM dedicado).
+
+O onboarding está em early access e é feito em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### Onde consigo um token de bot do Telegram?
+Com o [@BotFather](https://t.me/BotFather), dentro do Telegram. Envie `/newbot` e siga as instruções.
+
+### Polling ou webhook?
+Polling é mais simples para um único agente self-hosted; webhooks escalam melhor, mas exigem um endpoint HTTPS público. Ambos funcionam.
+
+### Como impeço estranhos de usarem meu bot?
+Restrinja-o ao seu ID de usuário do Telegram na configuração do agente, para que ele ignore todo o resto.
+
+### O agente pode me mandar lembretes de e-mail ou calendário pelo Telegram?
+Sim. Depois de conectar Gmail e Calendar, o agente pode agir sobre eles e reportar no chat. Veja [como dar a um agente de IA acesso a e-mail e calendário](/pt-br/answers/how-to-give-an-ai-agent-email-and-calendar-access).
+
+### E o WhatsApp no lugar?
+O WhatsApp é mais pesado de conectar. Veja [como conectar um agente de IA ao WhatsApp](/pt-br/answers/how-to-connect-an-ai-agent-to-whatsapp).
+
+### A Liv é afiliada ao Telegram ou ao OpenClaw?
+Não. A Liv é um serviço gerenciado independente construído sobre o OpenClaw, sem afiliação ou endosso de nenhum dos dois.

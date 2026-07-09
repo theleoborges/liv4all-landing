@@ -1,0 +1,285 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { canonicalUrl, localizePath, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const lastUpdated = '2026-05-05';
+
+interface Section {
+  id?: string;
+  heading: string;
+  intro?: string;
+  items?: string[];
+  outro?: string[];
+}
+
+interface Copy {
+  metaTitle: string;
+  metaDescription: string;
+  back: string;
+  heading: string;
+  updated: string;
+  callout: string;
+  sections: Section[];
+}
+
+const copy = ({
+  en: {
+    metaTitle: 'Security Policy — Liv4All',
+    metaDescription: 'Vulnerability disclosure policy and safe-harbour terms for Liv4All.',
+    back: '← back to trust',
+    heading: 'security policy',
+    updated: `last updated: ${lastUpdated}`,
+    callout:
+      'report a vulnerability to <a href="mailto:security@liv4all.com">security@liv4all.com</a>. acting in good faith under this policy means we will not pursue you. see <a href="#safe-harbour">safe harbour</a>.',
+    sections: [
+      {
+        heading: 'scope',
+        intro: 'this policy applies to systems Liv4All operates:',
+        items: [
+          '<code>liv4all.com</code> and its subdomains, including <code>app.liv4all.com</code> and <code>hello.liv4all.com</code>.',
+          'the Liv4All Telegram bot and the dedicated agent email addresses we issue to operators.',
+          'the public knowledge-base widget served from our infrastructure.',
+        ],
+      },
+      {
+        heading: 'out of scope',
+        items: [
+          'denial-of-service or volumetric attacks against any Liv4All endpoint.',
+          "social engineering of Liv4All staff, operators, or our sub-processors' staff.",
+          'physical attacks against infrastructure, offices, or personal devices.',
+          'findings on third-party services (AWS, Google, Telegram, Anthropic, Browserbase, Brave, Formspree) where Liv has no remediation path. report those upstream.',
+          'missing best-practice headers without a demonstrable impact, theoretical attacks without proof-of-concept, automated scanner output without manual validation.',
+        ],
+      },
+      {
+        heading: 'how to report',
+        intro: 'email <a href="mailto:security@liv4all.com">security@liv4all.com</a> with:',
+        items: [
+          'a clear description of the issue and its impact.',
+          'reproduction steps, ideally with a minimal proof-of-concept.',
+          'any artefacts (screenshots, logs, request traces) that help us validate quickly.',
+          'the affected URL or endpoint, and the date and time of testing.',
+        ],
+        outro: [
+          "PGP-encrypted reports are welcome — request our key in your initial mail and we'll respond with it.",
+        ],
+      },
+      {
+        heading: 'response window',
+        items: [
+          '<strong>3 business days</strong> to acknowledge your report.',
+          '<strong>10 business days</strong> for an initial assessment, including triage and severity.',
+          "remediation timelines follow from severity. we'll keep you in the loop and credit you in any public write-up if you want.",
+        ],
+      },
+      {
+        id: 'safe-harbour',
+        heading: 'safe harbour',
+        intro: 'we will not pursue legal action against researchers who, in good faith:',
+        items: [
+          'follow this policy and avoid privacy violations, destruction of data, and degradation of service.',
+          'only interact with accounts they own or have explicit permission to test.',
+          'give us reasonable time to remediate before public disclosure (we suggest 90 days, extendable by mutual agreement).',
+          "don't exploit any vulnerability beyond what's necessary to demonstrate it.",
+          "don't exfiltrate data beyond the minimum needed to prove impact, and delete anything they did access on request.",
+        ],
+        outro: [
+          'if your activity is consistent with this policy, we consider it authorised research and will not bring or support legal action against you. if a third party initiates legal action, we will make it clear that your actions were authorised.',
+        ],
+      },
+      {
+        heading: 'contact',
+        outro: [
+          'vulnerability reports: <a href="mailto:security@liv4all.com">security@liv4all.com</a>.<br /> everything else (data requests, account help, press): <a href="mailto:support@liv4all.com">support@liv4all.com</a>.',
+          'machine-readable contact: <a href="/.well-known/security.txt"><code>/.well-known/security.txt</code></a>.',
+        ],
+      },
+    ],
+  },
+  'pt-br': {
+    metaTitle: 'Política de Segurança — Liv4All',
+    metaDescription: 'Política de divulgação de vulnerabilidades e termos de porto seguro da Liv4All.',
+    back: '← voltar para a central de confiança',
+    heading: 'política de segurança',
+    updated: `última atualização: ${lastUpdated}`,
+    callout:
+      'reporte uma vulnerabilidade para <a href="mailto:security@liv4all.com">security@liv4all.com</a>. agir de boa-fé sob esta política significa que não tomaremos medidas contra você. veja <a href="#safe-harbour">porto seguro</a>.',
+    sections: [
+      {
+        heading: 'escopo',
+        intro: 'esta política se aplica aos sistemas operados pela Liv4All:',
+        items: [
+          '<code>liv4all.com</code> e seus subdomínios, incluindo <code>app.liv4all.com</code> e <code>hello.liv4all.com</code>.',
+          'o bot da Liv4All no Telegram e os endereços de e-mail dedicados de agente que emitimos para operadores.',
+          'o widget público da base de conhecimento servido pela nossa infraestrutura.',
+        ],
+      },
+      {
+        heading: 'fora do escopo',
+        items: [
+          'ataques de negação de serviço ou volumétricos contra qualquer endpoint da Liv4All.',
+          'engenharia social contra a equipe da Liv4All, operadores ou funcionários dos nossos suboperadores.',
+          'ataques físicos contra infraestrutura, escritórios ou dispositivos pessoais.',
+          'descobertas em serviços de terceiros (AWS, Google, Telegram, Anthropic, Browserbase, Brave, Formspree) em que a Liv não tem caminho de remediação. reporte-as diretamente ao serviço em questão.',
+          'ausência de headers de boas práticas sem impacto demonstrável, ataques teóricos sem prova de conceito, resultados de scanners automatizados sem validação manual.',
+        ],
+      },
+      {
+        heading: 'como reportar',
+        intro: 'envie um e-mail para <a href="mailto:security@liv4all.com">security@liv4all.com</a> com:',
+        items: [
+          'uma descrição clara do problema e do seu impacto.',
+          'passos de reprodução, idealmente com uma prova de conceito mínima.',
+          'quaisquer artefatos (capturas de tela, logs, traces de requisições) que nos ajudem a validar rapidamente.',
+          'a URL ou endpoint afetado, e a data e hora do teste.',
+        ],
+        outro: [
+          'relatórios criptografados com PGP são bem-vindos — solicite nossa chave no seu primeiro e-mail e responderemos com ela.',
+        ],
+      },
+      {
+        heading: 'prazo de resposta',
+        items: [
+          '<strong>3 dias úteis</strong> para confirmar o recebimento do seu relatório.',
+          '<strong>10 dias úteis</strong> para uma avaliação inicial, incluindo triagem e severidade.',
+          'os prazos de remediação dependem da severidade. vamos manter você informado e, se quiser, dar a você os créditos em qualquer publicação sobre o caso.',
+        ],
+      },
+      {
+        id: 'safe-harbour',
+        heading: 'porto seguro',
+        intro: 'não tomaremos medidas legais contra pesquisadores que, de boa-fé:',
+        items: [
+          'sigam esta política e evitem violações de privacidade, destruição de dados e degradação do serviço.',
+          'interajam apenas com contas próprias ou que tenham permissão explícita para testar.',
+          'nos deem um tempo razoável para remediar antes da divulgação pública (sugerimos 90 dias, prorrogáveis por acordo mútuo).',
+          'não explorem nenhuma vulnerabilidade além do necessário para demonstrá-la.',
+          'não exfiltrem dados além do mínimo necessário para provar o impacto, e apaguem qualquer dado acessado mediante solicitação.',
+        ],
+        outro: [
+          'se sua atividade estiver de acordo com esta política, nós a consideramos pesquisa autorizada e não moveremos nem apoiaremos ações legais contra você. se um terceiro iniciar uma ação legal, deixaremos claro que suas ações foram autorizadas.',
+        ],
+      },
+      {
+        heading: 'contato',
+        outro: [
+          'relatos de vulnerabilidade: <a href="mailto:security@liv4all.com">security@liv4all.com</a>.<br /> todo o resto (solicitações de dados, ajuda com a conta, imprensa): <a href="mailto:support@liv4all.com">support@liv4all.com</a>.',
+          'contato legível por máquina: <a href="/.well-known/security.txt"><code>/.well-known/security.txt</code></a>.',
+        ],
+      },
+    ],
+  },
+} satisfies Record<Lang, Copy>)[lang];
+---
+<BaseLayout
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  ogUrl={canonicalUrl('/security', lang)}
+  canonical={canonicalUrl('/security', lang)}
+  lang={lang}
+>
+  <div class="container">
+    <a href={localizePath('/trust', lang)} class="back">{copy.back}</a>
+
+    <h1>{copy.heading}</h1>
+    <p class="updated">{copy.updated}</p>
+
+    <div class="callout" set:html={copy.callout} />
+
+    {copy.sections.map((section) => (
+      <Fragment>
+        <h2 id={section.id}>{section.heading}</h2>
+        {section.intro && <p set:html={section.intro} />}
+        {section.items && (
+          <ul>
+            {section.items.map((item) => <li set:html={item} />)}
+          </ul>
+        )}
+        {section.outro && section.outro.map((para) => <p set:html={para} />)}
+      </Fragment>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+    transition: color 0.2s;
+  }
+  .back:hover { color: var(--accent); text-decoration: none; }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  .updated {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+  }
+
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  p, li {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  p :global(strong), li :global(strong) { color: var(--text); font-weight: 500; }
+
+  ul {
+    padding-left: 20px;
+    margin-bottom: 16px;
+  }
+
+  li { margin-bottom: 8px; }
+
+  .callout {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 24px 0 32px;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .callout :global(strong) { color: var(--text); }
+  .callout :global(a) { color: var(--accent); }
+
+  .container :global(code) {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    color: var(--text);
+    background: rgba(139, 92, 246, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border-light);
+  }
+</style>

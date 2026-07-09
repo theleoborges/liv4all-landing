@@ -1,0 +1,75 @@
+---
+title: "Como fazer self-host de um agente de IA"
+question: "Como faço self-host do meu próprio agente de IA?"
+answer: "Escolha um agente open-source como o OpenClaw, rode-o num servidor Linux pequeno via Docker ou com um template de um clique do Railway, dê a ele uma chave de API de LLM e o seu canal preferido, e então escreva seus arquivos de configuração. Reserve uns 15 minutos para subir e uma hora para torná-lo genuinamente útil."
+description: "Self-host de um agente de IA em cinco passos: escolha o OpenClaw, provisione um VPS de 2 núcleos, faça deploy via Docker, conecte um LLM e ajuste a config."
+topic: self-hosting
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - self-hosted-vs-managed-ai-agent
+  - best-vps-for-ai-agent
+  - how-to-deploy-openclaw
+---
+
+Fazer self-host de um agente de IA significa rodar o loop de agente em infraestrutura que você controla, com a sua própria chave de LLM e os seus próprios dados. O vencedor prático para a maioria das pessoas é o [OpenClaw](https://github.com/openclaw/openclaw), um agente pessoal sob licença MIT com mais de 15.000 estrelas no GitHub e mais de 200 contribuidores. Ele roda em qualquer sistema operacional, conversa com a maioria dos LLMs (Claude, GPT, Gemini, DeepSeek) e se conecta a Telegram, WhatsApp, Slack, Discord, Signal e mais.
+
+A configuração em si é curta. A parte que importa é a personalização: um agente é tão bom quanto a identidade e a agenda que você dá a ele.
+
+## Como funciona
+
+Um agente self-hosted tem quatro peças móveis: um host (um servidor Linux pequeno), o software do agente, um LLM que faz o raciocínio e um canal pelo qual você conversa com ele. Este é o caminho do zero a um agente funcionando.
+
+1. **Provisione um host.** As especificações mínimas do OpenClaw são cerca de 2 núcleos, 2 GB de RAM e 2 GB de armazenamento, com Ubuntu 24.04 recomendado. Um VPS barato é mais que suficiente; veja [o melhor VPS para um agente de IA](/pt-br/answers/best-vps-for-ai-agent) para sugestões, ou rode numa máquina sobrando em casa.
+2. **Faça o deploy do software.** Dois caminhos: Docker ou Node na sua própria máquina (cerca de 15 minutos), ou um template de um clique do Railway (cerca de 5 minutos, sem administração de servidor). O passo a passo completo está em [como fazer deploy do OpenClaw](/pt-br/answers/how-to-deploy-openclaw).
+3. **Adicione uma chave de LLM.** Insira uma chave de API da Anthropic, OpenAI, Google ou DeepSeek. É contra ela que o uso do seu agente será cobrado.
+4. **Conecte um canal.** Vincule Telegram ou WhatsApp para de fato conseguir conversar com ele.
+5. **Escreva os arquivos de configuração.** O `SOUL.md` define a identidade e a personalidade do agente e merece 20 a 45 minutos de reflexão de verdade. O `HEARTBEAT.md` define a agenda dele (o que ele faz, e quando, sem você pedir). `AGENTS.md`, `USER.md` e os arquivos de memória completam o conjunto.
+
+Pular o passo cinco é o erro mais comum. Um agente com um `SOUL.md` vazio é um chatbot; um bem escrito é um chief of staff.
+
+## Exemplo na prática
+
+Dois caminhos para o mesmo loop de agente, com os trade-offs expostos:
+
+| | Self-host do OpenClaw | Liv (gerenciado) |
+|---|---|---|
+| Tempo de configuração | 15 min de deploy + ~1 h de config | Cadastrar-se, mandar mensagem no Telegram |
+| Onde roda | Seu VPS ou servidor doméstico | Infraestrutura gerenciada |
+| Custo mensal | Infra + API de LLM, tipicamente abaixo de $100 | $79 (Pro) / $149 (Max) |
+| Segurança/compliance | Você é o dono | CASA Tier 2, cofres criptografados |
+| Ops contínuas | ~1–3 h/mês | Nenhuma |
+| Controle | Total | Conveniência em vez de controle total |
+
+O self-host dá controle total e um piso de custo mais baixo. A troca é o trabalho contínuo: tokens OAuth expiram, o código-fonte é atualizado, heartbeats precisam de ajuste e skills às vezes quebram. Planeje [1 a 3 horas por mês de manutenção](/pt-br/answers/self-host-ai-agent-maintenance) e decida se esse tempo vale a pena. A [comparação self-hosted vs gerenciado](/pt-br/answers/self-hosted-vs-managed-ai-agent) detalha para quem cada opção serve.
+
+## Experimente na Liv
+
+A Liv é o OpenClaw como serviço: o mesmo loop de agente e integrações reais, em infraestrutura gerenciada, para você pular as ops.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com). Sem precisar de cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Google Calendar via Google OAuth (revogável a qualquer momento).
+4. Opcionalmente, vincule o WhatsApp (somente por convite, precisa de um eSIM dedicado).
+
+A Liv está atualmente em early access com onboarding por lotes, então você pode entrar numa fila.
+
+## Perguntas comuns
+
+### Preciso ser desenvolvedor para fazer self-host?
+Não estritamente. Um deploy de um clique no Railway exige pouco conhecimento de servidor, mas escrever a configuração e depurar skills recompensa quem tem familiaridade com a linha de comando. Veja [como rodar o OpenClaw sem DevOps](/pt-br/answers/how-to-run-openclaw-without-devops).
+
+### Quanto custa para rodar?
+Infraestrutura mais uso da API de LLM, tipicamente abaixo de $100 por mês para uma pessoa. Detalhamento completo em [custo de fazer self-host de um agente de IA](/pt-br/answers/cost-to-self-host-an-ai-agent).
+
+### Qual LLM devo usar?
+O OpenClaw é agnóstico de LLM. Claude e GPT são comuns pela qualidade; DeepSeek é mais barato. Você troca mudando a chave.
+
+### Posso rodar sem servidor nenhum?
+Sim, num laptop sobrando ou num mini PC em casa, embora o uptime sofra. Veja [preciso de um servidor para um agente de IA pessoal](/pt-br/answers/do-i-need-a-server-for-a-personal-ai-agent).
+
+### Como o self-host difere de um host gerenciado como o OneClaw?
+Hosts gerenciados de OpenClaw (OneClaw, Blink Claw, cerca de $12–22/mês) rodam o software por você, mas adicionam pouca segurança ou compliance. Um serviço totalmente gerenciado como a Liv adiciona CASA Tier 2 e cofres criptografados.
+
+### Meus dados são privados no self-hosting?
+Sim, seus dados ficam na sua infraestrutura. A troca é que protegê-los também é responsabilidade sua.

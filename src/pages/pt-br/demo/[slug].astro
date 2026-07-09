@@ -1,0 +1,22 @@
+---
+import DemoLayout from '../../../layouts/DemoLayout.astro';
+import VideoPlayer from '../../../components/VideoPlayer.astro';
+import { getDemos } from '../../../data/demos';
+
+export function getStaticPaths() {
+  return getDemos('pt-br').map((demo) => ({
+    params: { slug: demo.slug },
+    props: { demo },
+  }));
+}
+
+const { demo } = Astro.props;
+---
+<DemoLayout
+  title={demo.metaTitle}
+  description={demo.metaDescription}
+  ogUrl={`https://liv4all.com/pt-br/demo/${demo.slug}`}
+  lang="pt-br"
+>
+  <VideoPlayer title={demo.title} desc={demo.desc} videoSrc={demo.videoSrc} lang="pt-br" />
+</DemoLayout>

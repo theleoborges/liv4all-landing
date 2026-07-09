@@ -1,10 +1,14 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { entryLang } from '../../i18n';
 
 export async function getStaticPaths() {
   const isProd = import.meta.env.PROD;
-  const articles = await getCollection('articles', ({ data }) => !data.draft || !isProd);
+  const articles = await getCollection(
+    'articles',
+    ({ id, data }) => entryLang(id) === 'en' && (!data.draft || !isProd)
+  );
   return articles.map((article) => ({
     params: { slug: article.id },
     props: { article },

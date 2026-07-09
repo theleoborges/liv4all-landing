@@ -1,0 +1,72 @@
+---
+title: "Melhor VPS para rodar um agente de IA"
+question: "Qual é o melhor VPS para rodar um agente de IA?"
+answer: "Qualquer VPS com 2 núcleos, 2 GB de RAM e 2 GB de armazenamento rodando Ubuntu 24.04 dá conta de um agente pessoal como o OpenClaw. Hetzner, DigitalOcean e Vultr têm planos adequados de cerca de $5 a $20 por mês; o Railway é o mais fácil se você quer deploy de um clique e zero administração de servidor."
+description: "Melhor VPS para agente de IA: 2 núcleos, 2 GB RAM, 2 GB de disco no Ubuntu 24.04. Hetzner, DigitalOcean e Vultr de $5–20/mês, ou Railway com um clique."
+topic: self-hosting
+intent: informational
+datePublished: 2026-06-01
+related:
+  - openclaw-system-requirements
+  - how-to-self-host-an-ai-agent
+  - cost-to-self-host-an-ai-agent
+---
+
+Um agente de IA pessoal é uma carga de trabalho leve. O raciocínio acontece na API do LLM, não no seu servidor, então você não precisa de uma máquina potente. O que você precisa é de uptime confiável e folga suficiente para rodar o processo do agente e sua memória.
+
+A boa notícia é que quase qualquer VPS moderno passa nesse teste. A escolha se resume a preço, região e quanta administração de servidor você está disposto a fazer.
+
+## Como funciona
+
+O [OpenClaw](https://github.com/openclaw/openclaw) roda confortavelmente no seu mínimo declarado de aproximadamente 2 núcleos, 2 GB de RAM e 2 GB de armazenamento, com Ubuntu 24.04 recomendado. Veja os [requisitos de sistema do OpenClaw](/pt-br/answers/openclaw-system-requirements) para os detalhes. Contra essa linha de base, veja como as opções comuns se comparam:
+
+- **Hetzner Cloud.** Melhor custo-benefício na Europa; instâncias pequenas começam em torno de $5 por mês e superam com folga os requisitos mínimos.
+- **DigitalOcean.** Confiável, bem documentada, fácil de aprender; droplets básicos a partir de cerca de $6.
+- **Vultr / Linode.** Preços parecidos e regiões globais; boa opção se você quer um servidor perto de você.
+- **Railway.** Não é um VPS puro, e sim uma plataforma de deploy com um template de um clique do OpenClaw. Custa um pouco mais, mas elimina a administração de servidor por completo; o caminho mais rápido se você não quer encostar em um terminal.
+- **Uma máquina sobrando em casa.** Custo de hospedagem zero, controle total, mas o uptime e a rede são por sua conta.
+
+Escolha uma região perto de você para manter a latência baixa, dê a si mesmo uma folga de RAM acima do mínimo, e pronto.
+
+## Exemplo na prática
+
+| Opção | A partir de | Specs vs mínimo | Administração de servidor |
+|---|---|---|---|
+| Hetzner Cloud | ~$5/mês | Supera | Sim |
+| DigitalOcean | ~$6/mês | Supera | Sim |
+| Vultr / Linode | ~$5–6/mês | Supera | Sim |
+| Railway (um clique) | Mais alto | Gerenciado | Mínima |
+| Servidor em casa | $0 | Depende do hardware | Sim, mais uptime |
+
+Para a maioria das pessoas, o padrão sensato é uma instância pequena da Hetzner ou da DigitalOcean: barata, confiável e mais que suficiente para um agente. Se você prefere não administrar servidor nenhum, o template de um clique do Railway é o atalho. De qualquer forma, o VPS é a parte pequena da conta; a API do LLM é o fator decisivo, como explica [quanto custa self-hostear um agente de IA](/pt-br/answers/cost-to-self-host-an-ai-agent). Com um host escolhido, [como self-hostear um agente de IA](/pt-br/answers/how-to-self-host-an-ai-agent) percorre o deploy passo a passo.
+
+## Experimente na Liv
+
+Se escolher e manter um VPS não é como você quer gastar seu tempo, a Liv roda o agente em infraestrutura gerenciada, então não há servidor nenhum para escolher.
+
+1. Comece um teste gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão.
+3. Conecte Gmail e Google Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (somente por convite, exige um eSIM dedicado).
+
+A Liv está em early access com onboarding em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### Preciso de uma GPU?
+Não. O LLM roda na nuvem do provedor via API, então um VPS básico de CPU é suficiente.
+
+### Quanta RAM é suficiente?
+2 GB atendem o mínimo. 4 GB dão uma folga confortável para arquivos de memória e atualizações sem muito custo extra.
+
+### Qual sistema operacional devo usar?
+O Ubuntu 24.04 é o recomendado, mas o OpenClaw roda em qualquer SO, inclusive via Docker.
+
+### O Railway é um VPS?
+Não exatamente. É uma plataforma de deploy gerenciada com um template de um clique do OpenClaw, que elimina a maior parte da administração de servidor em troca de um custo um pouco maior.
+
+### Posso rodar em casa em vez disso?
+Sim, em um laptop sobrando ou um mini PC. Você economiza a taxa de hospedagem, mas assume o uptime e a rede. Veja [preciso de um servidor para um agente de IA pessoal](/pt-br/answers/do-i-need-a-server-for-a-personal-ai-agent).
+
+### Um VPS barato deixa o agente lento?
+Raramente. A latência que você percebe vem do LLM, não do servidor, então uma instância de $5 parece igual a uma mais cara.

@@ -1,0 +1,71 @@
+---
+title: "Como dar memória ao seu agente de IA"
+question: "Como dou memória ao meu agente de IA?"
+answer: "Você dá memória a um agente gravando o que ele aprende em armazenamento durável que ele lê a cada loop, em vez de depender de uma única conversa. No OpenClaw você usa o SOUL.md e arquivos de memória; com a Liv, a memória persistente é gerenciada para você em cofres criptografados."
+description: "Como dar memória ao seu agente de IA: SOUL.md e arquivos de memória do OpenClaw versus a memória persistente gerenciada da Liv, com comparação prática."
+topic: ai-agents
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - openclaw-soul-md-explained
+  - what-is-a-persistent-ai-agent
+  - how-to-give-an-ai-agent-email-and-calendar-access
+---
+
+Sem memória, um agente te conhece do zero toda manhã. Você reexplica seu trabalho, suas preferências, o projeto que mencionou ontem. A memória resolve isso: o agente anota o que importa e relê a cada passagem, então ele acumula contexto em vez de esquecê-lo.
+
+Há duas camadas que vale a pena separar. Identidade, os fatos estáveis sobre quem o agente é e quem você é. E memória de trabalho, o registro em evolução do que está acontecendo na sua vida e no seu trabalho. Uma boa configuração persiste as duas.
+
+## Como funciona
+
+A memória funciona porque o agente lê seu contexto armazenado no início de cada [loop](/pt-br/answers/how-an-ai-agent-loop-works), e depois grava fatos novos conforme os aprende. O armazenamento sobrevive a reinicializações, então o conhecimento se acumula ao longo do tempo. Essa continuidade é exatamente o que torna um agente persistente; veja [o que é um agente de IA persistente](/pt-br/answers/what-is-a-persistent-ai-agent).
+
+O [OpenClaw](https://github.com/openclaw/openclaw), o agente pessoal open-source, torna as camadas explícitas como arquivos. O `SOUL.md` guarda a identidade e a personalidade do agente, o núcleo estável, e leva 20–45 minutos para escrever bem; veja [o SOUL.md do OpenClaw explicado](/pt-br/answers/openclaw-soul-md-explained). O `USER.md` captura quem você é. O `AGENTS.md` e arquivos de memória dedicados guardam a memória de trabalho em evolução. Como são arquivos comuns no seu servidor, você pode lê-los e editá-los diretamente. Você também fica responsável por mantê-los organizados e com backup, parte da manutenção do self-host.
+
+A Liv cuida dessa camada para você. Ela armazena o que aprende em cofres criptografados por usuário, os mesmos cofres que guardam os segredos conectados, e essa memória não é usada para treinar modelos. Você não escreve nem mantém arquivos de memória; só continua conversando e ela lembra. Memória também combina com acesso: um agente que lembra suas preferências e consegue ver seu [e-mail e calendário](/pt-br/answers/how-to-give-an-ai-agent-email-and-calendar-access) fica notavelmente mais útil.
+
+## Exemplo na prática
+
+Configurando a memória do agente de duas formas:
+
+| Aspecto | Self-host (OpenClaw) | Gerenciado (Liv) |
+| --- | --- | --- |
+| Memória de identidade | Escrever o `SOUL.md` (20–45 min) | Configurada enquanto você conversa |
+| Fatos sobre o usuário | Manter o `USER.md` | Aprendidos e armazenados |
+| Memória de trabalho | Editar arquivos de memória | Automática |
+| Armazenamento | Arquivos no seu servidor | Cofre criptografado por usuário |
+| Manutenção | Você faz backup e organiza | Nenhuma |
+| Uso em treinamento | Termos do seu provedor de LLM | Não usada para treinamento |
+
+O caminho self-host dá controle bruto e editável sobre cada arquivo de memória. O caminho gerenciado dá persistência sem nada para manter.
+
+## Experimente na Liv
+
+A memória da Liv já vem ligada desde o início, então não há nada para configurar:
+
+1. Comece um trial gratuito de 14 dias em https://app.liv4all.com. Sem cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão, e conte a ela sobre você e o seu trabalho.
+3. Conecte Gmail e Calendar via Google OAuth para que a memória tenha contexto real para usar.
+4. Volte amanhã; ela lembra o que você contou hoje.
+
+A Liv armazena a memória em cofres criptografados por usuário e está em early access com onboarding por lotes.
+
+## Perguntas comuns
+
+### Onde um agente de IA armazena sua memória?
+Em armazenamento durável que ele lê a cada loop: arquivos no seu servidor com o OpenClaw, ou cofres criptografados por usuário com a Liv.
+
+### Qual é a diferença entre o SOUL.md e os arquivos de memória?
+O `SOUL.md` é identidade e personalidade estáveis; os arquivos de memória são o registro em evolução de fatos e contexto. Veja [o SOUL.md do OpenClaw explicado](/pt-br/answers/openclaw-soul-md-explained).
+
+### Meu agente vai lembrar de mim entre sessões?
+Sim, se ele tiver memória persistente. É isso que o distingue de um chatbot sem estado. Veja [o que é um agente de IA persistente](/pt-br/answers/what-is-a-persistent-ai-agent).
+
+### Os dados da minha memória são privados?
+Com a Liv, a memória fica em cofres criptografados por usuário e não é usada para treinar modelos. No self-host, depende do seu provedor.
+
+### Preciso escrever arquivos de memória por conta própria?
+Somente no caminho self-host. A Liv gerencia a memória para você.
+
+### Posso editar o que meu agente lembra?
+Com o OpenClaw, diretamente nos arquivos. Com a Liv, pedindo a ela para atualizar ou corrigir o que sabe.

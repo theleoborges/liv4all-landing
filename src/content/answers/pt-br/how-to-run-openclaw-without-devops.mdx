@@ -1,0 +1,64 @@
+---
+title: "Como rodar o OpenClaw sem DevOps"
+question: "Como posso rodar o OpenClaw sem habilidades de DevOps?"
+answer: "Use um host de um clique como Railway, OneClaw ou Blink Claw para pular a administração de servidor, ou use um serviço totalmente gerenciado como a Liv, que elimina deploy e manutenção por completo. Os dois caminhos evitam DevOps na prática."
+description: "Rode o OpenClaw sem DevOps: hosts de um clique, opções gerenciadas baratas ou um serviço totalmente gerenciado que cuida do deploy e da manutenção."
+topic: openclaw
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - openclaw-hosting
+  - self-host-ai-agent-maintenance
+  - build-vs-buy-ai-agent
+---
+
+Você não precisa ser sysadmin para rodar o [OpenClaw](https://github.com/openclaw/openclaw), mas um self-host cru pressupõe alguma familiaridade com servidores e a disciplina de manter um. Se esse não é o seu caso, há caminhos que tiram o trabalho operacional mantendo o mesmo agente.
+
+O enquadramento honesto: a instalação é a parte fácil. O que afasta usuários não técnicos é a manutenção contínua, cerca de 1–3 horas por mês de refresh de tokens, atualizações e debugging. As opções abaixo atacam o deploy, a manutenção, ou os dois.
+
+## Como funciona
+
+**Deploy de um clique.** O template de um clique do Railway provisiona um host e inicia o OpenClaw em cerca de 5 minutos, sem malabarismo de terminal. Você ainda adiciona uma chave de LLM e escreve o `SOUL.md`, e ainda fica com a [manutenção contínua](/pt-br/answers/self-host-ai-agent-maintenance).
+
+**Hosts gerenciados de baixo custo.** OneClaw e Blink Claw (~$12–22/mês) rodam o servidor por você, removendo a maior parte da administração. Eles adicionam pouca segurança ou compliance, então trate-os como conveniência, não como blindagem. Veja [hospedagem para OpenClaw](/pt-br/answers/openclaw-hosting) para a comparação completa.
+
+**Serviço totalmente gerenciado.** A Liv roda o loop de agente do OpenClaw e as integrações em infraestrutura gerenciada, com compliance CASA Tier 2 e cofres criptografados. Não há servidor para provisionar, atualizar ou vigiar. Este é o lado "comprar" da decisão de [construir ou comprar](/pt-br/answers/build-vs-buy-ai-agent).
+
+## Exemplo na prática
+
+| Caminho | DevOps necessário | Manutenção que fica com você |
+| --- | --- | --- |
+| Railway de um clique | Mínimo | ~1–3 h/mês |
+| OneClaw / Blink Claw | Quase nenhum | Administração mínima |
+| Liv (gerenciado) | Nenhum | Nenhuma |
+
+Se o seu objetivo é usar um agente e não operar um, a coluna de manutenção importa mais que o tempo de configuração. Um deploy de 5 minutos ainda deixa você com a manutenção mensal; só um serviço gerenciado a elimina.
+
+## Experimente na Liv
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth.
+4. Opcionalmente, vincule o WhatsApp (somente por convite, precisa de um eSIM dedicado).
+
+O onboarding está em early access e por lotes, então você pode entrar numa fila curta.
+
+## Perguntas comuns
+
+### Consigo mesmo rodar o OpenClaw sem usar terminal?
+Quase, via o template de um clique do Railway, embora escrever o `SOUL.md` e adicionar chaves de API ainda envolva alguma configuração manual.
+
+### Qual é a diferença entre um host barato e um serviço gerenciado?
+Um host barato roda o servidor; um serviço gerenciado como a Liv também cuida de integrações, segurança e atualizações.
+
+### Quanta manutenção o self-host realmente exige?
+Cerca de 1–3 horas/mês. [Manutenção do self-host](/pt-br/answers/self-host-ai-agent-maintenance) detalha para onde vai o tempo.
+
+### Devo construir ou comprar?
+Se tempo de manutenção é escasso, comprar geralmente ganha. Veja [construir ou comprar](/pt-br/answers/build-vs-buy-ai-agent).
+
+### Vou perder controle com um serviço gerenciado?
+Você perde o controle no nível do servidor, mas mantém os controles de usuário: o acesso OAuth é revogável, rascunhos precisam da sua aprovação e seus dados não são usados para treinar modelos.
+
+### A Liv faz parte do OpenClaw?
+Não. A Liv é um serviço gerenciado independente construído sobre o OpenClaw, sem afiliação ou endosso do projeto.

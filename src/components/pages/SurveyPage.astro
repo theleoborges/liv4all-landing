@@ -1,0 +1,542 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { canonicalUrl, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+type Option = { value: string; label: string };
+type Question =
+  | { number: string; name: string; type: 'radio'; required?: boolean; label: string; hint?: string; options: Option[] }
+  | { number: string; name: string; type: 'textarea'; required?: boolean; label: string; hint?: string; placeholder: string };
+
+interface Copy {
+  metaTitle: string;
+  metaDescription: string;
+  heading: string;
+  subtitle: string;
+  timeBadge: string;
+  aboutYou: string;
+  nameLabel: string;
+  namePlaceholder: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  questions: Question[];
+  submitButton: string;
+  submitting: string;
+  errorAlert: string;
+  privacyNote: string;
+  thankYouHeading: string;
+  thankYouBody: string;
+}
+
+// NOTE: form field `name`s and radio `value`s are submitted to Formspree and
+// MUST stay identical (English) in both languages — translate labels only.
+const copy = ({
+  en: {
+    metaTitle: 'Liv4All — Alpha Feedback',
+    metaDescription: 'Share your feedback on the Liv alpha.',
+    heading: 'Liv4All Alpha Feedback',
+    subtitle: 'your honest input shapes what we build next',
+    timeBadge: '⏱ takes ~3 minutes',
+    aboutYou: 'About you',
+    nameLabel: 'Name',
+    namePlaceholder: 'Your name',
+    emailLabel: 'Email',
+    emailPlaceholder: 'your@email.com',
+    questions: [
+      {
+        number: 'Question 1 of 8',
+        name: 'q1_frequency',
+        type: 'radio',
+        required: true,
+        label: 'How often do you interact with your agent?',
+        options: [
+          { value: 'multiple_daily', label: 'Multiple times a day' },
+          { value: 'once_daily', label: 'Once a day' },
+          { value: 'few_weekly', label: 'A few times a week' },
+          { value: 'rarely', label: 'Rarely / tried it and stopped' },
+        ],
+      },
+      {
+        number: 'Question 2 of 8',
+        name: 'q2_time_saver',
+        type: 'textarea',
+        required: true,
+        label: "What's the one thing your agent does that saves you the most time?",
+        placeholder: 'e.g. triaging my emails, booking meetings, morning briefings...',
+      },
+      {
+        number: 'Question 3 of 8',
+        name: 'q3_surprise',
+        type: 'textarea',
+        label: 'Has your agent done something that genuinely surprised you?',
+        hint: 'The "wait, it did that?" moments',
+        placeholder: 'Tell us about a moment your agent impressed you...',
+      },
+      {
+        number: 'Question 4 of 8',
+        name: 'q4_frustrations',
+        type: 'textarea',
+        label: "What's still frustrating or missing?",
+        hint: 'Be brutal — it helps us build better',
+        placeholder: "What doesn't work well? What do you wish it could do?",
+      },
+      {
+        number: 'Question 5 of 8',
+        name: 'q5_describe',
+        type: 'textarea',
+        required: true,
+        label: 'How would you describe Liv4All to a friend in one sentence?',
+        placeholder: "It's like...",
+      },
+      {
+        number: 'Question 6 of 8',
+        name: 'q6_pmf',
+        type: 'radio',
+        required: true,
+        label: 'If Liv4All disappeared tomorrow, how would you feel?',
+        options: [
+          { value: 'very_disappointed', label: 'Very disappointed' },
+          { value: 'somewhat_disappointed', label: 'Somewhat disappointed' },
+          { value: 'not_disappointed', label: 'Not disappointed' },
+        ],
+      },
+      {
+        number: 'Question 7 of 8',
+        name: 'q7_pricing',
+        type: 'radio',
+        required: true,
+        label: 'Would you pay for this? If so, how much per month feels fair?',
+        options: [
+          { value: 'wouldnt_pay', label: "Wouldn't pay" },
+          { value: '5_10', label: '$5–10/mo' },
+          { value: '10_20', label: '$10–20/mo' },
+          { value: '20_50', label: '$20–50/mo' },
+          { value: '50_plus', label: '$50+/mo' },
+        ],
+      },
+      {
+        number: 'Question 8 of 8',
+        name: 'q8_anything',
+        type: 'textarea',
+        label: 'Anything else you want us to know?',
+        hint: 'Optional — but we read every response',
+        placeholder: 'Feedback, ideas, love letters, complaints...',
+      },
+    ],
+    submitButton: 'Submit Feedback',
+    submitting: 'Submitting...',
+    errorAlert: 'Something went wrong. Please try again.',
+    privacyNote: "your responses are confidential. we may use anonymised quotes for product improvement — we'll always ask before attributing anything to you.",
+    thankYouHeading: 'Thank you!',
+    thankYouBody: 'Your feedback is genuinely shaping what we build next.<br />Your agent appreciates you too.',
+  },
+  'pt-br': {
+    metaTitle: 'Liv4All — Feedback do Alpha',
+    metaDescription: 'Compartilhe seu feedback sobre o alpha da Liv.',
+    heading: 'Feedback do Alpha da Liv4All',
+    subtitle: 'sua opinião sincera molda o que vamos construir a seguir',
+    timeBadge: '⏱ leva ~3 minutos',
+    aboutYou: 'Sobre você',
+    nameLabel: 'Nome',
+    namePlaceholder: 'Seu nome',
+    emailLabel: 'Email',
+    emailPlaceholder: 'seu@email.com',
+    questions: [
+      {
+        number: 'Pergunta 1 de 8',
+        name: 'q1_frequency',
+        type: 'radio',
+        required: true,
+        label: 'Com que frequência você interage com o seu agente?',
+        options: [
+          { value: 'multiple_daily', label: 'Várias vezes por dia' },
+          { value: 'once_daily', label: 'Uma vez por dia' },
+          { value: 'few_weekly', label: 'Algumas vezes por semana' },
+          { value: 'rarely', label: 'Raramente / testei e parei' },
+        ],
+      },
+      {
+        number: 'Pergunta 2 de 8',
+        name: 'q2_time_saver',
+        type: 'textarea',
+        required: true,
+        label: 'Qual é a coisa que o seu agente faz que mais economiza o seu tempo?',
+        placeholder: 'ex: triagem dos meus emails, agendar reuniões, briefings matinais...',
+      },
+      {
+        number: 'Pergunta 3 de 8',
+        name: 'q3_surprise',
+        type: 'textarea',
+        label: 'O seu agente já fez algo que genuinamente te surpreendeu?',
+        hint: 'Aqueles momentos de "peraí, ele fez isso?"',
+        placeholder: 'Conta pra gente um momento em que o seu agente te impressionou...',
+      },
+      {
+        number: 'Pergunta 4 de 8',
+        name: 'q4_frustrations',
+        type: 'textarea',
+        label: 'O que ainda é frustrante ou está faltando?',
+        hint: 'Seja brutal — isso nos ajuda a construir melhor',
+        placeholder: 'O que não funciona bem? O que você gostaria que ele pudesse fazer?',
+      },
+      {
+        number: 'Pergunta 5 de 8',
+        name: 'q5_describe',
+        type: 'textarea',
+        required: true,
+        label: 'Como você descreveria a Liv4All para um amigo em uma frase?',
+        placeholder: 'É tipo...',
+      },
+      {
+        number: 'Pergunta 6 de 8',
+        name: 'q6_pmf',
+        type: 'radio',
+        required: true,
+        label: 'Se a Liv4All desaparecesse amanhã, como você se sentiria?',
+        options: [
+          { value: 'very_disappointed', label: 'Muito decepcionado(a)' },
+          { value: 'somewhat_disappointed', label: 'Um pouco decepcionado(a)' },
+          { value: 'not_disappointed', label: 'Nada decepcionado(a)' },
+        ],
+      },
+      {
+        number: 'Pergunta 7 de 8',
+        name: 'q7_pricing',
+        type: 'radio',
+        required: true,
+        label: 'Você pagaria por isso? Se sim, quanto por mês parece justo?',
+        options: [
+          { value: 'wouldnt_pay', label: 'Não pagaria' },
+          { value: '5_10', label: 'US$ 5–10/mês' },
+          { value: '10_20', label: 'US$ 10–20/mês' },
+          { value: '20_50', label: 'US$ 20–50/mês' },
+          { value: '50_plus', label: 'US$ 50+/mês' },
+        ],
+      },
+      {
+        number: 'Pergunta 8 de 8',
+        name: 'q8_anything',
+        type: 'textarea',
+        label: 'Mais alguma coisa que você quer que a gente saiba?',
+        hint: 'Opcional — mas lemos todas as respostas',
+        placeholder: 'Feedback, ideias, cartas de amor, reclamações...',
+      },
+    ],
+    submitButton: 'Enviar Feedback',
+    submitting: 'Enviando...',
+    errorAlert: 'Algo deu errado. Por favor, tente de novo.',
+    privacyNote: 'suas respostas são confidenciais. podemos usar citações anonimizadas para melhorar o produto — sempre vamos perguntar antes de atribuir qualquer coisa a você.',
+    thankYouHeading: 'Obrigado!',
+    thankYouBody: 'Seu feedback está genuinamente moldando o que vamos construir a seguir.<br />Seu agente também agradece.',
+  },
+} satisfies Record<Lang, Copy>)[lang];
+---
+<BaseLayout
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  ogUrl={canonicalUrl('/survey', lang)}
+  canonical={canonicalUrl('/survey', lang)}
+  lang={lang}
+>
+  <div class="survey-container fade-in">
+    <div class="survey-header">
+      <h1>{copy.heading}</h1>
+      <p>{copy.subtitle}</p>
+      <div class="time-badge">{copy.timeBadge}</div>
+    </div>
+
+    <form id="surveyForm">
+      <div class="question">
+        <div class="question-number">{copy.aboutYou}</div>
+        <label>{copy.nameLabel}</label>
+        <textarea name="name" placeholder={copy.namePlaceholder} style="min-height: 44px;" required></textarea>
+      </div>
+
+      <div class="question" style="margin-top: 1.5rem;">
+        <label>{copy.emailLabel}</label>
+        <textarea name="email" placeholder={copy.emailPlaceholder} style="min-height: 44px;" required></textarea>
+      </div>
+
+      {copy.questions.map((q) => (
+        <>
+          <div class="section-divider"></div>
+
+          <div class="question">
+            <div class="question-number">{q.number}</div>
+            <label>{q.label}</label>
+            {q.hint && <div class="hint">{q.hint}</div>}
+            {q.type === 'radio' ? (
+              <div class="options">
+                {q.options.map((opt, i) => (
+                  <label class="option">
+                    <input type="radio" name={q.name} value={opt.value} required={q.required && i === 0} />
+                    <span>{opt.label}</span>
+                  </label>
+                ))}
+              </div>
+            ) : (
+              <textarea name={q.name} placeholder={q.placeholder} required={q.required}></textarea>
+            )}
+          </div>
+        </>
+      ))}
+
+      <div class="submit-section">
+        <button
+          type="submit"
+          class="submit-btn"
+          id="submitBtn"
+          data-label-submit={copy.submitButton}
+          data-label-submitting={copy.submitting}
+          data-error-alert={copy.errorAlert}
+        >{copy.submitButton}</button>
+        <p class="privacy-note">{copy.privacyNote}</p>
+      </div>
+    </form>
+
+    <div class="thank-you" id="thankYou">
+      <div class="heart">🖤</div>
+      <h2>{copy.thankYouHeading}</h2>
+      <p set:html={copy.thankYouBody} />
+    </div>
+  </div>
+
+  <script is:inline>
+    document.getElementById('surveyForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = btn.dataset.labelSubmitting;
+
+      const formData = new FormData(this);
+
+      try {
+        const resp = await fetch('https://formspree.io/f/xbdzbekz', {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (resp.ok) {
+          document.getElementById('surveyForm').style.display = 'none';
+          document.getElementById('thankYou').style.display = 'block';
+        } else {
+          throw new Error('Submit failed');
+        }
+      } catch (err) {
+        console.error('Submit error:', err);
+        btn.disabled = false;
+        btn.textContent = btn.dataset.labelSubmit;
+        alert(btn.dataset.errorAlert);
+      }
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .survey-container {
+    width: min(800px, 100%);
+    margin: 0 auto;
+    padding: 3rem 24px;
+    padding-top: 100px;
+  }
+
+  .survey-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .survey-header h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .survey-header p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+
+  .survey-header .time-badge {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 6px 14px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    color: var(--pink);
+  }
+
+  .question {
+    margin-bottom: 2.5rem;
+  }
+
+  .question-number {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .question label {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  .question .hint {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+    font-style: italic;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .option:hover {
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+
+  .option input[type="radio"] {
+    accent-color: var(--accent);
+    width: 16px;
+    height: 16px;
+  }
+
+  .option span {
+    font-size: 0.95rem;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.75rem 1rem;
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 0.95rem;
+    resize: vertical;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  textarea:focus {
+    outline: none;
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+
+  textarea::placeholder {
+    color: #4a4a5a;
+  }
+
+  .submit-section {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .submit-btn {
+    display: inline-block;
+    padding: 0.9rem 3rem;
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .privacy-note {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: #4a4a5a;
+  }
+
+  .thank-you {
+    display: none;
+    text-align: center;
+    padding: 4rem 1rem;
+  }
+
+  .thank-you h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  .thank-you p {
+    color: var(--text-dim);
+    font-size: 1rem;
+  }
+
+  .thank-you .heart {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+    margin: 2rem 0;
+  }
+
+  @media (max-width: 600px) {
+    .survey-container { padding: 2rem 1rem; padding-top: 80px; }
+    .survey-header h1 { font-size: 1.4rem; }
+  }
+</style>

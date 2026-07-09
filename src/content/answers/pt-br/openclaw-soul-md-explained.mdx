@@ -1,0 +1,76 @@
+---
+title: "O SOUL.md do OpenClaw explicado"
+question: "O que é o arquivo SOUL.md no OpenClaw?"
+answer: "O SOUL.md é o arquivo de identidade do OpenClaw: um documento Markdown em texto puro que define a personalidade, o tom, os valores e as regras de operação do agente. É o arquivo mais importante que você escreve, e um bom leva 20–45 minutos."
+description: "SOUL.md é o arquivo de identidade do OpenClaw, definindo personalidade e regras do agente. Veja o que vai nele e como ele funciona com os outros arquivos."
+topic: openclaw
+intent: definitional
+datePublished: 2026-06-01
+related:
+  - what-is-openclaw
+  - openclaw-setup-guide
+  - how-to-give-your-ai-agent-memory
+---
+
+O `SOUL.md` é o arquivo que transforma o OpenClaw de um modelo genérico no seu agente. É Markdown puro, não código, e define quem o agente é: seu nome, personalidade, tom, valores e as regras que ele segue ao decidir o que fazer. Acerte nele e o agente parece consistente e útil; deixe-o raso e o agente parece genérico.
+
+De todos os arquivos que você toca ao configurar o [OpenClaw](https://github.com/openclaw/openclaw), este é o que merece calma. Reserve 20–45 minutos para escrever um bom.
+
+## Como funciona
+
+O OpenClaw carrega o `SOUL.md` como parte do contexto que molda cada decisão do loop do agente. Como o agente o lê a cada ciclo, o arquivo se comporta como um system prompt persistente: uma identidade estável que sobrevive entre conversas e sessões.
+
+Ele convive com os outros arquivos de configuração, cada um com uma função distinta:
+
+- **`SOUL.md`**: identidade, personalidade, tom e regras de operação.
+- **`HEARTBEAT.md`**: a agenda do agente, o que ele faz e quando.
+- **`AGENTS.md`**: contexto de trabalho sobre agentes e ferramentas.
+- **`USER.md`**: contexto sobre você, a pessoa a quem ele serve.
+- **Arquivos de memória**: o que o agente aprende com o tempo; veja [como dar memória ao seu agente de IA](/pt-br/answers/how-to-give-your-ai-agent-memory).
+
+Um `SOUL.md` forte é específico. Instruções vagas como "seja útil" produzem comportamento sem graça; orientação concreta sobre tom, limites e como lidar com ambiguidade produz um agente que age do jeito que você quer.
+
+## Exemplo na prática
+
+Um `SOUL.md` prático normalmente cobre estas seções:
+
+| Seção | O que ela define |
+| --- | --- |
+| Identidade | Nome, papel, para quem trabalha |
+| Personalidade e tom | Como fala, formalidade, humor |
+| Valores e prioridades | O que otimiza, o que não faz |
+| Regras de operação | Quando agir vs perguntar, regras de escalonamento |
+| Limites | Temas ou ações que exigem aprovação |
+
+O tempo investido aqui rende em cada interação, e é por isso que os guias de configuração recomendam tratá-lo como a tarefa principal e não como um detalhe. O [guia de configuração](/pt-br/answers/openclaw-setup-guide) o coloca como a etapa final e mais ponderada.
+
+## Experimente na Liv
+
+A Liv roda o mesmo loop de agente do OpenClaw, com identidade e comportamento configurados para você e refinados com o uso, então você tem um agente coerente sem escrever arquivos de configuração.
+
+1. Comece um teste gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Envie mensagem para a Liv no Telegram, o canal padrão.
+3. Conecte Gmail e Calendar via Google OAuth.
+4. Opcionalmente, vincule o WhatsApp (apenas por convite, exige um eSIM dedicado).
+
+O onboarding está em acesso antecipado e em lotes.
+
+## Perguntas comuns
+
+### O SOUL.md é código?
+Não. É texto puro em Markdown. Você descreve o agente em linguagem natural, sem necessidade de programação.
+
+### Qual deve ser o tamanho do SOUL.md?
+Longo o suficiente para ser específico. Um bom leva 20–45 minutos para escrever e cobre identidade, tom, regras e limites.
+
+### Posso mudar o SOUL.md depois?
+Sim. Edite o arquivo e o agente assume a nova identidade no próximo ciclo do loop.
+
+### Qual é a diferença entre SOUL.md e memória?
+O `SOUL.md` é a identidade fixa que você escreve; a memória é o que o agente acumula com o tempo. Veja [memória do agente de IA](/pt-br/answers/how-to-give-your-ai-agent-memory).
+
+### Os outros arquivos de configuração importam tanto quanto?
+Importam, mas o `SOUL.md` é o que mais molda o comportamento. `HEARTBEAT.md`, `AGENTS.md` e `USER.md` dão suporte a ele.
+
+### A Liv usa SOUL.md?
+A Liv é construída sobre o OpenClaw e configura a identidade do agente para você. É um serviço gerenciado independente, sem afiliação com o projeto OpenClaw.

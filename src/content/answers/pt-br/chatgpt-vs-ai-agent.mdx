@@ -1,0 +1,67 @@
+---
+title: "ChatGPT vs um agente de IA: responder versus agir"
+question: "Qual é a diferença entre o ChatGPT e um agente de IA?"
+answer: "O ChatGPT responde perguntas e redige textos em uma janela de chat. Um agente de IA roda continuamente, mantém memória e executa ações nas suas contas reais, como enviar e-mails ou marcar um horário na agenda."
+description: "ChatGPT vs agente de IA: um responde perguntas, o outro age nas suas contas. Entenda a diferença e quando cada um é a ferramenta certa."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - ai-agent-vs-chatbot
+  - ai-that-can-take-actions-not-just-answer
+  - what-is-an-autonomous-ai-agent
+---
+
+O ChatGPT é um assistente conversacional: você pergunta, ele responde. É excelente para redigir, resumir, explicar e raciocinar. O que ele não faz, na forma padrão de chat, é entrar na sua caixa de entrada, vigiar sua agenda ou dar seguimento a uma tarefa amanhã sem você pedir de novo.
+
+Um agente de IA é feito exatamente para essa lacuna. Ele roda em um loop, mantém memória entre conversas e está conectado às ferramentas onde seu trabalho acontece, então consegue agir em vez de apenas aconselhar.
+
+## Como funciona
+
+O ChatGPT opera por prompt. Cada mensagem é uma solicitação, e o assistente responde dentro do chat. O recurso ChatGPT Agent da OpenAI (que substituiu o Operator) estende isso com alguma navegação autônoma, mas o produto do dia a dia é fundamentalmente pergunta-e-resposta dentro de uma janela.
+
+Um [agente de IA autônomo](/pt-br/answers/what-is-an-autonomous-ai-agent) funciona diferente. Ele lê eventos que chegam (um e-mail novo, uma verificação agendada), decide o que fazer, chama ferramentas e guarda o resultado para a próxima vez. O [OpenClaw](https://github.com/openclaw/openclaw), o framework de agente open-source, é um exemplo claro: roda um [loop de agente](/pt-br/answers/how-an-ai-agent-loop-works) persistente, conecta-se a Gmail e Calendar via OAuth e conversa pelo Telegram ou WhatsApp. A distinção é ação e persistência, não inteligência bruta; ambos podem usar os mesmos modelos subjacentes. Veja [agente vs chatbot](/pt-br/answers/ai-agent-vs-chatbot) para mais.
+
+## Exemplo na prática
+
+| Capacidade | ChatGPT (chat) | Agente de IA (ex.: Liv) |
+| --- | --- | --- |
+| Responder uma pergunta | Sim | Sim |
+| Redigir um e-mail | Sim | Sim, e envia mediante aprovação |
+| Ler sua caixa de entrada real | Não | Sim, via OAuth |
+| Agir de madrugada em um cronograma | Não | Sim |
+| Lembrar contexto ao longo de dias | Limitado | Memória persistente |
+| Reservar um restaurante ou horário na agenda | Não | Sim |
+
+Se você precisa de uma ferramenta de pensar e escrever, o ChatGPT é a escolha certa. Se precisa de algo que faça triagem de e-mail e aja em seu nome, você quer um agente.
+
+## Experimente na Liv
+
+A Liv é um agente de IA acessado pelo Telegram. Ela faz triagem de e-mail, gerencia sua agenda, faz reservas e envia briefings diários, com rascunhos de saída retidos para sua aprovação antes do envio.
+
+1. Comece um teste gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (somente por convite, exige um eSIM dedicado).
+
+O onboarding está em early access e é feito em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### O ChatGPT pode ler meu e-mail?
+Não no chat padrão. Ele não tem acesso permanente à sua caixa de entrada. Um agente com integração OAuth pode, com a sua permissão.
+
+### Um agente de IA é só o ChatGPT com passos extras?
+Eles podem compartilhar o mesmo modelo, mas um agente acrescenta um loop persistente, memória e integrações reais. Veja [o que um agente faz que um chatbot não faz](/pt-br/answers/ai-that-can-take-actions-not-just-answer).
+
+### O ChatGPT Agent conta como agente?
+Ele acrescenta navegação autônoma limitada, mas não está conectado às suas contas pessoais como um agente assistente dedicado.
+
+### O agente vai enviar e-mails sem perguntar?
+Com a Liv, rascunhos de saída precisam da sua aprovação antes do envio. Você mantém o controle do que sai.
+
+### Qual usa um modelo melhor?
+Ambos podem usar modelos de ponta; um agente como o OpenClaw é agnóstico de LLM. A diferença é o que ele faz com o modelo, não qual modelo é.
+
+### A Liv é afiliada à OpenAI?
+Não. A Liv é um serviço gerenciado independente construído sobre o OpenClaw, sem afiliação ou endosso da OpenAI.

@@ -1,0 +1,68 @@
+---
+title: "O OpenClaw é gratuito?"
+question: "O OpenClaw é gratuito para usar?"
+answer: "Sim. O OpenClaw é gratuito e open-source sob a licença MIT. O software não custa nada; você paga apenas pelo servidor em que ele roda e pelo seu uso da API de LLM, tipicamente abaixo de $100/mês somados."
+description: "O OpenClaw é gratuito sob a licença MIT. O software é grátis; você paga só hospedagem e uso da API de LLM, geralmente abaixo de $100/mês no total."
+topic: openclaw
+intent: informational
+datePublished: 2026-06-01
+related:
+  - how-much-does-openclaw-cost-to-run
+  - openclaw-hosting
+  - what-is-openclaw
+---
+
+O OpenClaw em si é genuinamente gratuito. Ele é lançado sob a licença MIT, uma das licenças open-source mais permissivas, o que significa que você pode rodar, modificar e até comercializar sem pagar pelo software. Com mais de 15.000 estrelas no GitHub e mais de 200 contribuidores, é um projeto comunitário mantido, não um funil freemium.
+
+"Software gratuito" não é o mesmo que "gratuito para operar", porém. Não há taxa de licença, mas rodar um agente sempre ligado tem dois custos recorrentes inevitáveis: um lugar para hospedá-lo e o LLM com que ele pensa.
+
+## Como funciona
+
+O [OpenClaw](https://github.com/openclaw/openclaw) é baixado e executado em infraestrutura que você controla. As duas linhas de custo são:
+
+- **Hospedagem.** Um VPS pequeno que atenda às [especificações mínimas](/pt-br/answers/openclaw-system-requirements) (cerca de 2 núcleos, 2 GB de RAM). Hosts gerenciados de baixo custo como OneClaw ou Blink Claw ficam em ~$12–22/mês se você preferir não gerenciar um servidor.
+- **Uso da API de LLM.** O OpenClaw é agnóstico de LLM, então você paga ao seu provedor (Claude, GPT, Gemini, DeepSeek) pelo que o agente consome.
+
+Somados, infra mais API de LLM tipicamente ficam abaixo de $100/mês. Há também um custo de tempo: cerca de 1–3 horas/mês de [manutenção](/pt-br/answers/self-host-ai-agent-maintenance) que não aparece em nenhuma fatura. Para o detalhamento completo, veja [quanto custa rodar o OpenClaw](/pt-br/answers/how-much-does-openclaw-cost-to-run).
+
+## Exemplo na prática
+
+| Item | Custo | Gratuito? |
+| --- | --- | --- |
+| Software OpenClaw (MIT) | $0 | Sim |
+| Hospedagem (VPS ou gerenciado barato) | ~$12–100/mês | Não |
+| Uso da API de LLM | Pague pelo uso | Não |
+| Seu tempo de manutenção | ~1–3 h/mês | Não |
+
+Então a resposta é "gratuito para baixar, não gratuito para rodar". Para a maioria das pessoas, o custo relevante é o uso do LLM mais as horas de manutenção.
+
+## Experimente na Liv
+
+Se você quer preço previsível e nenhuma manutenção, a Liv roda o loop de agente do OpenClaw como serviço gerenciado por uma mensalidade fixa.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão.
+3. Conecte Gmail e Calendar via Google OAuth.
+4. Opcionalmente, vincule o WhatsApp (somente por convite, precisa de um eSIM dedicado).
+
+A Liv custa Pro $79/mês ou Max $149/mês. O onboarding está em early access e por lotes.
+
+## Perguntas comuns
+
+### O OpenClaw tem um plano pago?
+Não. O projeto é totalmente licenciado sob MIT e gratuito. Os custos vêm apenas de hospedagem e uso de LLM.
+
+### Qual é o jeito mais barato de rodar?
+Um VPS pequeno ou um host gerenciado de baixo custo (~$12–22/mês), mais um uso modesto de LLM.
+
+### Quanto custa rodar de verdade?
+Infra mais API de LLM geralmente ficam abaixo de $100/mês. Veja [o detalhamento completo de custos](/pt-br/answers/how-much-does-openclaw-cost-to-run).
+
+### Há custos escondidos?
+O principal é o seu tempo: cerca de 1–3 horas/mês de manutenção.
+
+### A Liv é gratuita?
+A Liv tem um trial gratuito de 14 dias sem cartão, depois Pro $79/mês ou Max $149/mês. É um serviço gerenciado independente construído sobre o OpenClaw.
+
+### Posso comercializar algo construído sobre o OpenClaw?
+Sim. A licença MIT permite uso comercial, que é exatamente como serviços gerenciados são construídos em cima dele.

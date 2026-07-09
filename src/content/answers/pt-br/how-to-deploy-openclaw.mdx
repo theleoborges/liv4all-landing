@@ -1,0 +1,70 @@
+---
+title: "Como fazer deploy do OpenClaw"
+question: "Como faço deploy do OpenClaw?"
+answer: "Faça deploy do OpenClaw com Docker ou Node em qualquer servidor em cerca de 15 minutos, ou use o template one-click da Railway em cerca de 5. Depois você adiciona uma chave de API de LLM, conecta um canal de chat e escreve o SOUL.md dele."
+description: "Deploy do OpenClaw em ~15 minutos com Docker ou Node, ou ~5 com o template one-click da Railway. Passo a passo, mais a alternativa gerenciada."
+topic: openclaw
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - openclaw-setup-guide
+  - openclaw-system-requirements
+  - how-to-run-openclaw-without-devops
+---
+
+Fazer deploy do [OpenClaw](https://github.com/openclaw/openclaw) é rápido quando você tem onde rodá-lo. Há duas rotas comuns: um template one-click na nuvem se você quer o caminho mais curto, ou uma instalação manual com Docker ou Node se quer controle total da máquina. As duas te deixam com um agente rodando em bem menos de uma hora.
+
+O que demora mais não é a instalação, é a configuração: conectar seu LLM e seus canais e então escrever a identidade do agente. Reserve tempo para isso à parte.
+
+## Como funciona
+
+A rota mais rápida é o template one-click da Railway, que provisiona um host e inicia o OpenClaw em cerca de 5 minutos. Para mais controle, instale manualmente:
+
+1. **Provisione um servidor** que atenda às [especificações mínimas](/pt-br/answers/openclaw-system-requirements): cerca de 2 núcleos, 2 GB de RAM, 2 GB de armazenamento. Ubuntu 24.04 é o SO recomendado.
+2. **Baixe e rode o OpenClaw** via Docker (um único arquivo compose) ou diretamente via Node. Isso leva cerca de 15 minutos incluindo dependências.
+3. **Adicione uma chave de API de LLM.** O OpenClaw é agnóstico de LLM, então use Claude, GPT, Gemini ou DeepSeek.
+4. **Conecte um canal** como Telegram ou WhatsApp adicionando o token do bot.
+5. **Escreva o `SOUL.md`** para dar ao agente sua identidade e regras. Reserve de 20 a 45 minutos aqui; veja [SOUL.md explicado](/pt-br/answers/openclaw-soul-md-explained). Para o passo a passo completo da primeira execução, siga o [guia de setup](/pt-br/answers/openclaw-setup-guide).
+
+Depois disso, o agente está no ar e escutando no canal escolhido.
+
+## Exemplo na prática
+
+| Rota | Tempo até rodar | O que ainda fica com você |
+| --- | --- | --- |
+| Railway one-click | ~5 min | Chave de LLM, SOUL.md, operação contínua |
+| Docker / Node manual | ~15 min | Servidor, chave de LLM, SOUL.md, operação contínua |
+| Liv (gerenciado) | inscrição no trial | Nada; operação resolvida |
+
+Qualquer rota de self-host te deixa com manutenção contínua de cerca de 1–3 horas por mês: renovar tokens OAuth expirados, aplicar atualizações do código-base, ajustar o heartbeat e depurar falhas de skills. Infra mais API de LLM normalmente fica abaixo de $100/mês.
+
+## Experimente na Liv
+
+Se você quer o loop de agente do OpenClaw sem provisionar e atualizar um servidor, a Liv o roda como serviço gerenciado.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, que é o canal padrão.
+3. Conecte Gmail e Calendar via Google OAuth.
+4. Opcionalmente, vincule o WhatsApp (por convite, requer um eSIM dedicado).
+
+O onboarding está em early access e é feito em lotes, então espere uma fila curta.
+
+## Perguntas comuns
+
+### Qual é o jeito mais rápido de fazer deploy do OpenClaw?
+O template one-click da Railway, com cerca de 5 minutos até uma instância rodando. Uma instalação manual com Docker ou Node leva cerca de 15.
+
+### Preciso de Docker?
+Não. Você pode rodar o OpenClaw diretamente com Node, mas o Docker mantém as dependências organizadas e é a escolha comum.
+
+### Onde devo hospedá-lo?
+Qualquer VPS que atenda às [especificações mínimas](/pt-br/answers/openclaw-system-requirements) serve.
+
+### Quanto custa para rodar?
+Infra mais API de LLM tipicamente fica abaixo de $100/mês.
+
+### Consigo fazer deploy sem experiência em DevOps?
+Em grande parte, sim, especialmente pelo template one-click. Veja [rodar o OpenClaw sem DevOps](/pt-br/answers/how-to-run-openclaw-without-devops).
+
+### Existe uma opção totalmente gerenciada?
+Sim. A Liv é um serviço gerenciado independente construído sobre o OpenClaw, sem afiliação com o projeto OpenClaw, e ela elimina por completo as etapas de deploy e manutenção.

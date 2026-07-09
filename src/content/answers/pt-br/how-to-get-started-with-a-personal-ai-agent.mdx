@@ -1,0 +1,68 @@
+---
+title: "Como começar com um agente de IA pessoal"
+question: "Como começo com um agente de IA pessoal?"
+answer: "Decida primeiro se você quer construir e rodar por conta própria ou usar um serviço gerenciado. Para self-host, faça o deploy de um agente open-source como o OpenClaw, escreva seus arquivos de configuração e conecte seus canais. Para pular as ops, comece um trial gerenciado, mande mensagem para o agente e conecte Gmail e Calendar via OAuth."
+description: "Primeiros passos com um agente de IA pessoal: decida entre construir ou comprar, faça self-host do OpenClaw ou inicie um trial gerenciado e conecte contas."
+topic: getting-started
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - how-to-build-a-personal-ai-agent
+  - build-vs-buy-ai-agent
+  - what-is-an-ai-chief-of-staff
+---
+
+Um agente de IA pessoal é um sistema contínuo, não uma sessão de chat isolada: ele lembra contexto, segue uma agenda e executa ações por você através dos aplicativos que você já usa. Começar é basicamente uma decisão seguida de uma configuração curta. A decisão é se você quer ser dono da infraestrutura ou ter alguém rodando ela por você.
+
+Os dois caminhos levam a mais ou menos a mesma capacidade, então escolha pelo apetite por operações, não pelos recursos.
+
+## Como funciona
+
+A primeira bifurcação é [construir ou comprar](/pt-br/answers/build-vs-buy-ai-agent).
+
+**Se você quer self-host**, o caminho open-source é bem batido. Faça o deploy do [OpenClaw](https://github.com/openclaw/openclaw) via Docker ou Node em cerca de 15 minutos, ou com um template de um clique do Railway em cerca de 5. Depois você escreve os arquivos de configuração: `SOUL.md` para a identidade e personalidade (reserve 20–45 minutos para fazer bem feito), `HEARTBEAT.md` para a agenda, além de `AGENTS.md` e `USER.md` para o contexto de trabalho. Conecte seus canais (Telegram, WhatsApp e outros) e aponte-o para um LLM. Depois disso, você carrega cerca de 1–3 horas de [manutenção](/pt-br/answers/self-host-ai-agent-maintenance) por mês. Veja o [guia completo de construção](/pt-br/answers/how-to-build-a-personal-ai-agent).
+
+**Se você quer pular as ops**, use um serviço gerenciado. Você começa um trial, manda mensagem para o agente e conecta suas contas por OAuth; a hospedagem, os patches e a segurança ficam por conta do serviço. A [comparação de custos](/pt-br/answers/how-much-does-a-managed-ai-agent-cost) mostra quanto cada caminho custa.
+
+## Exemplo na prática
+
+Os dois caminhos para começar, lado a lado.
+
+| Etapa | Self-host do OpenClaw | Gerenciado (Liv) |
+| --- | --- | --- |
+| Configuração inicial | Deploy + escrever arquivos de configuração | Começar um trial de 14 dias, sem cartão |
+| Tempo até o primeiro uso | ~30–60 min incluindo o SOUL.md | Minutos após o onboarding |
+| Conectar e-mail/calendário | Configurar OAuth por conta própria | Clicar pelo Google OAuth |
+| Trabalho contínuo | ~1–3 h/mês | Nenhum |
+| Segurança | Sua responsabilidade | CASA Tier 2, cofres criptografados |
+
+## Experimente na Liv
+
+A Liv é o loop de agente do OpenClaw embalado em infraestrutura gerenciada, então começar é conectar contas em vez de rodar servidores.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem precisar de cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (somente por convite, precisa de um eSIM dedicado).
+
+A partir daí, peça a ela um [briefing diário](/pt-br/answers/how-to-get-a-daily-ai-briefing), a [triagem da sua caixa de entrada](/pt-br/answers/ai-to-triage-your-email) ou a gestão do seu calendário. O onboarding está atualmente em early access e por lotes, então você pode entrar numa fila.
+
+## Perguntas comuns
+
+### Preciso ser técnico para começar?
+Para self-host, familiaridade com um terminal ajuda, embora a configuração seja Markdown puro, não código. Um serviço gerenciado não exige configuração técnica além de conectar contas.
+
+### O que um agente de IA pessoal consegue fazer de verdade?
+Triagem de e-mail, gestão de calendário, briefings diários, transformar mensagens encaminhadas em eventos e fazer reservas. É a ideia do [Chief of Staff de IA](/pt-br/answers/what-is-an-ai-chief-of-staff).
+
+### Qual aplicativo de mensagens devo usar?
+O Telegram é o padrão mais comum e é obrigatório na Liv; o WhatsApp também está disponível. Veja [o melhor aplicativo de mensagens para um agente de IA](/pt-br/answers/best-messaging-app-for-an-ai-agent).
+
+### Quanto tempo leva a configuração?
+Self-host leva cerca de 15 minutos de deploy mais o tempo de configuração. Um trial gerenciado fica usável em minutos após o onboarding.
+
+### Devo construir ou comprar?
+Construa por controle e aprendizado, compre para pular as ops e o trabalho de compliance. Leia [construir ou comprar](/pt-br/answers/build-vs-buy-ai-agent).
+
+### Quanto custa para começar?
+Um trial gerenciado é gratuito por 14 dias. Depois disso, veja [quanto custa um agente de IA gerenciado](/pt-br/answers/how-much-does-a-managed-ai-agent-cost).

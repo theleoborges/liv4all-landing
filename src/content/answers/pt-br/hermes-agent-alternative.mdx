@@ -1,0 +1,65 @@
+---
+title: "Alternativas ao Hermes Agent: opções self-hosted e gerenciadas"
+question: "Quais são as melhores alternativas ao Hermes Agent?"
+answer: "A alternativa open-source mais próxima é o OpenClaw, outro agente pessoal self-hosted com um ecossistema de integrações maior. Se você prefere não fazer self-host, um agente gerenciado como a Liv oferece um agente persistente sem nenhuma operação."
+description: "Alternativas ao Hermes Agent comparadas: OpenClaw para mais integrações, ou um agente gerenciado como a Liv se você não quer manter um VPS."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-02
+related:
+  - what-is-hermes-agent
+  - run-hermes-agent-without-a-vps
+  - self-hosted-vs-managed-ai-agent
+---
+
+O [Hermes Agent](/pt-br/answers/what-is-hermes-agent) é uma excelente escolha open-source se você quer um agente enxuto e autoaprimorável que roda por sua conta. As pessoas procuram alternativas por dois motivos: querem um ecossistema de integrações mais amplo, ou não querem manter um servidor. Cada motivo aponta para uma opção diferente.
+
+Tenha clareza sobre o que você realmente quer antes de trocar. As alternativas se dividem exatamente nessa linha.
+
+## Como funciona
+
+Se você quer continuar self-hosted e open-source, mas com mais alcance, o [OpenClaw](https://github.com/openclaw/openclaw) é a comparação natural: 15.000+ estrelas, 200+ contribuidores, cerca de 24 plataformas suportadas e uma grande biblioteca de skills. O self-host é via Docker, Node ou um template one-click da Railway. A análise completa está em [Hermes Agent vs OpenClaw](/pt-br/answers/hermes-agent-vs-openclaw).
+
+Se o atrito real é o servidor, então a alternativa não é outro agente self-hosted, e sim um gerenciado. Um [agente de IA pessoal gerenciado](/pt-br/answers/self-hosted-vs-managed-ai-agent) entrega o mesmo resultado, um agente persistente com memória que vive nos seus apps de chat e age sobre seu e-mail e calendário, enquanto outra pessoa roda a infraestrutura, aplica atualizações e cuida da segurança.
+
+## Exemplo na prática
+
+| Quer | Melhor alternativa | Por quê |
+| --- | --- | --- |
+| Mais integrações, ainda self-host | OpenClaw | ~24 plataformas, grande ecossistema de skills |
+| Enxuto, autoaprimorável, totalmente local | Ficar no Hermes Agent | Loop de aprendizado, footprint de VPS de $5 |
+| Nenhum servidor para manter | Agente gerenciado (ex.: Liv) | Agente persistente, zero operação |
+| Tarefas pontuais na nuvem | Manus | Sandbox, sem integrações, preço por créditos |
+
+Fazer self-host do Hermes Agent ou do OpenClaw ainda custa cerca de 1–3 horas por mês de manutenção: expiração de tokens OAuth, atualizações, debugging. Um agente gerenciado elimina isso. Veja [manutenção de um agente de IA self-hosted](/pt-br/answers/self-host-ai-agent-maintenance) para saber onde esse tempo vai.
+
+## Experimente na Liv
+
+A Liv é a alternativa gerenciada para quem quer um agente pessoal persistente sem rodar nem manter nada por conta própria.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem precisar de cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (por convite, requer um eSIM dedicado).
+
+O onboarding está em early access e é feito em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### Qual é a alternativa open-source mais próxima do Hermes Agent?
+O OpenClaw, outro agente pessoal self-hosted com licença MIT. Ele troca o loop de aprendizado do Hermes Agent por um ecossistema de integrações muito maior.
+
+### Existe uma opção de Hermes Agent sem servidor?
+Sim, um agente gerenciado. Veja [rodar o Hermes Agent sem um VPS](/pt-br/answers/run-hermes-agent-without-a-vps).
+
+### Quanto custa um agente gerenciado versus self-host?
+Infra de self-host mais uso de LLM tipicamente fica abaixo de $100/mês, antes do seu próprio tempo. O preço gerenciado é fixo; veja [quanto custa um agente de IA gerenciado](/pt-br/answers/how-much-does-a-managed-ai-agent-cost).
+
+### Um agente gerenciado mantém memória persistente como o Hermes Agent?
+Sim. Um [agente de IA persistente](/pt-br/answers/what-is-a-persistent-ai-agent) mantém memória entre sessões; a Liv armazena segredos em cofres criptografados por usuário.
+
+### O Manus é uma boa alternativa?
+Só para tarefas pontuais e autocontidas na nuvem. Ele não tem integrações e cobra por créditos, então não é uma troca equivalente para um agente pessoal persistente.
+
+### Vou perder controle ao ir para o gerenciado?
+Você mantém o controle no nível da conta: o acesso ao Gmail e ao Calendar é via Google OAuth revogável, e rascunhos de envio precisam da sua aprovação antes de sair.

@@ -1,0 +1,184 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { canonicalUrl, entryLang, entrySlug, localizePath, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const isProd = import.meta.env.PROD;
+const all = (await getCollection('answers', ({ data }) => !data.draft || !isProd)).filter(
+  (a) => entryLang(a.id) === lang
+);
+
+const copy = {
+  en: {
+    metaTitle: 'Answers — Liv4All',
+    metaDescription:
+      'Straight answers on OpenClaw, self-hosting AI agents, and running a managed AI chief of staff.',
+    heading: 'answers',
+    subtitle:
+      'Straight answers on OpenClaw, building and self-hosting AI agents, and what it takes to run a personal AI chief of staff — from the team behind Liv, OpenClaw as a service.',
+    empty: 'No answers published yet.',
+    // Stable topic order + display labels. Keep in sync with ANSWER_TOPICS in content.config.ts.
+    topicLabels: {
+      openclaw: 'OpenClaw',
+      'self-hosting': 'Self-hosting',
+      'ai-agents': 'AI agents',
+      comparisons: 'Comparisons',
+      'use-cases': 'Use cases',
+      messaging: 'Messaging',
+      security: 'Security & privacy',
+      'getting-started': 'Getting started',
+      'small-business': 'Small business',
+    } as Record<string, string>,
+  },
+  'pt-br': {
+    metaTitle: 'Respostas — Liv4All',
+    metaDescription:
+      'Respostas diretas sobre OpenClaw, self-hosting de agentes de IA e como é ter um Chief of Staff de IA gerenciado.',
+    heading: 'respostas',
+    subtitle:
+      'Respostas diretas sobre OpenClaw, sobre construir e hospedar agentes de IA por conta própria e sobre o que é preciso para ter um Chief of Staff de IA pessoal — da equipe por trás da Liv, OpenClaw como serviço.',
+    empty: 'Nenhuma resposta publicada ainda.',
+    topicLabels: {
+      openclaw: 'OpenClaw',
+      'self-hosting': 'Self-hosting',
+      'ai-agents': 'Agentes de IA',
+      comparisons: 'Comparações',
+      'use-cases': 'Casos de uso',
+      messaging: 'Mensagens',
+      security: 'Segurança e privacidade',
+      'getting-started': 'Primeiros passos',
+      'small-business': 'Pequenas empresas',
+    } as Record<string, string>,
+  },
+}[lang];
+
+const TOPIC_ORDER = Object.keys(copy.topicLabels);
+
+const grouped = TOPIC_ORDER.map((topic) => ({
+  topic,
+  label: copy.topicLabels[topic],
+  entries: all
+    .filter((a) => a.data.topic === topic)
+    .sort((a, b) => a.data.title.localeCompare(b.data.title, lang === 'pt-br' ? 'pt-BR' : 'en')),
+})).filter((g) => g.entries.length > 0);
+---
+<BaseLayout
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  ogUrl={canonicalUrl('/answers', lang)}
+  canonical={canonicalUrl('/answers', lang)}
+  lang={lang}
+>
+  <div class="container">
+    <h1>{copy.heading}</h1>
+    <p class="subtitle">{copy.subtitle}</p>
+
+    {all.length === 0 && <p class="empty">{copy.empty}</p>}
+
+    {grouped.map((group) => (
+      <section class="topic">
+        <h2>{group.label}</h2>
+        <ul class="answer-list">
+          {group.entries.map((entry) => (
+            <li>
+              <a href={localizePath(`/answers/${entrySlug(entry.id)}`, lang)}>
+                <span class="q">{entry.data.title}</span>
+                <span class="a">{entry.data.answer}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .container {
+    padding-top: 120px;
+    max-width: 820px;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 56px;
+    line-height: 1.7;
+    max-width: 640px;
+  }
+
+  .empty {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    padding: 48px 0;
+  }
+
+  .topic {
+    margin-bottom: 48px;
+  }
+
+  .topic h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .answer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .answer-list li {
+    margin-bottom: 4px;
+  }
+
+  .answer-list a {
+    display: block;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    color: var(--text);
+  }
+
+  .answer-list a:hover {
+    border-color: rgba(139, 92, 246, 0.25);
+    background: var(--surface-glass);
+    transform: translateX(4px);
+    text-decoration: none;
+  }
+
+  .answer-list .q {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .answer-list .a {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+</style>

@@ -1,0 +1,69 @@
+---
+title: "Dá para rodar o Hermes Agent sem um VPS?"
+question: "Como eu rodo o Hermes Agent sem um VPS?"
+answer: "O Hermes Agent pode rodar localmente ou serverless (via backends como Modal e Daytona) em vez de um VPS, mas o deploy e a manutenção continuam sendo seus. Se você quer um agente persistente sem infraestrutura nenhuma, um agente gerenciado é o caminho sem self-hosting."
+description: "Rode o Hermes Agent sem VPS: use backends locais ou serverless, ou pule o self-hosting com um agente de IA pessoal gerenciado. Opções e trade-offs."
+topic: comparisons
+intent: informational
+datePublished: 2026-06-02
+related:
+  - hermes-agent-alternative
+  - self-hosted-vs-managed-ai-agent
+  - how-much-does-a-managed-ai-agent-cost
+---
+
+Você não precisa estritamente de um VPS para rodar o [Hermes Agent](/pt-br/answers/what-is-hermes-agent). Ele suporta vários backends de terminal, então você pode rodá-lo localmente na sua própria máquina ou levá-lo a plataformas serverless. O que você não evita, se fizer self-host, é ser dono do deploy: a instalação, os upgrades e a depuração.
+
+Então há na verdade duas perguntas escondidas aqui. Você quer rodá-lo em outro lugar que não um servidor alugado? Ou quer não rodá-lo de jeito nenhum?
+
+## Como funciona
+
+O [Hermes Agent](https://github.com/nousresearch/hermes-agent) oferece seis backends de terminal: local, Docker, SSH, Daytona, Singularity e Modal. Isso significa que você tem opções além de um VPS clássico:
+
+- **Local:** rode no seu próprio laptop ou desktop. Bom para testar, mas só funciona enquanto a máquina está ligada e online, então um agente persistente sempre ativo fica desajeitado.
+- **Serverless:** Modal e Daytona permitem rodá-lo sem gerenciar um servidor de longa duração. Você ainda configura e mantém o deploy, mas pula o provisionamento de uma máquina.
+- **Cluster de GPU:** para cargas mais pesadas, se você tiver o hardware.
+
+Mesmo em serverless, o self-hosting carrega cerca de 1–3 horas por mês de manutenção: expiração de tokens OAuth, atualizações do código e depuração quando uma skill falha. Veja [manutenção de um agente de IA self-hosted](/pt-br/answers/self-host-ai-agent-maintenance) e [preciso de um servidor para um agente de IA pessoal](/pt-br/answers/do-i-need-a-server-for-a-personal-ai-agent).
+
+## Exemplo na prática
+
+| Abordagem | Servidor para alugar? | Sempre ativo? | Operação com você? |
+| --- | --- | --- | --- |
+| Hermes Agent, local | Não | Só com a máquina ligada | Sim |
+| Hermes Agent, serverless (Modal/Daytona) | Não (compute gerenciado) | Sim | Sim |
+| Hermes Agent, VPS | Sim ($5+/mês) | Sim | Sim |
+| Agente gerenciado (ex.: Liv) | Não | Sim | Não |
+
+Se o objetivo de evitar um VPS é evitar operação por completo, só a última linha chega lá. Um [agente de IA pessoal gerenciado](/pt-br/answers/self-hosted-vs-managed-ai-agent) roda a infraestrutura para você e permanece sempre ativo.
+
+## Experimente na Liv
+
+A Liv é a opção sem self-hosting: um agente pessoal persistente com memória que vive nos seus apps de chat e age no seu e-mail e calendário, sem nada para você rodar.
+
+1. Comece um teste gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Envie mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (apenas por convite, exige um eSIM dedicado).
+
+O onboarding está em acesso antecipado e em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### O Hermes Agent roda no meu laptop?
+Sim, via backend local. O porém é que ele só roda enquanto o laptop está ligado e conectado, então não é um agente sempre ativo de verdade.
+
+### Quais opções serverless ele suporta?
+Modal e Daytona, entre seus seis backends de terminal. Elas permitem rodá-lo sem provisionar um VPS de longa duração.
+
+### Serverless elimina a manutenção?
+Não. Configuração, tokens OAuth e atualizações continuam com você. Serverless elimina o provisionamento do servidor, não a manutenção.
+
+### Qual é o jeito mais barato de fazer self-host dele?
+Um VPS de $5, ou local em hardware que você já tem. Some o uso de API de LLM, tipicamente mantendo a infra total abaixo de $100/mês.
+
+### E se eu quiser zero infraestrutura?
+Use um agente gerenciado. Veja [quanto custa um agente de IA gerenciado](/pt-br/answers/how-much-does-a-managed-ai-agent-cost) para preço fixo versus custos de self-host.
+
+### Um agente gerenciado é tão privado quanto rodar eu mesmo?
+É um trade-off diferente. A Liv usa cofres criptografados por usuário, Google OAuth revogável e não usa seus dados para treinar modelos; ela passou no Google [CASA Tier 2](/pt-br/answers/what-is-casa-tier-2-gmail).

@@ -1,0 +1,67 @@
+---
+title: "Claude vs um agente de IA que faz coisas por você"
+question: "Qual é a diferença entre o Claude e um agente de IA que executa ações?"
+answer: "Claude e ChatGPT respondem perguntas e redigem conteúdo em um chat. Um agente de IA como a Liv roda continuamente e executa ações nas suas contas: triagem de e-mail, gestão de agenda e reservas."
+description: "Claude vs um agente de IA que age: um responde na janela de chat, o outro atua nas suas contas reais. Veja a diferença e quando cada um se encaixa."
+topic: comparisons
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - chatgpt-vs-ai-agent
+  - ai-that-can-take-actions-not-just-answer
+  - ai-agent-vs-chatbot
+---
+
+O Claude é uma IA conversacional excepcional: raciocina, escreve, resume e explica, e muita gente o usa o dia inteiro. Na forma de chat, porém, ele responde ao que você digita e para por aí. Não fica de guarda sobre sua caixa de entrada nem age na sua agenda entre uma conversa e outra.
+
+Um agente de IA é feito para fechar esse circuito. Ele roda em um cronograma, mantém memória e se conecta às suas ferramentas reais para executar ações, não só produzir respostas. Revelador: um agente muitas vezes usa o Claude como modelo subjacente, a diferença é o que envolve o modelo.
+
+## Como funciona
+
+O Claude funciona por prompt, dentro de uma janela de chat ou via API. Você pergunta, ele responde, lindamente. Não há conexão permanente com seu Gmail ou Calendar no produto do dia a dia, nem acompanhamento autônomo amanhã.
+
+Um [agente de IA autônomo](/pt-br/answers/what-is-an-autonomous-ai-agent) envolve um modelo como o Claude em um [loop de agente](/pt-br/answers/how-an-ai-agent-loop-works): ele reage a eventos, decide, chama ferramentas e lembra. O [OpenClaw](https://github.com/openclaw/openclaw), o framework de agente open-source, é agnóstico de LLM e frequentemente roda o Claude como cérebro, adicionando a persistência e as integrações que faltam ao produto de chat. Então a comparação não é Claude versus agente em termos de capacidade; é um assistente de chat versus um sistema que [executa ações nas suas contas](/pt-br/answers/ai-that-can-take-actions-not-just-answer).
+
+## Exemplo na prática
+
+| Capacidade | Claude (chat) | Agente de IA (ex.: Liv) |
+| --- | --- | --- |
+| Responder e raciocinar | Sim, excelente | Sim, muitas vezes usando o Claude |
+| Redigir um e-mail | Sim | Sim, envia com sua aprovação |
+| Ler sua caixa de entrada real | Não | Sim, via OAuth |
+| Gerenciar sua agenda | Não | Sim |
+| Agir em um cronograma de madrugada | Não | Sim |
+| Lembrar ao longo de dias | Limitado | Memória persistente |
+
+Se você quer um parceiro brilhante de pensamento e escrita, o Claude é a ferramenta. Se quer algo que faça triagem de e-mail e aja por você, você quer um agente construído sobre um modelo como o Claude.
+
+## Experimente na Liv
+
+A Liv é um agente de IA acessado pelo Telegram. Ela faz triagem de e-mail, gerencia sua agenda, faz reservas e envia briefings diários, com rascunhos de saída retidos para sua aprovação.
+
+1. Comece um teste gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (somente por convite, exige um eSIM dedicado).
+
+O onboarding está em early access e é feito em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### O Claude pode ler meu e-mail?
+Não no chat padrão; ele não tem acesso permanente à caixa de entrada. Um agente com OAuth pode, depois que você conceder.
+
+### Um agente substitui o Claude?
+Não, ele muitas vezes usa o Claude por baixo. O agente acrescenta persistência, memória e integrações ao redor do modelo. Veja [agente vs chatbot](/pt-br/answers/ai-agent-vs-chatbot).
+
+### Qual modelo a Liv usa?
+A Liv é construída sobre o OpenClaw, que é agnóstico de LLM. O ponto são as ações que ela executa, não um único modelo travado.
+
+### O agente vai agir sem o meu aval?
+Com a Liv, rascunhos de saída precisam da sua aprovação antes do envio, então você mantém o controle.
+
+### Isso é só o Claude com plugins?
+Um agente é mais que plugins: ele roda um loop contínuo e mantém memória. Compare [ChatGPT vs um agente de IA](/pt-br/answers/chatgpt-vs-ai-agent) para a mesma distinção.
+
+### A Liv é afiliada à Anthropic?
+Não. A Liv é um serviço gerenciado independente construído sobre o OpenClaw, sem afiliação ou endosso da Anthropic.

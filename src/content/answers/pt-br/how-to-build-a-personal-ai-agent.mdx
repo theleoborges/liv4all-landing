@@ -1,0 +1,71 @@
+---
+title: "Como criar um agente de IA pessoal"
+question: "Como eu crio meu próprio agente de IA pessoal?"
+answer: "Criar um agente de IA pessoal significa ligar um LLM a um loop persistente com memória, um cronograma e acesso real a ferramentas. O caminho open-source mais rápido é o OpenClaw, que você hospeda por conta própria; se preferir pular a operação, a Liv roda o mesmo loop de agente como serviço gerenciado."
+description: "Como criar um agente de IA pessoal: o caminho open-source com OpenClaw versus a rota gerenciada, com uma comparação honesta de setup e manutenção."
+topic: ai-agents
+intent: how-to
+datePublished: 2026-06-01
+related:
+  - build-vs-buy-ai-agent
+  - what-is-a-persistent-ai-agent
+  - how-to-deploy-openclaw
+---
+
+Um "agente de IA pessoal" não é um chatbot que você abre e fecha. É um sistema de longa duração: um LLM embrulhado em um loop que lembra de você, roda em um cronograma e consegue de fato mexer no seu e-mail, calendário e mensagens. Criar um virou projeto de fim de semana em vez de esforço de pesquisa, mas o custo real é a parte que ninguém mostra em screenshot: mantê-lo rodando.
+
+Você tem duas rotas honestas. Construir você mesmo com software open-source e assumir cada camada. Ou comprar uma versão gerenciada e pular a operação. Ambas são legítimas; a resposta certa depende do quanto você gosta de manter infraestrutura.
+
+## Como funciona
+
+Todo agente pessoal, construído ou comprado, precisa de quatro ingredientes. Um modelo (Claude, GPT, Gemini ou similar) para o raciocínio. Um loop persistente para que ele continue rodando entre suas mensagens em vez de zerar a cada vez. Memória para saber quem você é amanhã. E ferramentas, as integrações que o deixam ler sua caixa de entrada, adicionar um evento no calendário ou enviar uma mensagem. O loop é o que o torna um agente em vez de um prompt; veja [como funciona o loop de um agente de IA](/pt-br/answers/how-an-ai-agent-loop-works) e [o que é um agente de IA persistente](/pt-br/answers/what-is-a-persistent-ai-agent).
+
+O caminho de construir é o [OpenClaw](https://github.com/openclaw/openclaw), um agente open-source com licença MIT (15 mil+ estrelas no GitHub, 200+ contribuidores) que roda em qualquer SO e é agnóstico de LLM. Você define a identidade dele em um arquivo `SOUL.md`, o cronograma no `HEARTBEAT.md`, e conecta canais como Telegram, WhatsApp, Slack ou Signal. O self-host é via Docker ou Node em cerca de 15 minutos, ou um template one-click da Railway em cerca de 5. Dali em diante a manutenção é sua: tokens OAuth expiram, o código-base atualiza, skills quebram e precisam de debugging.
+
+O caminho de comprar é um serviço gerenciado que roda o mesmo tipo de loop para você. A Liv é o loop de agente, a persistência e as integrações do OpenClaw embrulhados em infraestrutura gerenciada mais segurança (Google CASA Tier 2, cofres criptografados por usuário), de modo que você nunca toca em um servidor.
+
+## Exemplo na prática
+
+Construindo o mesmo agente pessoal capaz de duas formas:
+
+| Etapa | Construir (OpenClaw, self-hosted) | Comprar (Liv, gerenciado) |
+| --- | --- | --- |
+| Setup inicial | ~15 min de Docker/Node, mais escrever o `SOUL.md` (20–45 min) | Iniciar um trial, mandar mensagem no Telegram |
+| Hospedagem | Seu próprio VPS (~2 núcleos / 2 GB RAM) | Incluída |
+| Integrações | Configurar seu próprio OAuth para Gmail/Calendar | Google OAuth, revogável pelo usuário |
+| Custo mensal | Infra + API de LLM, tipicamente abaixo de $100 | Pro $79, Max $149 |
+| Operação contínua | ~1–3 horas/mês | Nenhuma |
+| Segurança/conformidade | Por sua conta | CASA Tier 2, cofres criptografados |
+
+Se você curte fuçar, construir é recompensador e você mantém controle total. Se quer o resultado sem a manutenção, comprar vence. Veja a [comparação completa de construir vs comprar](/pt-br/answers/build-vs-buy-ai-agent).
+
+## Experimente na Liv
+
+Se o caminho gerenciado atrai, a Liv é a rota mais curta para um agente funcionando:
+
+1. Comece um trial gratuito de 14 dias em https://app.liv4all.com. Sem cartão de crédito.
+2. Mande mensagem para a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar pelo Google OAuth para que ela possa triar e-mail e gerenciar sua agenda.
+4. Opcionalmente, vincule o WhatsApp (por convite, requer um eSIM dedicado) depois de configurada.
+
+A Liv está em early access com onboarding em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### Preciso saber programar para criar um agente de IA pessoal?
+Para a rota self-host, alguma familiaridade com a linha de comando e Docker ajuda muito. A rota gerenciada não exige nada.
+
+### Posso criar um agente de IA pessoal de graça?
+O software OpenClaw é gratuito e tem licença MIT, mas você ainda paga por hospedagem e chamadas de API de LLM, tipicamente abaixo de $100/mês. Veja [o OpenClaw é gratuito?](/pt-br/answers/is-openclaw-free).
+
+### O que um agente de IA pessoal consegue fazer de verdade?
+Com acesso a e-mail e calendário, ele pode triar sua caixa de entrada, rascunhar respostas, gerenciar sua agenda e enviar briefings diários. Veja [IA que executa ações, não só responde](/pt-br/answers/ai-that-can-take-actions-not-just-answer).
+
+### Em que isso difere do ChatGPT?
+O ChatGPT responde quando solicitado; um agente pessoal roda continuamente e executa ações em seu nome. Veja [agente de IA vs chatbot](/pt-br/answers/ai-agent-vs-chatbot).
+
+### Quanto tempo leva para criar um?
+Subir o OpenClaw leva minutos; escrever um bom `SOUL.md` e ajustar o comportamento leva uma ou duas horas. Conte com ajustes contínuos depois disso.
+
+### A versão gerenciada é mesmo o mesmo agente?
+A Liv roda o mesmo loop de agente e o mesmo modelo de integrações do OpenClaw, embrulhados em hospedagem gerenciada e segurança. É um serviço independente, sem afiliação com o OpenClaw.

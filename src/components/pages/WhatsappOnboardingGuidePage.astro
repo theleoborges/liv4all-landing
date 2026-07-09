@@ -1,0 +1,496 @@
+---
+import Head from '../Head.astro';
+import FadeInScript from '../FadeInScript.astro';
+import ChatWidget from '../ChatWidget.astro';
+import { LANG_TAGS, canonicalUrl, localizePath, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const copy = {
+  en: {
+    metaTitle: 'Connect Your Agent to WhatsApp — Liv4All Guides',
+    metaDescription: 'Link Liv to your WhatsApp — step-by-step guide.',
+    back: 'back to guides',
+    badge: 'alpha',
+    heading: 'connect your agent to WhatsApp',
+    subtitle: 'link your liv agent to WhatsApp Business so you can talk to them on both Telegram and WhatsApp.',
+    prereqsTitle: 'before you start',
+    prereqs: [
+      'your liv agent is already set up and working on <strong>Telegram</strong>',
+      "you have your <strong>agent's phone number</strong> (the additional eSIM)",
+      '<strong>Telegram Web / Desktop</strong> — use the <a href="https://web.telegram.org" target="_blank" rel="noopener">web version</a> or the desktop app',
+    ],
+    sectionAdmin: '// admin setup',
+    sectionLink: '// link WhatsApp',
+    sectionDemo: '// see it in action',
+    sectionChat: '// start chatting',
+    adminSteps: [
+      {
+        n: '1',
+        title: 'send us your numbers',
+        body: "message us with <strong>your phone number</strong> and <strong>your agent's phone number</strong> (the eSIM). we need both to configure the WhatsApp link on our side.",
+      },
+      {
+        n: '2',
+        title: "install WhatsApp Business on your agent's number",
+        body: "download <strong>WhatsApp Business</strong> (it's free) and sign up using your <strong>agent's phone number</strong> if you haven't already. this is the number tied to your eSIM — not your personal number.",
+      },
+    ],
+    linkSteps: [
+      {
+        n: '3',
+        title: 'ask your agent to link WhatsApp',
+        body: 'once steps 1 and 2 are done, open <strong>Telegram Web / Desktop</strong> and message your agent:',
+        tip: '<strong>say:</strong> "I want to link WhatsApp"',
+      },
+      {
+        n: '4',
+        title: 'scan the QR code',
+        body: 'your agent will generate a <strong>QR code</strong> and show it to you right inside the Telegram chat.',
+        tip: '<strong>tip:</strong> use <a href="https://web.telegram.org" target="_blank" rel="noopener">Telegram Web</a> or the desktop app — it makes scanning the QR code from your phone much easier. the QR code is only valid for <strong>60 seconds</strong>, so have WhatsApp Business ready to scan before you request it!',
+      },
+      {
+        n: '5',
+        title: 'link the device in WhatsApp Business',
+        body: "open the <strong>WhatsApp Business</strong> app (the one signed in with your agent's number) and go to <strong>Linked Devices</strong>. scan the QR code your agent showed you in Telegram.",
+      },
+    ],
+    videoFallback: "your browser doesn't support embedded video.",
+    videoHint: 'click to expand',
+    videoCaption: 'demo: linking WhatsApp to your agent via Telegram',
+    chatSteps: [
+      {
+        n: '6',
+        title: 'add your agent on WhatsApp',
+        body: "give it a minute or so for everything to sync. then, open your <strong>normal WhatsApp</strong> (your personal one), add your agent's number as a contact, and start a conversation.",
+      },
+      {
+        n: '7',
+        title: "you're connected!",
+        body: 'you can now talk to your agent across <strong>both Telegram and WhatsApp</strong>. if WhatsApp is your preferred channel, use it as your main way to chat — and keep Telegram as a backup.',
+      },
+    ],
+    note: "<strong>heads up —</strong> this is an alpha feature. since we're still in early stages, the admin setup (step 1) requires us to configure things on our side. once you've sent us your numbers, we'll let you know when you're good to go.",
+    footerTagline: 'built with 🖤 by liv & leo',
+    footerHome: 'home',
+    footerAbout: 'about',
+    footerFaq: 'faq',
+    footerGuides: 'guides',
+    footerTerms: 'terms',
+    footerPrivacy: 'privacy',
+  },
+  'pt-br': {
+    metaTitle: 'Conecte seu agente ao WhatsApp — Guias Liv4All',
+    metaDescription: 'Conecte a Liv ao seu WhatsApp — guia passo a passo.',
+    back: 'voltar para os guias',
+    badge: 'alpha',
+    heading: 'conecte seu agente ao WhatsApp',
+    subtitle: 'conecte seu agente liv ao WhatsApp Business para falar com ele tanto no Telegram quanto no WhatsApp.',
+    prereqsTitle: 'antes de começar',
+    prereqs: [
+      'seu agente liv já está configurado e funcionando no <strong>Telegram</strong>',
+      'você tem o <strong>número de telefone do seu agente</strong> (o eSIM adicional)',
+      '<strong>Telegram Web / Desktop</strong> — use a <a href="https://web.telegram.org" target="_blank" rel="noopener">versão web</a> ou o app para desktop',
+    ],
+    sectionAdmin: '// configuração admin',
+    sectionLink: '// conectar o WhatsApp',
+    sectionDemo: '// veja em ação',
+    sectionChat: '// comece a conversar',
+    adminSteps: [
+      {
+        n: '1',
+        title: 'envie seus números para a gente',
+        body: 'mande uma mensagem para a gente com <strong>seu número de telefone</strong> e o <strong>número de telefone do seu agente</strong> (o eSIM). precisamos dos dois para configurar a conexão com o WhatsApp do nosso lado.',
+      },
+      {
+        n: '2',
+        title: 'instale o WhatsApp Business no número do seu agente',
+        body: 'baixe o <strong>WhatsApp Business</strong> (é gratuito) e cadastre-se usando o <strong>número de telefone do seu agente</strong>, se ainda não tiver feito isso. esse é o número vinculado ao seu eSIM — não o seu número pessoal.',
+      },
+    ],
+    linkSteps: [
+      {
+        n: '3',
+        title: 'peça ao seu agente para conectar o WhatsApp',
+        body: 'depois dos passos 1 e 2, abra o <strong>Telegram Web / Desktop</strong> e mande uma mensagem para o seu agente:',
+        tip: '<strong>diga:</strong> "quero conectar o WhatsApp"',
+      },
+      {
+        n: '4',
+        title: 'escaneie o QR code',
+        body: 'seu agente vai gerar um <strong>QR code</strong> e mostrá-lo para você direto no chat do Telegram.',
+        tip: '<strong>dica:</strong> use o <a href="https://web.telegram.org" target="_blank" rel="noopener">Telegram Web</a> ou o app para desktop — fica muito mais fácil escanear o QR code pelo celular. o QR code só vale por <strong>60 segundos</strong>, então deixe o WhatsApp Business pronto para escanear antes de pedir!',
+      },
+      {
+        n: '5',
+        title: 'conecte o aparelho no WhatsApp Business',
+        body: 'abra o app <strong>WhatsApp Business</strong> (o que está logado com o número do seu agente) e vá em <strong>Aparelhos conectados</strong>. escaneie o QR code que seu agente mostrou no Telegram.',
+      },
+    ],
+    videoFallback: 'seu navegador não suporta vídeo incorporado.',
+    videoHint: 'clique para ampliar',
+    videoCaption: 'demo: conectando o WhatsApp ao seu agente pelo Telegram',
+    chatSteps: [
+      {
+        n: '6',
+        title: 'adicione seu agente no WhatsApp',
+        body: 'aguarde um minutinho para tudo sincronizar. depois, abra o seu <strong>WhatsApp normal</strong> (o pessoal), adicione o número do seu agente como contato e comece uma conversa.',
+      },
+      {
+        n: '7',
+        title: 'você está conectado!',
+        body: 'agora você pode falar com seu agente <strong>tanto no Telegram quanto no WhatsApp</strong>. se o WhatsApp for seu canal preferido, use-o como principal — e mantenha o Telegram como backup.',
+      },
+    ],
+    note: '<strong>atenção —</strong> este é um recurso em alpha. como ainda estamos no início, a configuração admin (passo 1) exige que a gente configure as coisas do nosso lado. depois que você enviar seus números, avisaremos quando estiver tudo pronto.',
+    footerTagline: 'feito com 🖤 por liv & leo',
+    footerHome: 'início',
+    footerAbout: 'sobre',
+    footerFaq: 'faq',
+    footerGuides: 'guias',
+    footerTerms: 'termos',
+    footerPrivacy: 'privacidade',
+  },
+}[lang];
+
+const canonical = canonicalUrl('/guides/whatsapp-onboarding', lang);
+---
+<!DOCTYPE html>
+<html lang={LANG_TAGS[lang]}>
+  <head>
+    <Head
+      title={copy.metaTitle}
+      description={copy.metaDescription}
+      ogUrl={canonical}
+      canonical={canonical}
+      ogType="article"
+      lang={lang}
+    />
+  </head>
+  <body>
+    <div class="container">
+      <a href={localizePath('/guides', lang)} class="back">&larr; {copy.back}</a>
+
+      <span class="badge-alpha">{copy.badge}</span>
+      <h1>{copy.heading}</h1>
+      <p class="subtitle">{copy.subtitle}</p>
+
+      <div class="prereqs fade-in">
+        <div class="prereqs-title">{copy.prereqsTitle}</div>
+        <ul>
+          {copy.prereqs.map((item) => <li set:html={item} />)}
+        </ul>
+      </div>
+
+      <div class="section-label">{copy.sectionAdmin}</div>
+      <div class="steps">
+        {copy.adminSteps.map((step) => (
+          <div class="step">
+            <div class="step-number">{step.n}</div>
+            <div class="step-content">
+              <h3>{step.title}</h3>
+              <p set:html={step.body} />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="section-label">{copy.sectionLink}</div>
+      <div class="steps">
+        {copy.linkSteps.map((step) => (
+          <div class="step">
+            <div class="step-number">{step.n}</div>
+            <div class="step-content">
+              <h3>{step.title}</h3>
+              <p set:html={step.body} />
+              {step.tip && <div class="tip" set:html={step.tip} />}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="section-label">{copy.sectionDemo}</div>
+      <div class="demo-video">
+        <div class="demo-video-wrap" onclick="this.querySelector('video').requestFullscreen ? this.querySelector('video').requestFullscreen() : this.querySelector('video').webkitRequestFullscreen()">
+          <video controls playsinline preload="metadata">
+            <source src="/assets/videos/whatsapp-linking-demo.mp4" type="video/mp4" />
+            {copy.videoFallback}
+          </video>
+          <div class="demo-video-hint">{copy.videoHint}</div>
+        </div>
+        <p class="demo-video-caption">{copy.videoCaption}</p>
+      </div>
+
+      <div class="section-label">{copy.sectionChat}</div>
+      <div class="steps">
+        {copy.chatSteps.map((step) => (
+          <div class="step">
+            <div class="step-number">{step.n}</div>
+            <div class="step-content">
+              <h3>{step.title}</h3>
+              <p set:html={step.body} />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="note fade-in" set:html={copy.note} />
+    </div>
+
+    <footer>
+      <p>{copy.footerTagline} · <a href={localizePath('/', lang)}>{copy.footerHome}</a> · <a href={localizePath('/about', lang)}>{copy.footerAbout}</a> · <a href={localizePath('/faq', lang)}>{copy.footerFaq}</a> · <a href={localizePath('/guides', lang)}>{copy.footerGuides}</a> · <a href="/terms">{copy.footerTerms}</a> · <a href="/privacy">{copy.footerPrivacy}</a></p>
+    </footer>
+
+    <FadeInScript />
+    <ChatWidget />
+
+    <style is:global>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { overflow-x: hidden; max-width: 100%; }
+
+      :root {
+        --bg: #0a0a0f;
+        --surface: #12121a;
+        --surface-glass: rgba(18, 18, 26, 0.6);
+        --border: #1e1e2e;
+        --border-light: rgba(255, 255, 255, 0.06);
+        --text: #e0e0e8;
+        --text-dim: #7a7a8e;
+        --accent: #8b5cf6;
+        --accent-glow: rgba(139, 92, 246, 0.15);
+        --green: #34d399;
+        --amber: #fbbf24;
+        --radius: 16px;
+        --radius-lg: 24px;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+      }
+
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+
+      .container {
+        width: min(800px, 100%);
+        margin: 0 auto;
+        padding: 120px 24px 80px;
+      }
+
+      .back {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.8rem;
+        color: var(--text-dim);
+        margin-bottom: 48px;
+        transition: color 0.2s;
+      }
+
+      .back:hover { color: var(--accent); text-decoration: none; }
+
+      h1 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        margin-bottom: 8px;
+      }
+
+      .subtitle {
+        font-size: 0.95rem;
+        color: var(--text-dim);
+        margin-bottom: 48px;
+        line-height: 1.6;
+      }
+
+      .badge-alpha {
+        display: inline-block;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 2px 8px;
+        border-radius: 100px;
+        color: var(--green);
+        background: rgba(52, 211, 153, 0.1);
+        border: 1px solid rgba(52, 211, 153, 0.2);
+        margin-bottom: 16px;
+      }
+
+      .section-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        color: var(--accent);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        display: inline-block;
+        padding: 6px 14px;
+        background: var(--accent-glow);
+        border: 1px solid rgba(139, 92, 246, 0.15);
+        border-radius: 100px;
+      }
+
+      .prereqs {
+        background: var(--surface-glass);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        margin-bottom: 48px;
+      }
+
+      .prereqs-title {
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-bottom: 12px;
+      }
+
+      .prereqs ul {
+        padding-left: 20px;
+        color: var(--text-dim);
+        font-size: 0.92rem;
+      }
+
+      .prereqs li { margin-bottom: 8px; }
+
+      .prereqs li strong { color: var(--text); font-weight: 500; }
+
+      .steps { margin-bottom: 48px; }
+
+      .step {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 32px;
+      }
+
+      .step-number {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        background: var(--accent-glow);
+        border: 1px solid rgba(139, 92, 246, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin-top: 2px;
+      }
+
+      .step-content h3 {
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 6px;
+      }
+
+      .step-content p {
+        font-size: 0.92rem;
+        color: var(--text-dim);
+        line-height: 1.7;
+      }
+
+      .step-content p strong { color: var(--text); font-weight: 500; }
+
+      .tip {
+        background: rgba(139, 92, 246, 0.06);
+        border: 1px solid rgba(139, 92, 246, 0.15);
+        border-radius: var(--radius);
+        padding: 16px 20px;
+        margin-top: 10px;
+        font-size: 0.88rem;
+        color: var(--text-dim);
+        line-height: 1.6;
+      }
+
+      .tip strong { color: var(--accent); font-weight: 500; }
+
+      .note {
+        background: var(--surface-glass);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        margin-bottom: 48px;
+        font-size: 0.92rem;
+        color: var(--text-dim);
+        line-height: 1.7;
+      }
+
+      .note strong { color: var(--text); font-weight: 500; }
+
+      .demo-video {
+        margin-bottom: 48px;
+        max-width: 380px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .demo-video-wrap {
+        position: relative;
+        cursor: pointer;
+      }
+
+      .demo-video video {
+        width: 100%;
+        border-radius: var(--radius);
+        border: 1px solid var(--border-light);
+        display: block;
+      }
+
+      .demo-video-hint {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 6px;
+        padding: 4px 8px;
+        font-size: 0.7rem;
+        color: var(--text-dim);
+        pointer-events: none;
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      .demo-video-caption {
+        font-size: 0.85rem;
+        color: var(--text-dim);
+        margin-top: 10px;
+      }
+
+      footer {
+        padding: 40px 0;
+        border-top: 1px solid var(--border-light);
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--text-dim);
+      }
+
+      footer a { transition: color 0.2s; }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </body>
+</html>

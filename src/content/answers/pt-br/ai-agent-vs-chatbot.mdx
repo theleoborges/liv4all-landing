@@ -1,0 +1,71 @@
+---
+title: "Agente de IA vs chatbot: qual é a diferença?"
+question: "Qual é a diferença entre um agente de IA e um chatbot?"
+answer: "Um chatbot responde perguntas em uma única conversa e esquece você depois; um agente de IA roda continuamente, lembra de você e executa ações reais usando ferramentas. A linha divisória é conseguir fazer coisas, não apenas dizer coisas."
+description: "Agente de IA vs chatbot: o chatbot responde e esquece; o agente lembra, roda em agenda própria e executa ações. Uma comparação clara e prática."
+topic: ai-agents
+intent: comparison
+datePublished: 2026-06-01
+related:
+  - what-is-an-autonomous-ai-agent
+  - chatgpt-vs-ai-agent
+  - ai-that-can-take-actions-not-just-answer
+---
+
+Os termos são usados como sinônimos, mas descrevem coisas bem diferentes. Um chatbot é uma conversa: você pergunta, ele responde, a sessão termina. Um agente é um trabalhador: ele lembra de você, roda na própria agenda e age sobre o mundo por meio de ferramentas como sua caixa de entrada e seu calendário.
+
+O teste mais simples é se ele consegue executar uma ação. Um chatbot pode explicar como reservar uma mesa. Um agente reserva.
+
+## Como funciona
+
+Um chatbot é essencialmente um modelo de linguagem atrás de uma janela de chat. Ele responde ao que você digita, dentro de uma única sessão, e não tem memória permanente nem capacidade de agir. Feche a aba e o contexto se foi. Isso o torna excelente para perguntas, rascunhos e brainstorming.
+
+Um agente envolve esse mesmo modelo em três camadas extras. Um [loop de agente](/pt-br/answers/how-an-ai-agent-loop-works) para poder dar um passo, observar o resultado e continuar. [Memória](/pt-br/answers/what-is-a-persistent-ai-agent) persistente para reconhecer você amanhã. E ferramentas para de fato fazer coisas: ler e-mail, criar eventos no calendário, enviar mensagens. Adicione uma agenda e ele age sem ser acionado. Essa combinação é o que [um agente que executa ações, não apenas responde](/pt-br/answers/ai-that-can-take-actions-not-just-answer) realmente significa.
+
+O [OpenClaw](https://github.com/openclaw/openclaw), o agente pessoal open-source, é um exemplo claro: agnóstico de LLM, com arquivos de memória, uma agenda em `HEARTBEAT.md` e integrações reais de canais. Muitos produtos ficam entre os dois polos. O ChatGPT é majoritariamente um chatbot, embora seu modo agente adicione capacidade limitada de ação; veja [ChatGPT vs um agente de IA](/pt-br/answers/chatgpt-vs-ai-agent).
+
+## Exemplo na prática
+
+O mesmo pedido para cada um:
+
+| Capacidade | Chatbot | Agente de IA |
+| --- | --- | --- |
+| Responder uma pergunta | Sim | Sim |
+| Lembrar de você na próxima sessão | Não | Sim |
+| Agir em uma agenda | Não | Sim |
+| Enviar um e-mail por você | Não | Sim, com aprovação |
+| Triar sua caixa de entrada durante a noite | Não | Sim |
+| "Acompanhe esta thread, me lembre na sexta" | Só explica como | Realmente faz |
+
+Um chatbot encerra a conversa quando você para de digitar. Um agente continua trabalhando entre as suas mensagens, e essa é exatamente a razão para usar um em tarefas contínuas em vez de perguntas pontuais.
+
+## Experimente na Liv
+
+A Liv é um agente, não um chatbot, então ela lembra de você e age em seu nome:
+
+1. Comece um trial gratuito de 14 dias em https://app.liv4all.com. Sem cartão.
+2. Fale com a Liv no Telegram, o canal padrão.
+3. Conecte Gmail e Calendar via Google OAuth para que ela execute ações reais, não apenas responda.
+4. Peça para ela triar sua caixa de entrada ou enviar um briefing diário; rascunhos de saída aguardam sua aprovação.
+
+A Liv está em acesso antecipado com onboarding em lotes, então você pode entrar em uma pequena fila.
+
+## Perguntas comuns
+
+### O ChatGPT é um chatbot ou um agente?
+Principalmente um chatbot, embora seu modo agente adicione capacidade limitada de ação. Veja [ChatGPT vs um agente de IA](/pt-br/answers/chatgpt-vs-ai-agent).
+
+### Um chatbot consegue executar ações como enviar e-mail?
+Não por conta própria. Isso exige o acesso a ferramentas e o loop que definem um agente.
+
+### Agentes ainda respondem perguntas como chatbots?
+Sim. Um agente faz tudo que um chatbot faz, mais memória, agendamento e ações.
+
+### Um agente é sempre autônomo?
+Agentes executam os próprios passos, mas um bom agente pausa para aprovação em ações sensíveis. Veja [o que é um agente de IA autônomo](/pt-br/answers/what-is-an-autonomous-ai-agent).
+
+### Qual dos dois eu preciso?
+Para perguntas pontuais, um chatbot resolve. Para trabalho contínuo como triagem de caixa de entrada e agendamento, você quer um agente.
+
+### Posso rodar meu próprio agente?
+Sim, o OpenClaw é open-source e self-hostable, ou use um serviço gerenciado como a Liv. Veja [construir vs comprar um agente de IA](/pt-br/answers/build-vs-buy-ai-agent).

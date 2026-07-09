@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import { entryLang, entrySlug, localizePath } from '../i18n';
 
 interface Props {
   title: string;
@@ -14,18 +15,29 @@ interface Props {
 
 const { title, description, slug, pubDate, updatedDate, author, tags, ogImage } = Astro.props;
 
+// `slug` is the collection entry id; pt-br entries carry a `pt-br/` prefix.
+const lang = entryLang(slug);
+const url = `https://liv4all.com${localizePath(`/articles/${entrySlug(slug)}`, lang)}`;
+
+const t = {
+  en: { back: '← back to articles', by: 'by', updatedLabel: 'updated', dateLocale: 'en-AU' },
+  'pt-br': { back: '← voltar para os artigos', by: 'por', updatedLabel: 'atualizado em', dateLocale: 'pt-BR' },
+}[lang];
+
 const formatDate = (d: Date) =>
-  d.toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' });
+  d.toLocaleDateString(t.dateLocale, { year: 'numeric', month: 'long', day: 'numeric' });
 ---
 <BaseLayout
   title={`${title} — Liv4All`}
   description={description}
-  ogUrl={`https://liv4all.com/articles/${slug}`}
+  ogUrl={url}
   ogType="article"
   ogTitle={title}
+  canonical={url}
+  lang={lang}
 >
   <article class="container">
-    <a href="/articles" class="back">← back to articles</a>
+    <a href={localizePath('/articles', lang)} class="back">{t.back}</a>
 
     {tags.length > 0 && (
       <div class="tag-row">
@@ -37,11 +49,11 @@ const formatDate = (d: Date) =>
     <p class="article-meta">
       <span>{formatDate(pubDate)}</span>
       <span class="dot">·</span>
-      <span>by {author}</span>
+      <span>{t.by} {author}</span>
       {updatedDate && (
         <>
           <span class="dot">·</span>
-          <span class="updated">updated {formatDate(updatedDate)}</span>
+          <span class="updated">{t.updatedLabel} {formatDate(updatedDate)}</span>
         </>
       )}
     </p>

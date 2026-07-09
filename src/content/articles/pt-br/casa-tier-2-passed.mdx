@@ -1,0 +1,26 @@
+---
+title: passamos no CASA Tier 2
+description: A TAC Security validou como a Liv trata os seus dados do Google. Aqui vai o que isso significa, na prática, para você.
+pubDate: 2026-05-05T22:00:00Z
+author: Leo Borges
+tags: [security, milestone, compliance]
+featured: true
+---
+
+Algumas semanas atrás mencionei que [as inscrições estavam pausadas](/pt-br/articles/hitting-the-100-user-cap) para eu conseguir atravessar a revisão CASA Tier 2 do Google. Atualização: passamos.
+
+<figure style="max-width: 120px;">
+  <img src="/tac-esof-casa-tier2-badge.png" alt="TAC Security ESOF: Verified and Secured by ADA CASA Assessor" width="120" height="138" loading="eager" />
+</figure>
+
+A [TAC Security](https://tacsecurity.com/), um dos laboratórios de avaliação autorizados pelo Google, rodou a revisão completa no Liv4All: análise estática (SAST), análise dinâmica (DAST) e um walkthrough manual da arquitetura. O resultado é uma Letter of Validation, que é o que o Google exige antes de qualquer app continuar lidando com escopos restritos do Gmail em produção.
+
+Por que você deveria se importar?
+
+A Liv lê e rascunha os seus e-mails em seu nome. O Google classifica isso como escopo restrito, e com razão. O CASA Tier 2 é como eles mantêm operadores como nós honestos sobre o que de fato acontece com os seus dados depois que você toca em "permitir" na tela de consentimento.
+
+Uma parte externa, não os fundadores da Liv, verificou como armazenamos os seus tokens do Google, como isolamos os seus dados dos de outros usuários e como expomos o app à internet. Eles confirmaram que atendemos ao padrão publicado, e teremos de provar isso de novo a cada 12 meses enquanto quisermos manter esse escopo.
+
+A Letter of Validation está disponível sob solicitação, e a nossa [página de confiança](/pt-br/trust) detalha exatamente o que foi coberto e o que não foi.
+
+Mais uma coisa: as inscrições estão abertas de novo. Vá até [app.liv4all.com](https://app.liv4all.com) para começar um trial de 14 dias.

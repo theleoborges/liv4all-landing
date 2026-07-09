@@ -1,0 +1,667 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { canonicalUrl, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const copy = {
+  en: {
+    metaTitle: 'Ivy — Q&A agent for your website | Liv4All',
+    metaDescription: "Ivy is Liv's sidekick — a Q&A agent that answers your prospective customers' questions as they browse your site.",
+    badge: 'Q&A AGENT',
+    heading: 'Ivy',
+    subtitle: "Liv's sidekick. A Q&A agent to help your prospective customers understand your product as they visit your website.",
+    stepsTitle: '3 simple steps',
+    steps: [
+      {
+        num: '01',
+        name: 'Define your tone of voice',
+        body: "Provide your brand's voice — or we'll help you design one. This is how Ivy will be perceived by visitors.",
+      },
+      {
+        num: '02',
+        name: 'Curate the knowledge',
+        body: 'Specify what Ivy should reference: your public website, internal documents, anything else you want the agent to draw from.',
+      },
+      {
+        num: '03',
+        name: 'Embed the widget',
+        body: "Drop the embed snippet on your site. Ivy is live and answering questions — just like she's doing on this site right now.",
+      },
+    ],
+    demoTitle: 'See it in action',
+    videoAriaLabel: "Ivy widget answering a visitor's questions on a sample website",
+    pricingLabel: '// pricing',
+    pricingTitle: 'Simple pricing',
+    pricingSub: 'Three tiers. Pick the one that fits your site.',
+    plans: [
+      {
+        tag: 'essentials',
+        name: 'Starter',
+        tagline: 'Everything you need to launch Ivy on your site.',
+        priceAmount: '99',
+        priceSuffix: '/mo',
+        ctaLabel: 'Get started',
+        ctaHref: 'mailto:sales@liv4all.com',
+        featured: false,
+        features: [
+          '"Powered by Liv4All" footer in widget',
+          'Fair-use messaging, sized for typical SMB traffic',
+          'Daily knowledge base refresh',
+          'Analytics: messages + unique users',
+        ],
+      },
+      {
+        tag: 'most popular',
+        name: 'Pro',
+        tagline: 'Make Ivy feel native to your brand.',
+        priceAmount: '148',
+        priceSuffix: '/mo',
+        ctaLabel: 'Get started',
+        ctaHref: 'mailto:sales@liv4all.com',
+        featured: true,
+        features: [
+          'White-label — your logo, your colours',
+          'Fair-use messaging, sized for typical SMB traffic',
+          'Daily knowledge base refresh',
+          'Analytics: messages + unique users',
+        ],
+      },
+      {
+        tag: 'bespoke',
+        name: 'Enterprise',
+        tagline: 'High-traffic sites and bespoke needs.',
+        priceCustom: 'Custom',
+        ctaLabel: 'Talk to sales',
+        ctaHref: 'mailto:sales@liv4all.com?subject=Ivy%20Enterprise%20enquiry',
+        featured: false,
+        features: [
+          'White-label — your logo, your colours',
+          'Custom usage commit and SLA',
+          'Daily knowledge base refresh',
+          'Analytics + dedicated support',
+        ],
+      },
+    ],
+    fineprint: 'Prices in USD.',
+    ctaTitle: 'Ready to get started?',
+    ctaSub: "Tell us about your business and we'll set Ivy up for you.",
+    ctaButton: 'Get in touch',
+  },
+  'pt-br': {
+    metaTitle: 'Ivy — agente de Q&A para o seu site | Liv4All',
+    metaDescription: 'A Ivy é a parceira da Liv — um agente de Q&A que responde às perguntas dos seus futuros clientes enquanto eles navegam no seu site.',
+    badge: 'AGENTE DE Q&A',
+    heading: 'Ivy',
+    subtitle: 'A parceira da Liv. Um agente de Q&A que ajuda seus futuros clientes a entender o seu produto enquanto visitam o seu site.',
+    stepsTitle: '3 passos simples',
+    steps: [
+      {
+        num: '01',
+        name: 'Defina seu tom de voz',
+        body: 'Forneça a voz da sua marca — ou ajudamos você a criar uma. É assim que a Ivy será percebida pelos visitantes.',
+      },
+      {
+        num: '02',
+        name: 'Selecione o conhecimento',
+        body: 'Especifique o que a Ivy deve consultar: seu site público, documentos internos, qualquer outra fonte que você queira que o agente use.',
+      },
+      {
+        num: '03',
+        name: 'Incorpore o widget',
+        body: 'Cole o snippet de embed no seu site. Pronto: a Ivy está no ar respondendo perguntas — exatamente como ela está fazendo neste site agora.',
+      },
+    ],
+    demoTitle: 'Veja em ação',
+    videoAriaLabel: 'Widget da Ivy respondendo às perguntas de um visitante em um site de exemplo',
+    pricingLabel: '// preços',
+    pricingTitle: 'Preços simples',
+    pricingSub: 'Três planos. Escolha o que combina com o seu site.',
+    plans: [
+      {
+        tag: 'essencial',
+        name: 'Starter',
+        tagline: 'Tudo o que você precisa para lançar a Ivy no seu site.',
+        priceAmount: '99',
+        priceSuffix: '/mês',
+        ctaLabel: 'Comece agora',
+        ctaHref: 'mailto:sales@liv4all.com',
+        featured: false,
+        features: [
+          'Rodapé "Powered by Liv4All" no widget',
+          'Mensagens em regime de uso justo, dimensionadas para o tráfego típico de PMEs',
+          'Atualização diária da base de conhecimento',
+          'Analytics: mensagens + usuários únicos',
+        ],
+      },
+      {
+        tag: 'mais popular',
+        name: 'Pro',
+        tagline: 'Faça a Ivy parecer parte da sua marca.',
+        priceAmount: '148',
+        priceSuffix: '/mês',
+        ctaLabel: 'Comece agora',
+        ctaHref: 'mailto:sales@liv4all.com',
+        featured: true,
+        features: [
+          'White-label — seu logo, suas cores',
+          'Mensagens em regime de uso justo, dimensionadas para o tráfego típico de PMEs',
+          'Atualização diária da base de conhecimento',
+          'Analytics: mensagens + usuários únicos',
+        ],
+      },
+      {
+        tag: 'sob medida',
+        name: 'Enterprise',
+        tagline: 'Sites de alto tráfego e necessidades sob medida.',
+        priceCustom: 'Personalizado',
+        ctaLabel: 'Fale com vendas',
+        ctaHref: 'mailto:sales@liv4all.com?subject=Ivy%20Enterprise%20enquiry',
+        featured: false,
+        features: [
+          'White-label — seu logo, suas cores',
+          'Volume de uso e SLA personalizados',
+          'Atualização diária da base de conhecimento',
+          'Analytics + suporte dedicado',
+        ],
+      },
+    ],
+    fineprint: 'Preços em USD.',
+    ctaTitle: 'Pronto para começar?',
+    ctaSub: 'Conte para a gente sobre o seu negócio e configuramos a Ivy para você.',
+    ctaButton: 'Entre em contato',
+  },
+}[lang];
+---
+<BaseLayout
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  ogUrl={canonicalUrl('/ivy', lang)}
+  canonical={canonicalUrl('/ivy', lang)}
+  lang={lang}
+>
+  <div class="container">
+    <div class="ivy-badge fade-in">
+      <span class="ivy-badge-dot"></span> {copy.badge}
+    </div>
+    <h1 class="fade-in fade-in-delay-1">{copy.heading}</h1>
+    <p class="subtitle fade-in fade-in-delay-2">
+      {copy.subtitle}
+    </p>
+
+    <h2 class="section-title fade-in fade-in-delay-2">{copy.stepsTitle}</h2>
+    <div class="steps-grid fade-in fade-in-delay-3">
+      {copy.steps.map((step) => (
+        <div class="step-card">
+          <div class="step-card-top"></div>
+          <div class="step-card-body">
+            <div class="step-num">{step.num}</div>
+            <div class="step-name">{step.name}</div>
+            <p class="step-body">
+              {step.body}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="section-title fade-in">{copy.demoTitle}</h2>
+    <div class="demo-frame fade-in fade-in-delay-1">
+      <video
+        src="/assets/videos/ivy-widget.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-label={copy.videoAriaLabel}
+      ></video>
+    </div>
+  </div>
+
+  <section class="pricing-section">
+    <div class="container-wide">
+      <div class="pricing-header fade-in">
+        <div class="section-label">{copy.pricingLabel}</div>
+        <h2 class="pricing-title">{copy.pricingTitle}</h2>
+        <p class="pricing-sub">{copy.pricingSub}</p>
+      </div>
+
+      <div class="plans-grid fade-in fade-in-delay-1">
+        {copy.plans.map((plan) => (
+          <div class={plan.featured ? 'plan-card plan-card-featured' : 'plan-card'}>
+            {plan.featured && <div class="plan-glow"></div>}
+            <div class="plan-header">
+              <div class={plan.featured ? 'plan-tag plan-tag-featured' : 'plan-tag'}>{plan.tag}</div>
+              <h3 class="plan-name">{plan.name}</h3>
+              <p class="plan-tagline">{plan.tagline}</p>
+            </div>
+            <div class="plan-price">
+              {'priceAmount' in plan ? (
+                <>
+                  <span class="price-currency">$</span><span class="price-amount">{plan.priceAmount}</span><span class="price-suffix">{plan.priceSuffix}</span>
+                </>
+              ) : (
+                <div class="price-custom">{plan.priceCustom}</div>
+              )}
+            </div>
+            <a href={plan.ctaHref} class={plan.featured ? 'plan-cta plan-cta-featured' : 'plan-cta'}>{plan.ctaLabel}</a>
+            <ul class="plan-features">
+              {plan.features.map((feature) => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <p class="plans-fineprint fade-in fade-in-delay-2">{copy.fineprint}</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="cta-block fade-in fade-in-delay-2">
+      <h2 class="cta-title">{copy.ctaTitle}</h2>
+      <p class="cta-sub">{copy.ctaSub}</p>
+      <a class="btn-primary" href="mailto:sales@liv4all.com">{copy.ctaButton}</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: var(--text-dim);
+    margin-bottom: 56px;
+    line-height: 1.65;
+    max-width: 640px;
+  }
+
+  .ivy-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .ivy-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .section-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 64px 0 24px;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 720px) {
+    .steps-grid { grid-template-columns: 1fr; }
+  }
+
+  .step-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+
+  .step-card:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-glow);
+  }
+
+  .step-card-top {
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--pink));
+    opacity: 0.7;
+  }
+
+  .step-card-body { padding: 24px; }
+
+  .step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+  }
+
+  .step-name {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .step-body {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  .demo-frame {
+    width: min(400px, 100%);
+    margin: 0 auto;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  }
+
+  .demo-frame video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .cta-block {
+    margin: 80px 0 40px;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+
+  .cta-sub {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+  }
+
+  .btn-primary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    padding: 16px 32px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: #a78bfa;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+    text-decoration: none;
+    color: #fff;
+  }
+
+  /* ── Pricing section ── */
+  .pricing-section {
+    padding: 80px 0 40px;
+  }
+
+  .pricing-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 48px;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: 100px;
+  }
+
+  .pricing-title {
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    color: var(--text);
+  }
+
+  .pricing-sub {
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+
+  .plan-card {
+    position: relative;
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .plan-card-featured {
+    border-color: rgba(139, 92, 246, 0.4);
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0.06) 0%, var(--surface-glass) 50%);
+  }
+
+  .plan-glow {
+    position: absolute;
+    inset: -1px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), transparent 60%);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .plan-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .plan-header {
+    margin-bottom: 24px;
+  }
+
+  .plan-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-dim);
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+
+  .plan-tag-featured {
+    background: var(--accent-glow);
+    color: var(--accent);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .plan-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+  }
+
+  .plan-tagline {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .plan-price {
+    margin-bottom: 24px;
+    min-height: 64px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .price-currency {
+    font-size: 1.3rem;
+    color: var(--text-dim);
+    margin-right: 2px;
+    position: relative;
+    top: 8px;
+  }
+
+  .price-amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .price-suffix {
+    font-size: 1rem;
+    color: var(--text-dim);
+    margin-left: 4px;
+  }
+
+  .price-custom {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .plan-cta {
+    display: block;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    padding: 14px 24px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    transition: all 0.25s;
+    margin-bottom: 24px;
+    text-decoration: none;
+  }
+
+  .plan-cta:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent);
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .plan-cta-featured {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .plan-cta-featured:hover {
+    background: #a78bfa;
+    color: #fff;
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+  }
+
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .plan-features li {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    padding-left: 22px;
+    position: relative;
+  }
+
+  .plan-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .plans-fineprint {
+    text-align: center;
+    margin-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 900px) {
+    .plans-grid {
+      grid-template-columns: 1fr;
+      max-width: 440px;
+    }
+  }
+</style>

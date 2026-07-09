@@ -1,0 +1,388 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { canonicalUrl, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const copy = {
+  en: {
+    metaTitle: 'FAQ — Liv4All',
+    metaDescription: 'Frequently asked questions about Liv — your AI Chief of Staff.',
+    heading: 'frequently asked questions',
+    subtitle: 'everything you want to know before handing an AI your calendar and inbox.',
+    groups: [
+      {
+        label: '// the basics',
+        items: [
+          {
+            q: 'what problem does liv4all solve — and why now?',
+            a: `<p>most people spend hours each week on low-value admin: scheduling meetings, chasing emails, managing their calendar. AI is finally good enough to handle all of that autonomously — not just answer questions, but actually <strong>do things</strong>. liv4all puts that capability in your hands.</p>`,
+          },
+          {
+            q: 'who is liv4all built for?',
+            a: `<p>anyone who wants their time back. if you've ever wished you had an assistant handling the small stuff so you could focus on what actually matters — that's who this is for.</p>`,
+          },
+          {
+            q: 'how is this different from chatgpt or siri?',
+            a: `<p>chatgpt answers questions. siri sets timers. liv4all takes action — it connects to your actual accounts, operates on your behalf, and gets things done without you needing to babysit it. the difference is <strong>agency</strong>.</p>`,
+          },
+        ],
+      },
+      {
+        label: '// capabilities',
+        items: [
+          {
+            q: 'what can liv4all do?',
+            a: `<p>liv connects to your google account and handles:</p>
+          <ul>
+            <li><strong>email</strong> — reads, drafts, and sends on your behalf (always with your approval before sending)</li>
+            <li><strong>calendar</strong> — schedules meetings, creates invites, manages your time</li>
+            <li><strong>contacts</strong> — finds people, surfaces context when you need it</li>
+            <li><strong>web browsing</strong> — fills forms, makes bookings, automates web tasks</li>
+            <li><strong>proactive briefings</strong> — daily summaries, meeting reminders, follow-up nudges</li>
+          </ul>
+          <p>you can talk to liv on <strong>telegram</strong>, <strong>whatsapp</strong> (invite-only — see the <a href="/faq/whatsapp">whatsapp faq</a>), or by emailing them directly. each liv agent gets their own email address and telegram profile, so they can reach you — and others — without borrowing your accounts.</p>
+          <p>on the roadmap:</p>
+          <ul>
+            <li><span class="badge-coming">coming soon</span> <strong>phone calls</strong> — books restaurants, appointments, and more via real PSTN calls</li>
+            <li><span class="badge-coming">coming soon</span> <strong>slack</strong> — manage your day without leaving your workspace</li>
+          </ul>`,
+          },
+          {
+            q: 'does liv have their own identity?',
+            a: `<p>yes. each liv agent gets a dedicated email address and telegram profile. this means they can reach out to people on your behalf — scheduling with contacts, following up on threads — without needing to borrow your accounts.</p>
+          <p>they meet people where they already are. no new apps required.</p>`,
+          },
+        ],
+      },
+      {
+        label: '// privacy & data',
+        items: [
+          {
+            q: 'is my data isolated from other users?',
+            a: `<p><strong>yes — completely.</strong> every liv agent runs in its own isolated environment. your conversations, files, calendar data, and emails are completely separated from every other user's — by design, not just by policy. there are multiple layers of technical isolation ensuring one user can never access another's data.</p>`,
+          },
+          {
+            q: 'is my data encrypted?',
+            a: `<p>your data is encrypted both when it's stored (at rest) and when it's moving between systems (in transit). we use modern encryption standards across our entire infrastructure — databases, file storage, and all network connections.</p>`,
+          },
+          {
+            q: 'where does liv run?',
+            a: `<p>liv runs on AWS infrastructure in private networks that aren't directly reachable from the internet. only the specific connections needed to talk to telegram (or your email) are allowed through. we use the same cloud security building blocks that banks and healthcare companies rely on.</p>`,
+          },
+          {
+            q: 'what does liv4all have access to?',
+            a: `<p>each agent can only access <strong>your</strong> data — your emails, your calendar, your files. even internally, permissions are scoped so that each agent only has access to the specific resources it needs and nothing more.</p>
+          <p>liv4all connects to your google account via official OAuth — the same standard your other apps use. you control what you grant access to, and you can revoke it any time from your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">google account settings</a>.</p>`,
+          },
+          {
+            q: 'is my data used to train AI models?',
+            a: `<p><strong>no.</strong> your conversations and files are never used to train AI models — not ours, not anyone else's. they exist solely to power <strong>your</strong> assistant.</p>`,
+          },
+          {
+            q: 'will liv send emails without my permission?',
+            a: `<p><strong>no.</strong> liv will never send an email on your behalf without showing you a draft first and getting your explicit confirmation. no surprises.</p>`,
+          },
+          {
+            q: 'can i delete my data?',
+            a: `<p>you're in control. you can request to access, export, or delete your data at any time. if you've connected services like google calendar, you can revoke access through those services whenever you want. full data deletion is completed within 30 days of a request.</p>
+          <p>see our <a href="/privacy">privacy policy</a> for the full picture.</p>`,
+          },
+        ],
+      },
+      {
+        label: '// getting started',
+        items: [
+          {
+            q: 'what stage is liv4all in?',
+            a: `<p>liv4all is in early access. the core features work in production and we're <a href="/trust">CASA tier 2 verified by google</a>, but we're onboarding in batches to keep service quality high while we scale.</p>
+          <p>in early access:</p>
+          <ul>
+            <li>you get a <strong>14-day free trial</strong>, no credit card required</li>
+            <li>your feedback shapes what gets built next</li>
+            <li>founding members are grandfathered on launch pricing</li>
+          </ul>`,
+          },
+          {
+            q: 'how much does it cost?',
+            a: `<p>two plans:</p>
+          <ul>
+            <li><strong>Pro</strong> — $79/mo (or $63/mo billed annually)</li>
+            <li><strong>Max</strong> — $149/mo (or $119/mo billed annually)</li>
+          </ul>
+          <p>every new account starts with a <strong>14-day free trial</strong>. no credit card up front — pick a plan when you're ready, or cancel before the trial ends and pay nothing. see the <a href="/pricing">pricing page</a> for the full feature comparison.</p>`,
+          },
+          {
+            q: 'how do i get access?',
+            a: `<p>head to <a href="https://app.liv4all.com">app.liv4all.com</a> and sign in with google to start your 14-day free trial.</p>
+          <p>we're onboarding in batches, so if the current batch is full you'll be sent to the <a href="/#waitlist">waitlist</a> and we'll reach out the moment the next one opens — usually within a few weeks.</p>`,
+          },
+        ],
+      },
+    ],
+  },
+  'pt-br': {
+    metaTitle: 'FAQ — Liv4All',
+    metaDescription: 'Perguntas frequentes sobre a Liv — sua Chief of Staff de IA.',
+    heading: 'perguntas frequentes',
+    subtitle: 'tudo o que você quer saber antes de entregar sua agenda e caixa de entrada para uma IA.',
+    groups: [
+      {
+        label: '// o básico',
+        items: [
+          {
+            q: 'que problema a liv4all resolve — e por que agora?',
+            a: `<p>a maioria das pessoas passa horas por semana em tarefas administrativas de pouco valor: marcar reuniões, cobrar respostas de email, gerenciar a agenda. a IA finalmente ficou boa o suficiente para cuidar de tudo isso de forma autônoma — não só responder perguntas, mas de fato <strong>fazer as coisas</strong>. a liv4all coloca essa capacidade nas suas mãos.</p>`,
+          },
+          {
+            q: 'para quem a liv4all foi feita?',
+            a: `<p>para qualquer pessoa que queira seu tempo de volta. se você já desejou ter um assistente cuidando das coisas pequenas para poder focar no que realmente importa — é para você.</p>`,
+          },
+          {
+            q: 'qual a diferença para o chatgpt ou a siri?',
+            a: `<p>o chatgpt responde perguntas. a siri configura timers. a liv4all age — ela se conecta às suas contas de verdade, opera em seu nome e resolve as coisas sem você precisar ficar de babá. a diferença é <strong>agência</strong>.</p>`,
+          },
+        ],
+      },
+      {
+        label: '// capacidades',
+        items: [
+          {
+            q: 'o que a liv4all consegue fazer?',
+            a: `<p>a liv se conecta à sua conta google e cuida de:</p>
+          <ul>
+            <li><strong>email</strong> — lê, redige e envia em seu nome (sempre com sua aprovação antes de enviar)</li>
+            <li><strong>agenda</strong> — marca reuniões, cria convites, gerencia seu tempo</li>
+            <li><strong>contatos</strong> — encontra pessoas, traz contexto quando você precisa</li>
+            <li><strong>navegação na web</strong> — preenche formulários, faz reservas, automatiza tarefas na web</li>
+            <li><strong>briefings proativos</strong> — resumos diários, lembretes de reunião, cutucadas de follow-up</li>
+          </ul>
+          <p>você pode falar com a liv pelo <strong>telegram</strong>, <strong>whatsapp</strong> (apenas por convite — veja o <a href="/pt-br/faq/whatsapp">faq do whatsapp</a>) ou mandando um email direto para ela. cada agente liv tem seu próprio endereço de email e perfil no telegram, então ela consegue falar com você — e com outras pessoas — sem pegar suas contas emprestadas.</p>
+          <p>no roadmap:</p>
+          <ul>
+            <li><span class="badge-coming">em breve</span> <strong>ligações telefônicas</strong> — reserva restaurantes, marca consultas e mais via ligações PSTN de verdade</li>
+            <li><span class="badge-coming">em breve</span> <strong>slack</strong> — gerencie seu dia sem sair do seu workspace</li>
+          </ul>`,
+          },
+          {
+            q: 'a liv tem identidade própria?',
+            a: `<p>sim. cada agente liv tem um endereço de email dedicado e um perfil no telegram. isso significa que ela pode falar com pessoas em seu nome — agendando com seus contatos, dando follow-up em threads — sem precisar pegar suas contas emprestadas.</p>
+          <p>ela encontra as pessoas onde elas já estão. sem precisar de apps novos.</p>`,
+          },
+        ],
+      },
+      {
+        label: '// privacidade e dados',
+        items: [
+          {
+            q: 'meus dados ficam isolados dos de outros usuários?',
+            a: `<p><strong>sim — completamente.</strong> cada agente liv roda em seu próprio ambiente isolado. suas conversas, arquivos, dados de agenda e emails ficam completamente separados dos de todos os outros usuários — por design, não só por política. há múltiplas camadas de isolamento técnico garantindo que um usuário nunca consiga acessar os dados de outro.</p>`,
+          },
+          {
+            q: 'meus dados são criptografados?',
+            a: `<p>seus dados são criptografados tanto quando armazenados (em repouso) quanto em movimento entre sistemas (em trânsito). usamos padrões modernos de criptografia em toda a nossa infraestrutura — bancos de dados, armazenamento de arquivos e todas as conexões de rede.</p>`,
+          },
+          {
+            q: 'onde a liv roda?',
+            a: `<p>a liv roda em infraestrutura da AWS, em redes privadas que não são acessíveis diretamente pela internet. só as conexões específicas necessárias para falar com o telegram (ou seu email) são permitidas. usamos os mesmos blocos de segurança em nuvem em que bancos e empresas de saúde confiam.</p>`,
+          },
+          {
+            q: 'a que a liv4all tem acesso?',
+            a: `<p>cada agente só consegue acessar os <strong>seus</strong> dados — seus emails, sua agenda, seus arquivos. mesmo internamente, as permissões são limitadas para que cada agente tenha acesso apenas aos recursos específicos de que precisa e nada mais.</p>
+          <p>a liv4all se conecta à sua conta google via OAuth oficial — o mesmo padrão que seus outros apps usam. você controla o que autoriza e pode revogar o acesso a qualquer momento nas <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">configurações da sua conta google</a>.</p>`,
+          },
+          {
+            q: 'meus dados são usados para treinar modelos de IA?',
+            a: `<p><strong>não.</strong> suas conversas e arquivos nunca são usados para treinar modelos de IA — nem os nossos, nem os de ninguém. eles existem só para alimentar o <strong>seu</strong> assistente.</p>`,
+          },
+          {
+            q: 'a liv vai enviar emails sem minha permissão?',
+            a: `<p><strong>não.</strong> a liv nunca envia um email em seu nome sem antes mostrar um rascunho e receber sua confirmação explícita. sem surpresas.</p>`,
+          },
+          {
+            q: 'posso apagar meus dados?',
+            a: `<p>você está no controle. pode solicitar o acesso, a exportação ou a exclusão dos seus dados a qualquer momento. se conectou serviços como o google calendar, pode revogar o acesso por esses serviços quando quiser. a exclusão completa dos dados é concluída em até 30 dias após a solicitação.</p>
+          <p>veja nossa <a href="/privacy">política de privacidade</a> para o quadro completo.</p>`,
+          },
+        ],
+      },
+      {
+        label: '// primeiros passos',
+        items: [
+          {
+            q: 'em que estágio a liv4all está?',
+            a: `<p>a liv4all está em early access. as funcionalidades principais funcionam em produção e somos <a href="/pt-br/trust">verificados pelo google no CASA tier 2</a>, mas estamos fazendo o onboarding em lotes para manter a qualidade do serviço alta enquanto escalamos.</p>
+          <p>no early access:</p>
+          <ul>
+            <li>você ganha um <strong>teste gratuito de 14 dias</strong>, sem precisar de cartão de crédito</li>
+            <li>seu feedback molda o que construímos em seguida</li>
+            <li>membros fundadores mantêm o preço de lançamento para sempre</li>
+          </ul>`,
+          },
+          {
+            q: 'quanto custa?',
+            a: `<p>dois planos:</p>
+          <ul>
+            <li><strong>Pro</strong> — US$ 79/mês (ou US$ 63/mês no plano anual)</li>
+            <li><strong>Max</strong> — US$ 149/mês (ou US$ 119/mês no plano anual)</li>
+          </ul>
+          <p>toda conta nova começa com um <strong>teste gratuito de 14 dias</strong>. sem cartão de crédito no início — escolha um plano quando estiver pronto, ou cancele antes do fim do teste e não pague nada. veja a <a href="/pt-br/pricing">página de preços</a> para a comparação completa de funcionalidades.</p>`,
+          },
+          {
+            q: 'como consigo acesso?',
+            a: `<p>acesse <a href="https://app.liv4all.com">app.liv4all.com</a> e entre com o google para começar seu teste gratuito de 14 dias.</p>
+          <p>estamos fazendo o onboarding em lotes, então se o lote atual estiver cheio você entra na <a href="/pt-br/#waitlist">lista de espera</a> e entraremos em contato assim que o próximo abrir — geralmente em poucas semanas.</p>`,
+          },
+        ],
+      },
+    ],
+  },
+}[lang];
+---
+<BaseLayout
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  ogUrl={canonicalUrl('/faq', lang)}
+  canonical={canonicalUrl('/faq', lang)}
+  lang={lang}
+>
+  <div class="container">
+    <h1>{copy.heading}</h1>
+    <p class="subtitle">{copy.subtitle}</p>
+
+    {copy.groups.map((group) => (
+      <div class="faq-group fade-in">
+        <div class="faq-group-label">{group.label}</div>
+
+        {group.items.map((item) => (
+          <details class="faq-toggle">
+            <summary>{item.q}</summary>
+            <div class="faq-toggle-body" set:html={item.a} />
+          </details>
+        ))}
+      </div>
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+
+  .faq-group { margin-bottom: 48px; }
+
+  .faq-group-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: 100px;
+  }
+
+  .faq-toggle {
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 10px;
+  }
+
+  .faq-toggle:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-glow);
+  }
+
+  .faq-toggle summary {
+    padding: 20px 24px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    gap: 16px;
+  }
+
+  .faq-toggle summary::-webkit-details-marker { display: none; }
+
+  .faq-toggle summary::after {
+    content: '+';
+    font-size: 1.2rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .faq-toggle[open] summary::after { content: '−'; }
+
+  .faq-toggle-body {
+    padding: 0 24px 24px;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .faq-toggle-body :global(strong) { color: var(--text); font-weight: 500; }
+
+  .faq-toggle-body :global(p + p) { margin-top: 12px; }
+
+  .faq-toggle-body :global(ul) {
+    padding-left: 20px;
+    margin: 12px 0;
+  }
+
+  .faq-toggle-body :global(li) { margin-bottom: 8px; }
+
+  .faq-toggle-body :global(.badge-live),
+  .faq-toggle-body :global(.badge-coming) {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-right: 4px;
+  }
+
+  .faq-toggle-body :global(.badge-live) {
+    color: var(--green);
+    background: rgba(52, 211, 153, 0.1);
+    border: 1px solid rgba(52, 211, 153, 0.2);
+  }
+
+  .faq-toggle-body :global(.badge-coming) {
+    color: var(--amber);
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+  }
+</style>

@@ -1,0 +1,73 @@
+---
+title: "Riscos de segurança de um agente de IA self-hosted"
+question: "Quais são os riscos de segurança de fazer self-host de um agente de IA?"
+answer: "Fazer self-host coloca você no comando de segredos, tokens OAuth, patches, exposição de rede e aprovações. Os principais riscos são credenciais vazadas, dependências sem patch, um agente com permissões demais e a falta de compliance para escopos restritos. Todos são gerenciáveis, mas agora são responsabilidade sua."
+description: "Fazer self-host de um agente de IA significa cuidar de segredos, patches, OAuth, exposição e aprovações. Os riscos reais e como reduzi-los."
+topic: security
+intent: informational
+datePublished: 2026-06-01
+related:
+  - self-host-ai-agent-maintenance
+  - how-to-securely-store-api-keys-for-ai-agents
+  - self-hosted-vs-managed-ai-agent
+---
+
+Rodar seu próprio agente de IA é atraente por bons motivos: controle total, nenhum lock-in de fornecedor e seus dados na sua própria infraestrutura. A troca é que toda responsabilidade de segurança que um provedor gerenciado assumiria agora é sua, e um agente que pode ler seu e-mail, gastar dinheiro e agir em seu nome é um alvo valioso se qualquer uma dessas responsabilidades escorregar.
+
+Nada disso significa que self-hosting é inseguro. Significa que a segurança é função da sua disciplina operacional, e não da de outra pessoa.
+
+## Como funciona
+
+A superfície de risco de um agente self-hosted se agrupa em algumas áreas.
+
+- **Vazamento de credenciais e segredos.** O agente guarda uma chave de LLM, tokens OAuth e tokens de bot. Armazenados de forma errada (arquivos em texto puro, `.env` commitado), qualquer um deles vira uma brecha. Veja [como armazenar chaves de API com segurança](/pt-br/answers/how-to-securely-store-api-keys-for-ai-agents).
+- **Dependências sem patch.** O [OpenClaw](https://github.com/openclaw/openclaw) e suas bibliotecas são atualizados regularmente. Pular atualizações deixa vulnerabilidades conhecidas abertas; acompanhá-las e aplicá-las faz parte da [manutenção contínua](/pt-br/answers/self-host-ai-agent-maintenance).
+- **Exposição de rede.** Um servidor mal configurado, uma porta aberta ou um SSH frouxo transforma o host do seu agente em porta de entrada. Blinde a máquina como qualquer serviço em produção.
+- **Agente com permissões demais.** Um agente que pode enviar e-mails e movimentar dinheiro de forma autônoma, sem etapa de aprovação, uma hora vai fazer algo que você não pretendia. Mantenha um humano no circuito para ações de saída.
+- **Falta de compliance.** Escopos restritos do Gmail exigem passar pela avaliação de segurança do Google. Fazer self-host não isenta você dessa obrigação; veja [o que significa CASA Tier 2](/pt-br/answers/what-is-casa-tier-2-gmail).
+
+## Exemplo na prática
+
+Como a responsabilidade muda entre self-hosting e um serviço gerenciado.
+
+| Área de risco | OpenClaw self-hosted | Liv (gerenciada) |
+| --- | --- | --- |
+| Armazenamento de segredos | Você constrói e opera | Cofres criptografados por usuário |
+| Patches de dependências | ~1–3 horas/mês, tarefa sua | Cuidado para você |
+| Hardening do servidor | A máquina é sua | Infraestrutura gerenciada |
+| OAuth + compliance do Gmail | Você providencia o CASA | CASA Tier 2, verificado pela TAC Security |
+| Aprovação de envios | Você implementa o bloqueio | Rascunhos precisam da sua aprovação |
+| Política de treinamento de dados | Você escolhe os provedores | Não usados para treinar modelos |
+
+Se você gosta desse trabalho, o controle é a recompensa. Se não gosta, uma [alternativa gerenciada](/pt-br/answers/self-hosted-vs-managed-ai-agent) remove a maior parte desses riscos ao absorver a operação.
+
+## Experimente na Liv
+
+A Liv roda o mesmo loop de agente do OpenClaw, mas as responsabilidades de segurança acima são cuidadas para você: cofres criptografados, patches e hardening gerenciados, [CASA Tier 2](/pt-br/answers/what-is-casa-tier-2-gmail) (verificado de forma independente pela TAC Security), Google OAuth revogável, nenhum treinamento de modelos com seus dados e aprovação obrigatória antes de qualquer rascunho ser enviado.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Fale com a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte Gmail e Calendar via Google OAuth, revogável a qualquer momento.
+4. Opcionalmente, vincule o WhatsApp (somente por convite, exige um eSIM dedicado).
+
+O onboarding está em acesso antecipado e é feito em lotes, então pode haver uma fila.
+
+## Perguntas comuns
+
+### Fazer self-host de um agente de IA é inerentemente inseguro?
+Não. Ele é tão seguro quanto você o fizer. O risco é que todos os controles viram responsabilidade sua, e é fácil deixar brechas abertas.
+
+### Qual é o maior risco isolado?
+Credenciais vazadas, geralmente por segredos armazenados em texto puro ou commitados no repositório. Corrigir só isso já elimina boa parte do perigo.
+
+### Ainda preciso do CASA se eu fizer self-host?
+Se o seu agente usa escopos restritos do Gmail, a obrigação da avaliação vale independentemente de quem roda o servidor. [CASA Tier 2 explicado](/pt-br/answers/what-is-casa-tier-2-gmail).
+
+### Quanto trabalho contínuo exige um self-hosting seguro?
+Planeje cerca de 1–3 horas por mês com atualizações, expiração de tokens e debugging, além do hardening inicial. Veja [manutenção do self-host](/pt-br/answers/self-host-ai-agent-maintenance).
+
+### O agente deve poder agir sem a minha aprovação?
+Para qualquer coisa irreversível (enviar e-mail, gastar dinheiro), não. Coloque essas ações atrás de aprovação explícita, como a Liv faz por padrão.
+
+### Quando o gerenciado é a melhor escolha?
+Quando você quer as capacidades do agente sem assumir o trabalho de segurança. Compare os trade-offs em [self-hosted vs gerenciado](/pt-br/answers/self-hosted-vs-managed-ai-agent).

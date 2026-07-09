@@ -1,0 +1,68 @@
+---
+title: "IA para triar seu e-mail"
+question: "Um agente de IA pode triar meu e-mail para mim?"
+answer: "Sim. Um agente de IA persistente pode ler sua caixa de entrada, separar o que importa do que não importa, resumir as threads importantes e rascunhar respostas para sua aprovação. A Liv faz isso pelo Gmail, enviando rascunhos que você confirma antes de qualquer saída."
+description: "Como um agente de IA tria sua caixa de entrada: classifica, resume e rascunha respostas que você aprova. Construído no OpenClaw, operado pela Liv sem ops."
+topic: use-cases
+intent: informational
+datePublished: 2026-06-01
+related:
+  - ai-calendar-assistant
+  - how-to-get-a-daily-ai-briefing
+  - how-to-give-an-ai-agent-email-and-calendar-access
+---
+
+A triagem de e-mail é a parte mais repetitiva do trabalho de caixa de entrada: decidir o que precisa de resposta, o que pode esperar, o que é ruído e o que alguém está de fato pedindo que você faça. Um agente de IA com acesso à sua caixa de entrada pode fazer a primeira passada em tudo isso. Ele lê as mensagens recebidas, as classifica pelo que parece urgente ou importante, resume threads longas em uma ou duas frases e prepara respostas para as que precisam.
+
+A ideia não é entregar sua caixa de entrada a uma caixa-preta. Um agente bem construído mostra o trabalho: diz o que encontrou, por que sinalizou algo e o que propõe enviar, deixando a decisão com você.
+
+## Como funciona
+
+Por baixo do capô, um agente de triagem de e-mail roda um loop de agente: conecta à sua caixa de correio, lê mensagens novas, as classifica e decide qual ação cada uma precisa. Frameworks open-source como o [OpenClaw](https://github.com/openclaw/openclaw) fornecem exatamente esse loop, com memória persistente para o agente aprender com o tempo quais remetentes e assuntos importam para você.
+
+O acesso é a parte sensível. A Liv se conecta ao Gmail via Google OAuth, que você pode revogar a qualquer momento, e lê apenas o necessário para fazer o trabalho. Qualquer resposta que ela escreve fica retida como rascunho até você aprovar, então nada é enviado em seu nome sem o seu aval. Para o detalhe de segurança, veja [é seguro dar à IA acesso ao seu Gmail](/pt-br/answers/is-it-safe-to-give-ai-access-to-your-gmail) e [o que é CASA Tier 2 para Gmail](/pt-br/answers/what-is-casa-tier-2-gmail).
+
+A triagem raramente vive sozinha. O mesmo agente que organiza sua caixa de entrada pode transformar um e-mail encaminhado em um evento de calendário, e é aí que [um assistente de calendário com IA](/pt-br/answers/ai-calendar-assistant) assume.
+
+## Exemplo na prática
+
+Você pode construir isso por conta própria no OpenClaw ou ter tudo rodando para você. A lógica do agente é a mesma; a diferença é quem carrega a configuração e a manutenção.
+
+| Dimensão | OpenClaw self-hosted | Liv (OpenClaw como serviço) |
+| --- | --- | --- |
+| Configuração | ~15 min de deploy, depois escrever o SOUL.md e conectar o Gmail | Trial de 14 dias, sem cartão, OAuth em poucos cliques |
+| Acesso à caixa de entrada | Você configura e protege | Google OAuth, revogável pelo usuário |
+| Custo mensal | Infra + LLM, tipicamente abaixo de $100, gerenciado por você | Pro $79/mês, Max $149/mês |
+| Ops | ~1–3 horas/mês (expiração de tokens, updates, debugging) | Gerenciado para você |
+| Compliance | Sua responsabilidade | CASA Tier 2, cofres criptografados |
+
+## Experimente na Liv
+
+A Liv é o loop de agente do OpenClaw e a integração real com o Gmail envolvidos em infraestrutura gerenciada, então você ganha triagem de caixa de entrada sem rodar um servidor.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Fale com a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte o Gmail via Google OAuth para a Liv poder ler e rascunhar.
+4. Peça para a Liv resumir seus e-mails não lidos ou sinalizar qualquer urgência; revise os rascunhos que ela propõe antes do envio.
+
+O onboarding está atualmente em acesso antecipado e em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### A IA vai enviar e-mails sem me perguntar?
+Não. A Liv prepara respostas de saída como rascunhos e espera sua aprovação antes de enviar qualquer coisa.
+
+### Funciona com o Gmail?
+Sim. A Liv se conecta ao Gmail via Google OAuth, que você pode revogar quando quiser.
+
+### Ela consegue aprender quais e-mails importam para mim?
+Sim. O agente mantém memória persistente, então com o tempo fica melhor em reconhecer os remetentes e os assuntos que você valoriza. Veja [como dar memória ao seu agente de IA](/pt-br/answers/how-to-give-your-ai-agent-memory).
+
+### Meu e-mail é usado para treinar modelos de IA?
+Não. Seus dados não são usados para treinar modelos.
+
+### Ela consegue cuidar do meu calendário também?
+Sim. O mesmo agente gerencia sua agenda e pode transformar e-mails encaminhados em eventos. Veja [assistente de calendário com IA](/pt-br/answers/ai-calendar-assistant).
+
+### Em que isso é diferente de um chatbot?
+Um chatbot responde quando você pergunta; um agente de triagem trabalha continuamente e executa ações. Veja [IA que executa ações, não apenas responde](/pt-br/answers/ai-that-can-take-actions-not-just-answer).

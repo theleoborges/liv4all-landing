@@ -1,0 +1,68 @@
+---
+title: "Assistente de calendário com IA"
+question: "O que um assistente de calendário com IA consegue fazer?"
+answer: "Um assistente de calendário com IA lê e gerencia sua agenda por você: cria e move eventos, transforma mensagens encaminhadas em entradas de calendário e mantém seu dia em ordem. A Liv faz isso pelo Google Calendar via OAuth que você pode revogar."
+description: "O que um assistente de calendário com IA faz: cria e move eventos, converte e-mails encaminhados em entradas. Construído no OpenClaw, operado pela Liv."
+topic: use-cases
+intent: informational
+datePublished: 2026-06-01
+related:
+  - ai-to-triage-your-email
+  - ai-that-books-restaurants
+  - how-to-give-an-ai-agent-email-and-calendar-access
+---
+
+Um assistente de calendário que entende linguagem natural poupa você da mecânica chata de agendar. Em vez de abrir o calendário, encontrar um horário e digitar os detalhes, você diz ao agente o que precisa e ele faz o trabalho: marque isso, mova aquilo, ache uma hora livre na quinta, adicione o jantar que alguém acabou de mandar por e-mail.
+
+A versão útil disso está conectada ao seu calendário real e à sua caixa de entrada real, para poder agir sobre eventos de verdade em vez de responder perguntas hipotéticas sobre agendamento.
+
+## Como funciona
+
+Um agente de calendário roda o mesmo loop de agente que move qualquer [agente de IA persistente](/pt-br/answers/what-is-a-persistent-ai-agent): ele lê um pedido, decide qual ação precisa, chama a API do calendário e confirma o resultado. Frameworks como o [OpenClaw](https://github.com/openclaw/openclaw) fornecem esse loop e se conectam aos serviços que você já usa.
+
+A Liv acessa seu calendário pelo Google Calendar via OAuth, que você concede durante a configuração e pode revogar a qualquer momento. Um dos truques mais úteis é transformar uma mensagem encaminhada em evento: encaminhe um e-mail de confirmação ou uma mensagem do Telegram sobre uma reunião, e a Liv extrai data, hora e detalhes e cria a entrada. Isso combina naturalmente com a [triagem de e-mail](/pt-br/answers/ai-to-triage-your-email), já que o agente que lê sua caixa de entrada é o mesmo que preenche seu calendário. Para a mecânica de acesso, veja [como dar a um agente de IA acesso a e-mail e calendário](/pt-br/answers/how-to-give-an-ai-agent-email-and-calendar-access).
+
+O trabalho de calendário também alimenta as reservas. Quando o agente precisa reservar uma mesa ou horário em torno da sua disponibilidade, ele usa a mesma agenda; veja [IA que reserva restaurantes](/pt-br/answers/ai-that-books-restaurants).
+
+## Exemplo na prática
+
+Você pode rodar um agente de calendário por conta própria no OpenClaw ou tê-lo gerenciado. A capacidade é idêntica; o fardo operacional é diferente.
+
+| Dimensão | OpenClaw self-hosted | Liv (OpenClaw como serviço) |
+| --- | --- | --- |
+| Configuração | Fazer deploy, escrever config, conectar o Google Calendar | Trial de 14 dias, sem cartão, OAuth em poucos cliques |
+| Acesso ao calendário | Você configura e protege | Google OAuth, revogável pelo usuário |
+| Custo mensal | Infra + LLM, tipicamente abaixo de $100, autogerenciado | Pro $79/mês, Max $149/mês |
+| Ops | ~1–3 horas/mês de manutenção | Gerenciado para você |
+| Compliance | Sua responsabilidade | CASA Tier 2, cofres criptografados |
+
+## Experimente na Liv
+
+A Liv envolve o loop de agente do OpenClaw e a integração com o Google Calendar em infraestrutura gerenciada, então você ganha um assistente de calendário funcional sem a configuração.
+
+1. Comece um trial gratuito de 14 dias em [app.liv4all.com](https://app.liv4all.com), sem cartão de crédito.
+2. Fale com a Liv no Telegram, o canal padrão e obrigatório.
+3. Conecte o Google Calendar via OAuth.
+4. Peça para a Liv adicionar, mover ou encontrar eventos, ou encaminhe uma mensagem e peça para ela colocar os detalhes no seu calendário.
+
+O onboarding está atualmente em acesso antecipado e em lotes, então você pode entrar em uma fila.
+
+## Perguntas comuns
+
+### Com qual calendário ele funciona?
+A Liv se conecta ao Google Calendar via OAuth, que você pode revogar a qualquer momento.
+
+### Ele consegue criar um evento a partir de um e-mail encaminhado?
+Sim. Encaminhe uma mensagem para a Liv e ela extrai data, hora e detalhes para criar a entrada no calendário.
+
+### Ele vai mover ou cancelar eventos por conta própria?
+Ele age sob suas instruções. Você diz o que agendar ou mudar, e ele confirma o que fez.
+
+### Ele consegue gerenciar e-mail também?
+Sim. O mesmo agente tria sua caixa de entrada e rascunha respostas. Veja [IA para triar seu e-mail](/pt-br/answers/ai-to-triage-your-email).
+
+### Os dados do meu calendário são usados para treinar modelos?
+Não. Seus dados não são usados para treinar modelos.
+
+### Ele consegue reservar coisas que dependem da minha disponibilidade?
+Sim. Ele usa seu calendário para encontrar horários e pode reservar mesas ou compromissos. Veja [IA que reserva restaurantes](/pt-br/answers/ai-that-books-restaurants).

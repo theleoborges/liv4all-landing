@@ -2,6 +2,7 @@
 import Head from '../components/Head.astro';
 import FadeInScript from '../components/FadeInScript.astro';
 import ChatWidget from '../components/ChatWidget.astro';
+import { LANG_TAGS, type Lang } from '../i18n';
 
 interface Props {
   title: string;
@@ -9,12 +10,14 @@ interface Props {
   ogUrl: string;
   ogTitle?: string;
   ogDescription?: string;
+  lang?: Lang;
 }
 
-const headProps = { ...Astro.props, ogType: 'video.other' };
+const { lang = 'en', ...rest } = Astro.props;
+const headProps = { ...rest, ogType: 'video.other', lang };
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang={LANG_TAGS[lang]}>
   <head>
     <Head {...headProps} />
     <style>
