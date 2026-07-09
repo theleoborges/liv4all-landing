@@ -1,0 +1,46 @@
+---
+title: O orçamento de R$ 60.000 que ela não pagou
+description: Uma butique financeira carioca queria um hub de gestão de clientes. Uma agência orçou R$ 60 mil. A fundadora construiu ela mesma com um agente de IA em duas semanas, e é dona do resultado.
+pubDate: 2026-06-02
+tags: ["case study", "small business", "ai agents"]
+draft: false
+featured: false
+---
+
+Uma butique de finanças na Urca, no canto tranquilo do Rio de Janeiro, precisava de um hub de gestão de clientes. Nada exótico: um dashboard para ver os clientes ativos de relance, gerenciar tarefas, dar conta das recorrentes que engolem uma terça-feira inteira, e fazer backup de tudo para que um notebook morto não vire uma crise. O tipo de ferramenta interna que toda empresa de serviços reinventa e ninguém gosta de pagar.
+
+A empresa é a [Foster Finance](https://foster.services), que vende gestão financeira e inteligência terceirizadas para PMEs: CFO como serviço, além de jurídico e consultoria. Eles vivem do outro lado exatamente desse problema para os próprios clientes, ajudando pequenas empresas a tomar decisões sóbrias sobre para onde vai o dinheiro. Então quando a fundadora foi atrás do próprio sistema interno e uma agência voltou com um orçamento, ela estava bem posicionada para interpretá-lo.
+
+O orçamento era de R$ 60.000. Cerca de US$ 10.000 por um app CRUD com um dashboard e alguns jobs agendados.
+
+Ela é, segundo a própria descrição, uma fuçadora não técnica. Não é desenvolvedora, não finge ser, mas é o tipo de pessoa que prefere entender como a máquina funciona a entregar tudo para terceiros e torcer. R$ 60.000 para terceirizar algo que ela suspeitava ser tratável pareceu menos um preço e mais um imposto sobre não saber como. Então ela não pagou. Construiu o hub ela mesma, com a Liv, em cerca de duas semanas.
+
+## O que "construiu ela mesma" significa de verdade
+
+A versão honesta importa aqui, porque a versão desonesta está em todo lugar. Ela não digitou uma frase e foi embora enquanto um gênio autônomo entregava software de produção. Essa história vende bem e envelhece mal.
+
+O que aconteceu está mais para parear com um colega muito paciente e muito rápido que já conhece as APIs. A Liv guiou as decisões de configuração e depois fez o trabalho de configuração em si: escreveu os scripts de automação, chamou as APIs dos serviços, conectou as peças. Quando esbarrava em um passo que um agente genuinamente não consegue fazer sozinho (conceder uma permissão, aprovar acesso a uma conta, o clique manual ocasional que mora atrás de um login), parava e perguntava. Ela forneceu as partes de humano-no-circuito. A Liv fez as partes que, para uma dona de negócio não técnica, são o verdadeiro muro: os scripts, o encanamento das integrações, os trechos onde uma flag errada custa uma tarde.
+
+A stack não tem glamour nenhum, e esse é o ponto. [Nextcloud](https://nextcloud.com) para os arquivos e o hub em si, [GitHub](https://github.com) para o código e o histórico de versões, AWS por baixo. Em cima disso: um dashboard com alertas inteligentes destacando clientes ativos e tarefas pendentes, botões de ação rápida para o que ela faz todo dia, gestão de clientes e tarefas, tarefas recorrentes que se agendam sozinhas, e backups automatizados para que o arranjo todo sobreviva a um dia ruim.
+
+{/* optional pull-quote from the Foster founder goes here */}
+
+Duas semanas, nenhum R$ 60.000, e um sistema cujo capô ela pode abrir. Se algo quebra, ela não está abrindo chamado com a agência e esperando um contrato de manutenção. Ela pergunta à Liv, ou olha ela mesma.
+
+## Para onde se moveu a linha entre construir e contratar
+
+Durante a maior parte das últimas duas décadas, o cálculo para quem tem um negócio pequeno e precisa de software era sombrio. Construir significava aprender a programar, o que é uma carreira, ou contratar alguém, o que é um orçamento. O orçamento de R$ 60 mil não é um assalto; é mais ou menos o que ferramentas internas sob medida custam quando uma agência precisa escopar, construir e sustentar. A agência estava precificando trabalho de verdade.
+
+O que mudou não foi o trabalho desaparecer. Foi um agente gerenciado agora conseguir fazer uma fatia grande dele sob supervisão, o que arrasta o ponto de equilíbrio do "melhor terceirizar" um bom pedaço a favor de quem é dono do negócio. A pergunta deixa de ser *tenho dinheiro para um desenvolvedor* e passa a ser *quais partes realmente precisam de um*. Para um hub de gestão de clientes construído sobre serviços padrão, a resposta acabou sendo: menos do que você imagina. É a mesma virada que vemos repetidamente entre [pequenas empresas recorrendo a um agente de IA](/pt-br/answers/ai-agent-for-small-business) em vez de um prestador, e ela reenquadra a velha decisão de [agente versus contratar um desenvolvedor](/pt-br/answers/ai-agent-vs-hiring-a-developer), que antes era resolvida pelo saldo bancário.
+
+Há um efeito de segunda ordem fácil de perder de vista quando se olha só a etiqueta de preço. A construção pela agência teria deixado para ela um sistema e uma dependência. Cada mudança, cada integração, cada caso de borda esquisito passa de volta pela agenda de outra pessoa e pela fatura de outra pessoa. Ser dona da construção significa que o custo marginal da próxima mudança é próximo de zero, que é precisamente a posição em que uma empresa de serviços quer estar quando os próprios processos não param de evoluir. Propriedade compõe juros; terceirização vira mensalidade.
+
+Nada disso exige ser técnica no sentido em que a indústria insistiu por tanto tempo. Exige ser curiosa o suficiente para permanecer no circuito e disposta a conceder permissões de forma deliberada em vez de às cegas. É uma barra real, e nem todo mundo passa, mas é uma barra diferente de "aprenda a programar ou pague R$ 60 mil". Uma [pessoa não técnica consegue construir com um agente](/pt-br/answers/can-a-non-technical-person-build-with-an-ai-agent) justamente porque o agente cuida da sintaxe enquanto o humano mantém o julgamento.
+
+## A lição sem glamour
+
+A parte interessante dessa história não é a economia, por mais satisfatória que seja. É que uma profissional de finanças que aconselha outras empresas sobre onde gastar dinheiro olhou para uma linha de R$ 60.000 no orçamento, reconheceu que era opcional, e agiu sobre esse reconhecimento. Ela tratou software do jeito que diria a um cliente para tratar qualquer despesa grande: entenda o que você está de fato comprando antes de assinar.
+
+Para quem está encarando a própria versão desse orçamento, o movimento prático é pequeno. Escolha a ferramenta interna sem graça que você vem adiando, aquela que você gerenciaria com um agente se soubesse como, e experimente [gerenciá-la com um agente](/pt-br/answers/how-to-manage-clients-with-an-ai-agent) antes de fazer o briefing para um fornecedor. Você ainda pode acabar contratando as partes difíceis. Mas vai saber quais partes são essas, e vai ser dono de todo o resto.
+
+Se quiser descobrir onde fica a sua própria linha entre construir e contratar, você pode [começar um trial](https://app.liv4all.com).
