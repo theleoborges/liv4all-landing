@@ -26,7 +26,7 @@ const copy = {
     heading: 'guias',
     subtitle: 'passo a passo para aproveitar ao máximo o seu agente liv.',
     whatsappLabel: 'alpha',
-    whatsappTitle: 'conecte seu agente ao WhatsApp (em inglês)',
+    whatsappTitle: 'conecte seu agente ao WhatsApp',
     whatsappDesc: 'vincule seu agente liv ao WhatsApp Business para conversar com ele tanto no Telegram quanto no WhatsApp.',
   },
 }[lang];
@@ -44,7 +44,7 @@ const copy = {
     <h1>{copy.heading}</h1>
     <p class="subtitle">{copy.subtitle}</p>
 
-    <a href="/guides/whatsapp-onboarding" class="guide-card">
+    <a href={localizePath('/guides/whatsapp-onboarding', lang)} class="guide-card">
       <span class="guide-card-label">{copy.whatsappLabel}</span>
       <div class="guide-card-title">{copy.whatsappTitle}</div>
       <p class="guide-card-desc">{copy.whatsappDesc}</p>

@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import JsonLd from '../components/JsonLd.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
+import { entryLang, entrySlug, localizePath } from '../i18n';
 
 interface Props {
   entry: CollectionEntry<'answers'>;
@@ -10,29 +11,70 @@ interface Props {
 
 const { entry } = Astro.props;
 const { title, question, answer, description, datePublished, updated } = entry.data;
-const url = `https://liv4all.com/answers/${entry.id}`;
+const lang = entryLang(entry.id);
+const slug = entrySlug(entry.id);
+const basePath = localizePath(`/answers/${slug}`, lang);
+const url = `https://liv4all.com${basePath}`;
 
-// Resolve `related` slugs to real entries for the "Related questions" block.
-// Missing or draft (in prod) targets are dropped, so links never 404.
+const t = {
+  en: {
+    home: 'home',
+    answers: 'answers',
+    homeCrumbName: 'Home',
+    answersCrumbName: 'Answers',
+    updatedLabel: 'updated',
+    relatedHeading: 'Related questions',
+    relatedAria: 'Related questions',
+    ctaKicker: 'Try this in Liv',
+    ctaCopy:
+      'Liv is OpenClaw as a service — the agent loop and security, fully managed, no ops. Start a 14-day free trial; no credit card.',
+    ctaBtn: 'start your trial →',
+    disclaimer:
+      'Liv4All is an independent managed service built on the open-source OpenClaw framework; it is not affiliated with or endorsed by the OpenClaw project, Manus, or any other product named here. Names are used for identification only. Details reflect the product at time of writing — check the relevant official source before relying on them.',
+    dateLocale: 'en-AU',
+  },
+  'pt-br': {
+    home: 'início',
+    answers: 'respostas',
+    homeCrumbName: 'Início',
+    answersCrumbName: 'Respostas',
+    updatedLabel: 'atualizado em',
+    relatedHeading: 'Perguntas relacionadas',
+    relatedAria: 'Perguntas relacionadas',
+    ctaKicker: 'Experimente na Liv',
+    ctaCopy:
+      'A Liv é OpenClaw como serviço — o loop de agente e a segurança, totalmente gerenciados, sem ops. Comece um teste grátis de 14 dias; sem cartão de crédito.',
+    ctaBtn: 'comece seu teste →',
+    disclaimer:
+      'A Liv4All é um serviço gerenciado independente construído sobre o framework open-source OpenClaw; não é afiliada nem endossada pelo projeto OpenClaw, pela Manus ou por qualquer outro produto citado aqui. Os nomes são usados apenas para identificação. Os detalhes refletem o produto no momento da escrita — confira a fonte oficial antes de depender deles.',
+    dateLocale: 'pt-BR',
+  },
+}[lang];
+
+// Resolve `related` slugs (stored unprefixed in both languages) to same-language
+// entries for the "Related questions" block. Missing or draft (in prod) targets
+// are dropped, so links never 404.
 const allAnswers = await getCollection('answers');
 const related = entry.data.related
-  .map((slug) => allAnswers.find((a) => a.id === slug))
+  .map((s) => allAnswers.find((a) => a.id === (lang === 'pt-br' ? `pt-br/${s}` : s)))
   .filter((a) => a && (!a.data.draft || !import.meta.env.PROD)) as CollectionEntry<'answers'>[];
 
 // UTM-tag the CTA so a trial started from this page is attributable downstream
 // (in app.liv4all.com's own analytics) to the exact answer that drove it.
 // Cloudflare Web Analytics is pageview-only, so conversion is measured at the
-// destination, not as an on-site click event.
+// destination, not as an on-site click event. entry.id keeps the pt-br/ prefix,
+// so the two language versions attribute separately.
 const ctaUrl = `https://app.liv4all.com/?utm_source=answers&utm_medium=content&utm_campaign=seo-geo&utm_content=${entry.id}`;
 
 const formatDate = (d: Date) =>
-  d.toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' });
+  d.toLocaleDateString(t.dateLocale, { year: 'numeric', month: 'long', day: 'numeric' });
 
 const graph: Record<string, unknown>[] = [
   {
     '@type': 'Article',
     headline: title,
     description,
+    inLanguage: lang === 'pt-br' ? 'pt-BR' : 'en',
     datePublished: datePublished.toISOString(),
     ...(updated && { dateModified: updated.toISOString() }),
     author: { '@type': 'Organization', name: 'Liv4All', url: 'https://liv4all.com' },
@@ -56,8 +98,18 @@ const graph: Record<string, unknown>[] = [
   {
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://liv4all.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Answers', item: 'https://liv4all.com/answers' },
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: t.homeCrumbName,
+        item: `https://liv4all.com${localizePath('/', lang)}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: t.answersCrumbName,
+        item: `https://liv4all.com${localizePath('/answers', lang)}`,
+      },
       { '@type': 'ListItem', position: 3, name: title, item: url },
     ],
   },
@@ -70,14 +122,15 @@ const graph: Record<string, unknown>[] = [
   ogType="article"
   ogTitle={title}
   canonical={url}
+  lang={lang}
 >
   <JsonLd slot="head" graph={graph} />
 
   <article class="container">
     <nav class="crumbs" aria-label="Breadcrumb">
-      <a href="/">home</a>
+      <a href={localizePath('/', lang)}>{t.home}</a>
       <span class="sep">/</span>
-      <a href="/answers">answers</a>
+      <a href={localizePath('/answers', lang)}>{t.answers}</a>
       <span class="sep">/</span>
       <span class="current">{title}</span>
     </nav>
@@ -89,7 +142,7 @@ const graph: Record<string, unknown>[] = [
       {updated && (
         <>
           <span class="dot">·</span>
-          <span class="updated">updated {formatDate(updated)}</span>
+          <span class="updated">{t.updatedLabel} {formatDate(updated)}</span>
         </>
       )}
     </p>
@@ -99,32 +152,24 @@ const graph: Record<string, unknown>[] = [
     </div>
 
     {related.length > 0 && (
-      <section class="related" aria-label="Related questions">
-        <h2>Related questions</h2>
+      <section class="related" aria-label={t.relatedAria}>
+        <h2>{t.relatedHeading}</h2>
         <ul>
           {related.map((r) => (
-            <li><a href={`/answers/${r.id}`}>{r.data.title}</a></li>
+            <li><a href={localizePath(`/answers/${entrySlug(r.id)}`, lang)}>{r.data.title}</a></li>
           ))}
         </ul>
       </section>
     )}
 
     <aside class="cta-box">
-      <p class="cta-kicker">Try this in Liv</p>
-      <p class="cta-copy">
-        Liv is OpenClaw as a service — the agent loop and security, fully managed, no ops.
-        Start a 14-day free trial; no credit card.
-      </p>
-      <a href={ctaUrl} class="cta-btn">start your trial →</a>
+      <p class="cta-kicker">{t.ctaKicker}</p>
+      <p class="cta-copy">{t.ctaCopy}</p>
+      <a href={ctaUrl} class="cta-btn">{t.ctaBtn}</a>
     </aside>
 
     <footer class="disclaimer">
-      <p>
-        Liv4All is an independent managed service built on the open-source OpenClaw framework;
-        it is not affiliated with or endorsed by the OpenClaw project, Manus, or any other
-        product named here. Names are used for identification only. Details reflect the product
-        at time of writing — check the relevant official source before relying on them.
-      </p>
+      <p>{t.disclaimer}</p>
     </footer>
   </article>
 

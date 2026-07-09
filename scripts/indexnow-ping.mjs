@@ -38,6 +38,20 @@ for (const e of entries) {
   }
 }
 
+// Brazilian Portuguese answers live under dist/pt-br/answers/<slug>/.
+const PT_ANSWERS_DIST = join(__dirname, '..', 'dist', 'pt-br', 'answers');
+try {
+  const ptEntries = await readdir(PT_ANSWERS_DIST, { withFileTypes: true });
+  urlList.push(`https://${HOST}/pt-br/answers/`);
+  for (const e of ptEntries) {
+    if (e.isDirectory() && (await fileExists(join(PT_ANSWERS_DIST, e.name, 'index.html')))) {
+      urlList.push(`https://${HOST}/pt-br/answers/${e.name}/`);
+    }
+  }
+} catch {
+  // no pt-br answers built — fine, ping English only
+}
+
 if (urlList.length === 1) {
   console.log('IndexNow: no answer pages found — nothing to ping.');
   process.exit(0);

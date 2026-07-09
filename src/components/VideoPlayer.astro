@@ -1,17 +1,20 @@
 ---
+import { localizePath, type Lang } from '../i18n';
+
 interface Props {
   title: string;
   desc: string;
   videoSrc: string;
+  lang?: Lang;
 }
 
-const { title, desc, videoSrc } = Astro.props;
+const { title, desc, videoSrc, lang = 'en' } = Astro.props;
 ---
 <div class="player-container fade-in">
   <video src={videoSrc} controls playsinline preload="metadata"></video>
   <h1 class="player-title">{title}</h1>
   <p class="player-desc">{desc}</p>
-  <a href="/" class="back-link">← liv4all.com</a>
+  <a href={localizePath('/', lang)} class="back-link">← liv4all.com</a>
 </div>
 
 <style>

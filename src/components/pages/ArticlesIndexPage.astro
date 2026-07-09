@@ -1,0 +1,229 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { canonicalUrl, entryLang, entrySlug, localizePath, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const isProd = import.meta.env.PROD;
+
+const all = (await getCollection('articles', ({ data }) => !data.draft || !isProd)).filter(
+  (a) => entryLang(a.id) === lang
+);
+
+const copy = {
+  en: {
+    metaTitle: 'Articles — Liv4All',
+    metaDescription: 'Notes on building Liv — an AI chief of staff that actually does things.',
+    back: '← back to liv4all',
+    heading: 'articles',
+    subtitle: 'notes on building liv — an AI chief of staff that actually does things.',
+    emptyPrefix: 'no articles published yet.',
+    emptyLink: 'back home.',
+    featuredTag: 'featured',
+    dateLocale: 'en-AU',
+  },
+  'pt-br': {
+    metaTitle: 'Artigos — Liv4All',
+    metaDescription: 'Notas sobre a construção da Liv — uma Chief of Staff de IA que realmente faz as coisas.',
+    back: '← voltar para a liv4all',
+    heading: 'artigos',
+    subtitle: 'notas sobre a construção da liv — uma chief of staff de IA que realmente faz as coisas.',
+    emptyPrefix: 'nenhum artigo publicado ainda.',
+    emptyLink: 'voltar para o início.',
+    featuredTag: 'destaque',
+    dateLocale: 'pt-BR',
+  },
+}[lang];
+
+const articles = all.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const [featured, ...rest] = articles.some((a) => a.data.featured)
+  ? [articles.find((a) => a.data.featured)!, ...articles.filter((a) => !a.data.featured)]
+  : [undefined, ...articles];
+
+const articleHref = (id: string) => localizePath(`/articles/${entrySlug(id)}`, lang);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString(copy.dateLocale, { year: 'numeric', month: 'short', day: 'numeric' });
+---
+<BaseLayout
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  ogUrl={canonicalUrl('/articles', lang)}
+  canonical={canonicalUrl('/articles', lang)}
+  lang={lang}
+>
+  <div class="container">
+    <a href={localizePath('/', lang)} class="back">{copy.back}</a>
+
+    <h1>{copy.heading}</h1>
+    <p class="subtitle">{copy.subtitle}</p>
+
+    {articles.length === 0 && (
+      <p class="empty">{copy.emptyPrefix} <a href={localizePath('/', lang)}>{copy.emptyLink}</a></p>
+    )}
+
+    {featured && (
+      <a href={articleHref(featured.id)} class="article-card article-card-featured">
+        <span class="tag tag-featured">{copy.featuredTag}</span>
+        {featured.data.tags.length > 0 && (
+          <div class="tag-row">
+            {featured.data.tags.map((t) => <span class="tag">{t}</span>)}
+          </div>
+        )}
+        <h2>{featured.data.title}</h2>
+        <p class="desc">{featured.data.description}</p>
+        <p class="meta">{formatDate(featured.data.pubDate)} · {featured.data.author}</p>
+      </a>
+    )}
+
+    <div class="article-list">
+      {rest.map((article) => (
+        <a href={articleHref(article.id)} class="article-card">
+          {article.data.tags.length > 0 && (
+            <div class="tag-row">
+              {article.data.tags.map((t) => <span class="tag">{t}</span>)}
+            </div>
+          )}
+          <h3>{article.data.title}</h3>
+          <p class="desc">{article.data.description}</p>
+          <p class="meta">{formatDate(article.data.pubDate)} · {article.data.author}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+    transition: color 0.2s;
+  }
+
+  .back:hover { color: var(--accent); text-decoration: none; }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+
+  .empty {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    padding: 48px 0;
+  }
+
+  .article-card {
+    display: block;
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    color: var(--text);
+  }
+
+  .article-card:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px var(--accent-glow);
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .article-card-featured {
+    padding: 32px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .article-card-featured::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--pink));
+    opacity: 0.6;
+  }
+
+  .tag-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 100px;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    display: inline-block;
+  }
+
+  .tag-featured {
+    color: var(--pink);
+    background: rgba(192, 132, 252, 0.1);
+    border: 1px solid rgba(192, 132, 252, 0.2);
+    margin-bottom: 12px;
+  }
+
+  .article-card h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .article-card h3 {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .article-card .desc {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .article-card .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+  }
+</style>
