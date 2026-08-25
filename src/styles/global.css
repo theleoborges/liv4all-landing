@@ -17,6 +17,12 @@ html { overflow-x: hidden; scroll-behavior: smooth; }
   --amber: #fbbf24;
   --radius: 16px;
   --radius-lg: 24px;
+  /* height of the site-wide shutdown banner; the nav and body clear it */
+  --banner-h: 44px;
+}
+
+@media (max-width: 560px) {
+  :root { --banner-h: 40px; }
 }
 
 body {
@@ -26,6 +32,7 @@ body {
   line-height: 1.7;
   overflow-x: hidden;
   width: 100%;
+  padding-top: var(--banner-h);
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -34,7 +41,7 @@ a:hover { text-decoration: underline; }
 /* ── Nav ── */
 nav {
   position: fixed;
-  top: 0;
+  top: var(--banner-h);
   left: 0;
   right: 0;
   z-index: 100;

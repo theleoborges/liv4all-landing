@@ -3,12 +3,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout
   title="FAQ — Liv4All"
-  description="Frequently asked questions about Liv — your AI Chief of Staff."
+  description="Frequently asked questions about Liv. Liv is closed to new signups and shuts down on 26 September 2026."
   ogUrl="https://liv4all.com/faq"
 >
   <div class="container">
     <h1>frequently asked questions</h1>
     <p class="subtitle">everything you want to know before handing an AI your calendar and inbox.</p>
+
+    <div class="faq-closed-notice fade-in">
+      <strong>liv is shutting down.</strong>
+      the platform closes to new signups today and shuts down on <strong>26 september 2026</strong>.
+      user data is permanently deleted on 26 october 2026. the shutdown questions are answered at
+      the bottom of this page, and in full on the <a href="/shutdown">shutdown notice</a>.
+    </div>
 
     <div class="faq-group fade-in">
       <div class="faq-group-label">// the basics</div>
@@ -128,33 +135,79 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <details class="faq-toggle">
         <summary>what stage is liv4all in?</summary>
         <div class="faq-toggle-body">
-          <p>liv4all is in early access. the core features work in production and we're <a href="/trust">CASA tier 2 verified by google</a>, but we're onboarding in batches to keep service quality high while we scale.</p>
-          <p>in early access:</p>
-          <ul>
-            <li>you get a <strong>14-day free trial</strong>, no credit card required</li>
-            <li>your feedback shapes what gets built next</li>
-            <li>founding members are grandfathered on launch pricing</li>
-          </ul>
+          <p>closing. liv4all ran in early access from march 2026, reached <a href="/trust">CASA tier 2 verification with google</a>, and is now shutting down. it is closed to new signups, and the platform shuts down on <strong>26 september 2026</strong>.</p>
         </div>
       </details>
 
       <details class="faq-toggle">
-        <summary>how much does it cost?</summary>
+        <summary>how much did it cost?</summary>
         <div class="faq-toggle-body">
-          <p>two plans:</p>
+          <p>two plans, neither of which is for sale any more:</p>
           <ul>
             <li><strong>Pro</strong> — $79/mo (or $63/mo billed annually)</li>
             <li><strong>Max</strong> — $149/mo (or $119/mo billed annually)</li>
           </ul>
-          <p>every new account starts with a <strong>14-day free trial</strong>. no credit card up front — pick a plan when you're ready, or cancel before the trial ends and pay nothing. see the <a href="/pricing">pricing page</a> for the full feature comparison.</p>
+          <p>the <a href="/pricing">pricing page</a> keeps the full feature comparison for the record.</p>
         </div>
       </details>
 
       <details class="faq-toggle">
-        <summary>how do i get access?</summary>
+        <summary>can i still sign up?</summary>
         <div class="faq-toggle-body">
-          <p>head to <a href="https://app.liv4all.com">app.liv4all.com</a> and sign in with google to start your 14-day free trial.</p>
-          <p>we're onboarding in batches, so if the current batch is full you'll be sent to the <a href="/#waitlist">waitlist</a> and we'll reach out the moment the next one opens — usually within a few weeks.</p>
+          <p>no. signups are closed and there is no waitlist. if you want to run something like liv yourself, the <a href="/answers">answers section</a> covers self-hosting the open-source agent it was built on.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-group fade-in">
+      <div class="faq-group-label">// the shutdown</div>
+
+      <details class="faq-toggle" open>
+        <summary>when exactly does liv stop working?</summary>
+        <div class="faq-toggle-body">
+          <p><strong>26 september 2026.</strong> until then your agent runs normally. after that, agents stop, the messaging channels go quiet, and the app stops accepting logins.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>what happens to my data?</summary>
+        <div class="faq-toggle-body">
+          <p>it is retained for 30 days after shutdown, until <strong>26 october 2026</strong>, and then permanently deleted. conversations, memory, workspace files and stored connections all go.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>can i get a copy of my data first?</summary>
+        <div class="faq-toggle-body">
+          <p>yes. email <a href="mailto:support@liv4all.com?subject=Export%20my%20data">support@liv4all.com</a> before 26 october 2026 and we'll put an export together for you.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>can you delete my data now instead of waiting?</summary>
+        <div class="faq-toggle-body">
+          <p>yes. email <a href="mailto:support@liv4all.com?subject=Delete%20my%20data">support@liv4all.com</a> and say so. we'll delete it and confirm when it's done.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>what about the google access i granted?</summary>
+        <div class="faq-toggle-body">
+          <p>it ends with the platform, and you can revoke it yourself at any time from your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">google account permissions page</a>.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>am i getting a refund?</summary>
+        <div class="faq-toggle-body">
+          <p>if you're still a subscriber on 26 september, yes: pro-rata to your original payment method for the unused days in your billing period. you don't need to cancel or chase anything, it happens automatically.</p>
+        </div>
+      </details>
+
+      <details class="faq-toggle">
+        <summary>is there somewhere else i can go?</summary>
+        <div class="faq-toggle-body">
+          <p>liv was a managed wrapper around <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">OpenClaw</a>, which is open source and MIT-licensed. the <a href="/answers">answers section</a> has the self-hosting guides, hosting comparisons and cost breakdowns, and they all still apply.</p>
         </div>
       </details>
     </div>
@@ -169,10 +222,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin-bottom: 8px;
   }
 
+  .faq-closed-notice {
+    padding: 16px 20px;
+    margin-bottom: 48px;
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    border-radius: var(--radius);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--text-dim);
+  }
+
+  .faq-closed-notice strong { color: var(--text); }
+  .faq-closed-notice a { color: var(--amber); }
+
   .subtitle {
     font-size: 0.95rem;
     color: var(--text-dim);
-    margin-bottom: 48px;
+    margin-bottom: 24px;
     line-height: 1.6;
   }
 

@@ -1,191 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ClosedNotice from '../components/ClosedNotice.astro';
 ---
 <BaseLayout
-  title="Liv4All — Alpha Feedback"
-  description="Share your feedback on the Liv alpha."
+  title="Liv4All — Alpha Feedback (closed)"
+  description="The Liv alpha feedback survey is closed. Liv shuts down on 26 September 2026."
   ogUrl="https://liv4all.com/survey"
 >
   <div class="survey-container fade-in">
     <div class="survey-header">
       <h1>Liv4All Alpha Feedback</h1>
-      <p>your honest input shapes what we build next</p>
-      <div class="time-badge">⏱ takes ~3 minutes</div>
+      <p>this survey is closed</p>
     </div>
 
-    <form id="surveyForm">
-      <div class="question">
-        <div class="question-number">About you</div>
-        <label>Name</label>
-        <textarea name="name" placeholder="Your name" style="min-height: 44px;" required></textarea>
-      </div>
-
-      <div class="question" style="margin-top: 1.5rem;">
-        <label>Email</label>
-        <textarea name="email" placeholder="your@email.com" style="min-height: 44px;" required></textarea>
-      </div>
-
-      <div class="section-divider"></div>
-
-      <div class="question">
-        <div class="question-number">Question 1 of 8</div>
-        <label>How often do you interact with your agent?</label>
-        <div class="options">
-          <label class="option">
-            <input type="radio" name="q1_frequency" value="multiple_daily" required />
-            <span>Multiple times a day</span>
-          </label>
-          <label class="option">
-            <input type="radio" name="q1_frequency" value="once_daily" />
-            <span>Once a day</span>
-          </label>
-          <label class="option">
-            <input type="radio" name="q1_frequency" value="few_weekly" />
-            <span>A few times a week</span>
-          </label>
-          <label class="option">
-            <input type="radio" name="q1_frequency" value="rarely" />
-            <span>Rarely / tried it and stopped</span>
-          </label>
-        </div>
-      </div>
-
-      <div class="section-divider"></div>
-
-      <div class="question">
-        <div class="question-number">Question 2 of 8</div>
-        <label>What's the one thing your agent does that saves you the most time?</label>
-        <textarea name="q2_time_saver" placeholder="e.g. triaging my emails, booking meetings, morning briefings..." required></textarea>
-      </div>
-
-      <div class="section-divider"></div>
-
-      <div class="question">
-        <div class="question-number">Question 3 of 8</div>
-        <label>Has your agent done something that genuinely surprised you?</label>
-        <div class="hint">The "wait, it did that?" moments</div>
-        <textarea name="q3_surprise" placeholder="Tell us about a moment your agent impressed you..."></textarea>
-      </div>
-
-      <div class="section-divider"></div>
-
-      <div class="question">
-        <div class="question-number">Question 4 of 8</div>
-        <label>What's still frustrating or missing?</label>
-        <div class="hint">Be brutal — it helps us build better</div>
-        <textarea name="q4_frustrations" placeholder="What doesn't work well? What do you wish it could do?"></textarea>
-      </div>
-
-      <div class="section-divider"></div>
-
-      <div class="question">
-        <div class="question-number">Question 5 of 8</div>
-        <label>How would you describe Liv4All to a friend in one sentence?</label>
-        <textarea name="q5_describe" placeholder="It's like..." required></textarea>
-      </div>
-
-      <div class="section-divider"></div>
-
-      <div class="question">
-        <div class="question-number">Question 6 of 8</div>
-        <label>If Liv4All disappeared tomorrow, how would you feel?</label>
-        <div class="options">
-          <label class="option">
-            <input type="radio" name="q6_pmf" value="very_disappointed" required />
-            <span>Very disappointed</span>
-          </label>
-          <label class="option">
-            <input type="radio" name="q6_pmf" value="somewhat_disappointed" />
-            <span>Somewhat disappointed</span>
-          </label>
-          <label class="option">
-            <input type="radio" name="q6_pmf" value="not_disappointed" />
-            <span>Not disappointed</span>
-          </label>
-        </div>
-      </div>
-
-      <div class="section-divider"></div>
-
-      <div class="question">
-        <div class="question-number">Question 7 of 8</div>
-        <label>Would you pay for this? If so, how much per month feels fair?</label>
-        <div class="options">
-          <label class="option">
-            <input type="radio" name="q7_pricing" value="wouldnt_pay" required />
-            <span>Wouldn't pay</span>
-          </label>
-          <label class="option">
-            <input type="radio" name="q7_pricing" value="5_10" />
-            <span>$5–10/mo</span>
-          </label>
-          <label class="option">
-            <input type="radio" name="q7_pricing" value="10_20" />
-            <span>$10–20/mo</span>
-          </label>
-          <label class="option">
-            <input type="radio" name="q7_pricing" value="20_50" />
-            <span>$20–50/mo</span>
-          </label>
-          <label class="option">
-            <input type="radio" name="q7_pricing" value="50_plus" />
-            <span>$50+/mo</span>
-          </label>
-        </div>
-      </div>
-
-      <div class="section-divider"></div>
-
-      <div class="question">
-        <div class="question-number">Question 8 of 8</div>
-        <label>Anything else you want us to know?</label>
-        <div class="hint">Optional — but we read every response</div>
-        <textarea name="q8_anything" placeholder="Feedback, ideas, love letters, complaints..."></textarea>
-      </div>
-
-      <div class="submit-section">
-        <button type="submit" class="submit-btn" id="submitBtn">Submit Feedback</button>
-        <p class="privacy-note">your responses are confidential. we may use anonymised quotes for product improvement — we'll always ask before attributing anything to you.</p>
-      </div>
-    </form>
-
-    <div class="thank-you" id="thankYou">
-      <div class="heart">🖤</div>
-      <h2>Thank you!</h2>
-      <p>Your feedback is genuinely shaping what we build next.<br />Your agent appreciates you too.</p>
-    </div>
+    <ClosedNotice>
+      <strong>The alpha feedback survey is closed.</strong>
+      Liv is shutting down: no new signups, and the platform shuts down on
+      <strong>26 September 2026</strong>. If you have something to say, or you need an export
+      or a deletion, email <a href="mailto:support@liv4all.com">support@liv4all.com</a> instead.
+      I read everything.
+      <a href="/shutdown">read the shutdown notice &rarr;</a>
+    </ClosedNotice>
   </div>
 
-  <script is:inline>
-    document.getElementById('surveyForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.textContent = 'Submitting...';
-
-      const formData = new FormData(this);
-
-      try {
-        const resp = await fetch('https://formspree.io/f/xbdzbekz', {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        if (resp.ok) {
-          document.getElementById('surveyForm').style.display = 'none';
-          document.getElementById('thankYou').style.display = 'block';
-        } else {
-          throw new Error('Submit failed');
-        }
-      } catch (err) {
-        console.error('Submit error:', err);
-        btn.disabled = false;
-        btn.textContent = 'Submit Feedback';
-        alert('Something went wrong. Please try again.');
-      }
-    });
-  </script>
 </BaseLayout>
 
 <style>

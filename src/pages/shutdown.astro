@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Liv is shutting down — Liv4All"
+  description="Liv is closed to new signups. The platform shuts down on 26 September 2026 and all user data is permanently deleted on 26 October 2026. What that means for your data, your agent, and your billing."
+  ogDescription="Liv shuts down on 26 September 2026. What it means for your data, your agent, and your billing."
+  ogUrl="https://liv4all.com/shutdown"
+  canonical="https://liv4all.com/shutdown"
+>
+  <div class="container">
+    <div class="notice-label">// service closure notice</div>
+    <h1>liv is shutting down</h1>
+    <p class="subtitle">
+      There's no good way to dress this up, so here it is plainly: Liv is closed to new
+      signups, and the platform shuts down on <strong>26 September 2026</strong>.
+    </p>
+
+    <div class="dates">
+      <div class="date-row">
+        <div class="date-when">now</div>
+        <div class="date-what">
+          <strong>Closed to new signups.</strong>
+          No new accounts, no trials. Existing agents keep running normally.
+        </div>
+      </div>
+      <div class="date-row">
+        <div class="date-when">26 Sep 2026</div>
+        <div class="date-what">
+          <strong>The platform shuts down.</strong>
+          Agents stop running. Telegram and WhatsApp channels go quiet. The app stops accepting logins.
+        </div>
+      </div>
+      <div class="date-row">
+        <div class="date-when">26 Oct 2026</div>
+        <div class="date-what">
+          <strong>All user data is permanently deleted.</strong>
+          Thirty days after shutdown, everything goes: conversations, memory, workspace files, OAuth connections.
+        </div>
+      </div>
+    </div>
+
+    <h2>your data</h2>
+    <p>
+      Your data is retained for 30 days after shutdown, until 26 October 2026, and is then
+      permanently deleted.
+    </p>
+    <ul>
+      <li>
+        <strong>Want a copy?</strong> Email
+        <a href="mailto:support@liv4all.com?subject=Export%20my%20data">support@liv4all.com</a>
+        before 26 October 2026 and I'll put an export together for you.
+      </li>
+      <li>
+        <strong>Want it gone sooner?</strong> Email
+        <a href="mailto:support@liv4all.com?subject=Delete%20my%20data">support@liv4all.com</a>
+        and say so. I'll delete it and confirm.
+      </li>
+      <li>
+        <strong>Want to do nothing?</strong> That works too. Deletion on 26 October is
+        automatic and needs nothing from you.
+      </li>
+    </ul>
+    <p>
+      Google account access ends with the platform, but you can revoke Liv's Gmail and
+      Calendar permissions yourself at any time from your
+      <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google account permissions page</a>.
+    </p>
+
+    <h2>billing</h2>
+    <p>
+      If you're still a subscriber on 26 September, you'll be refunded pro-rata to your
+      original payment method for the unused days in your billing period. You don't need to
+      do anything: no cancelling, no chasing. It happens automatically.
+    </p>
+
+    <h2>why</h2>
+    <p>
+      The traction wasn't there. Not for lack of trying, and not for lack of people giving it
+      a real go, but the reach and the stickiness never arrived, and I'd rather put my energy
+      into another project than keep this one on life support. It's one of those things. It happens.
+    </p>
+    <p>
+      Thank you for trusting an early, rough thing with your calendar and your inbox. A few of
+      you told me exactly where it hurt, which is the most useful gift you can give someone
+      building something. I'm grateful, and I'm sorry I couldn't make it stick.
+    </p>
+
+    <h2>questions</h2>
+    <p>
+      Email <a href="mailto:support@liv4all.com">support@liv4all.com</a>. I read everything.
+      The <a href="/terms">terms of use</a> and <a href="/privacy">privacy policy</a> both
+      carry the closure details, and the rest of the site stays up as an archive.
+    </p>
+
+    <p class="sign-off">Leo 🖤</p>
+  </div>
+</BaseLayout>
+
+<style>
+  .notice-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--amber);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+    max-width: 60ch;
+  }
+
+  .subtitle strong { color: var(--text); }
+
+  .dates {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    overflow: hidden;
+    margin-bottom: 56px;
+  }
+
+  .date-row {
+    display: flex;
+    gap: 24px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .date-row:last-child { border-bottom: none; }
+
+  .date-when {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--amber);
+    flex: 0 0 110px;
+    padding-top: 2px;
+  }
+
+  .date-what { color: var(--text-dim); }
+  .date-what strong { color: var(--text); display: block; }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 40px 0 14px;
+  }
+
+  p { color: var(--text-dim); margin-bottom: 16px; max-width: 68ch; }
+
+  ul {
+    color: var(--text-dim);
+    margin: 0 0 16px 20px;
+    max-width: 68ch;
+  }
+
+  li { margin-bottom: 10px; }
+
+  strong { color: var(--text); }
+
+  .sign-off {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 560px) {
+    .date-row { flex-direction: column; gap: 6px; }
+    .date-when { flex: none; }
+  }
+</style>

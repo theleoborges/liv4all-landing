@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ClosedNotice from '../../components/ClosedNotice.astro';
 
 const isProd = import.meta.env.PROD;
 const all = await getCollection('answers', ({ data }) => !data.draft || !isProd);
@@ -29,7 +30,7 @@ const grouped = TOPIC_ORDER.map((topic) => ({
 ---
 <BaseLayout
   title="Answers — Liv4All"
-  description="Straight answers on OpenClaw, self-hosting AI agents, and running a managed AI chief of staff."
+  description="Straight answers on OpenClaw, self-hosting AI agents, and running a personal AI chief of staff. Liv itself is shutting down on 26 September 2026; these pages stay up."
   ogUrl="https://liv4all.com/answers"
   canonical="https://liv4all.com/answers"
 >
@@ -39,6 +40,15 @@ const grouped = TOPIC_ORDER.map((topic) => ({
       Straight answers on OpenClaw, building and self-hosting AI agents, and what it takes to
       run a personal AI chief of staff — from the team behind Liv, OpenClaw as a service.
     </p>
+
+    <ClosedNotice>
+      <strong>Liv is shutting down.</strong>
+      The service that paid for these pages is closed to new signups and shuts down on
+      <strong>26 September 2026</strong>. The answers stay up because they are still accurate
+      and still useful: OpenClaw is open source, and the self-hosting guides here work
+      whether or not anyone is selling you a managed version.
+      <a href="/shutdown">read the shutdown notice &rarr;</a>
+    </ClosedNotice>
 
     {all.length === 0 && <p class="empty">No answers published yet.</p>}
 

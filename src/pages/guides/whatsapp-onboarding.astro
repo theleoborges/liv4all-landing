@@ -1,7 +1,8 @@
 ---
 import Head from '../../components/Head.astro';
 import FadeInScript from '../../components/FadeInScript.astro';
-import ChatWidget from '../../components/ChatWidget.astro';
+import ShutdownBanner from '../../components/ShutdownBanner.astro';
+import ClosedNotice from '../../components/ClosedNotice.astro';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -14,12 +15,20 @@ import ChatWidget from '../../components/ChatWidget.astro';
     />
   </head>
   <body>
+    <ShutdownBanner />
     <div class="container">
       <a href="/guides" class="back">&larr; back to guides</a>
 
       <span class="badge-alpha">alpha</span>
       <h1>connect your agent to WhatsApp</h1>
       <p class="subtitle">link your liv agent to WhatsApp Business so you can talk to them on both Telegram and WhatsApp.</p>
+
+      <ClosedNotice>
+        <strong>This guide is archived.</strong>
+        Liv is closed to new signups and the platform shuts down on <strong>26 September 2026</strong>,
+        so new WhatsApp links are no longer being set up. Existing links keep working until then.
+        <a href="/shutdown">read the shutdown notice &rarr;</a>
+      </ClosedNotice>
 
       <div class="prereqs fade-in">
         <div class="prereqs-title">before you start</div>
@@ -119,7 +128,6 @@ import ChatWidget from '../../components/ChatWidget.astro';
     </footer>
 
     <FadeInScript />
-    <ChatWidget />
 
     <style is:global>
       * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -139,6 +147,11 @@ import ChatWidget from '../../components/ChatWidget.astro';
         --amber: #fbbf24;
         --radius: 16px;
         --radius-lg: 24px;
+        --banner-h: 44px;
+      }
+
+      @media (max-width: 560px) {
+        :root { --banner-h: 40px; }
       }
 
       body {
@@ -146,6 +159,7 @@ import ChatWidget from '../../components/ChatWidget.astro';
         background: var(--bg);
         color: var(--text);
         line-height: 1.7;
+        padding-top: var(--banner-h);
       }
 
       a { color: var(--accent); text-decoration: none; }
