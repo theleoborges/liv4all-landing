@@ -19,12 +19,6 @@ const related = entry.data.related
   .map((slug) => allAnswers.find((a) => a.id === slug))
   .filter((a) => a && (!a.data.draft || !import.meta.env.PROD)) as CollectionEntry<'answers'>[];
 
-// UTM-tag the CTA so a trial started from this page is attributable downstream
-// (in app.liv4all.com's own analytics) to the exact answer that drove it.
-// Cloudflare Web Analytics is pageview-only, so conversion is measured at the
-// destination, not as an on-site click event.
-const ctaUrl = `https://app.liv4all.com/?utm_source=answers&utm_medium=content&utm_campaign=seo-geo&utm_content=${entry.id}`;
-
 const formatDate = (d: Date) =>
   d.toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' });
 
@@ -110,49 +104,28 @@ const graph: Record<string, unknown>[] = [
     )}
 
     <aside class="cta-box">
-      <p class="cta-kicker">Try this in Liv</p>
+      <p class="cta-kicker">Liv is shutting down</p>
       <p class="cta-copy">
-        Liv is OpenClaw as a service — the agent loop and security, fully managed, no ops.
-        Start a 14-day free trial; no credit card.
+        Liv ran OpenClaw as a managed service, the agent loop and the security handled for you.
+        It is closed to new signups and the platform shuts down on 26 September 2026, so there is
+        nothing here to sign up for. This page stays up because the answer is still worth having.
+        If you want to run an agent like this yourself,
+        <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">OpenClaw</a>
+        is open source under the MIT licence, and the self-hosting pages linked above still apply.
       </p>
-      <a href={ctaUrl} class="cta-btn">start your trial →</a>
+      <a href="/shutdown" class="cta-btn">read the shutdown notice →</a>
     </aside>
 
     <footer class="disclaimer">
       <p>
-        Liv4All is an independent managed service built on the open-source OpenClaw framework;
-        it is not affiliated with or endorsed by the OpenClaw project, Manus, or any other
+        Liv4All was an independent managed service built on the open-source OpenClaw framework;
+        it was not affiliated with or endorsed by the OpenClaw project, Manus, or any other
         product named here. Names are used for identification only. Details reflect the product
         at time of writing — check the relevant official source before relying on them.
       </p>
     </footer>
   </article>
 
-  <!--
-    Attribute every trial link on this page (the CTA plus any in-body links the
-    article adds) to this exact answer, so app.liv4all.com's analytics can tell
-    which page drove the trial. Scoped to the article so nav/footer links are
-    untouched. The CTA is already UTM-tagged server-side; this only fills in
-    links missing utm_content, and degrades gracefully without JS.
-  -->
-  <script is:inline define:vars={{ slug: entry.id }}>
-    document
-      .querySelectorAll('article a[href^="https://app.liv4all.com"]')
-      .forEach((a) => {
-        try {
-          const u = new URL(a.href);
-          if (!u.searchParams.has('utm_content')) {
-            u.searchParams.set('utm_source', 'answers');
-            u.searchParams.set('utm_medium', 'content');
-            u.searchParams.set('utm_campaign', 'seo-geo');
-            u.searchParams.set('utm_content', slug);
-            a.href = u.toString();
-          }
-        } catch {
-          /* leave malformed hrefs alone */
-        }
-      });
-  </script>
 </BaseLayout>
 
 <style>
@@ -248,8 +221,8 @@ const graph: Record<string, unknown>[] = [
   .cta-box {
     margin: 56px 0 32px;
     padding: 28px 28px 32px;
-    background: var(--accent-glow);
-    border: 1px solid rgba(139, 92, 246, 0.25);
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid rgba(251, 191, 36, 0.25);
     border-radius: var(--radius-lg);
   }
 
@@ -259,7 +232,7 @@ const graph: Record<string, unknown>[] = [
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--accent);
+    color: var(--amber);
     margin-bottom: 10px;
   }
 

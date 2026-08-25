@@ -3,18 +3,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout
   title="Terms of Use — Liv"
-  description="Terms of use for Liv."
+  description="Terms of use for Liv, including the service closure terms: shutdown on 26 September 2026, data deletion on 26 October 2026, and pro-rata refunds."
   ogUrl="https://liv4all.com/terms"
 >
   <div class="container">
     <a href="/" class="back">← back to liv4all</a>
 
     <h1>terms of use</h1>
-    <p class="updated">last updated: 29 april 2026</p>
+    <p class="updated">last updated: 25 august 2026</p>
 
     <div class="callout">
       these terms are written in plain language on purpose. if something is unclear, reach out — we'd rather explain than hide behind legalese.
     </div>
+
+    <h2 id="closure">service closure</h2>
+    <div class="callout callout-closure">
+      <strong>liv is shutting down.</strong> the service is closed to new signups, and the platform
+      shuts down on <strong>26 september 2026</strong>. this section overrides anything below it that
+      assumes an ongoing service.
+    </div>
+    <ul>
+      <li><strong>the service ends on 26 september 2026.</strong> until that date, existing accounts continue to operate under these terms. after it, agents stop running and the product dashboard stops accepting logins.</li>
+      <li><strong>your data is retained for 30 days after shutdown</strong>, until <strong>26 october 2026</strong>, and is then permanently deleted, including from backups on their normal rotation. no action is required from you.</li>
+      <li><strong>you can request an export</strong> of your conversation history and workspace files at any time before 26 october 2026 by emailing <a href="mailto:support@liv4all.com?subject=Export%20my%20data">support@liv4all.com</a>.</li>
+      <li><strong>you can request immediate deletion</strong> instead of waiting, by emailing <a href="mailto:support@liv4all.com?subject=Delete%20my%20data">support@liv4all.com</a>. we will complete it and confirm.</li>
+      <li><strong>refunds.</strong> subscribers active on 26 september 2026 will be refunded pro-rata to their original payment method for the unused days in their then-current billing period. no cancellation or request is needed; the refund is issued automatically.</li>
+      <li><strong>google access.</strong> liv's access to your Google Workspace data ends with the service. you may revoke it yourself at any time via <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google account permissions</a>.</li>
+      <li>this marketing site at <a href="https://liv4all.com/" target="_blank" rel="noopener">https://liv4all.com/</a> may remain online as an archive after the service ends. these terms continue to govern your use of it.</li>
+    </ul>
+    <p>
+      the full plain-language notice, including why, is on the <a href="/shutdown">shutdown page</a>.
+    </p>
 
     <h2>what this is</h2>
     <p>
@@ -64,7 +83,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <ul>
       <li>liv stores conversation history and preferences to provide a persistent assistant experience.</li>
       <li>your data is <strong>not sold, not shared beyond the subprocessors listed in our privacy policy, and never used to train generalised AI/ML models</strong> — including data received from Google APIs and messages forwarded to your agent's inbox.</li>
-      <li>you can request deletion of your data at any time by emailing <a href="mailto:support@liv4all.com">support@liv4all.com</a>. full deletion is completed within 30 days.</li>
+      <li>you can request deletion of your data at any time by emailing <a href="mailto:support@liv4all.com">support@liv4all.com</a>. full deletion is completed within 30 days. in any case, all user data is permanently deleted on 26 october 2026 — see <a href="#closure">service closure</a> above.</li>
       <li>for the complete picture — what we collect, how it's processed, where it lives, subprocessors, security controls, and your rights — see our <a href="/privacy">privacy policy</a>.</li>
     </ul>
 
@@ -177,6 +196,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   li { margin-bottom: 8px; }
+
+  .callout-closure {
+    background: rgba(251, 191, 36, 0.08);
+    border-color: rgba(251, 191, 36, 0.25);
+  }
 
   .callout {
     background: var(--surface-glass);

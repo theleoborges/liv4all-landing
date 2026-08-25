@@ -2,9 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout
-  title="Pricing — Liv4All"
-  description="Simple pricing for Liv — your AI Chief of Staff. Pro at $79/mo, Max at $149/mo. Save with annual billing."
-  ogDescription="Simple pricing for Liv — your AI Chief of Staff. Pro at $79/mo, Max at $149/mo."
+  title="Pricing — Liv4All (closed to new signups)"
+  description="Liv's plans were Pro at $79/mo and Max at $149/mo. Liv is closed to new signups and shuts down on 26 September 2026; these plans are no longer for sale."
+  ogDescription="Liv is closed to new signups and shuts down on 26 September 2026. These plans are no longer for sale."
   ogUrl="https://liv4all.com/pricing"
 >
   <section class="pricing-hero">
@@ -18,6 +18,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           two plans. no free tier, no starter trap. pick the one that matches how
           much you want Liv doing for you — change your mind any time.
         </p>
+        <div class="closed-notice">
+          <strong>these plans are no longer for sale.</strong>
+          liv is closed to new signups and the platform shuts down on 26 september 2026.
+          existing subscribers are refunded pro-rata automatically.
+          <a href="/shutdown">read the shutdown notice →</a>
+        </div>
       </div>
 
       <div class="differentiators fade-in fade-in-delay-1">
@@ -65,7 +71,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <div class="price-billed">$756 billed annually · save $192</div>
             </div>
           </div>
-          <a href="https://app.liv4all.com" class="plan-cta">start your trial →</a>
+          <span class="plan-cta plan-cta-closed" aria-disabled="true">no longer available</span>
           <ul class="plan-features">
             <li>telegram, whatsapp, email — talk to liv anywhere</li>
             <li>full calendar + gmail (read, triage, draft, reschedule)</li>
@@ -92,7 +98,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <div class="price-billed">$1,428 billed annually · save $360</div>
             </div>
           </div>
-          <a href="https://app.liv4all.com" class="plan-cta plan-cta-featured">start your trial →</a>
+          <span class="plan-cta plan-cta-featured plan-cta-closed" aria-disabled="true">no longer available</span>
           <ul class="plan-features">
             <li><strong>everything in Pro</strong>, plus:</li>
             <li>higher usage tier + larger token cap</li>
@@ -216,12 +222,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="final-cta">
     <div class="container-wide">
       <div class="final-cta-inner fade-in">
-        <div class="section-label">// get started</div>
-        <h2><em>14 days. no card.</em></h2>
+        <div class="section-label">// closing time</div>
+        <h2><em>liv is shutting down.</em></h2>
         <p class="prose">
-          start using liv4all today. pick a plan when you're ready, or cancel before the trial ends and pay nothing.
+          the platform shuts down on 26 september 2026 and all user data is permanently
+          deleted on 26 october 2026. if you're a subscriber, your refund is automatic.
         </p>
-        <a href="https://app.liv4all.com" class="plan-cta plan-cta-featured plan-cta-large">start your trial →</a>
+        <a href="/shutdown" class="plan-cta plan-cta-featured plan-cta-large">read the shutdown notice →</a>
       </div>
     </div>
   </section>
@@ -435,6 +442,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   /* ── Plan cards ── */
+  .closed-notice {
+    max-width: 620px;
+    margin: 28px auto 0;
+    padding: 16px 20px;
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    border-radius: var(--radius);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--text-dim);
+  }
+
+  .closed-notice strong { color: var(--text); }
+  .closed-notice a { color: var(--amber); white-space: nowrap; }
+
   .plans-section {
     padding-top: 0;
   }
@@ -589,6 +611,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     padding: 16px 36px;
     margin-bottom: 0;
     margin-top: 8px;
+  }
+
+  .plan-cta-closed,
+  .plan-cta-closed:hover {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px dashed var(--border);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
   }
 
   .plan-features {

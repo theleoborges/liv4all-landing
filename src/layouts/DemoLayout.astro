@@ -1,7 +1,7 @@
 ---
 import Head from '../components/Head.astro';
 import FadeInScript from '../components/FadeInScript.astro';
-import ChatWidget from '../components/ChatWidget.astro';
+import ShutdownBanner from '../components/ShutdownBanner.astro';
 
 interface Props {
   title: string;
@@ -31,6 +31,11 @@ const headProps = { ...Astro.props, ogType: 'video.other' };
         --accent-glow: rgba(139, 92, 246, 0.15);
         --radius: 16px;
         --radius-lg: 24px;
+        --amber: #fbbf24;
+        --banner-h: 44px;
+      }
+      @media (max-width: 560px) {
+        :root { --banner-h: 40px; }
       }
       body {
         font-family: 'Inter', -apple-system, sans-serif;
@@ -42,7 +47,7 @@ const headProps = { ...Astro.props, ogType: 'video.other' };
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 24px;
+        padding: calc(24px + var(--banner-h)) 24px 24px;
       }
       .fade-in {
         opacity: 0;
@@ -56,8 +61,8 @@ const headProps = { ...Astro.props, ogType: 'video.other' };
     </style>
   </head>
   <body>
+    <ShutdownBanner />
     <slot />
     <FadeInScript />
-    <ChatWidget />
   </body>
 </html>

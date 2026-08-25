@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ClosedNotice from '../../components/ClosedNotice.astro';
 ---
 <BaseLayout
   title="WhatsApp FAQ — Liv4All"
@@ -9,6 +10,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   <div class="container">
     <h1>whatsapp & liv</h1>
     <p class="subtitle">telegram is the default — it's all you need to sign up and get going. whatsapp is an optional, invite-only add-on. here's exactly how it works.</p>
+
+    <ClosedNotice />
 
     <div class="callout fade-in">
       <p>already set up on telegram and want whatsapp too? the <a href="/guides/whatsapp-onboarding">step-by-step onboarding guide</a> walks you through linking it. this page explains the what and why first.</p>

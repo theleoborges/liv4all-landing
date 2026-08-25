@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ClosedNotice from '../components/ClosedNotice.astro';
 
 const lastUpdated = '2026-05-05';
 ---
@@ -13,6 +14,13 @@ const lastUpdated = '2026-05-05';
 
     <h1>security policy</h1>
     <p class="updated">last updated: {lastUpdated}</p>
+
+    <ClosedNotice>
+      <strong>Liv is shutting down.</strong>
+      This policy stands until the platform shuts down on <strong>26 September 2026</strong>.
+      Reports are still read and acted on until then; after that the systems below no longer exist.
+      <a href="/shutdown">read the shutdown notice &rarr;</a>
+    </ClosedNotice>
 
     <div class="callout">
       report a vulnerability to <a href="mailto:security@liv4all.com">security@liv4all.com</a>.

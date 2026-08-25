@@ -10,7 +10,7 @@ Static marketing site for **liv4all.com**, built with [Astro](https://astro.buil
 - `@astrojs/sitemap`
 - Plain CSS (no framework)
 - GitHub Pages via Actions
-- Cloudflare Web Analytics (cookieless) + IndexNow pinging for discovery
+- Cloudflare Web Analytics (cookieless) for traffic and referrers
 
 ## Develop
 
@@ -26,7 +26,7 @@ npm run build       # runs astro build + scripts/generate-redirects.mjs
 npm run preview
 ```
 
-Output lands in `dist/`. The build chain is `astro build` → `scripts/generate-redirects.mjs` (meta-refresh shims at legacy `.html` paths like `faq.html` → `/faq/`, plus a `sitemap.xml` alias) → `scripts/indexnow-ping.mjs` (submits all `/answers/` URLs to IndexNow; only pings on CI, or run `npm run indexnow` manually after a build).
+Output lands in `dist/`. The build chain is `astro build` → `scripts/generate-redirects.mjs` (meta-refresh shims at legacy `.html` paths like `faq.html` → `/faq/`, plus a `sitemap.xml` alias). IndexNow pinging was dropped from the build when the service shut down; `scripts/indexnow-ping.mjs` and `npm run indexnow` remain for manual use.
 
 ## Deploy
 
@@ -37,7 +37,7 @@ Push to `main`; `.github/workflows/deploy.yml` builds and publishes to GitHub Pa
 ```
 src/
   layouts/        BaseLayout.astro, DemoLayout.astro, ArticleLayout.astro, AnswerLayout.astro
-  components/     Head, Nav, Footer, ChatWidget, FadeInScript, SignupForm, VideoPlayer, JsonLd, Analytics, …
+  components/     Head, Nav, Footer, ShutdownBanner, ClosedNotice, FadeInScript, VideoPlayer, JsonLd, Analytics, …
   pages/          Route-mapped .astro files (+ rss.xml.js, articles/, answers/, demo/)
   content/        articles/*.mdx, answers/*.mdx (content collections)
   content.config.ts   article + answer collection schemas
@@ -54,7 +54,7 @@ docs/
 
 ## Forms
 
-- Main signup uses Formspree endpoint `xzdawwzo` (see `src/pages/index.astro`).
+- Signup and feedback forms were removed when the service shut down; the Formspree endpoints (`xzdawwzo`, `xbdzbekz`) are no longer wired up anywhere.
 - Alpha feedback survey uses `xbdzbekz` (see `src/pages/survey.astro`).
 
 Both post via fetch/JSON and swap in a thank-you state on success.
@@ -106,10 +106,10 @@ Served at `/rss.xml`, updated automatically on every build. `Head.astro` already
 
 Positioning: Liv is "OpenClaw as a Service" (managed [OpenClaw](https://github.com/openclaw/openclaw), sitting between cheap managed hosts and walled agents like Manus). The full methodology, scored 50-question worklist, and authoring brief are in `docs/answers-worklist.md` and `docs/answers-writer-brief.md`. To add a page: drop an `.mdx` file under `src/content/answers/`, fill the `answers` frontmatter (`title`, `question`, `answer`, `description`, `topic`, `intent`, `datePublished`, optional `related`/`draft`), and follow the body template in the brief (no H1; no hand-written disclaimer/CTA — the layout adds them).
 
-Discovery: `@astrojs/sitemap` includes the pages automatically; AI crawlers are explicitly allowed in `public/robots.txt`; `scripts/indexnow-ping.mjs` notifies IndexNow (Bing/Yandex, and therefore ChatGPT/Copilot) on every CI deploy. Google has no IndexNow equivalent — submit the sitemap and Request Indexing in Search Console manually.
+Discovery: `@astrojs/sitemap` includes the pages automatically and AI crawlers are explicitly allowed in `public/robots.txt`. IndexNow pinging no longer runs on deploy.
 
 ## Analytics
 
 - **Cloudflare Web Analytics** — cookieless, no consent banner. Loaded site-wide via `src/components/Analytics.astro` (the public beacon token is hardcoded there; rendering is gated to production builds so `npm run dev` stays out of the data). Watch the Referrers panel for SEO/GEO traffic.
-- **Conversion attribution** — answer-page trial links carry UTM params (`utm_source=answers`, `utm_campaign=seo-geo`, `utm_content=<slug>`), so trials are attributed per answer page in `app.liv4all.com`'s own analytics. The CTA is tagged server-side; a small script in `AnswerLayout` tags in-body trial links too.
+- **Conversion attribution** — removed. Answer pages no longer carry trial links or UTM tagging; `AnswerLayout` renders a shutdown notice where the CTA used to be.
 - **Google Search Console** — the ranking instrument (queries, impressions, position). Separate from the above; nothing here replaces it.

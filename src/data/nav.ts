@@ -34,6 +34,7 @@ export const mainNavItems: NavItem[] = [
 
 export const footerLinks: NavLink[] = [
   { href: '/', label: 'Home' },
+  { href: '/shutdown', label: 'Shutdown Notice' },
   { href: '/about', label: 'About' },
   { href: '/ivy', label: 'Ivy' },
   { href: '/pricing', label: 'Pricing' },

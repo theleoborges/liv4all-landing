@@ -8,7 +8,7 @@ interface Props {
 const { variant = 'default' } = Astro.props;
 const isHome = variant === 'home';
 const logoHref = isHome ? '#' : '/';
-const ctaHref = 'https://app.liv4all.com';
+const ctaHref = '/shutdown';
 
 // On the homepage, in-page anchors like /#why should become #why so they
 // scroll instead of navigating. Off-home, leave the absolute path alone.
@@ -38,7 +38,7 @@ const hrefFor = (href: string) =>
         )
       ))}
       <a href="https://app.liv4all.com" class="nav-login">Login</a>
-      <a href={ctaHref} class="nav-cta">Start Trial</a>
+      <a href={ctaHref} class="nav-cta">Shutting Down</a>
     </div>
 
     <button type="button" class="nav-hamburger" aria-label="open menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -63,7 +63,7 @@ const hrefFor = (href: string) =>
         )
       ))}
       <a href="https://app.liv4all.com" class="nav-mobile-link">Login</a>
-      <a href={ctaHref} class="nav-mobile-cta">Start Trial</a>
+      <a href={ctaHref} class="nav-mobile-cta">Shutting Down</a>
     </div>
   </div>
 </nav>

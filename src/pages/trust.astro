@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ClosedNotice from '../components/ClosedNotice.astro';
 
 const lastUpdated = '2026-05-05';
 const lovMailto = 'mailto:support@liv4all.com?subject=Letter%20of%20Validation%20request';
@@ -91,7 +92,7 @@ const subprocessors = [
 ---
 <BaseLayout
   title="Trust — Liv4All"
-  description="How Liv handles your Gmail, calendar, and personal API keys. Independently assessed under Google's CASA Tier 2 framework by TAC Security."
+  description="How Liv handled your Gmail, calendar, and personal API keys. Independently assessed under Google's CASA Tier 2 framework by TAC Security. Liv shuts down on 26 September 2026."
   ogUrl="https://liv4all.com/trust"
 >
   <div class="trust-page">
@@ -100,11 +101,21 @@ const subprocessors = [
       <div class="container-trust">
         <div class="eyebrow fade-in">// trust &amp; security</div>
 
-        <h1 class="fade-in fade-in-delay-1">independently assessed.<br />every 12 months.</h1>
+        <h1 class="fade-in fade-in-delay-1">independently assessed.<br />until the end.</h1>
 
         <p class="hero-sub fade-in fade-in-delay-2">
           TAC Security CASA Tier 2 · Google OAuth verified · Data hosted in Australia.
         </p>
+
+        <div class="fade-in fade-in-delay-2">
+          <ClosedNotice>
+            <strong>Liv is shutting down.</strong>
+            The controls described on this page stayed in force for as long as the service ran.
+            Liv is closed to new signups, the platform shuts down on <strong>26 September 2026</strong>,
+            and all user data is permanently deleted on 26 October 2026.
+            <a href="/shutdown">read the shutdown notice &rarr;</a>
+          </ClosedNotice>
+        </div>
 
         <div class="badge-row fade-in fade-in-delay-2">
           <div class="badge-card badge-card-primary">
@@ -202,7 +213,9 @@ const subprocessors = [
             What that means for you: an outside party — not Liv's founders — verified that the way we
             store your Google tokens, the way we isolate your data from other users', and the way we
             expose our app to the internet meet a published industry bar. The Letter of Validation is
-            re-issued every 12 months for as long as we keep that bar.
+            valid for 12 months from issue. With Liv shutting down on 26 September 2026 it will not
+            be renewed, and the assessment should be read as a record of how the service was run
+            rather than a live certification.
           </p>
         </div>
 

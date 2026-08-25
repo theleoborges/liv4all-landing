@@ -2,9 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout
-  title="Liv — Your AI Chief of Staff"
-  description="Liv is a persistent AI agent that acts on your behalf — managing calendars, triaging email, making bookings. Not a chatbot. An agent that does things."
-  ogDescription="A persistent AI agent that acts on your behalf. Manages calendars, triages email, makes bookings. Not a chatbot — an agent."
+  title="Liv — AI Chief of Staff (shutting down 26 September 2026)"
+  description="Liv is a persistent AI agent that acts on your behalf, managing calendars, triaging email, making bookings. It is closed to new signups and shuts down on 26 September 2026."
+  ogDescription="Liv is closed to new signups and shuts down on 26 September 2026. This site stays up as an archive."
   ogUrl="https://liv4all.com"
   variant="home"
   customFadeIn={true}
@@ -14,9 +14,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="hero-orb hero-orb-2"></div>
     <div class="hero-orb hero-orb-3"></div>
     <div class="hero-content">
-      <div class="badge">
+      <div class="badge badge-closed">
         <span class="badge-dot"></span>
-        now in early access
+        closed · shutting down 26 sep 2026
       </div>
       <img src="/logo.png" alt="Liv" class="hero-logo" />
       <h1>your AI<br /><span class="typing-line"><span class="gradient typing" id="typed-role"></span><span class="cursor">|</span></span></h1>
@@ -26,10 +26,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         not a chatbot. an agent that <strong>does things</strong>.
       </p>
       <div class="hero-cta">
-        <a href="https://app.liv4all.com" class="btn-primary">start your trial →</a>
+        <a href="/shutdown" class="btn-primary">read the shutdown notice →</a>
         <a href="https://www.youtube.com/watch?v=TXaWeFTb9Ns" target="_blank" rel="noopener" class="btn-secondary">watch the explainer ▶</a>
       </div>
-      <p class="hero-cta-note">14-day free trial · no credit card required</p>
+      <p class="hero-cta-note">closed to new signups · existing agents run until 26 september 2026</p>
       <div class="trust-strip">
         <div class="trust-item"><span class="trust-icon">🔒</span> your data stays yours</div>
         <div class="trust-divider"></div>
@@ -539,46 +539,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section id="waitlist" class="signup-section">
     <div class="container-wide">
       <div class="signup-wrapper">
-        <!-- State A: cap has room (default) -->
-        <div class="signup-state" id="state-open">
-          <div class="section-label">// early access</div>
-          <h2>now in <em>early access</em></h2>
-          <p class="prose">
-            we're opening liv4all in batches to keep service quality high.
-            <strong id="spots-line">limited spots in the current batch.</strong>
+        <div class="section-label">// closing time</div>
+        <h2>liv is <em>shutting down</em></h2>
+        <p class="prose">
+          liv is closed to new signups. existing agents keep running until
+          <strong>26 september 2026</strong>, after which the platform shuts down and all
+          user data is permanently deleted on 26 october 2026.
+        </p>
+        <div class="signup-cta-wrap">
+          <a href="/shutdown" class="btn-primary">read the full notice →</a>
+          <p class="form-note">
+            questions about your data, an export, or a refund?
+            email <a href="mailto:support@liv4all.com">support@liv4all.com</a>. 🖤
           </p>
-          <div class="signup-cta-wrap">
-            <a href="https://app.liv4all.com" class="btn-primary">start your trial →</a>
-            <p class="form-note">14-day free trial · no credit card required</p>
-          </div>
-        </div>
-
-        <!-- State B: cap full (hidden by default; revealed by JS when remaining === 0) -->
-        <div class="signup-state" id="state-full" hidden>
-          <div class="section-label">// waitlist</div>
-          <h2>current batch is <em>full</em> — join the waitlist</h2>
-          <p class="prose">
-            liv4all is opening in batches to keep service quality high. the current batch is at capacity.
-            drop your details and we'll let you know the moment the next batch opens — usually within a few weeks.
-          </p>
-
-          <form class="signup-form" id="interest-form" action="https://formspree.io/f/xzdawwzo" method="POST">
-            <div class="form-row">
-              <input type="text" name="name" placeholder="your name" required />
-              <input type="email" name="email" placeholder="your email" required />
-            </div>
-            <input type="text" name="use_case" placeholder="what would you use liv for? (optional)" />
-            <input type="hidden" name="_subject" value="Liv4All — Waitlist Signup" />
-            <input type="hidden" name="source" value="waitlist" />
-            <button type="submit">join the waitlist →</button>
-            <p class="form-note">no spam. just a heads-up when the next batch opens. by joining the waitlist you agree to our <a href="/terms">alpha terms</a> and <a href="/privacy">privacy policy</a>. 🖤</p>
-          </form>
-
-          <div class="form-success" id="form-success">
-            <div class="check">🖤</div>
-            <h3>you're on the waitlist</h3>
-            <p>we'll reach out the moment the next batch opens. in the meantime, <a href="https://open.substack.com/pub/leonardoborges/p/tltd-39-voice-ai-the-next-platform?utm_source=liv4all.com&utm_medium=referral&utm_campaign=thankyou" target="_blank" rel="noopener">read about how liv was built</a>.</p>
-          </div>
         </div>
       </div>
     </div>
@@ -733,59 +706,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     fsOverlay.addEventListener('click', (e) => { if (e.target === fsOverlay) closeFsVideo(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && fsOverlay.classList.contains('active')) closeFsVideo(); });
 
-    const form = document.getElementById('interest-form');
-    const success = document.getElementById('form-success');
-
-    if (form) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = form.querySelector('button');
-        btn.disabled = true;
-        btn.textContent = 'submitting...';
-
-        try {
-          const resp = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-          });
-
-          if (resp.ok) {
-            form.style.display = 'none';
-            success.style.display = 'block';
-          } else {
-            btn.textContent = 'something went wrong — try again';
-            btn.disabled = false;
-          }
-        } catch {
-          btn.textContent = 'network error — try again';
-          btn.disabled = false;
-        }
-      });
-    }
-
-    (async () => {
-      const stateOpen = document.getElementById('state-open');
-      const stateFull = document.getElementById('state-full');
-      const spotsLine = document.getElementById('spots-line');
-      if (!stateOpen || !stateFull) return;
-
-      try {
-        const resp = await fetch('https://app.liv4all.com/api/spots', { cache: 'no-store' });
-        if (!resp.ok) return;
-        const { remaining, cap } = await resp.json();
-        if (typeof remaining !== 'number' || typeof cap !== 'number') return;
-
-        if (remaining <= 0) {
-          stateOpen.hidden = true;
-          stateFull.hidden = false;
-        } else if (spotsLine) {
-          spotsLine.textContent = `${remaining} of ${cap} spots left in the current batch.`;
-        }
-      } catch {
-        // network/CORS failure: leave the static "limited spots" fallback in place
-      }
-    })();
   </script>
 </BaseLayout>
 
@@ -793,7 +713,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   body { line-height: 1.6; }
 
   .hero {
-    min-height: 100vh;
+    min-height: calc(100vh - var(--banner-h));
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -864,6 +784,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     border-radius: 100px;
     padding: 8px 18px;
     margin-bottom: 32px;
+  }
+
+  .badge-closed {
+    color: var(--amber);
+    border-color: rgba(251, 191, 36, 0.28);
+  }
+
+  .badge-closed .badge-dot {
+    background: var(--amber);
+    animation: none;
   }
 
   .badge-dot {
@@ -1721,92 +1651,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     gap: 12px;
   }
 
-  #spots-line { color: var(--text); font-weight: 500; }
-
-  .signup-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .form-row {
-    display: flex;
-    gap: 12px;
-  }
-
-  .form-row input { flex: 1; }
-
-  .signup-form input {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    padding: 16px 20px;
-    background: var(--surface-glass);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border-light);
-    border-radius: 100px;
-    color: var(--text);
-    outline: none;
-    transition: all 0.3s;
-  }
-
-  .signup-form input:focus {
-    border-color: rgba(139, 92, 246, 0.4);
-    box-shadow: 0 0 20px var(--accent-glow);
-  }
-
-  .signup-form input::placeholder { color: var(--text-dim); }
-
-  .signup-form button {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.9rem;
-    padding: 16px 32px;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: 100px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-weight: 500;
-  }
-
-  .signup-form button:hover {
-    background: #a78bfa;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
-  }
-
-  .signup-form button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-  }
-
   .form-note {
     font-size: 0.75rem;
     color: var(--text-dim);
     margin-top: 8px;
-  }
-
-  .form-success {
-    display: none;
-    text-align: center;
-    padding: 20px;
-  }
-
-  .form-success .check {
-    font-size: 2.5rem;
-    margin-bottom: 12px;
-  }
-
-  .form-success h3 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-  }
-
-  .form-success p {
-    color: var(--text-dim);
-    font-size: 0.9rem;
   }
 
   .demos-grid {
@@ -1958,7 +1806,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .features-grid, .why-grid { grid-template-columns: 1fr; }
     .why-card:first-child { grid-template-columns: 1fr; }
     .feature-card.feature-wide { grid-column: span 1; }
-    .form-row { flex-direction: column; }
     .demos-grid { grid-template-columns: 1fr; max-width: 320px; margin-left: auto; margin-right: auto; }
     .trust-strip { gap: 8px; }
     .trust-divider { display: none; }

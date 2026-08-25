@@ -3,14 +3,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout
   title="Privacy Policy — Liv"
-  description="How Liv handles your data."
+  description="How Liv handles your data, including final deletion of all user data on 26 October 2026 when the service shuts down."
   ogUrl="https://liv4all.com/privacy"
 >
   <div class="container">
     <a href="/" class="back">← back to liv4all</a>
 
     <h1>privacy policy</h1>
-    <p class="updated">last updated: 29 april 2026</p>
+    <p class="updated">last updated: 25 august 2026</p>
 
     <div class="callout">
       plain language, no legalese. your data is yours. we use it to make liv work for you — nothing else. this policy covers how liv handles data from connected services, including <strong>Google Workspace (Gmail, Calendar, Contacts)</strong>, email forwarded to your agent's inbox, and your conversations with liv through the messaging channels you connect. it also describes our commitments under Google's API Services User Data Policy, including the <strong>Limited Use requirements</strong>.
@@ -214,9 +214,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       any such access is logged. we do not have a support team casually browsing user data, and we do not permit our subprocessors to do so either.
     </p>
 
-    <h2>data retention</h2>
+    <h2 id="closure">service closure and final deletion</h2>
+    <div class="callout callout-closure">
+      <strong>liv is shutting down.</strong> the platform shuts down on <strong>26 september 2026</strong>,
+      and <strong>all user data is permanently deleted on 26 october 2026</strong>. this section overrides
+      the retention periods below wherever they are longer.
+    </div>
     <ul>
-      <li><strong>conversation history &amp; workspace files</strong> — retained for as long as your account is active.</li>
+      <li><strong>final deletion date: 26 october 2026.</strong> thirty days after shutdown, everything we hold about you is permanently deleted — conversation history, durable memory, workspace files, OAuth tokens and account records — including from backups on their normal rotation. no request is needed.</li>
+      <li><strong>export before then.</strong> email <a href="mailto:support@liv4all.com?subject=Export%20my%20data">support@liv4all.com</a> for a machine-readable copy of your conversation history and workspace files at any time before 26 october 2026.</li>
+      <li><strong>earlier deletion.</strong> email <a href="mailto:support@liv4all.com?subject=Delete%20my%20data">support@liv4all.com</a> and we will delete your data immediately and confirm when it is done.</li>
+      <li><strong>google data.</strong> liv's access to Gmail, Calendar and Contacts ends when the service does, and you can revoke it sooner via <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google account permissions</a>. cached Gmail content is purged within 24 hours as normal.</li>
+      <li>the plain-language version of all of this is on the <a href="/shutdown">shutdown page</a>.</li>
+    </ul>
+
+    <h2>data retention</h2>
+    <p>
+      these are the retention rules that applied while the service was running. they are now capped by
+      the final deletion date above: nothing is retained past 26 october 2026.
+    </p>
+    <ul>
+      <li><strong>conversation history &amp; workspace files</strong> — retained for as long as your account is active, and in all cases deleted by 26 october 2026.</li>
       <li><strong>cached Gmail content</strong> — purged automatically within 24 hours of being fetched. durable memory retains summaries and references, not full message bodies.</li>
       <li><strong>OAuth tokens</strong> — retained while the connection is active; deleted immediately when you disconnect a service or delete your account.</li>
       <li><strong>server logs</strong> — operational and security logs are retained for up to 30 days and then automatically deleted.</li>
@@ -301,6 +319,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   li { margin-bottom: 8px; }
+
+  .callout-closure {
+    background: rgba(251, 191, 36, 0.08);
+    border-color: rgba(251, 191, 36, 0.25);
+  }
 
   .callout {
     background: var(--surface-glass);
