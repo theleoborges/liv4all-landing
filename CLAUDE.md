@@ -6,13 +6,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Static marketing site for **Liv4All** — an AI Chief of Staff product. Canonical URL is `https://liv4all.com`. Hosted on GitHub Pages; the legacy `hello.liv4all.com` hostname redirects to the apex.
 
-**The product is shutting down.** Liv closed to new signups on 25 August 2026; the platform shuts down on **26 September 2026** and all user data is permanently deleted on **26 October 2026**. Subscribers active on the shutdown date are refunded pro-rata automatically. The site stays up as an archive with every page marked closed:
+**The product has shut down.** Liv closed to new signups on 25 August 2026; the platform shut down on **26 September 2026** and all user data is permanently deleted on **26 October 2026**. Subscribers active on the shutdown date are refunded pro-rata automatically. Site copy was moved to past tense on the shutdown date. The site stays up as an archive with every page marked closed:
 
 - `src/components/ShutdownBanner.astro` is pinned above the nav on every page (including the standalone `DemoLayout` and the WhatsApp guide, which have their own chrome). It sizes off `--banner-h` in `src/styles/global.css`, which also offsets `body` and `nav`.
 - `src/components/ClosedNotice.astro` is the in-page callout for pages whose body copy describes a product no longer for sale. Default slot content covers the common case.
 - `src/pages/shutdown.astro` is the canonical notice everything links to. Keep it, `/terms#closure` and `/privacy#closure` consistent with each other and with the email sent to users.
 - Ivy shut down with Liv. The chat widget was removed (it loaded `app.liv4all.com/embed/chat.js`), and `/ivy` is marked retired.
-- No live signup, trial or sales CTAs anywhere. `app.liv4all.com` is referenced only by the nav Login link (dead after 26 September) and by legal/scope text. Use absolute dates in copy, never tense-dependent phrasing, so pages stay accurate on both sides of the shutdown date.
+- No live signup, trial or sales CTAs anywhere. The nav Login link was removed on 26 September 2026; `app.liv4all.com` is referenced only by legal/scope text. Use absolute dates in copy, never tense-dependent phrasing, so pages stay accurate on both sides of the shutdown date.
 
 ## Architecture
 
